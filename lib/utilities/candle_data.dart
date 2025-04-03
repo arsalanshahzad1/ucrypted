@@ -1,0 +1,37 @@
+import 'package:interactive_chart/interactive_chart.dart';
+
+class CandleDataLocal {
+  final data = [
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 5)).millisecondsSinceEpoch, open: 102, high: 105, low: 95, close: 99, volume: 1000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 4)).millisecondsSinceEpoch, open: 99, high: 104, low: 92, close: 100, volume: 7500),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 2)).millisecondsSinceEpoch, open: 106, high: 115, low: 105, close: 113, volume: 7100),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 1)).millisecondsSinceEpoch, open: 113, high: 120, low: 112, close: 118, volume: 6800),
+    CandleData(timestamp: DateTime.now().millisecondsSinceEpoch, open: 118, high: 125, low: 115, close: 123, volume: 7200),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 9)).millisecondsSinceEpoch, open: 120, high: 125, low: 115, close: 118, volume: 7000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 8)).millisecondsSinceEpoch, open: 118, high: 123, low: 110, close: 112, volume: 6000),
+    CandleData(timestamp: DateTime.now().millisecondsSinceEpoch, open: 118, high: 125, low: 115, close: 123, volume: 7200),
+    CandleData(timestamp: DateTime.now().millisecondsSinceEpoch, open: 118, high: 125, low: 115, close: 123, volume: 7200),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 6)).millisecondsSinceEpoch, open: 108, high: 110, low: 100, close: 102, volume: 8000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 3)).millisecondsSinceEpoch, open: 100, high: 108, low: 97, close: 106, volume: 6200),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 5)).millisecondsSinceEpoch, open: 102, high: 105, low: 95, close: 99, volume: 9000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 4)).millisecondsSinceEpoch, open: 99, high: 104, low: 92, close: 100, volume: 7500),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 3)).millisecondsSinceEpoch, open: 100, high: 108, low: 97, close: 106, volume: 6200),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 2)).millisecondsSinceEpoch, open: 106, high: 115, low: 105, close: 113, volume: 7100),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 9)).millisecondsSinceEpoch, open: 120, high: 125, low: 115, close: 118, volume: 7000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 8)).millisecondsSinceEpoch, open: 118, high: 123, low: 110, close: 112, volume: 6000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 7)).millisecondsSinceEpoch, open: 112, high: 115, low: 105, close: 108, volume: 5000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 6)).millisecondsSinceEpoch, open: 108, high: 110, low: 100, close: 102, volume: 8000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 7)).millisecondsSinceEpoch, open: 112, high: 115, low: 105, close: 108, volume: 5000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 6)).millisecondsSinceEpoch, open: 108, high: 110, low: 100, close: 102, volume: 8000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 5)).millisecondsSinceEpoch, open: 102, high: 105, low: 95, close: 99, volume: 9000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 4)).millisecondsSinceEpoch, open: 99, high: 104, low: 92, close: 100, volume: 7500),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 3)).millisecondsSinceEpoch, open: 100, high: 108, low: 97, close: 106, volume: 6200),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 2)).millisecondsSinceEpoch, open: 106, high: 115, low: 105, close: 113, volume: 7100),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 1)).millisecondsSinceEpoch, open: 113, high: 120, low: 112, close: 118, volume: 6800),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 9)).millisecondsSinceEpoch, open: 120, high: 125, low: 115, close: 118, volume: 7000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 8)).millisecondsSinceEpoch, open: 118, high: 123, low: 110, close: 112, volume: 6000),
+    CandleData(timestamp: DateTime.now().subtract(const Duration(days: 7)).millisecondsSinceEpoch, open: 112, high: 115, low: 105, close: 108, volume: 5000),
+    CandleData(timestamp: DateTime.now().millisecondsSinceEpoch, open: 118, high: 125, low: 115, close: 123, volume: 7200),
+    CandleData(timestamp: DateTime.now().millisecondsSinceEpoch, open: 118, high: 125, low: 115, close: 123, volume: 7200),
+  ];
+}
