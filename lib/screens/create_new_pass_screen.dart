@@ -23,6 +23,7 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/bg1.png",
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -67,11 +68,7 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
                     5.vSpace,
                     Text(
                       "Let's create a new and more secure password",
-                      style: GoogleFonts.inter(
-                        color: Color(0xff6C7278),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500
-                      ),
+                      style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                     30.vSpace,
                     Text(
@@ -183,10 +180,7 @@ class PasswordStrengthMeter extends StatelessWidget {
         // Strength Text
         const SizedBox(width: 20),
         GradientText(_getStrengthText(),
-            style: GoogleFonts.inter(
-              fontSize: 12,
-              fontWeight: FontWeight.w600
-            ),
+            style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600),
             gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])),
       ],
     );

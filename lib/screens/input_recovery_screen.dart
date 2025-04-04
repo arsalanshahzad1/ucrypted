@@ -22,6 +22,7 @@ class _InputRecoveryscreenState extends State<InputRecoveryscreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/bg1.png",
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(

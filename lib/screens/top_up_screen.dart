@@ -22,6 +22,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/full.png",
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -196,6 +197,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/full.png",
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -493,7 +495,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
             ),
             10.vSpace,
             Text(
-              "\$ $amount",
+              "$amount",
               style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 32),
             ),
             10.vSpace,
@@ -611,6 +613,7 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/bg1.png",
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(

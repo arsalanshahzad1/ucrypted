@@ -35,6 +35,7 @@ class _RecoveryScreemState extends State<RecoveryScreem> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/bg1.png",
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,

@@ -21,9 +21,77 @@ class ESimScreen extends StatefulWidget {
 }
 
 class _ESimScreenState extends State<ESimScreen> {
+  int _selectedIndex = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -176,7 +244,9 @@ class CountryCard extends StatelessWidget {
               width: 200.w,
               padding: EdgeInsets.symmetric(vertical: 20.h),
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey), borderRadius: BorderRadius.circular(12.r), image: const DecorationImage(image: AssetImage("assets/images/re.png"), fit: BoxFit.cover)),
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(12.r),
+                  image: const DecorationImage(image: AssetImage("assets/images/re.png"), fit: BoxFit.cover)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -192,44 +262,9 @@ class CountryCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
+                      SvgPicture.asset(
+                        "assets/svg/c.svg",
                         height: 30.h,
-                        width: 100.w,
-                        padding: EdgeInsets.symmetric(horizontal: 5.w),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [
-                              Color(0x60FCA509),
-                              Color(0x60880306),
-                            ],
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                          ),
-                          border: const Border(
-                            left: BorderSide(color: AppColors.textColor),
-                            top: BorderSide(color: AppColors.textColor),
-                            bottom: BorderSide(color: AppColors.textColor),
-                            right: BorderSide.none,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(24.r),
-                            bottomLeft: Radius.circular(24.r),
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              esimIcon,
-                              width: 20.w,
-                              height: 20.h,
-                            ),
-                            SizedBox(width: 10.w),
-                            Text(
-                              "eSim Card",
-                              style: GoogleFonts.inter(color: Colors.white, fontSize: 10),
-                            )
-                          ],
-                        ),
                       )
                     ],
                   ),
@@ -752,9 +787,77 @@ class DeviceCheckerScreen extends StatefulWidget {
 }
 
 class _DeviceCheckerScreenState extends State<DeviceCheckerScreen> {
+  int _selectedIndex = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -881,41 +984,47 @@ class _DeviceCheckerScreenState extends State<DeviceCheckerScreen> {
               const SizedBox(height: 25),
 
               // Continue With Payment Button
-              GestureDetector(
-                onTap: () {
-                  RoutingService.push(const ESimBuyScreen());
-                },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                    borderRadius: BorderRadius.circular(28),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Continue With Payment",
-                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: GestureDetector(
+                  onTap: () {
+                    RoutingService.push(const ESimBuyScreen());
+                  },
+                  child: Container(
+                    height: 40.h,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                      borderRadius: BorderRadius.circular(28),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Continue With Payment",
+                        style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                      ),
                     ),
                   ),
                 ),
               ),
               const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  RoutingService.push(const CompatibleDevicesScreen());
-                },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                    borderRadius: BorderRadius.circular(28),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "View All Compatible Device",
-                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: GestureDetector(
+                  onTap: () {
+                    RoutingService.push(const CompatibleDevicesScreen());
+                  },
+                  child: Container(
+                    height: 40.h,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                      borderRadius: BorderRadius.circular(28),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "View All Compatible Device",
+                        style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                      ),
                     ),
                   ),
                 ),
@@ -947,11 +1056,79 @@ class CompatibleDevicesScreen extends StatefulWidget {
 }
 
 class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
+  int _selectedIndex = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   final List<String> brands = ["Apple", "Google", "Huawei", "Laptop and Notebook", "Oppo", "Samsung", "Other"];
   String selectedBrand = "Apple";
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -1142,9 +1319,76 @@ class CompatibleListScreen extends StatefulWidget {
 }
 
 class _CompatibleListScreenState extends State<CompatibleListScreen> {
+  int _selectedIndex = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -1334,9 +1578,78 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
 
   String? selectedPaymentMethod;
   bool isChecked = false;
+
+  int _selectedIndex = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -1576,9 +1889,77 @@ class ESimBuySuccessScreen extends StatefulWidget {
 }
 
 class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
+  int _selectedIndex = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

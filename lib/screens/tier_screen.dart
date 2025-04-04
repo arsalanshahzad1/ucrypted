@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
@@ -16,10 +17,78 @@ class TierScreen extends StatefulWidget {
 }
 
 class _TierScreenState extends State<TierScreen> {
+  int _selectedIndex = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   String? selectedPaymentMethod;
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -195,93 +264,119 @@ class _TierScreenState extends State<TierScreen> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 ),
               ),
-              if (selectedPaymentMethod == "Credit Card") ...[
-                25.vSpace,
-                Text(
-                  "Cardholder Name",
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-                20.vSpace,
-                TextField(
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
-                  decoration: InputDecoration(
-                    fillColor: Colors.transparent,
-                    filled: true,
-                    hintText: 'Enter Card holder name',
-                    hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  ),
-                ),
-                25.vSpace,
-                Text(
-                  "Expiration Date",
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-                20.vSpace,
-                TextField(
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
-                  decoration: InputDecoration(
-                    fillColor: Colors.transparent,
-                    filled: true,
-                    hintText: 'Enter Card holder name',
-                    hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  ),
-                ),
-                25.vSpace,
-                Text(
-                  "CVV",
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
-                ),
-                20.vSpace,
-                TextField(
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
-                  decoration: InputDecoration(
-                    fillColor: Colors.transparent,
-                    filled: true,
-                    hintText: 'Enter Card holder name',
-                    hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  ),
-                ),
-              ],
               25.vSpace,
+              Text(
+                "CVV",
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+              ),
+              20.vSpace,
+              TextField(
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                decoration: InputDecoration(
+                  fillColor: Colors.transparent,
+                  filled: true,
+                  hintText: 'desmond',
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                ),
+              ),
+              25.vSpace,
+              Text(
+                "Cardholder Name",
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+              ),
+              20.vSpace,
+              TextField(
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                decoration: InputDecoration(
+                  fillColor: Colors.transparent,
+                  filled: true,
+                  hintText: 'Enter your Full Name',
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                ),
+              ),
+              25.vSpace,
+              Text(
+                "Card Number",
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+              ),
+              20.vSpace,
+              TextField(
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                decoration: InputDecoration(
+                  fillColor: Colors.transparent,
+                  filled: true,
+                  hintText: '41112121212121212',
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                ),
+              ),
+              25.vSpace,
+              Text(
+                "Expiration Date",
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+              ),
+              20.vSpace,
+              TextField(
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                decoration: InputDecoration(
+                  fillColor: Colors.transparent,
+                  filled: true,
+                  hintText: '12/25',
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                ),
+              ),
+              20.vSpace,
               Text(
                 "Amount",
                 style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
@@ -292,7 +387,7 @@ class _TierScreenState extends State<TierScreen> {
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
-                  hintText: 'Enter Amount',
+                  hintText: '\$20.00',
                   hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
@@ -311,13 +406,13 @@ class _TierScreenState extends State<TierScreen> {
               ),
               20.vSpace,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: GestureDetector(
                   onTap: () {
                     RoutingService.push(const TierScreenSuccess());
                   },
                   child: Container(
-                    height: 50,
+                    height: 40.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
@@ -334,13 +429,13 @@ class _TierScreenState extends State<TierScreen> {
               ),
               20.vSpace,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: GestureDetector(
                   onTap: () {
                     // RoutingService.pushAndRemoveUntil(const HomeScreen());
                   },
                   child: Container(
-                    height: 50,
+                    height: 40.h,
                     width: double.infinity,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(28), border: Border.all(color: Colors.white)),
                     child: Center(
@@ -369,10 +464,78 @@ class TierScreenSuccess extends StatefulWidget {
 }
 
 class _TierScreenSuccessState extends State<TierScreenSuccess> {
+  int _selectedIndex = 0;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

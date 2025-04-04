@@ -71,15 +71,112 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                 ),
                 40.vSpace,
                 Text(
+                  "Select Crypto Currency",
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                ),
+                10.vSpace,
+                TextField(
+                  readOnly: true, // Makes it non-editable like a dropdown
+                  decoration: InputDecoration(
+                    hintText: "BTC (Bitcoin)",
+                    hintStyle: TextStyle(
+                      color: Color(0xFFCCCCCC), // Light grey text color
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    filled: true,
+                    fillColor: Color(0xFF2C2C30), // Dark background
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6), // Rounded edges
+                      borderSide: BorderSide(
+                        color: Color(0xFF44444A), // Subtle border
+                        width: 1,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        color: Color(0xFF44444A),
+                        width: 1,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        color: Color(0xFF333333), // No highlight on focus
+                        width: 1,
+                      ),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+
+                    // 🔹 Prefix Icon (BTC Logo)
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.all(12),
+                      child: SvgPicture.asset(
+                        "assets/svg/eyew3.svg",
+                        width: 20,
+                        height: 20,
+                      ),
+                    ),
+
+                    // 🔹 Suffix Icon (Dropdown Arrow)
+                    suffixIcon: Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: Color(0xFFCCCCCC),
+                    ),
+                  ),
+                  style: TextStyle(
+                    color: Colors.white, // Text color
+                    fontSize: 14,
+                  ),
+                  cursorColor: Colors.white, // Cursor color
+                  onTap: () {
+                    // Open dropdown or action when tapped
+                  },
+                ),
+                20.vSpace,
+                Text(
                   "Crypto Ammount",
                   style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
                 ),
                 10.vSpace,
-                CustomTextField(
-                  controller: TextEditingController(),
-                  keyboardType: TextInputType.emailAddress,
-                  isPassword: false,
-                  hintText: "min amount 0,00001 BTC",
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: "min amount 0,00001 BTC",
+                    hintStyle: GoogleFonts.inter(
+                        color: Color(0xFF6C7278), // Grey text color
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400),
+                    filled: true,
+                    fillColor: Color(0xFF2C2C30), // Dark background
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6), // Rounded edges
+                      borderSide: BorderSide(
+                        color: Color(0xFF44444A), // Subtle border
+                        width: 1,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        color: Color(0xFF44444A),
+                        width: 1,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        color: Color(0xFF333333), // No highlight on focus
+                        width: 1,
+                      ),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                  ),
+                  style: TextStyle(
+                    color: Colors.white, // Text color
+                    fontSize: 14,
+                  ),
+                  cursorColor: Colors.white, // Cursor color
                 ),
                 20.vSpace,
                 Text(
@@ -87,11 +184,55 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                   style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
                 ),
                 10.vSpace,
-                CustomTextField(
-                  controller: TextEditingController(),
-                  keyboardType: TextInputType.emailAddress,
-                  isPassword: true,
-                  hintText: "enter you wallet password",
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: "enter you wallet password",
+                    hintStyle: GoogleFonts.inter(
+                        color: Color(0xFF6C7278), // Grey text color
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400),
+                    filled: true,
+                    fillColor: Color(0xFF2C2C30), // Dark background
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10), // Rounded edges
+                      borderSide: BorderSide(
+                        color: Color(0xFF44444A), // Subtle border
+                        width: 1,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        color: Color(0xFF44444A),
+                        width: 1,
+                      ),
+                    ),
+                    suffixIcon: GestureDetector(
+                      onTap: () {},
+                      child: Padding(
+                        padding: EdgeInsets.all(15), // Adjust padding for better alignment
+                        child: SvgPicture.asset(
+                          "assets/svg/eyew.svg",
+                          width: 15,
+                          height: 15,
+                          colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                        ),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        color: Color(0xFF333333), // No highlight on focus
+                        width: 1,
+                      ),
+                    ),
+                    contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                  ),
+                  style: TextStyle(
+                    color: Colors.white, // Text color
+                    fontSize: 14,
+                  ),
+                  cursorColor: Colors.white, // Cursor color
                 ),
                 30.verticalSpace,
                 const Divider(
@@ -110,11 +251,55 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                             style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
                           ),
                           10.vSpace,
-                          CustomTextField(
-                            controller: TextEditingController(),
-                            keyboardType: TextInputType.emailAddress,
-                            isPassword: true,
-                            hintText: "Input amount",
+                          TextField(
+                            decoration: InputDecoration(
+                              hintText: "Input Amount",
+                              hintStyle: GoogleFonts.inter(
+                                  color: Color(0xFF6C7278), // Grey text color
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
+                              filled: true,
+                              fillColor: Color(0xFF2C2C30), // Dark background
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10), // Rounded edges
+                                borderSide: BorderSide(
+                                  color: Color(0xFF44444A), // Subtle border
+                                  width: 1,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6),
+                                borderSide: BorderSide(
+                                  color: Color(0xFF44444A),
+                                  width: 1,
+                                ),
+                              ),
+                              suffixIcon: GestureDetector(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: EdgeInsets.all(15), // Adjust padding for better alignment
+                                  child: SvgPicture.asset(
+                                    "assets/svg/eyew1.svg",
+                                    width: 15,
+                                    height: 15,
+                                    // colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                                  ),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6),
+                                borderSide: BorderSide(
+                                  color: Color(0xFF333333), // No highlight on focus
+                                  width: 1,
+                                ),
+                              ),
+                              contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                            ),
+                            style: TextStyle(
+                              color: Colors.white, // Text color
+                              fontSize: 14,
+                            ),
+                            cursorColor: Colors.white, // Cursor color
                           ),
                         ],
                       ),
@@ -129,11 +314,55 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                             style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
                           ),
                           10.vSpace,
-                          CustomTextField(
-                            controller: TextEditingController(),
-                            keyboardType: TextInputType.emailAddress,
-                            isPassword: true,
-                            hintText: "Equivalent ",
+                          TextField(
+                            decoration: InputDecoration(
+                              hintText: "Equivalent",
+                              hintStyle: GoogleFonts.inter(
+                                  color: Color(0xFF6C7278), // Grey text color
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
+                              filled: true,
+                              fillColor: Color(0xFF2C2C30), // Dark background
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10), // Rounded edges
+                                borderSide: BorderSide(
+                                  color: Color(0xFF44444A), // Subtle border
+                                  width: 1,
+                                ),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6),
+                                borderSide: BorderSide(
+                                  color: Color(0xFF44444A),
+                                  width: 1,
+                                ),
+                              ),
+                              suffixIcon: GestureDetector(
+                                onTap: () {},
+                                child: Padding(
+                                  padding: EdgeInsets.all(15), // Adjust padding for better alignment
+                                  child: SvgPicture.asset(
+                                    "assets/svg/eyew3.svg",
+                                    width: 15,
+                                    height: 15,
+                                    // colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                                  ),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6),
+                                borderSide: BorderSide(
+                                  color: Color(0xFF333333), // No highlight on focus
+                                  width: 1,
+                                ),
+                              ),
+                              contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+                            ),
+                            style: TextStyle(
+                              color: Colors.white, // Text color
+                              fontSize: 14,
+                            ),
+                            cursorColor: Colors.white, // Cursor color
                           ),
                         ],
                       ),

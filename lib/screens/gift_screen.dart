@@ -78,7 +78,7 @@ class _GiftScreenState extends State<GiftScreen> {
                 children: [
                   Expanded(
                     child: Text(
-                      "Gift Redeems",
+                      "Gift Redeem",
                       style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: AppColors.white, fontSize: 28),
                     ),
                   ),

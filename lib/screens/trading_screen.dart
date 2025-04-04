@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_chart/interactive_chart.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/buy_sell_detail_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/candle_data.dart';
@@ -63,7 +65,7 @@ class _TradingScreenState extends State<TradingScreen> {
               width: 30,
               child: SvgPicture.asset("assets/svg/notification.svg"),
             ),
-          ), 
+          ),
           15.hSpace,
           GestureDetector(
             onTap: () {
@@ -83,63 +85,95 @@ class _TradingScreenState extends State<TradingScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              200.vSpace,
-              SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    '15min',
-                    '1h',
-                    '1d',
-                    '1w',
-                    '1m',
-                  ]
-                      .map((interval) => GestureDetector(
-                            onTap: () => setState(() => selectedInterval = interval),
-                            child: Column(
-                              children: [
-                                Text(
-                                  interval,
-                                  style: GoogleFonts.inter(
-                                    color: selectedInterval == interval ? Colors.white : Colors.grey,
-                                  ),
-                                ),
-                                if (selectedInterval == interval)
-                                  Container(
-                                    margin: const EdgeInsets.only(top: 4),
-                                    height: 2,
-                                    width: 20,
-                                    color: Colors.blue,
-                                  ),
-                                5.vSpace,
-                              ],
-                            ),
+              // 200.vSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Text("Wallet Balance",
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color: Color(0xffACB5BB),
+                          )),
+                      10.vSpace,
+                      Text("\$227.169,85",
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 36,
+                            color: Colors.white,
                           ))
-                      .toList(),
-                ),
-              ),
-              SizedBox(
-                height: 200,
-                width: double.infinity,
-                child: InteractiveChart(
-                  style: ChartStyle(
-                    priceGainColor: const Color(0xFF38B781),
-                    priceLossColor: const Color(0xFFFF545E),
-                    volumeColor: Colors.grey.withOpacity(0.8),
-                    priceGridLineColor: Colors.white24,
-                    priceLabelStyle: GoogleFonts.inter(color: Colors.white70),
-                    timeLabelStyle: GoogleFonts.inter(
-                      color: Colors.transparent,
-                    ),
-                    selectionHighlightColor: Colors.white.withOpacity(0.2),
-                    overlayBackgroundColor: Colors.black.withOpacity(0.6),
-                    overlayTextStyle: GoogleFonts.inter(color: Colors.white70),
-                    timeLabelHeight: 32,
-                    volumeHeightFactor: 0.2,
+                    ],
                   ),
-                  candles: CandleDataLocal().data,
+                ],
+              ),
+              150.vSpace,
+              SizedBox(
+                // height: 300.h,
+                width: double.infinity,
+                child: SvgPicture.asset(
+                  "assets/svg/candle.svg",
+                  fit: BoxFit.fitWidth,
                 ),
               ),
+              // SizedBox(
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //     children: [
+              //       '15min',
+              //       '1h',
+              //       '1d',
+              //       '1w',
+              //       '1m',
+              //     ]
+              //         .map((interval) => GestureDetector(
+              //               onTap: () => setState(() => selectedInterval = interval),
+              //               child: Column(
+              //                 children: [
+              //                   Text(
+              //                     interval,
+              //                     style: GoogleFonts.inter(
+              //                       color: selectedInterval == interval ? Colors.white : Colors.grey,
+              //                     ),
+              //                   ),
+              //                   if (selectedInterval == interval)
+              //                     Container(
+              //                       margin: const EdgeInsets.only(top: 4),
+              //                       height: 2,
+              //                       width: 20,
+              //                       color: Colors.blue,
+              //                     ),
+              //                   5.vSpace,
+              //                 ],
+              //               ),
+              //             ))
+              //         .toList(),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 200,
+              //   width: double.infinity,
+              //   child: InteractiveChart(
+              //     style: ChartStyle(
+              //       priceGainColor: const Color(0xFF38B781),
+              //       priceLossColor: const Color(0xFFFF545E),
+              //       volumeColor: Colors.grey.withOpacity(0.8),
+              //       priceGridLineColor: Colors.white24,
+              //       priceLabelStyle: GoogleFonts.inter(color: Colors.white70),
+              //       timeLabelStyle: GoogleFonts.inter(
+              //         color: Colors.transparent,
+              //       ),
+              //       selectionHighlightColor: Colors.white.withOpacity(0.2),
+              //       overlayBackgroundColor: Colors.black.withOpacity(0.6),
+              //       overlayTextStyle: GoogleFonts.inter(color: Colors.white70),
+              //       timeLabelHeight: 32,
+              //       volumeHeightFactor: 0.2,
+              //     ),
+              //     candles: CandleDataLocal().data,
+              //   ),
+              // ),
+              20.vSpace,
               Row(
                 children: [
                   GestureDetector(
@@ -199,7 +233,9 @@ class _TradingScreenState extends State<TradingScreen> {
                 children: [
                   Expanded(
                       child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      RoutingService.push(const BuySellDetailScreen());
+                    },
                     child: Container(
                       height: 45,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: const Color(0xFF38B781)),
@@ -214,7 +250,9 @@ class _TradingScreenState extends State<TradingScreen> {
                   20.hSpace,
                   Expanded(
                       child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      RoutingService.push(const BuySellDetailScreen());
+                    },
                     child: Container(
                       height: 45,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: const Color(0xFFFF545E)),

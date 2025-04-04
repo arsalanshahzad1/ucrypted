@@ -19,6 +19,7 @@ class _InputRecoverySuccessScreenState extends State<InputRecoverySuccessScreen>
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/bg1.png",
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -42,7 +43,7 @@ class _InputRecoverySuccessScreenState extends State<InputRecoverySuccessScreen>
                         )
                       ],
                     ),
-                     Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
@@ -57,7 +58,7 @@ class _InputRecoverySuccessScreenState extends State<InputRecoverySuccessScreen>
                       ],
                     ),
                     20.vSpace,
-                     Text(
+                    Text(
                       "Your secret recovery word has been successfully verified and saved. Keep it safe",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.inter(
@@ -86,7 +87,7 @@ class _InputRecoverySuccessScreenState extends State<InputRecoverySuccessScreen>
                     ),
                     borderRadius: BorderRadius.circular(28),
                   ),
-                  child:  Center(
+                  child: Center(
                     child: Text(
                       "Go to Home",
                       style: GoogleFonts.inter(

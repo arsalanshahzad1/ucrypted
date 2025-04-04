@@ -22,11 +22,78 @@ class MobileTopUpScreen extends StatefulWidget {
 class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
   String? selectedPaymentMethod;
   bool isChecked = false;
+  int _selectedIndex = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -389,10 +456,78 @@ class MobileTopUpSuccessScreen extends StatefulWidget {
 }
 
 class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
+  int _selectedIndex = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

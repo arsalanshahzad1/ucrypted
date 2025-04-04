@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ucrypted_app/screens/deposit_crypto_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/gradient_text.dart';
@@ -17,6 +18,29 @@ class DiscoverP2PScreen extends StatefulWidget {
 }
 
 class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTickerProviderStateMixin {
+  int i = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      i = index;
+    });
+  }
+
   late TabController _tabController;
   int selectedIndex = 0;
 
@@ -37,6 +61,51 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: i,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -255,9 +324,14 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
                                         style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 22, color: Colors.white),
                                       ),
                                       // 10.hSpace,
-                                      const Icon(
-                                        Icons.arrow_drop_down_outlined,
-                                        color: Colors.white,
+                                      GestureDetector(
+                                        onTap: () {
+                                          RoutingService.push(const DepositCryptoscreen());
+                                        },
+                                        child: const Icon(
+                                          Icons.arrow_drop_down_outlined,
+                                          color: Colors.white,
+                                        ),
                                       )
                                     ],
                                   ),
@@ -329,9 +403,14 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
                                         style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 22, color: Colors.white),
                                       ),
                                       // 10.hSpace,
-                                      Icon(
-                                        Icons.arrow_drop_down_outlined,
-                                        color: Colors.white,
+                                      GestureDetector(
+                                        onTap: () {
+                                          RoutingService.push(const DepositCryptoscreen());
+                                        },
+                                        child: Icon(
+                                          Icons.arrow_drop_down_outlined,
+                                          color: Colors.white,
+                                        ),
                                       )
                                     ],
                                   ),
@@ -520,10 +599,77 @@ class P2PConfirmScreen extends StatefulWidget {
 
 class _P2PConfirmScreenState extends State<P2PConfirmScreen> {
   int selectedIndex = 0;
+  int i = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      i = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: i,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

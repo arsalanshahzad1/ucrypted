@@ -27,9 +27,77 @@ class _GiftRedeemScreenState extends State<GiftRedeemScreen> {
   bool isChecked = false;
   bool isPreOrder = false;
 
+  int _selectedIndex = 0;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -504,38 +572,41 @@ class _GiftRedeemScreenState extends State<GiftRedeemScreen> {
                 ),
               ),
               10.vSpace,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Pre Order",
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.w500, color: AppColors.white, fontSize: 20),
-                  ),
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: 60,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          gradient: isPreOrder ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]) : null,
-                          borderRadius: BorderRadius.circular(20),
-                          color: isPreOrder ? null : Colors.grey[700],
+              if (selectedPaymentMethod == 'Wallet') ...[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Pre Order",
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.w500, color: AppColors.white, fontSize: 20),
+                    ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 60,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            gradient:
+                                isPreOrder ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]) : null,
+                            borderRadius: BorderRadius.circular(20),
+                            color: isPreOrder ? null : Colors.grey[700],
+                          ),
                         ),
-                      ),
-                      Switch(
-                        value: isPreOrder,
-                        onChanged: (val) => setState(() => isPreOrder = val),
-                        activeColor: Colors.transparent,
-                        activeTrackColor: Colors.transparent,
-                        inactiveTrackColor: Colors.transparent,
-                        inactiveThumbColor: Colors.white,
-                        trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                        Switch(
+                          value: isPreOrder,
+                          onChanged: (val) => setState(() => isPreOrder = val),
+                          activeColor: Colors.transparent,
+                          activeTrackColor: Colors.transparent,
+                          inactiveTrackColor: Colors.transparent,
+                          inactiveThumbColor: Colors.white,
+                          trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
               15.vSpace,
               Row(
                 children: [
@@ -608,10 +679,78 @@ class GiftRedeemSuccessScreen extends StatefulWidget {
 }
 
 class _GiftRedeemSuccessScreenState extends State<GiftRedeemSuccessScreen> {
+  int _selectedIndex = 0;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

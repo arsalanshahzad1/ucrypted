@@ -26,8 +26,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
-
   final List<Widget> _pages = [
     const HomePage(),
     const TradingScreen(),
@@ -35,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const GiftScreen(),
     const DiscoverScreen(),
   ];
+  int _selectedIndex = 0;
 
   final List<String> _selectedIcons = [
     "assets/svg/home-bottoms.svg",
@@ -73,22 +72,34 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 0,
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
+          selectedFontSize: 0.0,
           type: BottomNavigationBarType.fixed,
           selectedItemColor: Colors.orange,
           unselectedItemColor: Colors.white,
           items: List.generate(5, (index) {
             return BottomNavigationBarItem(
               label: "",
-              icon: SizedBox(
-                height: 50,
-                child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
               ),
-              activeIcon: SizedBox(
-                child: SvgPicture.asset(
-                  _selectedIcons[index],
-                  width: 60,
-                  height: 60,
-                ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
               ),
             );
           }),

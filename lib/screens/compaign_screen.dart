@@ -17,9 +17,77 @@ class CompaignScreen extends StatefulWidget {
 }
 
 class _CompaignScreenState extends State<CompaignScreen> {
+  int _selectedIndex = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,29 +167,6 @@ class _CompaignScreenState extends State<CompaignScreen> {
             20.vSpace,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: GestureDetector(
-                onTap: () {
-                  // RoutingService.pushAndRemoveUntil(const HomeScreen());
-                },
-                child: Container(
-                  height: 44.h,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                    borderRadius: BorderRadius.circular(28),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Confirm Support",
-                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            20.vSpace,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -132,22 +177,25 @@ class _CompaignScreenState extends State<CompaignScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.orangeAccent),
-                      ),
-                      child: Text(
-                        "Track Our Progress",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.orangeAccent,
-                        ),
-                      ),
+                    SizedBox(
+                      child: SvgPicture.asset("assets/svg/track.svg"),
                     ),
+                    // Container(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    //   decoration: BoxDecoration(
+                    //     color: Colors.transparent,
+                    //     borderRadius: BorderRadius.circular(20),
+                    //     border: Border.all(color: Colors.orangeAccent),
+                    //   ),
+                    //   child: Text(
+                    //     "Track Our Progress",
+                    //     style: GoogleFonts.poppins(
+                    //       fontSize: 12,
+                    //       fontWeight: FontWeight.w500,
+                    //       color: Colors.orangeAccent,
+                    //     ),
+                    //   ),
+                    // ),
                     const SizedBox(height: 12),
                     Text(
                       "Together, We're Changing The World Of Money",
@@ -158,74 +206,13 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Stack(
-                      alignment: Alignment.centerLeft,
-                      children: [
-                        Container(
-                          height: 10,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white.withOpacity(0.2), // Light grey background
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 16, // 16% progress
-                              child: Container(
-                                height: 10,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.horizontal(left: Radius.circular(10)),
-                                  gradient: const LinearGradient(
-                                    colors: [Colors.orange, Colors.red],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 84,
-                              child: Container(
-                                height: 10,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.horizontal(right: Radius.circular(10)),
-                                  color: Colors.white, // Remaining progress is white
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Positioned(
-                          left: MediaQuery.of(context).size.width * 0.16 - 16, // Adjusting position
-                          child: Text(
-                            "16%",
-                            style: GoogleFonts.poppins(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 6),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "0%",
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          "100%",
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      height: 40.h,
+                      width: double.infinity,
+                      child: SvgPicture.asset(
+                        "assets/svg/bar.svg",
+                        fit: BoxFit.contain,
+                      ),
                     ),
                     const SizedBox(height: 12),
                     Row(
@@ -251,6 +238,29 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       ],
                     ),
                   ],
+                ),
+              ),
+            ),
+            20.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: GestureDetector(
+                onTap: () {
+                  // RoutingService.pushAndRemoveUntil(const HomeScreen());
+                },
+                child: Container(
+                  height: 44.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                    borderRadius: BorderRadius.circular(28),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Confirm Support",
+                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -664,7 +674,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       children: [
                         _buildSocialIcon("assets/svg/fb1.svg"),
                         _buildSocialIcon("assets/svg/tb1.svg"),
-                        _buildSocialIcon("assets/svg/ib1.svg"),
+                        _buildSocialIcon("assets/svg/insta.svg"),
                         _buildSocialIcon("assets/svg/yb1.svg"),
                         _buildSocialIcon("assets/svg/lb1.svg"),
                       ],
