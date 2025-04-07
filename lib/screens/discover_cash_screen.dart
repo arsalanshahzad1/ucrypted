@@ -1,0 +1,866 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ucrypted_app/screens/discover_block_trade_screen.dart';
+import 'package:ucrypted_app/screens/discover_express_screen.dart';
+import 'package:ucrypted_app/screens/discover_p2p_screen.dart';
+import 'package:ucrypted_app/screens/discover_screen.dart';
+import 'package:ucrypted_app/utilities/app_colors.dart';
+import 'package:ucrypted_app/utilities/extensions.dart';
+import 'package:ucrypted_app/utilities/gradient_text.dart';
+import 'package:ucrypted_app/utilities/routing_service.dart';
+import 'package:ucrypted_app/utilities/scaffold_background.dart';
+
+class DiscoverCashScreen extends StatefulWidget {
+  const DiscoverCashScreen({super.key});
+
+  @override
+  State<DiscoverCashScreen> createState() => _DiscoverCashScreenState();
+}
+
+class _DiscoverCashScreenState extends State<DiscoverCashScreen> with SingleTickerProviderStateMixin {
+  int i = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      i = index;
+    });
+  }
+
+  late TabController _tabController;
+  int selectedIndex = 3;
+  int? j;
+
+  final List<String> labels = ["Express", "P2P", "Block Trade", "Cash"];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldWithBackground(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                50.vSpace,
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: AppColors.white,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: List.generate(labels.length, (index) {
+                        String text = labels[index];
+                        return GestureDetector(
+                          onTap: () {
+                            if (index == 0) {
+                              RoutingService.pushReplacement(const DiscoverExpressScreen());
+                            } else if (index == 1) {
+                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                            } else if (index == 2) {
+                              RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
+                            } else {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            }
+                          },
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.h, vertical: 0),
+                                child: selectedIndex == index
+                                    ? GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffFCA509), Color(0xff880306)],
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      )
+                                    : GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffCCCCCC), Color(0xff666666)],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                              ),
+                              LayoutBuilder(
+                                builder: (context, constraints) {
+                                  final textPainter = TextPainter(
+                                    text: TextSpan(
+                                      text: text,
+                                      style: GoogleFonts.inter(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    maxLines: 1,
+                                    textDirection: TextDirection.ltr,
+                                  )..layout();
+
+                                  return Container(
+                                    width: textPainter.width, // Dynamic width
+                                    height: 2,
+                                    // margin: const EdgeInsets.only(top: 4),
+                                    decoration: BoxDecoration(
+                                      gradient: selectedIndex == index
+                                          ? const LinearGradient(
+                                              colors: [Color(0xffFCA509), Color(0xff880306)],
+                                            )
+                                          : null,
+                                      color: selectedIndex == index ? null : const Color(0xff666666),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                    5.hSpace,
+                    Expanded(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SvgPicture.asset("assets/svg/inof.svg"),
+                      ],
+                    )),
+                  ],
+                ),
+                20.vSpace,
+                Column(
+                  children: [
+                    Container(
+                      height: 45.h,
+                      decoration: BoxDecoration(
+                        color: Color(0xff222223),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: TabBar(
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        isScrollable: false,
+                        dividerColor: Colors.transparent,
+                        controller: _tabController,
+                        indicator: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        labelColor: Colors.black,
+                        unselectedLabelColor: Colors.white,
+                        labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14),
+                        tabs: const [
+                          Tab(text: "Buy"),
+                          Tab(text: "Sell"),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.75,
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: [
+                          BuyCash(),
+                          SellCash(),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget BuySellCard(
+    bool isOnline,
+    bool isBuy,
+    String title,
+    String price,
+    VoidCallback onTap,
+  ) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        // width: 350,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(color: const Color(0xFF0F0F0F), borderRadius: BorderRadius.circular(16), border: Border.all(color: Color(0xff393737))),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header row
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Stack(
+                  children: [
+                    const CircleAvatar(
+                      radius: 20,
+                      backgroundImage: AssetImage('assets/images/person.png'), // Replace with your avatar
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: isOnline == true ? Color(0xff00B300) : Color(0xffFF9500),
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.black, width: 1.5),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: GoogleFonts.inter(
+                          color: Color(0xffD5D5D5),
+                          fontSize: 11,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      GradientText(
+                        isOnline == true ? 'Online' : "Offline",
+                        style: GoogleFonts.inter(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        gradient: isOnline == true
+                            ? LinearGradient(colors: [
+                                Color(0xff00B300),
+                                Color(0xff004D00),
+                              ], end: Alignment.bottomCenter, begin: Alignment.topCenter)
+                            : LinearGradient(colors: [
+                                Color(0xffFF9500),
+                                Color(0xffFF9500),
+                              ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
+                      ),
+                    ],
+                  ),
+                ),
+                GradientText(
+                  '95.56%',
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  gradient: const LinearGradient(colors: [
+                    Color(0xff00B300),
+                    Color(0xff004D00),
+                  ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+
+            // Price & Button row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      price + " ",
+                      style: GoogleFonts.poppins(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'USD',
+                      style: GoogleFonts.inter(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xffD5D5D5),
+                      ),
+                    ),
+                  ],
+                ),
+                isBuy == true
+                    ? Container(
+                        height: 26.h,
+                        width: 60.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.r),
+                          gradient: const LinearGradient(colors: [
+                            Color(0xff00B300),
+                            Color(0xff004D00),
+                          ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Buy',
+                            style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                          ),
+                        ),
+                      )
+                    : Container(
+                        height: 26.h,
+                        width: 60.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.r),
+                          gradient: const LinearGradient(colors: [
+                            Color(0xffD70365),
+                            Color(0xff880306),
+                          ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Sell',
+                            style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                          ),
+                        ),
+                      )
+              ],
+            ),
+
+            const SizedBox(height: 10),
+            Divider(
+              height: 1.0,
+              color: Color(0xff393737),
+            ),
+            10.vSpace,
+            // Limits and availability
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Limit : USD 50,000 - 100,000',
+                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Available : 170,318.18 USDT',
+                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 5),
+
+            Divider(
+              height: 1.0,
+              color: Color(0xff393737),
+            ),
+
+            const SizedBox(height: 10),
+
+            Text(
+              '68,226 Transactions · 99.83% Completion',
+              style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 11, fontWeight: FontWeight.w400),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget BuyCash() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          25.vSpace,
+          BuySellCard(true, true, "Link-Exchange", "88.46", () {
+            RoutingService.pushReplacement(const OrderCreated());
+          }),
+          5.vSpace,
+          BuySellCard(false, true, "Inter-Exchange", "86.32", () {}),
+          5.vSpace,
+          BuySellCard(true, true, "Inter-Exchange", "88.46", () {}),
+          5.vSpace,
+          BuySellCard(false, true, "Inter-Exchange", "86.32", () {}),
+          5.vSpace,
+          BuySellCard(true, true, "Inter-Exchange", "86.32", () {}),
+          5.vSpace,
+        ],
+      ),
+    );
+  }
+
+  Widget SellCash() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          25.vSpace,
+          BuySellCard(true, true, "Link-Exchange", "88.46", () {}),
+          5.vSpace,
+          BuySellCard(false, true, "Inter-Exchange", "86.32", () {}),
+          5.vSpace,
+          BuySellCard(true, true, "Inter-Exchange", "88.46", () {}),
+          5.vSpace,
+          BuySellCard(false, true, "Inter-Exchange", "86.32", () {}),
+          5.vSpace,
+          BuySellCard(true, true, "Inter-Exchange", "86.32", () {}),
+          5.vSpace,
+        ],
+      ),
+    );
+  }
+}
+
+class OrderCreated extends StatefulWidget {
+  const OrderCreated({super.key});
+
+  @override
+  State<OrderCreated> createState() => _OrderCreatedState();
+}
+
+class _OrderCreatedState extends State<OrderCreated> {
+  int selectedIndex = 3;
+  bool isChecked = false;
+  int? j;
+
+  final List<String> labels = ["Express", "P2P", "Block Trade", "Cash"];
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldWithBackground(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                50.vSpace,
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: AppColors.white,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: List.generate(labels.length, (index) {
+                        String text = labels[index];
+                        return GestureDetector(
+                          onTap: () {
+                            if (index == 0) {
+                              RoutingService.pushReplacement(const DiscoverExpressScreen());
+                            } else if (index == 1) {
+                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                            } else if (index == 2) {
+                              RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
+                            } else {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            }
+                          },
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.h, vertical: 0),
+                                child: selectedIndex == index
+                                    ? GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffFCA509), Color(0xff880306)],
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      )
+                                    : GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffCCCCCC), Color(0xff666666)],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                              ),
+                              LayoutBuilder(
+                                builder: (context, constraints) {
+                                  final textPainter = TextPainter(
+                                    text: TextSpan(
+                                      text: text,
+                                      style: GoogleFonts.inter(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    maxLines: 1,
+                                    textDirection: TextDirection.ltr,
+                                  )..layout();
+
+                                  return Container(
+                                    width: textPainter.width, // Dynamic width
+                                    height: 2,
+                                    // margin: const EdgeInsets.only(top: 4),
+                                    decoration: BoxDecoration(
+                                      gradient: selectedIndex == index
+                                          ? const LinearGradient(
+                                              colors: [Color(0xffFCA509), Color(0xff880306)],
+                                            )
+                                          : null,
+                                      color: selectedIndex == index ? null : const Color(0xff666666),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                    5.hSpace,
+                    Expanded(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SvgPicture.asset("assets/svg/inof.svg"),
+                      ],
+                    )),
+                  ],
+                ),
+                20.vSpace,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Order Created",
+                        style: GoogleFonts.inter(fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
+                      ),
+                      10.vSpace,
+                      Text(
+                        "Order Created",
+                        style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+                      ),
+                      10.vSpace,
+                      Divider(
+                        height: 1.0,
+                        color: Color(0xff393737),
+                      ),
+                      10.vSpace,
+                      Text(
+                        "Enable order shortcuts",
+                        style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Color(0xffD5D5D5)),
+                      ),
+                      10.vSpace,
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+                        decoration: BoxDecoration(
+                          color: Color(0xff0F0F0F),
+                          border: Border.all(color: Color(0xff393737)),
+                          borderRadius: BorderRadius.circular(12.r),
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Stack(
+                                  children: [
+                                    const CircleAvatar(
+                                      radius: 20,
+                                      backgroundImage: AssetImage('assets/images/person.png'), // Replace with your avatar
+                                    ),
+                                    Positioned(
+                                      bottom: 0,
+                                      right: 0,
+                                      child: Container(
+                                        width: 10,
+                                        height: 10,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xff00B300),
+                                          shape: BoxShape.circle,
+                                          border: Border.all(color: Colors.black, width: 1.5),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Link-Exchange",
+                                        style: GoogleFonts.inter(
+                                          color: Color(0xffD5D5D5),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      GradientText('Online',
+                                          style: GoogleFonts.inter(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          gradient: LinearGradient(colors: [
+                                            Color(0xff00B300),
+                                            Color(0xff004D00),
+                                          ], end: Alignment.bottomCenter, begin: Alignment.topCenter)),
+                                    ],
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    // RoutingService.pushAndRemoveUntil(const HomeScreen());
+                                  },
+                                  child: Container(
+                                    height: 25.h,
+                                    width: 55.w,
+                                    decoration: BoxDecoration(
+                                      gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Chat",
+                                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 12),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            10.vSpace,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Escrowed Crypto",
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontWeight: FontWeight.w400, fontSize: 11),
+                                ),
+                                Text(
+                                  "Escrowed Crypto",
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontWeight: FontWeight.w400, fontSize: 11),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      10.vSpace,
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+                        decoration: BoxDecoration(
+                          color: Color(0xff0F0F0F),
+                          border: Border.all(color: Color(0xff393737)),
+                          borderRadius: BorderRadius.circular(12.r),
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "Buy USDT",
+                                  style: GoogleFonts.poppins(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+                                )
+                              ],
+                            ),
+                            10.vSpace,
+                            Divider(
+                              height: 1.0,
+                              color: Color(0xff393737),
+                            ),
+                            10.vSpace,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Fiat Amount",
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  "Rs 10,000",
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                )
+                              ],
+                            ),
+                            10.vSpace,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Price",
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  "Rs 291.69",
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                )
+                              ],
+                            ),
+                            10.vSpace,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Recevive Quantity",
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                ),
+                                Text(
+                                  "34.23 USDT",
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      20.vSpace,
+                      Text(
+                        "Payment Method",
+                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 11, fontWeight: FontWeight.w400),
+                      ),
+                      10.vSpace,
+                      Divider(
+                        height: 1.0,
+                        color: Color(0xff393737),
+                      ),
+                      10.vSpace,
+                      Text(
+                        "paypal",
+                        style: GoogleFonts.poppins(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+                      ),
+                      10.vSpace,
+                      Text(
+                        "Advertiser’s Terms",
+                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w600),
+                      ),
+                      10.vSpace,
+                      Text(
+                        "Third-party party payment not allowed..",
+                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
+                      ),
+                      10.vSpace,
+                      GradientText(
+                        "Read More",
+                        gradient: const LinearGradient(
+                          colors: [Color(0xffFCA509), Color(0xff880306)],
+                        ),
+                        style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w400),
+                      ),
+                      20.vSpace,
+                      Row(
+                        children: [
+                          Container(
+                            height: 20.h,
+                            width: 20.w,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4.r),
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.check,
+                                color: const Color.fromARGB(255, 185, 111, 2),
+                                size: 15.sp,
+                              ),
+                            ),
+                          ),
+                          10.hSpace,
+                          Expanded(
+                            child: Text(
+                              "By clicking 'Buy Now', you agree to our Terms and Conditions, including our Cancellation Policy.",
+                              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 10, fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ],
+                      ),
+                      50.vSpace,
+                      GestureDetector(
+                        onTap: () {
+                          // RoutingService.pushAndRemoveUntil(const HomeScreen());
+                        },
+                        child: Container(
+                          height: 40.h,
+                          // width: 200.w,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                            borderRadius: BorderRadius.circular(28),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "View Payment Details ",
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

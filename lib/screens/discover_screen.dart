@@ -6,7 +6,7 @@ import 'package:ucrypted_app/screens/account_screen.dart';
 import 'package:ucrypted_app/screens/compaign_screen.dart';
 import 'package:ucrypted_app/screens/discover_buy_screen.dart';
 import 'package:ucrypted_app/screens/discover_edit_screen.dart';
-import 'package:ucrypted_app/screens/discover_p2p_screen.dart';
+import 'package:ucrypted_app/screens/discover_express_screen.dart';
 import 'package:ucrypted_app/screens/discover_sell_screen.dart';
 import 'package:ucrypted_app/screens/discover_send_screen.dart';
 import 'package:ucrypted_app/screens/discover_withdraw_screen.dart';
@@ -17,6 +17,7 @@ import 'package:ucrypted_app/screens/mobile_top_up_screen.dart';
 import 'package:ucrypted_app/screens/nauta_cuba_topup_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/screens/order_history_screen.dart';
+import 'package:ucrypted_app/screens/p_profile_screens.dart';
 import 'package:ucrypted_app/screens/tier_screen.dart';
 import 'package:ucrypted_app/screens/top_up_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
@@ -94,9 +95,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               15.vSpace,
               Row(
                 children: [
-                  Text(
-                    "Discover",
-                    style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: AppColors.white, fontSize: 26),
+                  GestureDetector(
+                    onTap: () {
+                      RoutingService.push(const PProfileScreen());
+                    },
+                    child: Text(
+                      "Discover",
+                      style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: AppColors.white, fontSize: 26),
+                    ),
                   ),
                   15.hSpace,
                   Expanded(
@@ -301,7 +307,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appPrint("Trade tapped");
         break;
       case "P2P":
-        RoutingService.push(const DiscoverP2PScreen());
+        RoutingService.push(const DiscoverExpressScreen());
         appPrint("P2P tapped");
         break;
       case "Gift card":

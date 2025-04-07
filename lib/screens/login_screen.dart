@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/home_screen.dart';
 import 'package:ucrypted_app/screens/reset_password_screen.dart';
@@ -120,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     "Or",
                     style: GoogleFonts.poppins(
-                      color: Color(0xff7E8088),
+                      color: const Color(0xff7E8088),
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                     ),
@@ -139,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
               //For Email
               Text(
                 "Email",
-                style: GoogleFonts.inter(color: Color(0xff93989F), fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.inter(color: const Color(0xff93989F), fontSize: 14, fontWeight: FontWeight.w400),
               ),
               10.vSpace,
               CustomTextField(
@@ -148,12 +149,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 isPassword: false,
                 hintText: "Example@gmail",
               ),
-
               10.vSpace,
               //For Password
               Text(
                 "Password",
-                style: GoogleFonts.inter(color: Color(0xff93989F), fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.inter(color: const Color(0xff93989F), fontSize: 14, fontWeight: FontWeight.w400),
               ),
               10.vSpace,
               CustomTextField(
@@ -173,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       RoutingService.push(const ResetPasswordScreen());
                     },
                     child: Text(
-                      "Forget Password ?",
+                      "Forgot Password?",
                       style: GoogleFonts.poppins(
                         color: Color(0xff7E8088),
                         fontSize: 12,
