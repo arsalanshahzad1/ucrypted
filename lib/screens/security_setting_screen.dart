@@ -92,80 +92,83 @@ class _SecuritySettingScreenState extends State<SecuritySettingScreen> {
           }),
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            50.vSpace,
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_ios,
-                        color: AppColors.white,
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              50.vSpace,
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: const Icon(
+                          Icons.arrow_back_ios,
+                          color: AppColors.white,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Center(
-                    child: Text(
-                      "Security Settings",
-                      style: GoogleFonts.inter(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.sp,
+                  Expanded(
+                    flex: 2,
+                    child: Center(
+                      child: Text(
+                        "Security Settings",
+                        style: GoogleFonts.inter(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.sp,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 1, // 1 part
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: SvgPicture.asset("assets/svg/inof.svg"),
+                  Expanded(
+                    flex: 1, // 1 part
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: SvgPicture.asset("assets/svg/inof.svg"),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            30.vSpace,
-            toggleSettingItem(
-              title: "Security Questions",
-              subtitle: "Set up security questions for account recovery.",
-              value: securityQA,
-              onChanged: (val) => setState(() => securityQA = val),
-            ),
-            30.vSpace,
-            toggleSettingItem(
-              title: "API Security",
-              subtitle: "Manage API keys and permissions for third-party integrations.",
-              value: apiSecurity,
-              onChanged: (val) => setState(() => apiSecurity = val),
-            ),
-            30.vSpace,
-            toggleSettingItem(
-              title: "Encryption Options",
-              subtitle: "Manage encryption settings for your stored data.",
-              value: encrypt,
-              onChanged: (val) => setState(() => encrypt = val),
-            ),
-            30.vSpace,
-            toggleSettingItem(
-              title: "Login Alerts",
-              subtitle: "Get notified when there is a login from a new device or location.",
-              value: loginAlert,
-              onChanged: (val) => setState(() => loginAlert = val),
-            ),
-          ],
+                ],
+              ),
+              30.vSpace,
+              toggleSettingItem(
+                title: "Security Questions",
+                subtitle: "Set up security questions for account recovery.",
+                value: securityQA,
+                onChanged: (val) => setState(() => securityQA = val),
+              ),
+              30.vSpace,
+              toggleSettingItem(
+                title: "API Security",
+                subtitle: "Manage API keys and permissions for third-party integrations.",
+                value: apiSecurity,
+                onChanged: (val) => setState(() => apiSecurity = val),
+              ),
+              30.vSpace,
+              toggleSettingItem(
+                title: "Encryption Options",
+                subtitle: "Manage encryption settings for your stored data.",
+                value: encrypt,
+                onChanged: (val) => setState(() => encrypt = val),
+              ),
+              30.vSpace,
+              toggleSettingItem(
+                title: "Login Alerts",
+                subtitle: "Get notified when there is a login from a new device or location.",
+                value: loginAlert,
+                onChanged: (val) => setState(() => loginAlert = val),
+              ),
+              
+            ],
+          ),
         ),
       ),
     );

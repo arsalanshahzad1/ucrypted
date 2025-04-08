@@ -28,6 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/splash-new.png",
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

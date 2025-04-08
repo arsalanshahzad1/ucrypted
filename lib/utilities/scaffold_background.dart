@@ -23,7 +23,7 @@ class ScaffoldWithBackground extends StatelessWidget {
             color: Colors.black,
             image: DecorationImage(
               image: AssetImage(backgroundImage ?? 'assets/images/background.png'),
-              fit: backgroundImage != null ? BoxFit.fill : BoxFit.cover,
+              fit: backgroundImage != null ? BoxFit.cover : BoxFit.cover,
               colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.9), BlendMode.dstATop),
             )),
         child: child,

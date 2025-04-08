@@ -48,7 +48,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/background1.png",
+      backgroundImage: "assets/images/background1.png", 
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),

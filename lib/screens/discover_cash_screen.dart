@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/discover_block_trade_screen.dart';
 import 'package:ucrypted_app/screens/discover_express_screen.dart';
 import 'package:ucrypted_app/screens/discover_p2p_screen.dart';
@@ -668,7 +669,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    // RoutingService.pushAndRemoveUntil(const HomeScreen());
+                                    RoutingService.push(const ChatRoomScreen());
                                   },
                                   child: Container(
                                     height: 25.h,
@@ -833,6 +834,399 @@ class _OrderCreatedState extends State<OrderCreated> {
                         ],
                       ),
                       50.vSpace,
+                      GestureDetector(
+                        onTap: () {
+                          RoutingService.pushReplacement(const PayTheSeller());
+                        },
+                        child: Container(
+                          height: 40.h,
+                          // width: 200.w,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                            borderRadius: BorderRadius.circular(28),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "View Payment Details ",
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PayTheSeller extends StatefulWidget {
+  const PayTheSeller({super.key});
+
+  @override
+  State<PayTheSeller> createState() => _PayTheSellerState();
+}
+
+class _PayTheSellerState extends State<PayTheSeller> {
+  int selectedIndex = 3;
+  bool isChecked = false;
+  int? j;
+
+  final List<String> labels = ["Express", "P2P", "Block Trade", "Cash"];
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldWithBackground(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                50.vSpace,
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: AppColors.white,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: List.generate(labels.length, (index) {
+                        String text = labels[index];
+                        return GestureDetector(
+                          onTap: () {
+                            if (index == 0) {
+                              RoutingService.pushReplacement(const DiscoverExpressScreen());
+                            } else if (index == 1) {
+                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                            } else if (index == 2) {
+                              RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
+                            } else {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            }
+                          },
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.h, vertical: 0),
+                                child: selectedIndex == index
+                                    ? GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffFCA509), Color(0xff880306)],
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      )
+                                    : GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffCCCCCC), Color(0xff666666)],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                              ),
+                              LayoutBuilder(
+                                builder: (context, constraints) {
+                                  final textPainter = TextPainter(
+                                    text: TextSpan(
+                                      text: text,
+                                      style: GoogleFonts.inter(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    maxLines: 1,
+                                    textDirection: TextDirection.ltr,
+                                  )..layout();
+
+                                  return Container(
+                                    width: textPainter.width, // Dynamic width
+                                    height: 2,
+                                    // margin: const EdgeInsets.only(top: 4),
+                                    decoration: BoxDecoration(
+                                      gradient: selectedIndex == index
+                                          ? const LinearGradient(
+                                              colors: [Color(0xffFCA509), Color(0xff880306)],
+                                            )
+                                          : null,
+                                      color: selectedIndex == index ? null : const Color(0xff666666),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                    5.hSpace,
+                    Expanded(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SvgPicture.asset("assets/svg/inof.svg"),
+                      ],
+                    )),
+                  ],
+                ),
+                20.vSpace,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Pay the seller",
+                            style: GoogleFonts.inter(fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              RoutingService.push(const ChatRoomScreen());
+                            },
+                            child: Container(
+                              height: 30.h,
+                              width: 55.w,
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Chat",
+                                  style: GoogleFonts.poppins(color: Color(0xffF2F2F7), fontWeight: FontWeight.w400, fontSize: 11),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      10.vSpace,
+                      Text(
+                        "Order will be cancelled in 14:48",
+                        style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+                      ),
+                      10.vSpace,
+                      Divider(
+                        height: 1.0,
+                        color: Color(0xff393737),
+                      ),
+                      10.vSpace,
+                      Text(
+                        "Enable order shortcuts",
+                        style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: Color(0xffD5D5D5)),
+                      ),
+                      10.vSpace,
+                      Row(
+                        children: [
+                          Container(
+                            height: 18.h,
+                            width: 18.w,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4.r),
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.check,
+                                color: const Color.fromARGB(255, 185, 111, 2),
+                                size: 13.sp,
+                              ),
+                            ),
+                          ),
+                          10.hSpace,
+                          Text(
+                            "Transfer via paypal Only",
+                            style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                          ),
+                        ],
+                      ),
+                      10.vSpace,
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+                        decoration: BoxDecoration(
+                          color: Color(0xff0F0F0F),
+                          border: Border.all(color: Color(0xff393737)),
+                          borderRadius: BorderRadius.circular(12.r),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Paypal",
+                              style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+                            ),
+                            10.vSpace,
+                            Divider(
+                              height: 1.0,
+                              color: Color(0xff393737),
+                            ),
+                            10.vSpace,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "You Pay",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                                Text(
+                                  "Rs 10,000",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                              ],
+                            ),
+                            5.vSpace,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Full Name",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                                Text(
+                                  "Salman Shah",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                              ],
+                            ),
+                            5.vSpace,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Paypal account",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                                Text(
+                                  "uix.shah@gmail.com",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                              ],
+                            ),
+                            5.vSpace,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Other payment details",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                                Text(
+                                  "03489914431",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                              ],
+                            ),
+                            5.vSpace,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "International transfer",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                                Text(
+                                  "Paypal to paypal",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                              ],
+                            ),
+                            5.vSpace,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Ref message",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                                Text(
+                                  "23218638712536512",
+                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      20.vSpace,
+                      Text(
+                        "Use your own payment account and ensure that the name on the account matches the name you used to verify...",
+                        style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 10, fontWeight: FontWeight.w400),
+                      ),
+                      15.vSpace,
+                      Row(
+                        children: [
+                          Container(
+                            height: 18.h,
+                            width: 18.w,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4.r),
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.check,
+                                color: const Color.fromARGB(255, 185, 111, 2),
+                                size: 13.sp,
+                              ),
+                            ),
+                          ),
+                          10.hSpace,
+                          Expanded(
+                            child: Text(
+                              "After payment, tap the button bellow to notify the seller.",
+                              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 12, fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ],
+                      ),
+                      100.vSpace,
+                      GestureDetector(
+                        onTap: () {
+                          // RoutingService.pushAndRemoveUntil(const HomeScreen());
+                        },
+                        child: Container(
+                          height: 40.h,
+                          // width: 200.w,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                            borderRadius: BorderRadius.circular(28),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Cancel the order",
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                            ),
+                          ),
+                        ),
+                      ),
+                      10.vSpace,
                       GestureDetector(
                         onTap: () {
                           // RoutingService.pushAndRemoveUntil(const HomeScreen());

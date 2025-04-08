@@ -10,6 +10,7 @@ import 'package:ucrypted_app/screens/discover_screen.dart';
 import 'package:ucrypted_app/screens/gift_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/screens/trading_screen.dart';
+import 'package:ucrypted_app/screens/wallet_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/candle_data.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
@@ -128,7 +129,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            RoutingService.push(const WalletScreen());
+          },
           child: SizedBox(
             height: 20,
             width: 20,

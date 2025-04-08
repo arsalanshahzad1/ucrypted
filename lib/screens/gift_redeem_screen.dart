@@ -53,6 +53,7 @@ class _GiftRedeemScreenState extends State<GiftRedeemScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/onboard.png",
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -822,7 +823,7 @@ class _GiftRedeemSuccessScreenState extends State<GiftRedeemSuccessScreen> {
               ),
               30.vSpace,
               Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Colors.grey.withOpacity(0.1), border: Border.all(color: AppColors.grey)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: const Color(0xff151515).withOpacity(0.1), border: Border.all(color: Color(0xffCCCCCC))),
                 padding: const EdgeInsets.all(26),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -830,15 +831,20 @@ class _GiftRedeemSuccessScreenState extends State<GiftRedeemSuccessScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                          decoration: BoxDecoration(
-                            color: AppColors.grey.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
-                            "Redeem Card Details",
-                            style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 24),
+                        GestureDetector(
+                          onTap: () {
+                            RoutingService.push(const RedeemStatus());
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                            decoration: BoxDecoration(
+                              color: AppColors.grey.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              "Redeem Card Details",
+                              style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 24),
+                            ),
                           ),
                         ),
                       ],
@@ -948,6 +954,192 @@ class _GiftRedeemSuccessScreenState extends State<GiftRedeemSuccessScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class RedeemStatus extends StatefulWidget {
+  const RedeemStatus({super.key});
+
+  @override
+  State<RedeemStatus> createState() => _RedeemStatusState();
+}
+
+class _RedeemStatusState extends State<RedeemStatus> {
+  int _selectedIndex = 0;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldWithBackground(
+      backgroundImage: "assets/images/onboard.png",
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              50.vSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: SvgPicture.asset(
+                          "assets/svg/menu-dots.svg",
+                          fit: BoxFit.scaleDown,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          RoutingService.push(const AccountScreen());
+                        },
+                        child: const CircleAvatar(
+                          backgroundColor: AppColors.disableBtnColor,
+                          radius: 22,
+                          backgroundImage: AssetImage("assets/images/person.png"),
+                        ),
+                      ),
+                      // 10.hSpace,
+                    ],
+                  ),
+                ],
+              ),
+              30.vSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 65,
+                    width: 65,
+                    decoration: BoxDecoration(color: Color(0xffF8E6C21A).withOpacity(0.1), borderRadius: BorderRadius.circular(65)),
+                    child: Center(
+                      child: SvgPicture.asset("assets/svg/time.svg"),
+                    ),
+                  )
+                ],
+              ),
+              20.vSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Redeem Status",
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+              10.vSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Your funds will be processed within 3 days.",
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: GoogleFonts.poppins(
+                      color: Color(0xffFAFAFA),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+              30.vSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      // height: 300.h,
+                      // width: double.infinity,
+                      child: SvgPicture.asset(
+                    "assets/svg/redeem.svg",
+                  )),
+                ],
+              ),
+              30.vSpace,
+            ],
+          ),
+        ),
       ),
     );
   }

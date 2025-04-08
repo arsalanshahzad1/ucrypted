@@ -196,7 +196,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         gradient: const LinearGradient(
           colors: [
             Color(0xFF13171A),
-            Color(0xFF2C2C30),
+            Color.fromARGB(255, 29, 29, 31),
           ],
           end: Alignment.topCenter,
           begin: Alignment.bottomCenter,

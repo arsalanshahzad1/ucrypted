@@ -44,6 +44,7 @@ class _PProfileScreenState extends State<PProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/profilebg.png",
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -324,6 +325,7 @@ class _PaymentscreenState extends State<Paymentscreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/profilebg.png",
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -455,6 +457,7 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/profilebg.png",
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -602,6 +605,7 @@ class _AQMessageScreenState extends State<AQMessageScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/profilebg.png",
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -737,6 +741,7 @@ class _VCPreferenceScreenState extends State<VCPreferenceScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/profilebg.png",
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -841,6 +846,7 @@ class _AddNowScreenState extends State<AddNowScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/profilebg.png",
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -1299,7 +1305,7 @@ class _AddNowScreenState extends State<AddNowScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 25),
             child: Column(
-              children: [ 
+              children: [
                 paymentRow("Sada pay", Color(0xff950094)),
                 10.vSpace,
                 paymentRow("asypaisa", Color(0xffFC5252)),
