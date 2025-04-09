@@ -47,7 +47,7 @@ class _NautaCubaTopUpScreenState extends State<NautaCubaTopUpScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/background1.png",
+      backgroundImage: "assets/images/nauta.png",
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),

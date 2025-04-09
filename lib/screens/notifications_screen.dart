@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
@@ -42,6 +43,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/order-hist.png",
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -145,15 +147,470 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ],
             ),
           ),
+
           10.vSpace,
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(10),
-              itemCount: notifications.length,
-              itemBuilder: (context, index) {
-                final notification = notifications[index];
-                return NotificationTile(notification: notification);
-              },
+          //1st Notification
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Blue dot indicator and avatar
+                Container(
+                  width: 7.w,
+                  height: 7.h,
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlue,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Column(
+                  children: [
+                    const SizedBox(height: 8),
+                    const CircleAvatar(
+                      radius: 18,
+                      backgroundImage: AssetImage("assets/images/s1.png"), // Replace with your image
+                    ),
+                  ],
+                ),
+
+                const SizedBox(width: 15),
+
+                // Text column
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      8.vSpace,
+                      // Name + action + document title
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Dennis Nedry",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 12,
+                              ),
+                            ),
+                            TextSpan(
+                              text: " commented on ",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              ),
+                            ),
+                            TextSpan(
+                              text: " IBTC USDT compliance report",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      Text(
+                        "Last Wednesday at 9:42 AM",
+                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          5.vSpace,
+          Divider(
+            height: 1.0,
+            color: Colors.white,
+          ),
+          //2nd Notification
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Blue dot indicator and avatar
+                Container(
+                  width: 7.w,
+                  height: 7.h,
+                  decoration: const BoxDecoration(
+                    color: Colors.lightBlue,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Column(
+                  children: [
+                    const SizedBox(height: 8),
+                    const CircleAvatar(
+                      radius: 18,
+                      backgroundImage: AssetImage("assets/images/s2.png"), // Replace with your image
+                    ),
+                  ],
+                ),
+
+                const SizedBox(width: 15),
+
+                // Text column
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Name + action + document title
+                      8.vSpace,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Dennis Nedry",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 12,
+                              ),
+                            ),
+                            TextSpan(
+                              text: " commented on ",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "IBTC USDT compliance report",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      // Quoted message box
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            left: BorderSide(
+                              color: Color(0xffDDDEE1),
+                              width: 3,
+                            ),
+                          ),
+                        ),
+                        padding: const EdgeInsets.only(left: 12),
+                        child: Text(
+                          "“Oh, I finished de-bugging the phones, but the system's compiling for eighteen minutes, or twenty.  So, some minor systems may go on and off for a while.”",
+                          maxLines: 2,
+                          style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      Text(
+                        "Last Wednesday at 9:42 AM",
+                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          5.vSpace,
+          Divider(
+            height: 1.0,
+            color: Colors.white,
+          ),
+
+          //3rd Notification
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Blue dot indicator and avatar
+                Container(
+                  width: 7.w,
+                  height: 7.h,
+                  decoration: const BoxDecoration(
+                    color: Colors.lightBlue,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Column(
+                  children: [
+                    const SizedBox(height: 8),
+                    const CircleAvatar(
+                      radius: 18,
+                      backgroundImage: AssetImage("assets/images/s3.png"), // Replace with your image
+                    ),
+                  ],
+                ),
+
+                const SizedBox(width: 15),
+
+                // Text column
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Name + action + document title
+                      8.vSpace,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Dennis Nedry",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 12,
+                              ),
+                            ),
+                            TextSpan(
+                              text: " commented on ",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "Isla Nublar SOC2 compliance report",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      // Quoted message box
+                      Row(
+                        children: [
+                          SizedBox(
+                            height: 15.h,
+                            width: 15.w,
+                            child: Image.asset("assets/images/s4.png"),
+                          ),
+                          Text(
+                            "  landing_paage_ver2.fig",
+                            style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "  2mb",
+                            style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      Text(
+                        "Last Wednesday at 9:42 AM",
+                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          5.vSpace,
+          Divider(
+            height: 1.0,
+            color: Colors.white,
+          ),
+
+          //4th Notification
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Blue dot indicator and avatar
+                Container(
+                  width: 7.w,
+                  height: 7.h,
+                  decoration: const BoxDecoration(
+                    color: Colors.lightBlue,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Column(
+                  children: [
+                    const SizedBox(height: 8),
+                    const CircleAvatar(
+                      radius: 18,
+                      backgroundImage: AssetImage("assets/images/s5.png"), // Replace with your image
+                    ),
+                  ],
+                ),
+
+                const SizedBox(width: 15),
+
+                // Text column
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Name + action + document title
+                      8.vSpace,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "Dennis Nedry",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 12,
+                              ),
+                            ),
+                            TextSpan(
+                              text: " commented on ",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              ),
+                            ),
+                            TextSpan(
+                              text: "Isla Nublar SOC2 compliance report",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      // Quoted message box
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            left: BorderSide(
+                              color: Color(0xffDDDEE1),
+                              width: 3,
+                            ),
+                          ),
+                        ),
+                        padding: const EdgeInsets.only(left: 12),
+                        child: Text(
+                          "“Oh, I finished de-bugging the phones, but the system's compiling for eighteen minutes, or twenty.  So, some minor systems may go on and off for a while.”",
+                          maxLines: 2,
+                          style: GoogleFonts.inter(color: Color(0xffDEDEDE), fontSize: 12, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      Text(
+                        "Last Wednesday at 9:42 AM",
+                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          5.vSpace,
+
+          Divider(
+            height: 1.0,
+            color: Colors.white,
+          ),
+
+          //5th Notification
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 10.h),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Blue dot indicator and avatar
+                Container(
+                  width: 10,
+                  height: 10,
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Column(
+                  children: [
+                    const SizedBox(height: 8),
+                    const CircleAvatar(
+                      radius: 18,
+                      backgroundImage: AssetImage("assets/images/s6.png"), // Replace with your image
+                    ),
+                  ],
+                ),
+
+                const SizedBox(width: 15),
+
+                // Text column
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Name + action + document title
+                      10.vSpace,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "New Account",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 12,
+                              ),
+                            ),
+                            TextSpan(
+                              text: " created ",
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      // Quoted message box
+
+                      Text(
+                        "Last Wednesday at 9:42 AM",
+                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],

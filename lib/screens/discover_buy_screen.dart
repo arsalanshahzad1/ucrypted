@@ -22,6 +22,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/buysell.png",
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -387,7 +388,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                     ),
                     10.hSpace,
                     Text(
-                      "Minimun value Sell crypto = 0,0001 BTC",
+                      "Minimun value buy crypto = 0,0001 BTC",
                       style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
                     ),
                   ],
@@ -433,6 +434,7 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/buysell.png",
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

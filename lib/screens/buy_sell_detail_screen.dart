@@ -43,7 +43,7 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/background1.png",
+      backgroundImage: "assets/images/tradebg.png",
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -220,7 +220,19 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
                   ),
                 ]),
               ),
-              40.vSpace,
+              // 10.vSpace,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 3),
+                child: SizedBox(
+                  height: 470.h,
+                  width: 355.w,
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth, // or .scaleDown, .fitWidth etc.
+                    child: SvgPicture.asset("assets/svg/buysellgraph.svg"),
+                  ),
+                ),
+              ),
+              // 10.vSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -243,6 +255,7 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
                   Center(
                     child: Column(
                       children: [
+                        50.vSpace,
                         SizedBox(
                           height: 40.h,
                           width: 40.w,
@@ -258,6 +271,7 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
                   )
                 ],
               ),
+              100.vSpace,
             ],
           ),
         ),

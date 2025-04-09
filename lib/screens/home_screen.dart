@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/convert_screen.dart';
 import 'package:ucrypted_app/screens/deposit_crypto_screen.dart';
 import 'package:ucrypted_app/screens/discover_screen.dart';
@@ -143,7 +144,9 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              RoutingService.push(const ChatRoomScreen());
+            },
             child: SvgPicture.asset(
               "assets/svg/chats.svg",
               width: 30,
@@ -323,65 +326,75 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     GestureDetector(
                         onTap: () => setState(() => selectedIndexCustom = 0),
-                        child: GradientText(
+                        child: Text(
                           "Recent Transactions",
-                          style: GoogleFonts.inter(color: selectedIndexCustom == 0 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
-                          gradient: selectedIndexCustom == 0
-                              ? const LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [Color(0xFFFCA509), Color(0xFF880306)],
-                                )
-                              : const LinearGradient(
-                                  colors: [Colors.white, Colors.white], // White for unselected
-                                ),
+                          style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                         )),
                     30.hSpace,
                     GestureDetector(
                       onTap: () => setState(() => selectedIndexCustom = 1),
-                      child: GradientText(
+                      child: Text(
                         "Exchange History",
-                        style: GoogleFonts.inter(color: selectedIndexCustom == 1 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
-                        gradient: selectedIndexCustom == 1
-                            ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
-                            : const LinearGradient(
-                                colors: [Colors.white, Colors.white],
-                              ),
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                       ),
                     ),
                     30.hSpace,
                     GestureDetector(
                       onTap: () => setState(() => selectedIndexCustom = 2),
-                      child: GradientText(
+                      child: Text(
                         "Transaction",
-                        style: GoogleFonts.inter(color: selectedIndexCustom == 2 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
-                        gradient: selectedIndexCustom == 2
-                            ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
-                            : const LinearGradient(
-                                colors: [Colors.white, Colors.white],
-                              ),
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              10.vSpace,
+              SizedBox(
+                height: 1.5,
+                child: Row(
+                  children: [
+                    // Gradient part (1/3)
+                    Expanded(
+                      flex: 3, // 3 + 3 = 6 to match 3 sections total
+                      child: Container(
+                        color: Color(0xFF1B1B1F),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color(0xFFDA6B1A),
+                              Color(0xFFAC2C24),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    // Solid dark gray part (2/3)
+                    Expanded(
+                      flex: 1, // 3 + 3 = 6 to match 3 sections total
+                      child: Container(
+                        color: Color(0xFF1B1B1F),
                       ),
                     ),
                   ],
                 ),
               ),
               15.vSpace,
-              Divider(
-                height: 1.0,
-                color: Color(0xff2C2C30),
+              Column(
+                children: [
+                  exchangeWidget("assets/svg/bscexc.svg"),
+                  exchangeWidget("assets/svg/ethex.svg"),
+                  exchangeWidget("assets/svg/bscexc.svg"),
+                  exchangeWidget("assets/svg/ethex.svg"),
+                  exchangeWidget("assets/svg/bscexc.svg"),
+                ],
               ),
-              15.vSpace,
-              Visibility(
-                  visible: selectedIndexCustom == 1 ? true : false,
-                  child: Column(
-                    children: [
-                      exchangeWidget("assets/svg/bscexc.svg"),
-                      exchangeWidget("assets/svg/ethex.svg"),
-                      exchangeWidget("assets/svg/bscexc.svg"),
-                      exchangeWidget("assets/svg/ethex.svg"),
-                      exchangeWidget("assets/svg/bscexc.svg"),
-                    ],
-                  )),
             ],
           ),
         ),

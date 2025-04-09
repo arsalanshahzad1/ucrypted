@@ -44,6 +44,7 @@ class _TierScreenState extends State<TierScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/tier.png",
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -490,7 +491,7 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/background1.png",
+      backgroundImage: "assets/images/tier.png",
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -627,8 +628,13 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
               ),
               30.vSpace,
               Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xffCCCCCC))),
-                padding: const EdgeInsets.all(26),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Color(0xff151515),
+                    border: Border.all(
+                      color: Color(0xffCCCCCC).withOpacity(0.5),
+                    )),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -636,7 +642,7 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                          padding: EdgeInsets.symmetric(horizontal: 65.w, vertical: 28.h),
                           decoration: BoxDecoration(
                             color: AppColors.grey.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(12),
@@ -720,9 +726,9 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
-                  "For any discrepancies or complaints, please contact: support@ucrypted.com. The top-up should reflect in the recipient’s account shortly. If you encounter any issues, feel free to contact our support team.",
+                  "For any discrepancies or complaints, please contact: info@ucrypted.com. Together, we can make Ucrypted a reality and shape the future of secure financial trading. Thank you for being an essential part of our journey!",
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.inter(color: Color(0xffDADADA), fontSize: 12, fontWeight: FontWeight.w300),
+                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 12, fontWeight: FontWeight.w300),
                 ),
               ),
               30.vSpace,

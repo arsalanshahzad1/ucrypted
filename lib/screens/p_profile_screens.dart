@@ -921,7 +921,7 @@ class _AddNowScreenState extends State<AddNowScreen> {
               10.vSpace,
               GestureDetector(
                 onTap: () {
-                  Get.bottomSheet(isScrollControlled: true, countrySelectionBottomSheet(700, context));
+                  Get.bottomSheet(isScrollControlled: true, countrySelectionBottomSheet(600, context));
                 },
                 child: Container(
                   height: 40.h,
@@ -965,167 +965,169 @@ class _AddNowScreenState extends State<AddNowScreen> {
           topRight: Radius.circular(20),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          5.vSpace,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 3.h,
-                width: 100.w,
-                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4)),
-              ),
-            ],
-          ),
-          20.vSpace,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Container(
-              height: 60,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                color: Color(0xFF1A1A1A),
-                borderRadius: BorderRadius.circular(40),
-                border: Border.all(
-                  color: Colors.white.withOpacity(0.08), // Shattered border base
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.white.withOpacity(0.04),
-                    blurRadius: 12,
-                    spreadRadius: 1,
-                    offset: Offset(0, 0),
-                  ),
-                  BoxShadow(
-                    color: Colors.white.withOpacity(0.06),
-                    blurRadius: 2,
-                    spreadRadius: 2,
-                    offset: Offset(0, 0),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  SvgPicture.asset("assets/svg/searchh.svg"),
-                  SizedBox(width: 10),
-                  Text(
-                    'Search',
-                    style: GoogleFonts.inter(color: Color(0xffCDCDCD), fontSize: 14, fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          10.vSpace,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Text(
-              "Default Currency",
-              style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 10, color: Color(0xff8E8E8E)),
-            ),
-          ),
-          10.vSpace,
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Divider(
-                height: 1.0,
-                color: Color(0xff8E8E8E),
-              )),
-          10.vSpace,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            5.vSpace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 10.r,
-                      backgroundColor: Colors.transparent,
-                      child: ClipOval(
-                        child: Image.asset(
-                          "assets/images/pak.png",
-                          fit: BoxFit.cover,
-                          width: 30.r, // Ensure the image fully fits the avatar
-                          height: 30.r,
-                        ),
-                      ),
+                Container(
+                  height: 3.h,
+                  width: 100.w,
+                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(4)),
+                ),
+              ],
+            ),
+            20.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Container(
+                height: 60,
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  color: Color(0xFF1A1A1A),
+                  borderRadius: BorderRadius.circular(40),
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.08), // Shattered border base
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white.withOpacity(0.04),
+                      blurRadius: 12,
+                      spreadRadius: 1,
+                      offset: Offset(0, 0),
                     ),
-                    Text(
-                      " PKR",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 12, color: Color(0xffFAFAFA)),
+                    BoxShadow(
+                      color: Colors.white.withOpacity(0.06),
+                      blurRadius: 2,
+                      spreadRadius: 2,
+                      offset: Offset(0, 0),
                     ),
                   ],
                 ),
-                Container(
-                  height: 20.h,
-                  width: 20.w,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4.r),
+                child: Row(
+                  children: [
+                    SvgPicture.asset("assets/svg/searchh.svg"),
+                    SizedBox(width: 10),
+                    Text(
+                      'Search',
+                      style: GoogleFonts.inter(color: Color(0xffCDCDCD), fontSize: 14, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Text(
+                "Default Currency",
+                style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 10, color: Color(0xff8E8E8E)),
+              ),
+            ),
+            10.vSpace,
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Divider(
+                  height: 1.0,
+                  color: Color(0xff8E8E8E),
+                )),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 10.r,
+                        backgroundColor: Colors.transparent,
+                        child: ClipOval(
+                          child: Image.asset(
+                            "assets/images/pak.png",
+                            fit: BoxFit.cover,
+                            width: 30.r, // Ensure the image fully fits the avatar
+                            height: 30.r,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        " PKR",
+                        style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 12, color: Color(0xffFAFAFA)),
+                      ),
+                    ],
                   ),
-                  child: Center(
-                    child: Icon(
-                      Icons.check,
-                      color: const Color.fromARGB(255, 185, 111, 2),
-                      size: 15.sp,
+                  Container(
+                    height: 20.h,
+                    width: 20.w,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(4.r),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.check,
+                        color: const Color.fromARGB(255, 185, 111, 2),
+                        size: 15.sp,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          10.vSpace,
-          Padding(
+            10.vSpace,
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Divider(
+                  height: 1.0,
+                  color: Color(0xff8E8E8E),
+                )),
+            10.vSpace,
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Divider(
-                height: 1.0,
-                color: Color(0xff8E8E8E),
-              )),
-          10.vSpace,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Text(
-              "Default Currency",
-              style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 10, color: Color(0xff8E8E8E)),
+              child: Text(
+                "Default Currency",
+                style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 10, color: Color(0xff8E8E8E)),
+              ),
             ),
-          ),
-          10.vSpace,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Column(
-              children: [
-                customRow("assets/images/f1.png"),
-                10.vSpace,
-                customRow("assets/images/f2.png"),
-                10.vSpace,
-                customRow("assets/images/f3.png"),
-                10.vSpace,
-                customRow("assets/images/f4.png"),
-                10.vSpace,
-                customRow("assets/images/f5.png"),
-                10.vSpace,
-                customRow("assets/images/f6.png"),
-                10.vSpace,
-                customRow("assets/images/f7.png"),
-                10.vSpace,
-                customRow("assets/images/f8.png"),
-                10.vSpace,
-                customRow("assets/images/f9.png"),
-                10.vSpace,
-                customRow("assets/images/f10.png"),
-                10.vSpace,
-                customRow("assets/images/f111.png"),
-                10.vSpace,
-                customRow("assets/images/f12.png"),
-                10.vSpace,
-                customRow("assets/images/f13.png"),
-              ],
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                children: [
+                  customRow("assets/images/f1.png"),
+                  10.vSpace,
+                  customRow("assets/images/f2.png"),
+                  10.vSpace,
+                  customRow("assets/images/f3.png"),
+                  10.vSpace,
+                  customRow("assets/images/f4.png"),
+                  10.vSpace,
+                  customRow("assets/images/f5.png"),
+                  10.vSpace,
+                  customRow("assets/images/f6.png"),
+                  10.vSpace,
+                  customRow("assets/images/f7.png"),
+                  10.vSpace,
+                  customRow("assets/images/f8.png"),
+                  10.vSpace,
+                  customRow("assets/images/f9.png"),
+                  10.vSpace,
+                  customRow("assets/images/f10.png"),
+                  10.vSpace,
+                  customRow("assets/images/f111.png"),
+                  10.vSpace,
+                  customRow("assets/images/f12.png"),
+                  10.vSpace,
+                  customRow("assets/images/f13.png"),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
