@@ -335,8 +335,8 @@ class _GiftScreenState extends State<GiftScreen> {
           Align(
             alignment: Alignment.centerRight,
             child: Container(
-              height: 34.h,
-              width: 78.w,
+              height: 28.h,
+              width: 70.w,
               // padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
@@ -354,7 +354,7 @@ class _GiftScreenState extends State<GiftScreen> {
               ),
             ),
           ),
-          10.vSpace,
+          4.vSpace,
         ],
       ),
     );

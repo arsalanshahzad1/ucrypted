@@ -194,7 +194,7 @@ Widget bottomSheetContent(
             subtitle,
             style: GoogleFonts.inter(color: Color(0xff6C7278), fontWeight: FontWeight.w500, fontSize: 14),
           ),
-          30.vSpace,
+          40.vSpace,
           Row(
             children: [
               Expanded(
@@ -203,7 +203,7 @@ Widget bottomSheetContent(
                     Get.back();
                   },
                   child: Container(
-                    height: 50,
+                    height: 45.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24.0),
                         color: Color.fromARGB(255, 34, 34, 37),
@@ -219,12 +219,12 @@ Widget bottomSheetContent(
                   ),
                 ),
               ),
-              30.hSpace,
+              20.hSpace,
               Expanded(
                 child: GestureDetector(
                   onTap: onTap,
                   child: Container(
-                    height: 50,
+                    height: 45.h,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
                       borderRadius: BorderRadius.circular(24),

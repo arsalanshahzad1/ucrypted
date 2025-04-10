@@ -20,6 +20,8 @@ class CreateNewPassScreen extends StatefulWidget {
 }
 
 class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
@@ -61,8 +63,8 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
                       "Create New Password",
                       style: GoogleFonts.inter(
                         color: AppColors.white,
-                        fontSize: 32,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     5.vSpace,
@@ -76,11 +78,39 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
                       style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                     10.vSpace,
-                    CustomTextField(
-                      controller: TextEditingController(),
-                      keyboardType: TextInputType.emailAddress,
-                      isPassword: true,
-                      hintText: "Enter new password",
+                    TextField(
+                      obscureText: _obscureText,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: const Color(0xFF2C2C30),
+                        hintStyle: GoogleFonts.inter(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                        hintText: "********",
+                        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                        suffixIcon: IconButton(
+                          icon: SvgPicture.asset(
+                            'assets/svg/eyeclose.svg',
+                            colorFilter: const ColorFilter.mode(Colors.white54, BlendMode.srcIn),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(color: Color(0xff44444A)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(color: Color(0xff44444A)),
+                        ),
+                      ),
                     ),
                     20.vSpace,
                     Text(
@@ -88,11 +118,39 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
                       style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                     10.vSpace,
-                    CustomTextField(
-                      controller: TextEditingController(),
-                      keyboardType: TextInputType.emailAddress,
-                      isPassword: true,
-                      hintText: "Enter confirm new password",
+                    TextField(
+                      obscureText: _obscureText,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: const Color(0xFF2C2C30),
+                        hintStyle: GoogleFonts.inter(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                        hintText: "********",
+                        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                        suffixIcon: IconButton(
+                          icon: SvgPicture.asset(
+                            'assets/svg/eyeclose.svg',
+                            colorFilter: const ColorFilter.mode(Colors.white54, BlendMode.srcIn),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _obscureText = !_obscureText;
+                            });
+                          },
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(color: Color(0xff44444A)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(color: Color(0xff44444A)),
+                        ),
+                      ),
                     ),
                     30.vSpace,
                     Text(

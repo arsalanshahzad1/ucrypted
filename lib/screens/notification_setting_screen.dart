@@ -50,6 +50,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -123,7 +124,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
                     flex: 2,
                     child: Center(
                       child: Text(
-                        "Notification Settings",
+                        "Tradding Settings",
                         style: GoogleFonts.inter(
                           color: AppColors.white,
                           fontWeight: FontWeight.w500,
@@ -170,7 +171,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
               20.vSpace,
 
               /// UI from screenshot
-              buildSettingsOption("News and Update Settings", "The latest news about the latest features and software update settings", isNewsUpdates, (val) {
+              buildSettingsOption1("News and Update Settings", "The latest news about the latest features and software update settings", isNewsUpdates, (val) {
                 setState(() => isNewsUpdates = val);
               }),
               buildSettingsOption("Tips and Tutorials", "Tips and tricks in order to increase your performance efficiency", isTipsTutorials, (val) {
@@ -253,21 +254,22 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(title, style: GoogleFonts.inter(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w600)),
-            Checkbox(
-              value: value,
-              onChanged: (val) {
-                if (val != null) {
-                  onChanged(val);
-                }
-              },
-              activeColor: Colors.orange,
+            Padding(
+              padding: const EdgeInsets.only(right: 2),
+              child: Container(
+                height: 17.h,
+                width: 17.w,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.r), border: Border.all(color: Colors.white)),
+              ),
             ),
+            // 5.hSpace,
           ],
         ),
+        10.vSpace,
         Text(subtitle,
             style: GoogleFonts.inter(
               fontSize: 14,
-              color: Colors.grey[500],
+              color: Color(0xffACB5BB),
             )),
         10.vSpace,
         Container(
@@ -275,19 +277,100 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
-            color: AppColors.disableBtnColor,
+            color: Color(0xff2C2C30),
+            border: Border.all(color: Color(0xff44444A)),
             borderRadius: BorderRadius.circular(8),
           ),
           child: DropdownButton<String>(
+            isExpanded: true,
             iconSize: 0.0,
             underline: const SizedBox.shrink(),
+            style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
             value: "Suggested",
             items: ["Suggested", "All", "None"].map((String item) {
               return DropdownMenuItem<String>(
                 value: item,
-                child: Text(item, style: GoogleFonts.inter(color: AppColors.white)),
+                child: Text(item,
+                    style: GoogleFonts.inter(
+                      color: AppColors.white,
+                    )),
               );
             }).toList(),
+            icon: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Image.asset(
+                  "assets/images/drop.png",
+                  color: Colors.white,
+                ),
+                5.hSpace,
+              ],
+            ),
+            onChanged: (value) {},
+            dropdownColor: AppColors.disableBtnColor,
+          ),
+        ),
+        20.vSpace,
+      ],
+    );
+  }
+
+  Widget buildSettingsOption1(String title, String subtitle, bool value, Function(bool) onChanged) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: GoogleFonts.inter(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w600)),
+            SizedBox(
+              height: 20.h,
+              width: 20.w,
+              child: SvgPicture.asset("assets/svg/tick.svg"),
+            )
+          ],
+        ),
+        10.vSpace,
+        Text(subtitle,
+            style: GoogleFonts.inter(
+              fontSize: 14,
+              color: Color(0xffACB5BB),
+            )),
+        10.vSpace,
+        Container(
+          height: 50,
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: Color(0xff2C2C30),
+            border: Border.all(color: Color(0xff44444A)),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: DropdownButton<String>(
+            isExpanded: true,
+            iconSize: 0.0,
+            underline: const SizedBox.shrink(),
+            style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
+            value: "Suggested",
+            items: ["Suggested", "All", "None"].map((String item) {
+              return DropdownMenuItem<String>(
+                value: item,
+                child: Text(item,
+                    style: GoogleFonts.inter(
+                      color: AppColors.white,
+                    )),
+              );
+            }).toList(),
+            icon: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Image.asset(
+                  "assets/images/drop.png",
+                  color: Colors.white,
+                ),
+                5.hSpace,
+              ],
+            ),
             onChanged: (value) {},
             dropdownColor: AppColors.disableBtnColor,
           ),

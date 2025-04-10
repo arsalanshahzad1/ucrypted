@@ -44,6 +44,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -168,16 +169,18 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                       child: Row(
                         children: [
                           Container(
-                            height: 30,
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                            height: 38.h,
+                            width: 138.w,
+                            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(24),
                               border: Border.all(color: AppColors.grey),
                             ),
                             child: Center(
                                 child: Text(
-                              "Upload image",
-                              style: GoogleFonts.inter(color: AppColors.white, fontSize: 14),
+                              "Upload New Picture",
+                              style: GoogleFonts.inter(fontWeight: FontWeight.w600,
+                               color: AppColors.white, fontSize: 12),
                             )),
                           ),
                           10.hSpace,
@@ -351,7 +354,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                 ),
                 20.vSpace,
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                   decoration: BoxDecoration(
                     color: Color(0xff2C2C30),
                     borderRadius: BorderRadius.circular(12),
@@ -398,7 +401,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           ),
                         ),
                       ),
-                      20.vSpace,
+                      // 20.vSpace,
                     ],
                   ),
                 ),

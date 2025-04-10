@@ -57,6 +57,7 @@ class _DepositCryptoscreenState extends State<DepositCryptoscreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/select-coin.png",
+      fit: BoxFit.cover,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),

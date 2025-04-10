@@ -4,12 +4,14 @@ class ScaffoldWithBackground extends StatelessWidget {
   final Widget child;
   final Widget? bottomNavChild;
   final String? backgroundImage;
+  final BoxFit? fit;
 
   const ScaffoldWithBackground({
     super.key,
     required this.child,
     this.bottomNavChild,
     this.backgroundImage,
+    this.fit,
   });
 
   @override
@@ -23,7 +25,7 @@ class ScaffoldWithBackground extends StatelessWidget {
             color: Colors.black,
             image: DecorationImage(
               image: AssetImage(backgroundImage ?? 'assets/images/background.png'),
-              fit: backgroundImage != null ? BoxFit.cover : BoxFit.cover,
+              fit: backgroundImage != null ? fit ?? BoxFit.cover : BoxFit.cover,
               // alignment: FractionalOffset.topLeft,
               colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.9), BlendMode.dstATop),
             )),

@@ -47,6 +47,7 @@ class _SecuritySettingScreenState extends State<SecuritySettingScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -166,7 +167,6 @@ class _SecuritySettingScreenState extends State<SecuritySettingScreen> {
                 value: loginAlert,
                 onChanged: (val) => setState(() => loginAlert = val),
               ),
-              
             ],
           ),
         ),

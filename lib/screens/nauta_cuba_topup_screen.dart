@@ -47,7 +47,8 @@ class _NautaCubaTopUpScreenState extends State<NautaCubaTopUpScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/nauta.png",
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -154,7 +155,7 @@ class _NautaCubaTopUpScreenState extends State<NautaCubaTopUpScreen> {
               ),
               20.vSpace,
               Text(
-                "Nauta Cuba Top Up",
+                "Nauta cuba Top-Up",
                 style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
               ),
               20.vSpace,
@@ -297,7 +298,7 @@ class _NautaCubaTopUpScreenState extends State<NautaCubaTopUpScreen> {
                   ],
                 ),
               ),
-              10.vSpace,
+              15.vSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -308,45 +309,30 @@ class _NautaCubaTopUpScreenState extends State<NautaCubaTopUpScreen> {
                 ],
               ),
               20.vSpace,
-              Row(
-                children: [
-                  SizedBox(
-                    height: 24.h,
-                    width: 24.w,
-                    child: Checkbox(
-                      value: isChecked,
-                      onChanged: (bool? newValue) {
-                        setState(() {
-                          isChecked = newValue ?? false;
-                        });
-                      },
-                      activeColor: Colors.orange,
-                      fillColor: MaterialStateProperty.resolveWith((states) {
-                        if (states.contains(MaterialState.selected)) {
-                          return Colors.orange;
-                        }
-                        return Colors.grey[300];
-                      }),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  children: [
+                    SizedBox(height: 16.h, width: 16.w, child: SvgPicture.asset("assets/svg/tickfinal.svg")),
+                    10.hSpace,
+                    // Checkbox(
+                    //   value: isChecked,
+                    //   activeColor: AppColors.white,
+                    //   checkColor: Colors.orange,
+                    //   onChanged: (bool? value) {
+                    //     setState(() {
+                    //       isChecked = value ?? false;
+                    //     });
+                    //   },
+                    // ),
+                    Expanded(
+                      child: Text(
+                        "By clicking 'Buy Now', you agree to our Terms and Conditions, including our Cancellation Policy.",
+                        style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 12, fontWeight: FontWeight.w400),
+                      ),
                     ),
-                  ),
-                  10.hSpace,
-                  // Checkbox(
-                  //   value: isChecked,
-                  //   activeColor: AppColors.white,
-                  //   checkColor: Colors.orange,
-                  //   onChanged: (bool? value) {
-                  //     setState(() {
-                  //       isChecked = value ?? false;
-                  //     });
-                  //   },
-                  // ),
-                  Expanded(
-                    child: Text(
-                      "By clicking 'Buy Now', you agree to our Terms and Conditions, including our Cancellation Policy.",
-                      style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 12, fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               25.vSpace,
               GestureDetector(
@@ -362,12 +348,13 @@ class _NautaCubaTopUpScreenState extends State<NautaCubaTopUpScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      "Continue",
-                      style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                      "Next",
+                      style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
                     ),
                   ),
                 ),
               ),
+              20.vSpace,
             ],
           ),
         ),
@@ -409,6 +396,7 @@ class _NautaCubaSuccessScreenState extends State<NautaCubaSuccessScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -533,106 +521,112 @@ class _NautaCubaSuccessScreenState extends State<NautaCubaSuccessScreen> {
                 ],
               ),
               20.vSpace,
-              Text(
-                "Your Transactions has been Successfully Proceed!",
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  "Your Transactions has been Successfully Proceed!",
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  style: GoogleFonts.poppins(
+                    color: Color(0xffFAFAFA),
+                    fontSize: 19,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
               30.vSpace,
-              Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xffCCCCCC))),
-                padding: const EdgeInsets.all(26),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Container(
+                  decoration: BoxDecoration(color: Color(0xff151515), borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xffCCCCCC).withOpacity(0.2))),
+                  padding: const EdgeInsets.all(26),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                            decoration: BoxDecoration(
+                              color: Color(0xff212121),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              "Nauta Cuba Top-up Details",
+                              style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w600, fontSize: 18),
+                            ),
+                          ),
+                        ],
+                      ),
+                      15.vSpace,
+                      _transactionRow("Payment Method", "Wallet"),
+                      15.vSpace,
+                      _transactionRow("Top-up Amount", "\$100.00"),
+                      15.vSpace,
+                      _transactionRow("Email Address", "alice@gmail.com"),
+                      15.vSpace,
+                      _transactionRow("Transaction ID", "TRX-AUS101212"),
+                      15.vSpace,
+                      const Divider(color: AppColors.grey),
+                      25.vSpace,
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          height: 55,
+                          width: double.infinity,
                           decoration: BoxDecoration(
-                            color: AppColors.grey.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
-                            "Nauta Cuba Top-up Details",
-                            style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w600, fontSize: 18),
-                          ),
-                        ),
-                      ],
-                    ),
-                    15.vSpace,
-                    _transactionRow("Payment Method", "Wallet"),
-                    15.vSpace,
-                    _transactionRow("Top-up Amount", "\$100.00"),
-                    15.vSpace,
-                    _transactionRow("Email Address", "alice@gmail.com"),
-                    15.vSpace,
-                    _transactionRow("Transaction ID", "TRX-AUS101212"),
-                    15.vSpace,
-                    const Divider(color: AppColors.grey),
-                    25.vSpace,
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        height: 55,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                          borderRadius: BorderRadius.circular(28),
-                        ),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset("assets/svg/msg.svg"),
-                              10.hSpace,
-                              Text(
-                                "Download Top-up Receipt",
-                                style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    25.vSpace,
-                    GestureDetector(
-                      onTap: () {
-                        RoutingService.pushAndRemoveUntil(const HomeScreen());
-                      },
-                      child: Container(
-                        height: 55,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
+                            gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
                             borderRadius: BorderRadius.circular(28),
-                            border: Border.all(
-                              color: Color(0xffDADADA),
-                            )),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset("assets/svg/email.svg"),
-                              10.hSpace,
-                              Text(
-                                "Send To Email",
-                                style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: 16),
-                              ),
-                            ],
+                          ),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset("assets/svg/msg.svg"),
+                                10.hSpace,
+                                Text(
+                                  "Download Top-up Receipt",
+                                  style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      25.vSpace,
+                      GestureDetector(
+                        onTap: () {
+                          RoutingService.pushAndRemoveUntil(const HomeScreen());
+                        },
+                        child: Container(
+                          height: 55,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(28),
+                              border: Border.all(
+                                color: Color(0xffDADADA),
+                              )),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset("assets/svg/email.svg"),
+                                10.hSpace,
+                                Text(
+                                  "Send To Email",
+                                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              30.vSpace,
+              50.vSpace,
             ],
           ),
         ),
@@ -649,8 +643,9 @@ class _NautaCubaSuccessScreenState extends State<NautaCubaSuccessScreen> {
             child: Text(
               label,
               style: GoogleFonts.poppins(
-                color: Colors.grey,
+                color: Color(0xffDADADA),
                 fontSize: 14,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),

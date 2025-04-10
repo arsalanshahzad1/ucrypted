@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -70,15 +71,15 @@ class _RecoveryScreemState extends State<RecoveryScreem> {
               "Secret Recovery Word",
               style: GoogleFonts.inter(
                 color: AppColors.white,
-                fontSize: 32,
-                fontWeight: FontWeight.w600,
+                fontSize: 28,
+                fontWeight: FontWeight.w500,
               ),
             ),
             5.vSpace,
             Text(
               "This is the only way you will be able to recover your account. Please store it somewhere safe!",
               style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: 14, fontWeight: FontWeight.w500),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.start,
             ),
             50.vSpace,
             Expanded(
@@ -121,7 +122,7 @@ class _RecoveryScreemState extends State<RecoveryScreem> {
                 RoutingService.push(const InputRecoveryscreen());
               },
               child: Container(
-                height: 50,
+                height: 45.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),

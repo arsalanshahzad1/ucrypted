@@ -1632,9 +1632,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                       10.vSpace,
                       Text(
                         "Enable order shortcuts",
-                        style: GoogleFonts.inter(
-                          fontSize: 11, 
-                          fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                        style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                       ),
                       10.vSpace,
                       Container(
@@ -2663,14 +2661,20 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
       width: double.infinity,
       height: height,
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color(0xFF2C2C30),
-            Color(0xFF161618),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+        image: DecorationImage(
+          image: AssetImage(
+            "assets/images/modal.png",
+          ),
+          fit: BoxFit.contain,
         ),
+        // gradient: LinearGradient(
+        //   colors: [
+        //     Color(0xFF2C2C30),
+        //     Color(0xFF161618),
+        //   ],
+        //   begin: Alignment.topCenter,
+        //   end: Alignment.bottomCenter,
+        // ),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),

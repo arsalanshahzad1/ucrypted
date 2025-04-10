@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,6 +52,7 @@ class _AccountScreenState extends State<AccountScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -108,18 +110,21 @@ class _AccountScreenState extends State<AccountScreen> {
                 Row(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_ios,
-                        color: AppColors.white,
+                    // IconButton(
+                    //   onPressed: () {
+                    //     Get.back();
+                    //   },
+                    //   icon: const Icon(
+                    //     Icons.arrow_back_ios,
+                    //     color: AppColors.white,
+                    //   ),
+                    // ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 10.w),
+                      child: Text(
+                        "Settings",
+                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 20),
                       ),
-                    ),
-                    Text(
-                      "Settings",
-                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 20),
                     )
                   ],
                 ),
@@ -166,7 +171,7 @@ class _AccountScreenState extends State<AccountScreen> {
             30.vSpace,
             Text(
               "Preferences",
-              style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.grey),
+              style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xffACB5BB)),
             ),
             const SizedBox(height: 10),
             settingsItem("assets/svg/account.svg", "Account Settings", () {
@@ -183,7 +188,7 @@ class _AccountScreenState extends State<AccountScreen> {
             30.vSpace,
             Text(
               "Other",
-              style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.grey),
+              style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xffACB5BB)),
             ),
             10.vSpace,
             settingsItem("assets/svg/portfolio.svg", "Portfolio Settings", () {
@@ -227,7 +232,7 @@ class _AccountScreenState extends State<AccountScreen> {
             Expanded(
               child: Text(
                 title,
-                style: GoogleFonts.inter(fontSize: 14, color: Colors.white, fontWeight: FontWeight.w400),
+                style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xffEDF1F3)),
               ),
             ),
             Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[600]),

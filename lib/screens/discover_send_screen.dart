@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
@@ -20,6 +21,8 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/topupbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -79,11 +82,18 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
 
                 // BTC Card
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Color(0xff1E1E20),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.orange),
+                    borderRadius: BorderRadius.circular(8),
+                    border: GradientBoxBorder(
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                      ),
+                      width: 0.9,
+                    ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,7 +115,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 8),
+                          20.vSpace,
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -133,7 +143,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           exchangeWidget("assets/svg/bscexc.svg"),
-                          const SizedBox(height: 8),
+                          20.vSpace,
                           Text(
                             "21900,84 USD",
                             style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
@@ -143,15 +153,12 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 8),
 
                 // ETH Card
                 Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Color(0xff1E1E20),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(color: Color(0xff1E1E20), borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xff2C2C30))),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -172,7 +179,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 8),
+                          20.vSpace,
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -200,7 +207,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           exchangeWidget("assets/svg/ethex.svg"),
-                          const SizedBox(height: 8),
+                          20.vSpace,
                           Text(
                             "37870,88 USD",
                             style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
@@ -218,7 +225,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                     style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 25),
                 Divider(
                   height: 1.0,
                   color: Color(0xff2C2C30),
@@ -267,7 +274,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                     suffixIcon: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: SvgPicture.asset(
-                        "assets/svg/eye.svg",
+                        "assets/svg/ee.svg",
                         // height: 20,
                         // width: 20,
                       ),
@@ -325,6 +332,8 @@ class _SelectNetworkState extends State<SelectNetwork> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/send2.png",
+      fit: BoxFit.cover,
       child: Stack(
         children: [
           // Back button and title
@@ -363,16 +372,9 @@ class _SelectNetworkState extends State<SelectNetwork> {
               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.75, // Adjust height as needed
               decoration: const BoxDecoration(
-                  // color: Color(0xFF1A1A1E), // Modal-like background
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                  gradient: LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 29, 29, 30),
-                      Color(0xff161618),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  )),
+                image: DecorationImage(image: AssetImage("assets/images/sendmodel.png"), fit: BoxFit.cover),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              ),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

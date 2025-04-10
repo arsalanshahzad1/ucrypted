@@ -45,6 +45,7 @@ class _TierScreenState extends State<TierScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/tier.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -422,7 +423,7 @@ class _TierScreenState extends State<TierScreen> {
                     child: Center(
                       child: Text(
                         "Confirm Support",
-                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                        style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
                       ),
                     ),
                   ),
@@ -442,7 +443,7 @@ class _TierScreenState extends State<TierScreen> {
                     child: Center(
                       child: Text(
                         "Back",
-                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                        style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
                       ),
                     ),
                   ),
@@ -492,6 +493,7 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/tier.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -596,13 +598,13 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
                   ),
                 ],
               ),
-              30.vSpace,
+              10.vSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: 65,
-                    width: 65,
+                    height: 68.h,
+                    width: 68.w,
                     decoration: BoxDecoration(color: Color.fromARGB(32, 87, 140, 26), borderRadius: BorderRadius.circular(65)),
                     child: SizedBox(
                       height: 60,
@@ -615,116 +617,119 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
                   )
                 ],
               ),
-              20.vSpace,
+              15.vSpace,
               Text(
                 "Your Transaction has been Successfully Processed!",
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 18,
+                  color: Color(0xffFAFAFA),
+                  fontSize: 24,
                   fontWeight: FontWeight.w500,
-                ),
-              ),
-              30.vSpace,
-              Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Color(0xff151515),
-                    border: Border.all(
-                      color: Color(0xffCCCCCC).withOpacity(0.5),
-                    )),
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 65.w, vertical: 28.h),
-                          decoration: BoxDecoration(
-                            color: AppColors.grey.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
-                            "Payment Details",
-                            style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 23),
-                          ),
-                        ),
-                      ],
-                    ),
-                    15.vSpace,
-                    _transactionRow("Payment Method", "Wallet"),
-                    15.vSpace,
-                    _transactionRow("Service", "Support Tier"),
-                    15.vSpace,
-                    _transactionRow("Billing Type", "prepaid"),
-                    15.vSpace,
-                    _transactionRow("Account Number", "0400001023123123"),
-                    15.vSpace,
-                    _transactionRow("Amount", "\$35.00"),
-                    15.vSpace,
-                    const Divider(color: AppColors.grey),
-                    25.vSpace,
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        height: 55,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                          borderRadius: BorderRadius.circular(28),
-                        ),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset("assets/svg/msg.svg"),
-                              10.hSpace,
-                              Text(
-                                "Download Payment Details",
-                                style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    25.vSpace,
-                    GestureDetector(
-                      onTap: () {
-                        // RoutingService.pushAndRemoveUntil(const HomeScreen());
-                      },
-                      child: Container(
-                        height: 55,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(28),
-                            border: Border.all(
-                              color: Color(0xffDADADA),
-                            )),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset("assets/svg/email.svg"),
-                              10.hSpace,
-                              Text(
-                                "Send To Email",
-                                style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ),
               30.vSpace,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Color(0xff151515),
+                      border: Border.all(
+                        color: Color(0xffCCCCCC).withOpacity(0.5),
+                      )),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 56.w, vertical: 28.h),
+                            decoration: BoxDecoration(
+                              color: AppColors.grey.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              "Payment Details",
+                              style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 23),
+                            ),
+                          ),
+                        ],
+                      ),
+                      15.vSpace,
+                      _transactionRow("Payment Method", "Wallet"),
+                      15.vSpace,
+                      _transactionRow("Service", "Support Tier"),
+                      15.vSpace,
+                      _transactionRow("Billing Type", "prepaid"),
+                      15.vSpace,
+                      _transactionRow("Account Number", "0400001023123123"),
+                      15.vSpace,
+                      _transactionRow("Amount", "\$35.00"),
+                      25.vSpace,
+                      const Divider(color: AppColors.grey),
+                      45.vSpace,
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          height: 55,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                            borderRadius: BorderRadius.circular(28),
+                          ),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset("assets/svg/msg.svg"),
+                                10.hSpace,
+                                Text(
+                                  "Download Payment Details",
+                                  style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      25.vSpace,
+                      GestureDetector(
+                        onTap: () {
+                          // RoutingService.pushAndRemoveUntil(const HomeScreen());
+                        },
+                        child: Container(
+                          height: 55,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(28),
+                              border: Border.all(
+                                color: Color(0xffDADADA),
+                              )),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset("assets/svg/email.svg"),
+                                10.hSpace,
+                                Text(
+                                  "Send To Email",
+                                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              30.vSpace,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Text(
                   "For any discrepancies or complaints, please contact: info@ucrypted.com. Together, we can make Ucrypted a reality and shape the future of secure financial trading. Thank you for being an essential part of our journey!",
                   textAlign: TextAlign.center,

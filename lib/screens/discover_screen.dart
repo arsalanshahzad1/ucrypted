@@ -92,7 +92,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 26),
           child: Column(
             children: [
-              15.vSpace,
+              10.vSpace,
               Row(
                 children: [
                   GestureDetector(
@@ -155,11 +155,20 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 ],
               ),
               20.vSpace,
-              _buildSection("Shortcut", ["Send", "Request", "Withdraw", "Add wallet", "Deposit", "Edit Wallet", "Buy Crypto", "Sell Crypto"]),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: _buildSection("Shortcut", ["Send", "Request", "Withdraw", "Add wallet", "Deposit", "Edit Wallet", "Buy Crypto", "Sell Crypto"]),
+              ),
               const SizedBox(height: 16),
-              _buildSection("Recommended", ["Trade", "P2P", "Gift card", "Esim", "Utility Payment", "Gift Redeem", "Mobile Top-Up", "Nauta Cuba"]),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: _buildSection("Recommended", ["Trade", "P2P", "Gift card", "Esim", "Utility Payment", "Gift Redeem", "Mobile Top-Up", "Nauta Cuba"]),
+              ),
               const SizedBox(height: 16),
-              _buildSection("Others", ["Order History", "Campaign", "Tier Payments"]),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: _buildSection("Others", ["Order History", "Campaign", "Tier Payments", "Disable Ac."]),
+              ),
               40.vSpace,
             ],
           ),
@@ -189,6 +198,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       "Order History": "assets/svg/dsend.svg",
       "Campaign": "assets/svg/drequest.svg",
       "Tier Payments": "assets/svg/dsellcrypto.svg",
+      "Disable Ac.": "assets/svg/daddwallet.svg",
     };
 
     return Container(
@@ -203,11 +213,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         ),
         borderRadius: BorderRadius.circular(12),
       ),
-      padding: const EdgeInsets.all(12),
+      // padding: const EdgeInsets.all(12),
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -223,45 +233,48 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               ],
             ),
           ),
-          10.vSpace,
+          // 10.vSpace,
           const Divider(
             height: 1.0,
             color: Color(0xFF44444A),
           ),
           const SizedBox(height: 10),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              mainAxisSpacing: 16,
-              crossAxisSpacing: 16,
-              childAspectRatio: 1,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 0.9,
+              ),
+              itemCount: labels.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    _handleItemTap(labels[index]);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        iconMap[labels[index]] ?? "assets/images/chats.png",
+                        width: 20,
+                        height: 20,
+                      ),
+                      16.vSpace,
+                      Text(
+                        labels[index],
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
-            itemCount: labels.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  _handleItemTap(labels[index]);
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      iconMap[labels[index]] ?? "assets/images/chats.png",
-                      width: 20,
-                      height: 20,
-                    ),
-                    4.vSpace,
-                    Text(
-                      labels[index],
-                      style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              );
-            },
           ),
         ],
       ),
@@ -319,7 +332,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appPrint("Esim tapped");
         break;
       case "Utility Payment":
-        RoutingService.push(const MobileTopUpScreen());
+        RoutingService.push(const TopUpScreen());
         appPrint("Utility Payment tapped");
         break;
       case "Gift Redeem":
@@ -327,7 +340,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appPrint("Gift Redeem tapped");
         break;
       case "Mobile Top-Up":
-        RoutingService.push(const TopUpScreen());
+        RoutingService.push(const MobileTopUpScreen());
         appPrint("Mobile Top-Up tapped");
         break;
       case "Nauta Cuba":

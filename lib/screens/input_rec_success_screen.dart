@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/home_screen.dart';
@@ -33,12 +34,17 @@ class _InputRecoverySuccessScreenState extends State<InputRecoverySuccessScreen>
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          height: 80,
-                          width: 80,
-                          child: SvgPicture.asset(
-                            "assets/svg/success.svg",
-                            fit: BoxFit.contain,
+                        Container(
+                          height: 90.h,
+                          width: 90.w,
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: Color(0xff21808C1A).withOpacity(0.1)),
+                          child: SizedBox(
+                            height: 80,
+                            width: 80,
+                            child: SvgPicture.asset(
+                              "assets/svg/success.svg",
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         )
                       ],
@@ -61,10 +67,7 @@ class _InputRecoverySuccessScreenState extends State<InputRecoverySuccessScreen>
                     Text(
                       "Your secret recovery word has been successfully verified and saved. Keep it safe",
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.inter(
-                        color: AppColors.grey,
-                        fontSize: 16,
-                      ),
+                      style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: 14, fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),

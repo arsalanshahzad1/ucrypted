@@ -22,7 +22,8 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/buysell.png",
+      backgroundImage: "assets/images/topupbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -81,9 +82,9 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                   readOnly: true, // Makes it non-editable like a dropdown
                   decoration: InputDecoration(
                     hintText: "BTC (Bitcoin)",
-                    hintStyle: TextStyle(
-                      color: Color(0xFFCCCCCC), // Light grey text color
-                      fontSize: 14,
+                    hintStyle: GoogleFonts.inter(
+                      color: Colors.white, // Light grey text color
+                      fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
                     filled: true,
@@ -383,8 +384,9 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                   children: [
                     SvgPicture.asset(
                       "assets/svg/inof.svg",
-                      height: 20,
-                      width: 20,
+                      height: 15.h,
+                      width: 15.w,
+                      color: Color(0xffACB5BB),
                     ),
                     10.hSpace,
                     Text(
@@ -399,7 +401,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                     RoutingService.push(const BuyDetailScreen());
                   },
                   child: Container(
-                    height: 50,
+                    height: 40.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
@@ -434,7 +436,8 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/buysell.png",
+      backgroundImage: "assets/images/topupbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -501,7 +504,7 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
                     Text(
                       "WLT12412QWRFSDADASD",
                       style: GoogleFonts.inter(
-                        color: AppColors.grey,
+                        color: Color(0xffACB5BB),
                         fontWeight: FontWeight.w500,
                         fontSize: 14.sp,
                       ),
@@ -516,8 +519,8 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
                 ),
                 20.vSpace,
                 Container(
-                  height: 60.h,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  height: 55.h,
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
                     color: const Color(0xFF2C2C30),
                     borderRadius: BorderRadius.circular(8.r),
@@ -549,17 +552,18 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
                           RoutingService.pushAndRemoveUntil(const HomeScreen());
                         },
                         child: Container(
-                          height: 40,
+                          height: 45.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF2C2C30),
+                            color: const Color(0xFF222223),
                             border: Border.all(color: const Color(0xFF2C2C30)),
                             borderRadius: BorderRadius.circular(28),
                           ),
                           child: Center(
                             child: Text(
                               "Share",
-                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                              style: GoogleFonts.inter(color: AppColors.white, 
+                              fontWeight: FontWeight.w600, fontSize: 14),
                             ),
                           ),
                         ),
@@ -572,7 +576,7 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
                           RoutingService.pushAndRemoveUntil(const HomeScreen());
                         },
                         child: Container(
-                          height: 40,
+                          height: 45.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),

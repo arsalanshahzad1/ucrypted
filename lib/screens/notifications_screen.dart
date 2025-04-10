@@ -43,7 +43,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/order-hist.png",
+      backgroundImage: "assets/images/onboard.png",
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),

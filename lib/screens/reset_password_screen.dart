@@ -73,18 +73,36 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         fontSize: 14,
                       ),
                     ),
-                    30.vSpace,
+                    50.vSpace,
                     Text(
                       "Email",
                       style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                     10.vSpace,
-                    CustomTextField(
-                      controller: TextEditingController(),
-                      keyboardType: TextInputType.emailAddress,
-                      isPassword: false,
-                      hintText: "Enter email",
-                    ),
+                    TextField(
+                      style: TextStyle(color: Colors.white), // Text color inside
+                      decoration: InputDecoration(
+                        hintText: 'yourname@gmail.com',
+                        hintStyle: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500), // Placeholder color
+                        filled: true,
+                        fillColor: Color(0xFF2C2C30), // Inside background color of the field
+                        contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                          borderSide: BorderSide(
+                            color: Color(0xff44444A), // Border color when not focused
+                            width: 1.0,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                          borderSide: BorderSide(
+                            color: Color(0xff44444A), // Border color when focused
+                            width: 1.0,
+                          ),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),

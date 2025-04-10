@@ -47,6 +47,7 @@ class _GeneralSettingScreenState extends State<GeneralSettingScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -338,7 +339,7 @@ class _GeneralSettingScreenState extends State<GeneralSettingScreen> {
                 // RoutingService.pushAndRemoveUntil(const HomeScreen());
               },
               child: Container(
-                height: 50,
+                height: 45.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),

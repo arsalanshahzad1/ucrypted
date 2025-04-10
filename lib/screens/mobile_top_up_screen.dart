@@ -48,7 +48,8 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/background1.png", 
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -336,7 +337,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                       child: TextField(
                         style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 13),
                         decoration: InputDecoration(
-                          hintText: "3124 12312 12312",
+                          hintText: "Enter receiver number",
                           hintStyle: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 13),
                           border: InputBorder.none,
                         ),
@@ -373,7 +374,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 ),
               ),
-              5.vSpace,
+              15.vSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -387,25 +388,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
               Row(
                 children: [
                   5.hSpace,
-                  SizedBox(
-                    height: 24.h,
-                    width: 24.w,
-                    child: Checkbox(
-                      value: isChecked,
-                      onChanged: (bool? newValue) {
-                        setState(() {
-                          isChecked = newValue ?? false;
-                        });
-                      },
-                      activeColor: Colors.orange,
-                      fillColor: MaterialStateProperty.resolveWith((states) {
-                        if (states.contains(MaterialState.selected)) {
-                          return Colors.orange;
-                        }
-                        return Colors.grey[300];
-                      }),
-                    ),
-                  ),
+                  SizedBox(height: 16.h, width: 16.w, child: SvgPicture.asset("assets/svg/tickfinal.svg")),
                   10.hSpace,
                   Expanded(
                     child: Text(
@@ -483,6 +466,7 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -615,102 +599,119 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
                 ),
               ),
               30.vSpace,
-              Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xffCCCCCC))),
-                padding: const EdgeInsets.all(26),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                          decoration: BoxDecoration(
-                            color: AppColors.grey.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Container(
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Color(0xff151515), border: Border.all(color: Color(0xffCCCCCC))),
+                  padding: const EdgeInsets.all(26),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                            decoration: BoxDecoration(
+                              color: AppColors.grey.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              "Mobile Top-up Details",
+                              style: GoogleFonts.poppins(color: AppColors.white, fontSize: 23, fontWeight: FontWeight.w400),
+                            ),
                           ),
-                          child: Text(
-                            "Mobile Top-up Details",
-                            style: GoogleFonts.poppins(color: AppColors.white, fontSize: 23, fontWeight: FontWeight.w400),
-                          ),
-                        ),
+                        ],
+                      ),
+                      20.vSpace,
+                      _transactionRow("Payment Method", widget.fromWallet == true ? "Wallet" : "Credit Card"),
+                      10.vSpace,
+                      _transactionRow("Amount", "\$100.00"),
+                      10.vSpace,
+                      if (!widget.fromWallet) ...[
+                        _transactionRow("Card Number", "4882632736"),
+                        10.vSpace,
+                        _transactionRow("Bank", "XYZ Bank"),
+                        10.vSpace,
+                        _transactionRow("Phone Number", "+1 23124 343242"),
+                        10.vSpace,
+                        _transactionRow("Transaction Refrence", "TRX-ABC12323232"),
                       ],
-                    ),
-                    20.vSpace,
-                    _transactionRow("Payment Method", widget.fromWallet == true ? "Wallet" : "Credit Card"),
-                    10.vSpace,
-                    _transactionRow("Amount", "\$100.00"),
-                    10.vSpace,
-                    if (!widget.fromWallet) ...[
-                      _transactionRow("Credit Card", "4564-235533-343432"),
+
+                      if (widget.fromWallet) ...[
+                        _transactionRow("Receipt", "4882632736"),
+                        10.vSpace,
+                        _transactionRow("Transaction ID", "TRX- AUS123456"),
+                        10.vSpace,
+                        _transactionRow("Region", "United States"),
+                      ],
+                      // _transactionRow("Email Address", "alice@gmail.com"),
+                      // 10.vSpace,
+                      // _transactionRow("Transaction ID", "TRX-AUS101212"),
                       10.vSpace,
-                      _transactionRow("Card Holder Name", "Alice"),
-                      10.vSpace,
+                      const Divider(color: Color(0xffCCCCCC)),
+                      20.vSpace,
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          height: 50,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                            borderRadius: BorderRadius.circular(28),
+                          ),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset("assets/svg/msg.svg"),
+                                10.hSpace,
+                                Text(
+                                  "Download Top-Up Card",
+                                  style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      20.vSpace,
+                      GestureDetector(
+                        onTap: () {
+                          RoutingService.pushAndRemoveUntil(const HomeScreen());
+                        },
+                        child: Container(
+                          height: 50,
+                          width: double.infinity,
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(28), border: Border.all(color: Color(0xffDADADA))),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset("assets/svg/email.svg"),
+                                10.hSpace,
+                                Text(
+                                  "Send to email",
+                                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
-                    _transactionRow("Email Address", "alice@gmail.com"),
-                    10.vSpace,
-                    _transactionRow("Transaction ID", "TRX-AUS101212"),
-                    10.vSpace,
-                    const Divider(color: Color(0xffCCCCCC)),
-                    20.vSpace,
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        height: 50,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                          borderRadius: BorderRadius.circular(28),
-                        ),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset("assets/svg/msg.svg"),
-                              10.hSpace,
-                              Text(
-                                "Download Top-Up Card",
-                                style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    20.vSpace,
-                    GestureDetector(
-                      onTap: () {
-                        RoutingService.pushAndRemoveUntil(const HomeScreen());
-                      },
-                      child: Container(
-                        height: 50,
-                        width: double.infinity,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(28), border: Border.all(color: Color(0xffDADADA))),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset("assets/svg/email.svg"),
-                              10.hSpace,
-                              Text(
-                                "Send to email",
-                                style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: 16),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
               if (!widget.fromWallet) ...[
                 30.vSpace,
-                Text(
-                  "For any discrepancies or complaints, please contact: support@ucrypted.com. The top-up should reflect in the recipient's account shortly. If you encounter any issues, feel free to contact our support team.",
-                  textAlign: TextAlign.justify,
-                  style: GoogleFonts.poppins(fontSize: 12, color: Color(0xffDADADA), fontWeight: FontWeight.normal),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    "For any discrepancies or complaints, please contact: support@ucrypted.com. The top-up should reflect in the recipient's account shortly. If you encounter any issues, feel free to contact our support team.",
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.poppins(fontSize: 10.sp, color: Color(0xffDADADA), fontWeight: FontWeight.w300),
+                  ),
                 ),
                 40.vSpace,
               ]

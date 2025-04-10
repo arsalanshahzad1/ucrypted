@@ -60,7 +60,8 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/order-hist.png",
+      backgroundImage: "assets/images/tier.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),

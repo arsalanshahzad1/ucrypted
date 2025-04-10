@@ -563,7 +563,7 @@ class _TradingScreenState extends State<TradingScreen> {
                           ),
                         ),
                         const Spacer(),
-                        _buildCircle( 
+                        _buildCircle(
                           const Color(0xFFFF545E),
                           const Color(0xFF38B781),
                         ),
@@ -654,14 +654,14 @@ class _TradingScreenState extends State<TradingScreen> {
                     GestureDetector(
                         onTap: () => setState(() => selectedIndexCustom = 0),
                         child: Text(
-                          "Recent Transactions",
+                          "Exchange History",
                           style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
                         )),
                     30.hSpace,
                     GestureDetector(
                       onTap: () => setState(() => selectedIndexCustom = 1),
                       child: Text(
-                        "Exchange History",
+                        "Transaction History",
                         style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w500),
                       ),
                     ),
@@ -689,7 +689,7 @@ class _TradingScreenState extends State<TradingScreen> {
                       children: [
                         // Gradient part
                         Expanded(
-                          flex: 5,
+                          flex: 4,
                           child: Container(
                             decoration: const BoxDecoration(
                               gradient: LinearGradient(

@@ -86,7 +86,7 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              15.vSpace,
+              5.vSpace,
               Row(
                 children: [
                   const Icon(
@@ -103,7 +103,7 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                   ),
                 ],
               ),
-              30.vSpace,
+              10.vSpace,
               Container(
                 height: 45.h,
                 decoration: BoxDecoration(
@@ -182,7 +182,7 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
   Widget convertAndLinkWidget() {
     return Column(
       children: [
-        50.vSpace,
+        30.vSpace,
         Stack(
           clipBehavior: Clip.none,
           alignment: Alignment.center,
@@ -244,7 +244,7 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                             children: [
                               const CircleAvatar(
                                 radius: 20,
-                                backgroundColor: Colors.blue,
+                                backgroundColor: Color(0xff0082FE),
                               ),
                               10.hSpace,
                               Column(
@@ -339,7 +339,7 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                             children: [
                               CircleAvatar(
                                 radius: 20,
-                                backgroundColor: Colors.blue.withOpacity(.6),
+                                backgroundColor: Color(0xff0082FE),
                               ),
                               10.hSpace,
                               Column(
@@ -697,24 +697,25 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
           ],
         ),
         20.vSpace,
-        GestureDetector(
-          onTap: () {},
-          child: Container(
-            height: 45,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: const Color(0xFF09A648),
-              borderRadius: BorderRadius.circular(28),
-            ),
-            child: Center(
-              child: Text(
-                "Approve",
-                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 16),
-              ),
-            ),
-          ),
-        ),
-        40.vSpace,
+        // GestureDetector(
+        //   onTap: () {},
+        //   child: Container(
+        //     height: 45,
+        //     width: double.infinity,
+        //     decoration: BoxDecoration(
+        //       color: const Color(0xFF09A648),
+        //       borderRadius: BorderRadius.circular(28),
+        //     ),
+        //     child: Center(
+        //       child: Text(
+        //         "Approve",
+        //         style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 16),
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        // 40.vSpace,
+
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
@@ -797,6 +798,51 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
             ],
           ),
         ),
+        Spacer(),
+        Divider(
+          height: 1.0,
+          color: Color(0xff393737),
+        ),
+        10.vSpace,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "ETH/USDC",
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Row(
+              children: [
+                Text(
+                  " 1.876,251425 ",
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Text(
+                  "  -2,62   ",
+                  style: GoogleFonts.poppins( 
+                    color: Color(0xffD33535),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios_sharp,
+                  color: Colors.white,
+                  size: 14,
+                )
+              ],
+            ),
+          ],
+        ),
+        10.vSpace,
       ],
     );
   }

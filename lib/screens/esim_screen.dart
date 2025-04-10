@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
@@ -149,7 +150,7 @@ class _ESimScreenState extends State<ESimScreen> {
               ),
               30.verticalSpace,
               Text(
-                "eSim",
+                "eSIM",
                 style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
               ),
               20.vSpace,
@@ -328,6 +329,9 @@ class CountryCard extends StatelessWidget {
 }
 
 Widget bottomSheetContent(double height, String title, String subtitle, VoidCallback onTap, BuildContext c) {
+  int selectedIndex = 1; // Default selected: "Unlimited"
+
+  final List<String> labels = ["Recommended", "Unlimited", "Fixed"];
   return Container(
     width: double.infinity,
     height: height,
@@ -427,52 +431,62 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
             ],
           ),
           const SizedBox(height: 10),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Center(
-                    child: Text("Recommended", style: GoogleFonts.inter(color: Colors.white, fontSize: 12)),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 5),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFFFCA509), Color(0xFF880306)],
+          StatefulBuilder(builder: (context, setModalState) {
+            return Row(
+              children: List.generate(labels.length, (index) {
+                bool isSelected = index == selectedIndex;
+                return Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setModalState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: index < labels.length - 1 ? 5 : 0),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      decoration: isSelected
+                          ? const BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                              ),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(8),
+                                topRight: Radius.circular(8),
+                              ),
+                            )
+                          : null,
+                      child: Center(
+                        child: Text(
+                          labels[index],
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                          ),
+                        ),
+                      ),
                     ),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                    ),
                   ),
-                  child: Center(
-                    child: Text(
-                      "Unlimited",
-                      style: GoogleFonts.inter(color: Colors.white, fontSize: 12),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 5),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Center(
-                    child: Text("Fixed", style: GoogleFonts.inter(color: Colors.white, fontSize: 12)),
-                  ),
-                ),
-              ),
-            ],
-          ),
+                );
+              }),
+            );
+          }),
           const SizedBox(height: 15),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            decoration: BoxDecoration(border: Border.all(color: AppColors.grey), borderRadius: BorderRadius.circular(4)),
+            decoration: BoxDecoration(
+              border: const Border(
+                top: BorderSide(color: AppColors.grey),
+                left: BorderSide(color: AppColors.grey),
+                right: BorderSide(color: AppColors.grey),
+                bottom: BorderSide.none,
+              ),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(4),
+                topRight: Radius.circular(4),
+              ),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -482,7 +496,7 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
                   children: [
                     Expanded(
                       child: Container(
-                        height: 100,
+                        height: 75.h,
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white54),
@@ -506,10 +520,16 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
                     const SizedBox(width: 10),
                     Expanded(
                       child: Container(
-                        height: 100,
+                        height: 75.h,
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.orange),
+                          border: GradientBoxBorder(
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomRight,
+                              colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                            ),
+                          ),
                           borderRadius: BorderRadius.circular(2),
                         ),
                         child: Column(
@@ -555,17 +575,17 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
                     Text("\$20.00", style: GoogleFonts.inter(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
                   ],
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 25),
                 GestureDetector(
                   onTap: () {
                     RoutingService.push(const ESimBuyScreen());
                   },
                   child: Container(
-                    height: 45,
+                    height: 40.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                      borderRadius: BorderRadius.circular(24),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(
                       child: Text(
@@ -1341,6 +1361,7 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(

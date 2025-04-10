@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ucrypted_app/screens/home_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/custom_textfield.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
+import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
 
 class DiscoverEditScreen extends StatefulWidget {
@@ -20,6 +22,8 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/topupbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -76,10 +80,7 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                 10.vSpace,
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF161618),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+                  decoration: BoxDecoration(color: const Color(0xFF2C2C30), borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xff44444A))),
                   child: DropdownButtonFormField<String>(
                     value: selectedCrypto,
                     decoration: const InputDecoration(border: InputBorder.none),
@@ -106,10 +107,7 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                 ),
                 10.vSpace,
                 Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF161618),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+                  decoration: BoxDecoration(color: const Color(0xFF2C2C30), borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xff44444A))),
                   child: Row(
                     children: [
                       Expanded(
@@ -120,7 +118,7 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                             border: InputBorder.none,
                             contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                             hintText: "Aw1121jh3112xkaias12kl98s",
-                            hintStyle: GoogleFonts.inter(color: Colors.white),
+                            hintStyle: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
                           ),
                         ),
                       ),
@@ -135,7 +133,7 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                     ],
                   ),
                 ),
-                25.vSpace,
+                15.vSpace,
                 Row(
                   children: [
                     const Icon(Icons.info_outline, color: Color(0xffACB5BB), size: 16),
@@ -146,28 +144,25 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 30),
                 Text(
                   "Enter Wallet Name",
                   style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
                 ),
                 10.vSpace,
                 Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF161618),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+                  decoration: BoxDecoration(color: const Color(0xFF2C2C30), borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xff44444A))),
                   child: TextField(
                     style: GoogleFonts.inter(color: Colors.white),
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                       hintText: "https://walletapp/yourname.co...",
-                      hintStyle: GoogleFonts.inter(color: Colors.white70),
+                      hintStyle: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
                     ),
                   ),
                 ),
-                25.vSpace,
+                20.vSpace,
                 Row(
                   children: [
                     const Icon(Icons.info_outline, color: Color(0xffACB5BB), size: 16),
@@ -181,50 +176,46 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                 const SizedBox(height: 40),
                 Spacer(),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF161618),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Cancel",
-                            style: GoogleFonts.inter(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                      child: GestureDetector(
+                        onTap: () {
+                          RoutingService.pushAndRemoveUntil(const HomeScreen());
+                        },
+                        child: Container(
+                          height: 45.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF222223),
+                            border: Border.all(color: const Color(0xFF2C2C30)),
+                            borderRadius: BorderRadius.circular(28),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Cancel",
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
                             ),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
-                    // Save Button with Gradient
+                    10.hSpace,
                     Expanded(
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Color(0xFFFCA509),
-                              Color(0xFF880306),
-                            ],
+                      child: GestureDetector(
+                        onTap: () {
+                          RoutingService.pushAndRemoveUntil(const HomeScreen());
+                        },
+                        child: Container(
+                          height: 45.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                            borderRadius: BorderRadius.circular(28),
                           ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Save",
-                            style: GoogleFonts.inter(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                          child: Center(
+                            child: Text(
+                              "Save",
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
                             ),
                           ),
                         ),

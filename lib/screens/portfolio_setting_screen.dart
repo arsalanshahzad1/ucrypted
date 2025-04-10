@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
@@ -63,6 +64,7 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -242,10 +244,16 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                       decoration: BoxDecoration(
                         color: AppColors.disableBtnColor,
-                        border: Border.all(
-                          color: isSelected ? Colors.orange : AppColors.disableBtnColor,
-                          width: 1,
-                        ),
+                        border: isSelected
+                            ? GradientBoxBorder(
+                                gradient: const LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                                ),
+                                width: 0.9,
+                              )
+                            : null,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Row(
@@ -255,7 +263,18 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
                             option,
                             style: GoogleFonts.inter(color: Colors.white, fontSize: 16),
                           ),
-                          if (isSelected) const Icon(Icons.check, color: Colors.orange),
+                          if (isSelected)
+                            SizedBox(
+                              height: 16.h,
+                              width: 16.w,
+                              child: SvgPicture.asset("assets/svg/tick.svg"),
+                            ),
+                          if (!isSelected)
+                            Container(
+                              height: 17.h,
+                              width: 17.w,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.r), border: Border.all(color: Colors.white)),
+                            ),
                         ],
                       ),
                     ),

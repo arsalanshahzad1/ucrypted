@@ -557,16 +557,17 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                   height: 110.h,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
+                    color: Color(0xff0000003).withOpacity(0.1),
                     borderRadius: BorderRadius.circular(10),
-                    gradient: RadialGradient(
-                      center: Alignment.bottomRight,
-                      radius: 1.0,
-                      colors: [
-                        Colors.green.withOpacity(0.2),
-                        Colors.transparent,
-                      ],
-                      stops: const [0.2, 1.0],
-                    ),
+                    // gradient: RadialGradient(
+                    //   center: Alignment.bottomRight,
+                    //   radius: 1.0,
+                    //   colors: [
+                    //     Colors.green.withOpacity(0.2),
+                    //     Colors.transparent,
+                    //   ],
+                    //   stops: const [0.2, 1.0],
+                    // ),
                   ),
                   child: Column(
                     children: [
@@ -589,7 +590,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                               const CircleAvatar(
                                 radius: 20,
                                 backgroundColor: Colors.blue,
-                                backgroundImage: AssetImage("assets/images/dol.png"),
+                                backgroundImage: AssetImage("assets/images/dol1.png"),
                               ),
                               10.hSpace,
                               Column(
@@ -632,83 +633,122 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                   ),
                 ),
                 15.vSpace,
-                Container(
-                  height: 110.h,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    gradient: RadialGradient(
-                      center: Alignment.topLeft,
-                      radius: 1.0,
-                      colors: [
-                        Colors.blue.withOpacity(0.2),
-                        Colors.transparent,
-                      ],
-                      stops: const [0.2, 1.0],
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      20.vSpace,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "You Receive",
-                            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 14),
-                          ),
-                        ],
+                Stack(
+                  children: [
+                    // Gradient layer 1 (bottomLeft - blue)
+                    Container(
+                      height: 110.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: RadialGradient(
+                          center: Alignment.bottomLeft,
+                          radius: 1.0,
+                          colors: [
+                            Colors.blue.withOpacity(0.2),
+                            Colors.transparent,
+                          ],
+                          stops: const [0.2, 1.0],
+                        ),
                       ),
-                      10.vSpace,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    ),
+                    // Gradient layer 2 (bottomRight - green)
+                    Container(
+                      height: 110.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        gradient: RadialGradient(
+                          center: Alignment.topRight,
+                          radius: 1.0,
+                          colors: [
+                            Colors.green.withOpacity(0.2),
+                            Colors.transparent,
+                          ],
+                          stops: const [0.2, 1.0],
+                        ),
+                      ),
+                    ),
+                    // Actual content
+                    Container(
+                      height: 110.h,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
                         children: [
+                          20.vSpace,
                           Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Colors.blue.withOpacity(.6),
-                                backgroundImage: AssetImage("assets/images/dol1.png"),
-                              ),
-                              10.hSpace,
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "USDC",
-                                        style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 22, color: Colors.white),
-                                      ),
-                                      // 10.hSpace,
-                                      GestureDetector(
-                                        onTap: () {
-                                          RoutingService.push(const DepositCryptoscreen());
-                                        },
-                                        child: Icon(
-                                          Icons.arrow_drop_down_outlined,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "0\$",
-                                style: GoogleFonts.poppins(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
+                                "You Receive",
+                                style: GoogleFonts.inter(
+                                  color: AppColors.white,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                          10.vSpace,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 20,
+                                    backgroundColor: Colors.blue.withOpacity(.6),
+                                    backgroundImage: AssetImage("assets/images/dol.png"),
+                                  ),
+                                  10.hSpace,
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "USDC",
+                                            style: GoogleFonts.inter(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 22,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              RoutingService.push(const DepositCryptoscreen());
+                                            },
+                                            child: Icon(
+                                              Icons.arrow_drop_down_outlined,
+                                              color: Colors.white,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "0\$",
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -723,6 +763,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
             ),
           ],
         ),
+        20.vSpace,
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
           padding: const EdgeInsets.all(16),
@@ -1031,21 +1072,21 @@ class _P2PConfirmScreenState extends State<P2PConfirmScreen> {
                 const SizedBox(height: 20),
                 if (selectedIndex == 0) ...[
                   Column(
-                    children: [customWidget("Completed"), 10.vSpace, customWidget("Completed"), 10.vSpace, customWidget("Completed")],
+                    children: [customWidget("Completed", () {}), 10.vSpace, customWidget("Completed", () {}), 10.vSpace, customWidget("Completed", () {})],
                   ),
                 ],
                 if (selectedIndex == 1) ...[
                   Column(
                     children: [
-                      customWidget("Pending"),
+                      customWidget("Pending", () {}),
                       10.vSpace,
-                      customWidget("Pending"),
+                      customWidget("Pending", () {}),
                     ],
                   ),
                 ],
                 if (selectedIndex == 2) ...[
                   Column(
-                    children: [customWidget("Canceled")],
+                    children: [customWidget("Canceled", () {})],
                   ),
                 ]
               ],
@@ -1176,95 +1217,98 @@ class _P2PConfirmScreenState extends State<P2PConfirmScreen> {
     );
   }
 
-  Widget customWidget(String status) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.9,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(15), border: Border.all(color: Color(0xff393737))),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Buy USDC",
-                style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
-              ),
-              Row(
-                children: [
-                  Text(
-                    "USDC",
-                    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
-                  ),
-                  10.hSpace,
-                  SvgPicture.asset("assets/svg/con.svg")
-                ],
-              ),
-            ],
-          ),
-          5.vSpace,
-          Divider(
-            height: 1.0,
-            color: Color(0xff393737),
-          ),
-          15.vSpace,
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Unit price 291.50",
-                        style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
-                      ),
-                      10.vSpace,
-                      Text(
-                        "Quantity 5.14 USDT",
-                        style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    "03/01/2025, 19:53",
-                    style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          10.vSpace,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Saqib Trander",
-                style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
-              ),
-              Row(
-                children: [
-                  GradientText(
-                    status,
-                    style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 14),
-                    gradient: LinearGradient(colors: [
-                      Color(0xffFCA509),
-                      Color(0xff880306),
-                    ]),
-                  ),
-                  5.hSpace,
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    size: 14,
-                    color: Color(0xff7E8088),
-                  )
-                ],
-              ),
-            ],
-          ),
-        ],
+  Widget customWidget(String status, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.9,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(15), border: Border.all(color: Color(0xff393737))),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Buy USDC",
+                  style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "USDC",
+                      style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                    ),
+                    10.hSpace,
+                    SvgPicture.asset("assets/svg/con.svg")
+                  ],
+                ),
+              ],
+            ),
+            5.vSpace,
+            Divider(
+              height: 1.0,
+              color: Color(0xff393737),
+            ),
+            15.vSpace,
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Unit price 291.50",
+                          style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                        ),
+                        10.vSpace,
+                        Text(
+                          "Quantity 5.14 USDT",
+                          style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      "03/01/2025, 19:53",
+                      style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            10.vSpace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Saqib Trander",
+                  style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                ),
+                Row(
+                  children: [
+                    GradientText(
+                      status,
+                      style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 14),
+                      gradient: LinearGradient(colors: [
+                        Color(0xffFCA509),
+                        Color(0xff880306),
+                      ]),
+                    ),
+                    5.hSpace,
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 14,
+                      color: Color(0xff7E8088),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

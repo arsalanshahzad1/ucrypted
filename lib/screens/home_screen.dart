@@ -62,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -301,14 +302,10 @@ class _HomePageState extends State<HomePage> {
                     coinCard(
                       "assets/svg/eth.svg",
                       "ETH",
-                      "19.00",
+                      "19,654",
                     ),
                     18.hSpace,
-                    coinCard(
-                      "assets/svg/bsc.svg",
-                      "BSC",
-                      "19.19",
-                    ),
+                    coinCard("assets/svg/bsc.svg", "BSC", "112,654", i: true),
                     18.hSpace,
                     coinCard(
                       "assets/svg/eth.svg",
@@ -447,9 +444,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget coinCard(String image, String title, String value) {
+  Widget coinCard(String image, String title, String value, {bool? i}) {
     return Container(
-      height: 180.h,
+      height: 172.h,
       width: 200.w,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       decoration: BoxDecoration(
@@ -494,12 +491,23 @@ class _HomePageState extends State<HomePage> {
               children: [
                 GradientText(
                   "\$$value",
-                  style: GoogleFonts.inter(color: AppColors.textColor, fontWeight: FontWeight.w400, fontSize: 20),
-                  gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                  style: GoogleFonts.plusJakartaSans(color: AppColors.textColor, fontWeight: FontWeight.w600, fontSize: 18),
+                  gradient: i != true
+                      ? LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
+                      : LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [
+                          Colors.white,
+                          Colors.white,
+                        ]),
                 ),
-                Text(
-                  "+10%",
-                  style: GoogleFonts.inter(color: const Color(0xFF00C566), fontWeight: FontWeight.w400, fontSize: 16),
+                Row(
+                  children: [
+                    SizedBox(height: 10.h, width: 10.w, child: SvgPicture.asset("assets/svg/ic.svg")),
+                    3.hSpace,
+                    Text(
+                      "+10%",
+                      style: GoogleFonts.inter(color: const Color(0xFF00C566), fontWeight: FontWeight.w400, fontSize: 16),
+                    ),
+                  ],
                 )
               ],
             ),

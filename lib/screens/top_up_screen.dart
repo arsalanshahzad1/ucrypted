@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:ucrypted_app/screens/home_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
@@ -22,7 +23,8 @@ class _TopUpScreenState extends State<TopUpScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/full.png",
+      backgroundImage: "assets/images/topupbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -123,7 +125,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
                   child: Center(
                     child: Text(
                       "Continue",
-                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
                     ),
                   ),
                 ),
@@ -149,10 +151,21 @@ class _TopUpScreenState extends State<TopUpScreen> {
       },
       child: Container(
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 22, 22, 23),
-            borderRadius: BorderRadius.circular(8.r),
-            border: Border.all(color: selectedIndex == index ? AppColors.textColor : Colors.transparent)),
-        padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 10.w),
+          color: Color(0xff1E1E20),
+          borderRadius: BorderRadius.circular(8.r),
+          border: selectedIndex == index
+              ? const GradientBoxBorder(
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                  ),
+                  width: 0.9,
+                )
+              : null,
+        ),
+        // Border.all(color: selectedIndex == index ? AppColors.textColor : Colors.transparent)),
+        padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 10.w),
         child: Row(
           children: [
             Container(
@@ -191,13 +204,14 @@ class EnterAmountScreen extends StatefulWidget {
 }
 
 class _EnterAmountScreenState extends State<EnterAmountScreen> {
-  final TextEditingController _amountController = TextEditingController(text: "\$227.00");
+  final TextEditingController _amountController = TextEditingController(text: "\$227.00|");
   int? selectedAmount;
   List<int> amounts = [50, 100, 500, 1000];
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/full.png",
+      backgroundImage: "assets/images/topupbg.png",
+      fit: BoxFit.cover,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -275,10 +289,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                   30.vSpace,
                   Container(
                     padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Color(0xff1E1E20),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                    decoration: BoxDecoration(color: Color(0xff1E1E20), borderRadius: BorderRadius.circular(10), border: Border.all(color: Color(0xff2C2C30))),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -346,7 +357,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                     borderRadius: BorderRadius.circular(28),
                   ),
                   child: Center(
-                    child: Text("Continue", style: GoogleFonts.inter(color: Colors.white, fontSize: 18)),
+                    child: Text("Continue", style: GoogleFonts.inter(color: Colors.white, fontSize: 14)),
                   ),
                 ),
               ),
@@ -462,13 +473,11 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
       width: double.infinity,
       height: height,
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color(0xFF2C2C30),
-            Color(0xFF161618),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+        image: DecorationImage(
+          image: AssetImage(
+            "assets/images/modal.png",
+          ),
+          fit: BoxFit.contain,
         ),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -590,7 +599,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                 child: Center(
                   child: Text(
                     "Confirm",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 18),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 14),
                   ),
                 ),
               ),
@@ -620,24 +629,24 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             50.vSpace,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_ios,
-                        color: AppColors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Row(
+            //       children: [
+            //         IconButton(
+            //           onPressed: () {
+            //             Get.back();
+            //           },
+            //           icon: const Icon(
+            //             Icons.arrow_back_ios,
+            //             color: AppColors.white,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
             20.vSpace,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -665,7 +674,7 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
                   "Top-up Successful",
                   style: GoogleFonts.inter(
                     color: Colors.white,
-                    fontSize: 22,
+                    fontSize: 28,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -737,8 +746,8 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
                     "Go to Home",
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),

@@ -81,3 +81,83 @@ class _CustomTextFieldState extends State<CustomTextField> {
     );
   }
 }
+
+class CustomTextField2 extends StatefulWidget {
+  final TextEditingController controller;
+  final TextInputType keyboardType;
+  final bool isPassword;
+  final String hintText;
+  final Color color;
+
+  const CustomTextField2({
+    super.key,
+    required this.controller,
+    this.keyboardType = TextInputType.text,
+    this.isPassword = false,
+    required this.hintText,
+    this.color = AppColors.disableBtnColor,
+  });
+
+  @override
+  State<CustomTextField2> createState() => _CustomTextField2State();
+}
+
+class _CustomTextField2State extends State<CustomTextField2> {
+  bool _isObscured = true;
+  late FocusNode _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: widget.controller,
+      keyboardType: widget.keyboardType,
+      style: GoogleFonts.inter(color: AppColors.grey),
+      obscureText: widget.isPassword ? _isObscured : false,
+      focusNode: _focusNode,
+      cursorColor: Colors.orange,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: widget.color,
+        border: const GradientOutlineInputBorder(
+          
+            gradient: LinearGradient(begin: Alignment.topLeft, 
+            end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]), width: 1),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+        enabledBorder:  GradientOutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+            gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]), width: 1),
+        focusedBorder: const GradientOutlineInputBorder(
+            gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]), width: 1),
+        suffixIcon: widget.isPassword
+            ? IconButton(
+                icon: SvgPicture.asset(
+                  "assets/svg/pass.svg",
+                  height: 20.h,
+                  width: 20.w,
+                  colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                ),
+                onPressed: () {
+                  setState(() {
+                    _isObscured = !_isObscured;
+                  });
+                },
+              )
+            : null,
+        hintText: widget.hintText,
+        hintStyle: GoogleFonts.inter(color: Colors.grey),
+      ),
+    );
+  }
+}

@@ -21,7 +21,8 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/buysell.png",
+      backgroundImage: "assets/images/topupbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -80,9 +81,9 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                   readOnly: true, // Makes it non-editable like a dropdown
                   decoration: InputDecoration(
                     hintText: "BTC (Bitcoin)",
-                    hintStyle: TextStyle(
-                      color: Color(0xFFCCCCCC), // Light grey text color
-                      fontSize: 14,
+                    hintStyle: GoogleFonts.inter(
+                      color: Colors.white, // Light grey text color
+                      fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
                     filled: true,
@@ -376,8 +377,9 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                   children: [
                     SvgPicture.asset(
                       "assets/svg/inof.svg",
-                      height: 20,
-                      width: 20,
+                      height: 15.h,
+                      width: 15.w,
+                      color: Color(0xffACB5BB),
                     ),
                     10.hSpace,
                     Text(
@@ -427,7 +429,8 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/buysell.png",
+      backgroundImage: "assets/images/topupbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -494,7 +497,7 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
                     Text(
                       "WLT12412QWRFSDADASD",
                       style: GoogleFonts.inter(
-                        color: AppColors.grey,
+                        color: Color(0xffACB5BB),
                         fontWeight: FontWeight.w500,
                         fontSize: 14.sp,
                       ),
@@ -509,8 +512,8 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
                 ),
                 20.vSpace,
                 Container(
-                  height: 60.h,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  height: 55.h,
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
                     color: const Color(0xFF2C2C30),
                     borderRadius: BorderRadius.circular(8.r),
@@ -542,10 +545,10 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
                           RoutingService.pushAndRemoveUntil(const HomeScreen());
                         },
                         child: Container(
-                          height: 40,
+                          height: 45.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF2C2C30),
+                            color: const Color(0xFF222223),
                             border: Border.all(color: const Color(0xFF2C2C30)),
                             borderRadius: BorderRadius.circular(28),
                           ),
@@ -565,7 +568,7 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
                           RoutingService.pushAndRemoveUntil(const HomeScreen());
                         },
                         child: Container(
-                          height: 40,
+                          height: 45.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
