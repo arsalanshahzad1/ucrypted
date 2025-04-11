@@ -91,171 +91,250 @@ class _TradingScreenState extends State<TradingScreen> {
           child: Column(
             children: [
               // 200.vSpace,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Text("Wallet Balance",
-                          style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            color: Color(0xffACB5BB),
-                          )),
-                      10.vSpace,
-                      Text("\$227.169,85",
-                          style: GoogleFonts.inter(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 36,
-                            color: Colors.white,
-                          ))
-                    ],
-                  ),
-                ],
-              ),
-              20.vSpace,
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+              if (isTable == false) ...[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "My Assets",
-                      style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+                    Column(
+                      children: [
+                        Text("Wallet Balance",
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: Color(0xffACB5BB),
+                            )),
+                        10.vSpace,
+                        Text("\$227.169,85",
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 36,
+                              color: Colors.white,
+                            ))
+                      ],
                     ),
                   ],
                 ),
-              ),
-              15.vSpace,
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Padding(
+                20.vSpace,
+                Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                        // height: 470.h,
-                        width: 300.w,
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                        decoration: BoxDecoration(color: Color(0xff1E1E20), border: Border.all(color: Color(0xff2C2C30)), borderRadius: BorderRadius.circular(12)),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      height: 20.h,
-                                      width: 3.w,
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xffECAC31)),
-                                    ),
-                                    10.hSpace,
-                                    Text(
-                                      "BTC Balance",
-                                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w400, fontSize: 14),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 40.h, width: 40.w, child: SvgPicture.asset("assets/svg/bscexc.svg")),
-                              ],
-                            ),
-                            10.vSpace,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "0.34545 ",
-                                      style: GoogleFonts.inter(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          "BTC",
-                                          style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  "21900,84 USD",
-                                  style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
-                            // 10.vSpace,
-                          ],
-                        ),
-                      ),
-                      20.hSpace,
-                      Container(
-                        // height: 470.h,
-                        width: 330.w,
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                        decoration: BoxDecoration(color: Color(0xff1E1E20), border: Border.all(color: Color(0xff2C2C30)), borderRadius: BorderRadius.circular(12)),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      height: 20.h,
-                                      width: 3.w,
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xffBBB9FD)),
-                                    ),
-                                    10.hSpace,
-                                    Text(
-                                      "ETH Balance",
-                                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w400, fontSize: 14),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(height: 40.h, width: 40.w, child: SvgPicture.asset("assets/svg/ethex.svg")),
-                              ],
-                            ),
-                            10.vSpace,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "12,3434",
-                                      style: GoogleFonts.inter(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          " ETH",
-                                          style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  "21900,84 USD",
-                                  style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
-                            // 10.vSpace,
-                          ],
-                        ),
+                      Text(
+                        "My Assets",
+                        style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
                       ),
                     ],
                   ),
                 ),
-              ),
+                15.vSpace,
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          // height: 470.h,
+                          width: 300.w,
+                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                          decoration: BoxDecoration(color: Color(0xff1E1E20), border: Border.all(color: Color(0xff2C2C30)), borderRadius: BorderRadius.circular(12)),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 20.h,
+                                        width: 3.w,
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xffECAC31)),
+                                      ),
+                                      10.hSpace,
+                                      Text(
+                                        "BTC Balance",
+                                        style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w400, fontSize: 14),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(height: 40.h, width: 40.w, child: SvgPicture.asset("assets/svg/bscexc.svg")),
+                                ],
+                              ),
+                              10.vSpace,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "0.34545 ",
+                                        style: GoogleFonts.inter(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600),
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            "BTC",
+                                            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    "21900,84 USD",
+                                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              ),
+                              // 10.vSpace,
+                            ],
+                          ),
+                        ),
+                        20.hSpace,
+                        Container(
+                          // height: 470.h,
+                          width: 330.w,
+                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                          decoration: BoxDecoration(color: Color(0xff1E1E20), border: Border.all(color: Color(0xff2C2C30)), borderRadius: BorderRadius.circular(12)),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 20.h,
+                                        width: 3.w,
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Color(0xffBBB9FD)),
+                                      ),
+                                      10.hSpace,
+                                      Text(
+                                        "ETH Balance",
+                                        style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w400, fontSize: 14),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(height: 40.h, width: 40.w, child: SvgPicture.asset("assets/svg/ethex.svg")),
+                                ],
+                              ),
+                              10.vSpace,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "12,3434",
+                                        style: GoogleFonts.inter(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600),
+                                      ),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            " ETH",
+                                            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    "21900,84 USD",
+                                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              ),
+                              // 10.vSpace,
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
               20.vSpace,
+              if (isTable == true) ...[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    decoration: BoxDecoration(
+                      // color: Color.fromARGB(255, 42, 42, 42),
+                      borderRadius: BorderRadius.circular(8.r),
+                      border: Border.all(color: Color(0xff505050)),
+                    ),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                      Row(
+                        children: [
+                          Container(
+                            height: 35.h,
+                            width: 45.w,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(color: Color(0xff505050)),
+                            ),
+                            child: Center(
+                              child: SvgPicture.asset("assets/svg/io.svg"),
+                            ),
+                          ),
+                          10.hSpace,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "KLV/USDT",
+                                style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.white),
+                              ),
+                              Text(
+                                "+50.47%",
+                                style: GoogleFonts.nunito(fontWeight: FontWeight.w700, fontSize: 12, color: Color(0xff38B781)),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 30.h,
+                            width: 35.w,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), color: Color(0xff4598D3), border: Border.all(color: Color(0xff505050))),
+                            child: Center(
+                              child: SvgPicture.asset("assets/svg/e1.svg"),
+                            ),
+                          ),
+                          5.hSpace,
+                          Container(
+                            height: 30.h,
+                            width: 35.w,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), border: Border.all(color: Color(0xff505050))),
+                            child: Center(
+                              child: SvgPicture.asset("assets/svg/e2.svg"),
+                            ),
+                          ),
+                          5.hSpace,
+                          Container(
+                            height: 30.h,
+                            width: 35.w,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), border: Border.all(color: Color(0xff505050))),
+                            child: Center(
+                              child: SvgPicture.asset(
+                                "assets/svg/e3.svg",
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ]),
+                  ),
+                ),
+                30.vSpace,
+              ],
               Row(
                 children: [
                   Expanded(
@@ -328,11 +407,11 @@ class _TradingScreenState extends State<TradingScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "24h High",
+                                  "24h Low",
                                   style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
                                 ),
                                 Text(
-                                  "0.057508",
+                                  "0.04893",
                                   style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
                                 ),
                               ],
@@ -343,11 +422,11 @@ class _TradingScreenState extends State<TradingScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "24h Vol(KLV)",
+                                  "24h Low",
                                   style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
                                 ),
                                 Text(
-                                  "5.87M",
+                                  "\$ 180.92k",
                                   style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
                                 ),
                               ],
@@ -574,6 +653,16 @@ class _TradingScreenState extends State<TradingScreen> {
                       ],
                     ),
                     5.vSpace,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        20.hSpace,
+                        Container(
+                          height: 4.h,
+                          width: 45.w,
+                          decoration: BoxDecoration(color: Color(0xff4598D3)),),
+                      ],
+                    ),
                     const Divider(
                       height: 0.2,
                       color: AppColors.grey,

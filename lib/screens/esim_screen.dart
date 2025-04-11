@@ -45,6 +45,8 @@ class _ESimScreenState extends State<ESimScreen> {
     });
   }
 
+  bool isCountry = true;
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
@@ -179,35 +181,67 @@ class _ESimScreenState extends State<ESimScreen> {
                 ),
               ),
               20.vSpace,
-              Text(
-                "Country",
-                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 28),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isCountry = !isCountry;
+                  });
+                },
+                child: Text(
+                  isCountry ? "Country" : "Regional",
+                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 28),
+                ),
               ),
               10.vSpace,
-              GridView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 0.0),
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.9,
-                ),
-                itemBuilder: (context, index) {
-                  bool isUSA = index % 2 == 0;
-                  return CountryCard(
-                    onTap: () {
-                      Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
-                    },
-                    countryName: isUSA ? "USA" : "Turkey",
-                    rating: "4.6",
-                    flagAsset: isUSA ? "assets/images/usaa.png" : "assets/images/turk.png",
-                    esimIcon: "assets/svg/esim.svg",
-                  );
-                },
-              ),
+              isCountry
+                  ? GridView.builder(
+                      padding: const EdgeInsets.symmetric(vertical: 0.0),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 20,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        childAspectRatio: 0.9,
+                      ),
+                      itemBuilder: (context, index) {
+                        bool isUSA = index % 2 == 0;
+                        return CountryCard(
+                          onTap: () {
+                            Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
+                          },
+                          countryName: isUSA ? "USA" : "Turkey",
+                          rating: "4.6",
+                          flagAsset: isUSA ? "assets/images/usaa.png" : "assets/images/turk.png",
+                          esimIcon: "assets/svg/esim.svg",
+                        );
+                      },
+                    )
+                  : GridView.builder(
+                      padding: const EdgeInsets.symmetric(vertical: 0.0),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 20,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        childAspectRatio: 0.9,
+                      ),
+                      itemBuilder: (context, index) {
+                        bool isUSA = index % 2 == 0;
+                        return CountryCard2(
+                          onTap: () {
+                            Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
+                          },
+                          countryName: isUSA ? "USA" : "Turkey",
+                          rating: "4.6",
+                          flagAsset:  "assets/images/ex.png",
+                          esimIcon: "assets/svg/esim.svg",
+                        );
+                      },
+                    ),
             ],
           ),
         ),
@@ -224,6 +258,119 @@ class CountryCard extends StatelessWidget {
   final String esimIcon;
 
   const CountryCard({
+    Key? key,
+    required this.onTap,
+    required this.countryName,
+    required this.rating,
+    required this.flagAsset,
+    required this.esimIcon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        width: 180.w,
+        child: Column(
+          children: [
+            Container(
+              height: 140.h,
+              width: 200.w,
+              padding: EdgeInsets.symmetric(vertical: 20.h),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(12.r),
+                  image: const DecorationImage(image: AssetImage("assets/images/re.png"), fit: BoxFit.cover)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.h),
+                    child: SvgPicture.asset(
+                      "assets/svg/splash-logo.svg",
+                      width: 20.w,
+                      height: 20.h,
+                    ),
+                  ),
+                  SizedBox(height: 15.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SvgPicture.asset(
+                        "assets/svg/c.svg",
+                        height: 30.h,
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 10.h),
+                  Row(
+                    children: [
+                      SizedBox(width: 10.w),
+                      CircleAvatar(
+                        radius: 10,
+                        backgroundImage: AssetImage(flagAsset),
+                      ),
+                      SizedBox(width: 5.w),
+                      Text(
+                        countryName,
+                        style: GoogleFonts.inter(color: Colors.white),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 5.h),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Europe",
+                      style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          rating,
+                          style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                        ),
+                        SizedBox(width: 2.w),
+                        SvgPicture.asset(
+                          "assets/svg/star1.svg",
+                          height: 14.h,
+                          width: 14.w,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  "\$20-1000",
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class CountryCard2 extends StatelessWidget {
+  final VoidCallback onTap;
+  final String countryName;
+  final String rating;
+  final String flagAsset;
+  final String esimIcon;
+
+  const CountryCard2({
     Key? key,
     required this.onTap,
     required this.countryName,
@@ -954,12 +1101,17 @@ class _DeviceCheckerScreenState extends State<DeviceCheckerScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Device Checker",
-                    style: GoogleFonts.inter(
-                      fontSize: 19,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                  GestureDetector(
+                    onTap: () {
+                      RoutingService.push(const DeviceCheckerScreen1());
+                    },
+                    child: Text(
+                      "Device Checker",
+                      style: GoogleFonts.inter(
+                        fontSize: 19,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
@@ -1026,6 +1178,215 @@ class _DeviceCheckerScreenState extends State<DeviceCheckerScreen> {
                   ),
                 ),
               ),
+              20.vSpace,
+
+              // Support Contact
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  "For any discrepancies or complaints, please contact: support@ucrypted.com. The top-up should reflect in the recipient’s account shortly. If you encounter any issues, feel free to contact our support team.",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DeviceCheckerScreen1 extends StatefulWidget {
+  const DeviceCheckerScreen1({super.key});
+
+  @override
+  State<DeviceCheckerScreen1> createState() => _DeviceCheckerScreen1State();
+}
+
+class _DeviceCheckerScreen1State extends State<DeviceCheckerScreen1> {
+  int _selectedIndex = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              50.vSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: SvgPicture.asset(
+                      "assets/svg/menu-dots.svg",
+                      fit: BoxFit.scaleDown,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: SvgPicture.asset(
+                          "assets/svg/chats.svg",
+                          width: 30,
+                          height: 30,
+                        ),
+                      ),
+                      15.hSpace,
+                      GestureDetector(
+                        onTap: () {
+                          RoutingService.push(const NotificationScreen());
+                        },
+                        child: SizedBox(
+                          height: 30,
+                          width: 30,
+                          child: SvgPicture.asset("assets/svg/notification.svg"),
+                        ),
+                      ),
+                      15.hSpace,
+                      GestureDetector(
+                        onTap: () {
+                          RoutingService.push(const AccountScreen());
+                        },
+                        child: const CircleAvatar(
+                          backgroundColor: AppColors.disableBtnColor,
+                          radius: 15,
+                          backgroundImage: AssetImage("assets/images/person.png"),
+                        ),
+                      ),
+                      10.hSpace,
+                    ],
+                  ),
+                ],
+              ),
+              30.verticalSpace,
+              const SizedBox(height: 20),
+              // Green Check Icon
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 80.h,
+                    width: 80.w,
+                    child: SvgPicture.asset(
+                      "assets/svg/ic1.svg",
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Device Checker",
+                    style: GoogleFonts.inter(
+                      fontSize: 19,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 15),
+
+              // Success Message
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  "Unfortunately, your Oukitel WP23 Pro is not compatible with eSIM technology",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.inter(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+
+              // Additional Information
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  "This means you won’t be able to install one of our eSIMs on this device.",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.inter(color: AppColors.grey, fontSize: 12, fontWeight: FontWeight.w300),
+                ),
+              ),
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -1055,7 +1416,7 @@ class _DeviceCheckerScreenState extends State<DeviceCheckerScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
-                  "For any discrepancies or complaints, please contact: support@ucrypted.com. The top-up should reflect in the recipient’s account shortly. If you encounter any issues, feel free to contact our support team.",
+                  "For any discrepancies or complaints, please contact: support@ucrypted.com. The top-up should reflect in the recipient's account shortly. If you encounter any issues, feel free to contact our support team.",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),
                 ),

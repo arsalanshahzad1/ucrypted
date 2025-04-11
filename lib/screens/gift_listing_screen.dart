@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
 import 'package:ucrypted_app/screens/esim_screen.dart';
+import 'package:ucrypted_app/screens/gifting_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
@@ -111,25 +112,6 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                   ),
                   Row(
                     children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: SvgPicture.asset(
-                          "assets/svg/chats.svg",
-                          width: 30,
-                          height: 30,
-                        ),
-                      ),
-                      15.hSpace,
-                      GestureDetector(
-                        onTap: () {
-                          RoutingService.push(const NotificationScreen());
-                        },
-                        child: SizedBox(
-                          height: 30,
-                          width: 30,
-                          child: SvgPicture.asset("assets/svg/notification.svg"),
-                        ),
-                      ),
                       15.hSpace,
                       GestureDetector(
                         onTap: () {
@@ -241,6 +223,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                       flagAsset: "assets/images/foodpanda.png",
                       esimIcon: "assets/svg/esim.svg",
                       baseName: "Food Panda",
+                      c: "assets/svg/ebill.svg",
                     ),
                     20.hSpace,
                     CountryCard(
@@ -251,6 +234,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                       flagAsset: "assets/images/foodpanda.png",
                       esimIcon: "assets/svg/esim.svg",
                       baseName: "Food Panda",
+                      c: "assets/svg/ebill.svg",
                     ),
                   ],
                 ),
@@ -287,6 +271,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                       flagAsset: "assets/images/ad.png",
                       esimIcon: "assets/svg/esim.svg",
                       baseName: "Adidas",
+                      c: "assets/svg/scard.svg",
                     ),
                     20.hSpace,
                     CountryCard(
@@ -297,6 +282,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                       flagAsset: "assets/images/ad.png",
                       esimIcon: "assets/svg/esim.svg",
                       baseName: "Adidas",
+                      c: "assets/svg/scard.svg",
                     ),
                   ],
                 ),
@@ -333,6 +319,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                       flagAsset: "assets/images/nord.png",
                       esimIcon: "assets/svg/esim.svg",
                       baseName: "Nord Vpn",
+                      c: "assets/svg/fcard.svg",
                     ),
                     20.hSpace,
                     CountryCard(
@@ -343,6 +330,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                       flagAsset: "assets/images/nord.png",
                       esimIcon: "assets/svg/esim.svg",
                       baseName: "App Store and iTunes",
+                      c: "assets/svg/fcard.svg",
                     ),
                   ],
                 ),
@@ -394,6 +382,7 @@ class CountryCard extends StatelessWidget {
   final String rating;
   final String flagAsset;
   final String esimIcon;
+  final String c;
 
   const CountryCard({
     Key? key,
@@ -404,6 +393,7 @@ class CountryCard extends StatelessWidget {
     required this.rating,
     required this.flagAsset,
     required this.esimIcon,
+    required this.c,
   }) : super(key: key);
 
   @override
@@ -437,52 +427,53 @@ class CountryCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                          height: 30.h,
-                          width: 100.w,
-                          padding: EdgeInsets.symmetric(horizontal: 5.w),
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                                colors: [
-                                  Color(0x60FCA509),
-                                  Color(0x60880306),
-                                ],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight,
-                                stops: [0.0, 2.3]),
-                            border: const Border(
-                              left: BorderSide(color: Color.fromARGB(182, 252, 126, 9)),
-                              top: BorderSide(color: Color.fromARGB(182, 252, 126, 9)),
-                              bottom: BorderSide(color: Color.fromARGB(182, 252, 126, 9)),
-                              right: BorderSide.none,
-                            ),
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(24.r),
-                              bottomLeft: Radius.circular(24.r),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                esimIcon,
-                                width: 20.w,
-                                height: 20.h,
-                              ),
-                              SizedBox(width: 10.w),
-                              Expanded(
-                                // Ensures the text does not overflow the row
-                                child: Text(
-                                  cardName,
-                                  maxLines: 1, // Ensures single-line truncation
-                                  overflow: TextOverflow.clip, // Adds "..." if text is too long
-                                  style: GoogleFonts.inter(
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ))
+                      SvgPicture.asset(c)
+                      // Container(
+                      //     height: 30.h,
+                      //     width: 100.w,
+                      //     padding: EdgeInsets.symmetric(horizontal: 5.w),
+                      //     decoration: BoxDecoration(
+                      //       gradient: const LinearGradient(
+                      //           colors: [
+                      //             Color(0x60FCA509),
+                      //             Color(0x60880306),
+                      //           ],
+                      //           begin: Alignment.centerLeft,
+                      //           end: Alignment.centerRight,
+                      //           stops: [0.0, 2.3]),
+                      //       border: const Border(
+                      //         left: BorderSide(color: Color.fromARGB(182, 252, 126, 9)),
+                      //         top: BorderSide(color: Color.fromARGB(182, 252, 126, 9)),
+                      //         bottom: BorderSide(color: Color.fromARGB(182, 252, 126, 9)),
+                      //         right: BorderSide.none,
+                      //       ),
+                      //       borderRadius: BorderRadius.only(
+                      //         topLeft: Radius.circular(24.r),
+                      //         bottomLeft: Radius.circular(24.r),
+                      //       ),
+                      //     ),
+                      //     child: Row(
+                      //       children: [
+                      //         SvgPicture.asset(
+                      //           esimIcon,
+                      //           width: 20.w,
+                      //           height: 20.h,
+                      //         ),
+                      //         SizedBox(width: 10.w),
+                      //         Expanded(
+                      //           // Ensures the text does not overflow the row
+                      //           child: Text(
+                      //             cardName,
+                      //             maxLines: 1, // Ensures single-line truncation
+                      //             overflow: TextOverflow.clip, // Adds "..." if text is too long
+                      //             style: GoogleFonts.inter(
+                      //               color: Colors.white,
+                      //               fontSize: 10,
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ))
                     ],
                   ),
                   SizedBox(height: 10.h),
@@ -761,16 +752,16 @@ class _FoodScreenState extends State<FoodScreen> {
                 ),
                 itemBuilder: (context, index) {
                   return CountryCard(
-                    onTap: () {
-                      // Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
-                    },
-                    countryName: "Food Panda",
-                    rating: "4.6",
-                    flagAsset: "assets/images/foodpanda.png",
-                    esimIcon: "assets/svg/esim.svg",
-                    cardName: 'Food Card',
-                    baseName: 'Food Panda',
-                  );
+                      onTap: () {
+                        RoutingService.push(const GiftingScreen());
+                      },
+                      countryName: "Food Panda",
+                      rating: "4.6",
+                      flagAsset: "assets/images/foodpanda.png",
+                      esimIcon: "assets/svg/esim.svg",
+                      cardName: 'Food Card',
+                      baseName: 'Food Panda',
+                      c: "assets/svg/fcard.svg");
                 },
               ),
             ],
@@ -998,16 +989,16 @@ class _TravelScreenState extends State<TravelScreen> {
                 ),
                 itemBuilder: (context, index) {
                   return CountryCard(
-                    onTap: () {
-                      // Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
-                    },
-                    countryName: "National Power",
-                    rating: "4.6",
-                    flagAsset: "assets/images/power.png",
-                    esimIcon: "assets/svg/esim.svg",
-                    cardName: 'Travel Card',
-                    baseName: 'national Power',
-                  );
+                      onTap: () {
+                        RoutingService.push(const GiftingScreen());
+                      },
+                      countryName: "National Power",
+                      rating: "4.6",
+                      flagAsset: "assets/images/power.png",
+                      esimIcon: "assets/svg/esim.svg",
+                      cardName: 'Travel Card',
+                      baseName: 'national Power',
+                      c: "assets/svg/tcard.svg");
                 },
               ),
             ],
@@ -1236,7 +1227,7 @@ class _TechScreenState extends State<TechScreen> {
                 itemBuilder: (context, index) {
                   return CountryCard(
                     onTap: () {
-                      // Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
+                      RoutingService.push(const GiftingScreen());
                     },
                     countryName: "National Power",
                     rating: "4.6",
@@ -1244,6 +1235,7 @@ class _TechScreenState extends State<TechScreen> {
                     esimIcon: "assets/svg/esim.svg",
                     cardName: 'Tech Card',
                     baseName: 'national Power',
+                    c: "assets/svg/techcard.svg",
                   );
                 },
               ),
@@ -1473,7 +1465,7 @@ class _SportsScreenState extends State<SportsScreen> {
                 itemBuilder: (context, index) {
                   return CountryCard(
                     onTap: () {
-                      // Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
+                      RoutingService.push(const GiftingScreen());
                     },
                     countryName: "National Power",
                     rating: "4.6",
@@ -1481,6 +1473,7 @@ class _SportsScreenState extends State<SportsScreen> {
                     esimIcon: "assets/svg/esim.svg",
                     cardName: 'Sports Card',
                     baseName: 'national Power',
+                    c: "assets/svg/scard.svg",
                   );
                 },
               ),
@@ -1710,7 +1703,7 @@ class _SocialScreenState extends State<SocialScreen> {
                 itemBuilder: (context, index) {
                   return CountryCard(
                     onTap: () {
-                      // Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
+                      RoutingService.push(const GiftingScreen());
                     },
                     countryName: "National Power",
                     rating: "4.6",
@@ -1718,6 +1711,7 @@ class _SocialScreenState extends State<SocialScreen> {
                     esimIcon: "assets/svg/esim.svg",
                     cardName: 'Social Card',
                     baseName: 'national Power',
+                    c: "assets/svg/socialcard.svg",
                   );
                 },
               ),
@@ -1947,7 +1941,7 @@ class _StreamScreenState extends State<StreamScreen> {
                 itemBuilder: (context, index) {
                   return CountryCard(
                     onTap: () {
-                      // Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
+                      RoutingService.push(const GiftingScreen());
                     },
                     countryName: "National Power",
                     rating: "4.6",
@@ -1955,6 +1949,7 @@ class _StreamScreenState extends State<StreamScreen> {
                     esimIcon: "assets/svg/esim.svg",
                     cardName: 'Streaming Card',
                     baseName: 'national Power',
+                    c: "assets/svg/stream.svg",
                   );
                 },
               ),
@@ -2184,7 +2179,7 @@ class _GamingScreenState extends State<GamingScreen> {
                 itemBuilder: (context, index) {
                   return CountryCard(
                     onTap: () {
-                      // Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
+                      RoutingService.push(const GiftingScreen());
                     },
                     countryName: "National Power",
                     rating: "4.6",
@@ -2192,6 +2187,7 @@ class _GamingScreenState extends State<GamingScreen> {
                     esimIcon: "assets/svg/esim.svg",
                     cardName: 'Gaming Card',
                     baseName: 'national Power',
+                    c: "assets/svg/gamingcard.svg",
                   );
                 },
               ),
@@ -2421,7 +2417,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                 itemBuilder: (context, index) {
                   return CountryCard(
                     onTap: () {
-                      // Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
+                      RoutingService.push(const GiftingScreen());
                     },
                     countryName: "National Power",
                     rating: "4.6",
@@ -2429,6 +2425,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                     esimIcon: "assets/svg/esim.svg",
                     cardName: 'Shopping Card',
                     baseName: 'national Power',
+                    c: "assets/svg/shopcard.svg",
                   );
                 },
               ),

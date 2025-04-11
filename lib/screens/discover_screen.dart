@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
 import 'package:ucrypted_app/screens/compaign_screen.dart';
+import 'package:ucrypted_app/screens/deposit_crypto_screen.dart';
 import 'package:ucrypted_app/screens/discover_buy_screen.dart';
 import 'package:ucrypted_app/screens/discover_edit_screen.dart';
 import 'package:ucrypted_app/screens/discover_express_screen.dart';
@@ -13,6 +14,7 @@ import 'package:ucrypted_app/screens/discover_withdraw_screen.dart';
 import 'package:ucrypted_app/screens/esim_screen.dart';
 import 'package:ucrypted_app/screens/gift_listing_screen.dart';
 import 'package:ucrypted_app/screens/gift_redeem_screen.dart';
+import 'package:ucrypted_app/screens/gifting_screen.dart';
 import 'package:ucrypted_app/screens/mobile_top_up_screen.dart';
 import 'package:ucrypted_app/screens/nauta_cuba_topup_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
@@ -20,6 +22,7 @@ import 'package:ucrypted_app/screens/order_history_screen.dart';
 import 'package:ucrypted_app/screens/p_profile_screens.dart';
 import 'package:ucrypted_app/screens/tier_screen.dart';
 import 'package:ucrypted_app/screens/top_up_screen.dart';
+import 'package:ucrypted_app/screens/utility_payment_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/app_print.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
@@ -246,7 +249,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
-                mainAxisSpacing: 16,
+                mainAxisSpacing: 10,
                 crossAxisSpacing: 16,
                 childAspectRatio: 0.9,
               ),
@@ -259,23 +262,36 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        iconMap[labels[index]] ?? "assets/images/chats.png",
-                        width: 20,
-                        height: 20,
+                      Center(
+                        child: SvgPicture.asset(
+                          iconMap[labels[index]] ?? "assets/images/chats.png",
+                          width: 20,
+                          height: 20,
+                          fit: BoxFit.contain,
+                        ),
                       ),
-                      16.vSpace,
-                      Text(
-                        labels[index],
-                        style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),
-                        textAlign: TextAlign.center,
+                      const SizedBox(height: 16),
+                      SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          labels[index],
+                          maxLines: 1,
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
                 );
               },
             ),
-          ),
+          )
         ],
       ),
     );
@@ -300,7 +316,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appPrint("Add wallet tapped");
         break;
       case "Deposit":
-        //  RoutingService.push(const SomeScreen);
+        RoutingService.push(const DepositCryptoscreen());
         appPrint("Deposit tapped");
         break;
       case "Edit Wallet":
@@ -332,7 +348,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appPrint("Esim tapped");
         break;
       case "Utility Payment":
-        RoutingService.push(const TopUpScreen());
+        RoutingService.push(const UtilityPaymentScreen());
         appPrint("Utility Payment tapped");
         break;
       case "Gift Redeem":
@@ -358,6 +374,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       case "Tier Payments":
         RoutingService.push(const TierScreen());
         appPrint("Tier Payments tapped");
+        break;
+      case "Disable Ac.":
+        RoutingService.push(const TopUpScreen());
         break;
       default:
         appPrint("Unknown item tapped");

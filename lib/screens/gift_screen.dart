@@ -197,13 +197,46 @@ class _GiftScreenState extends State<GiftScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    "Explore More",
-                    style: GoogleFonts.inter(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w500),
-                  ),
+                  RichText(
+                    text: TextSpan(
+                      style: GoogleFonts.inter(
+                        color: AppColors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      children: [
+                        TextSpan(text: "Explo"),
+                        TextSpan(
+                          text: "r",
+                          style: GoogleFonts.inter(
+                            color: AppColors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Color(0xffFCA509),
+                            decorationThickness: 1.5,
+                            height: 1.6, // 👈 This pushes the text a bit away from the underline
+                          ),
+                        ),
+                        TextSpan(
+                          text: "e",
+                          style: GoogleFonts.inter(
+                            color: AppColors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Color(0xffFCA509),
+                            decorationThickness: 1.5,
+                            height: 1.6, // 👈 Same here
+                          ),
+                        ),
+                        TextSpan(text: " More"),
+                      ],
+                    ),
+                  )
                 ],
               ),
-              20.verticalSpace,
+              10.verticalSpace,
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

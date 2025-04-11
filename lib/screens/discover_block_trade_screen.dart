@@ -1656,7 +1656,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
           image: AssetImage(
             "assets/images/modal.png",
           ),
-          fit: BoxFit.contain,
+          fit: BoxFit.cover,
         ),
         // gradient: LinearGradient(
         //   colors: [

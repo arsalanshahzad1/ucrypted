@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/deposit_crypto_screen.dart';
 import 'package:ucrypted_app/screens/discover_block_trade_screen.dart';
 import 'package:ucrypted_app/screens/discover_cash_screen.dart';
@@ -941,6 +942,9 @@ class _P2PConfirmScreenState extends State<P2PConfirmScreen> {
     });
   }
 
+  final List<String> labels = ["Express", "P2P", "Block Trade", "Cash"];
+  int j = 0;
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
@@ -1010,51 +1014,85 @@ class _P2PConfirmScreenState extends State<P2PConfirmScreen> {
                       ),
                     ),
                     Row(
-                      children: [
-                        GradientText("Express",
-                            gradient: const LinearGradient(colors: [
-                              Color(0xffFCA509),
-                              Color(0xff880306),
-                            ]),
-                            style: GoogleFonts.inter(
-                                color: Colors.white, decoration: TextDecoration.underline, decorationColor: const Color.fromARGB(186, 255, 153, 0), fontSize: 14)),
-                        8.hSpace,
-                        GradientText("P2P",
-                            gradient: const LinearGradient(
-                              colors: [
-                                Color(0xffCCCCCC),
-                                Color(0xff666666),
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ),
-                            style: GoogleFonts.inter(
-                                color: Colors.white, decoration: TextDecoration.underline, decorationColor: const Color.fromARGB(186, 255, 153, 0), fontSize: 14)),
-                        8.hSpace,
-                        GradientText("Block Trade",
-                            gradient: const LinearGradient(
-                              colors: [
-                                Color(0xffCCCCCC),
-                                Color(0xff666666),
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ),
-                            style: GoogleFonts.inter(
-                                color: Colors.white, decoration: TextDecoration.underline, decorationColor: const Color.fromARGB(186, 255, 153, 0), fontSize: 14)),
-                        8.hSpace,
-                        GradientText("Cash",
-                            gradient: const LinearGradient(
-                              colors: [
-                                Color(0xffCCCCCC),
-                                Color(0xff666666),
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ),
-                            style: GoogleFonts.inter(
-                                color: Colors.white, decoration: TextDecoration.underline, decorationColor: const Color.fromARGB(186, 255, 153, 0), fontSize: 14)),
-                      ],
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: List.generate(labels.length, (index) {
+                        String text = labels[index];
+                        return GestureDetector(
+                          // Inner Navigation
+                          onTap: () {
+                            if (j == 1) {
+                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                            } else if (j == 2) {
+                              RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
+                            } else if (j == 3) {
+                              RoutingService.pushReplacement(const DiscoverCashScreen());
+                            } else {
+                              setState(() {
+                                j = index;
+                              });
+                            }
+                          },
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.h, vertical: 0),
+                                child: j == index
+                                    ? GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffFCA509), Color(0xff880306)],
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      )
+                                    : GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffCCCCCC), Color(0xff666666)],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                              ),
+                              LayoutBuilder(
+                                builder: (context, constraints) {
+                                  final textPainter = TextPainter(
+                                    text: TextSpan(
+                                      text: text,
+                                      style: GoogleFonts.inter(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    maxLines: 1,
+                                    textDirection: TextDirection.ltr,
+                                  )..layout();
+
+                                  return Container(
+                                    width: textPainter.width, // Dynamic width
+                                    height: 2,
+                                    // margin: const EdgeInsets.only(top: 4),
+                                    decoration: BoxDecoration(
+                                      gradient: j == index
+                                          ? const LinearGradient(
+                                              colors: [Color(0xffFCA509), Color(0xff880306)],
+                                            )
+                                          : null,
+                                      color: j == index ? null : const Color(0xff666666),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
                     ),
                     5.hSpace,
                     Expanded(
@@ -1072,21 +1110,41 @@ class _P2PConfirmScreenState extends State<P2PConfirmScreen> {
                 const SizedBox(height: 20),
                 if (selectedIndex == 0) ...[
                   Column(
-                    children: [customWidget("Completed", () {}), 10.vSpace, customWidget("Completed", () {}), 10.vSpace, customWidget("Completed", () {})],
+                    children: [
+                      customWidget("Completed", () {
+                        RoutingService.pushReplacement(const ExpressNoAdScreen());
+                      }),
+                      10.vSpace,
+                      customWidget("Completed", () {
+                        RoutingService.pushReplacement(const ExpressNoAdScreen());
+                      }),
+                      10.vSpace,
+                      customWidget("Completed", () {
+                        RoutingService.pushReplacement(const ExpressNoAdScreen());
+                      })
+                    ],
                   ),
                 ],
                 if (selectedIndex == 1) ...[
                   Column(
                     children: [
-                      customWidget("Pending", () {}),
+                      customWidget("Pending", () {
+                        RoutingService.pushReplacement(const ExpressNoAdScreen());
+                      }),
                       10.vSpace,
-                      customWidget("Pending", () {}),
+                      customWidget("Pending", () {
+                        RoutingService.pushReplacement(const ExpressNoAdScreen());
+                      }),
                     ],
                   ),
                 ],
                 if (selectedIndex == 2) ...[
                   Column(
-                    children: [customWidget("Canceled", () {})],
+                    children: [
+                      customWidget("Canceled", () {
+                        RoutingService.pushReplacement(const ExpressNoAdScreen());
+                      })
+                    ],
                   ),
                 ]
               ],
@@ -1314,16 +1372,1454 @@ class _P2PConfirmScreenState extends State<P2PConfirmScreen> {
   }
 }
 
-class PaymentSelectScreenP2P extends StatefulWidget {
-  const PaymentSelectScreenP2P({super.key});
+class ExpressNoAdScreen extends StatefulWidget {
+  const ExpressNoAdScreen({super.key});
 
   @override
-  State<PaymentSelectScreenP2P> createState() => _PaymentSelectScreenP2PState();
+  State<ExpressNoAdScreen> createState() => _ExpressNoAdScreenState();
 }
 
-class _PaymentSelectScreenP2PState extends State<PaymentSelectScreenP2P> {
+class _ExpressNoAdScreenState extends State<ExpressNoAdScreen> with SingleTickerProviderStateMixin {
+  int i = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      i = index;
+    });
+  }
+
+  late TabController _tabController;
+  int selectedIndex = 0;
+  int? j;
+
+  final List<String> labels = ["Express", "P2P", "Block Trade", "Cash"];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: i,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                50.vSpace,
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: AppColors.white,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: List.generate(labels.length, (index) {
+                        String text = labels[index];
+                        return GestureDetector(
+                          // Inner Navigation
+                          onTap: () {
+                            if (index == 1) {
+                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                            } else if (index == 2) {
+                              RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
+                            } else if (index == 3) {
+                              RoutingService.pushReplacement(const DiscoverCashScreen());
+                            } else {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            }
+                          },
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.h, vertical: 0),
+                                child: selectedIndex == index
+                                    ? GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffFCA509), Color(0xff880306)],
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      )
+                                    : GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffCCCCCC), Color(0xff666666)],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                              ),
+                              LayoutBuilder(
+                                builder: (context, constraints) {
+                                  final textPainter = TextPainter(
+                                    text: TextSpan(
+                                      text: text,
+                                      style: GoogleFonts.inter(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    maxLines: 1,
+                                    textDirection: TextDirection.ltr,
+                                  )..layout();
+
+                                  return Container(
+                                    width: textPainter.width, // Dynamic width
+                                    height: 2,
+                                    // margin: const EdgeInsets.only(top: 4),
+                                    decoration: BoxDecoration(
+                                      gradient: selectedIndex == index
+                                          ? const LinearGradient(
+                                              colors: [Color(0xffFCA509), Color(0xff880306)],
+                                            )
+                                          : null,
+                                      color: selectedIndex == index ? null : const Color(0xff666666),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                    5.hSpace,
+                    Expanded(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SvgPicture.asset("assets/svg/inof.svg"),
+                      ],
+                    )),
+                  ],
+                ),
+                70.vSpace,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      // height: 50.h,
+                      // width: 50.w,
+                      child: SvgPicture.asset("assets/svg/ssg1.svg"),
+                    ),
+                  ],
+                ),
+                20.vSpace,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GradientText(
+                      "No Ads Found",
+                      gradient: const LinearGradient(
+                        colors: [Color(0xffFCA509), Color(0xff880306)],
+                      ),
+                      style: GoogleFonts.poppins(fontSize: 26, fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                10.vSpace,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Create an ad to buyu or sell srypto",
+                      style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w500, color: Color(0xffFAFAFA)),
+                    ),
+                  ],
+                ),
+                20.vSpace,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        RoutingService.pushReplacement(const ChatListing());
+                      },
+                      child: SizedBox(
+                        // height: 50.h,
+                        // width: 50.w,
+                        child: SvgPicture.asset("assets/svg/ssg2.svg"),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ChatListing extends StatefulWidget {
+  const ChatListing({super.key});
+
+  @override
+  State<ChatListing> createState() => _ChatListingState();
+}
+
+class _ChatListingState extends State<ChatListing> with SingleTickerProviderStateMixin {
+  int i = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      i = index;
+    });
+  }
+
+  late TabController _tabController;
+  int selectedIndex = 0;
+  int? j;
+
+  final List<String> labels = ["Express", "P2P", "Block Trade", "Cash"];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: i,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                50.vSpace,
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: AppColors.white,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: List.generate(labels.length, (index) {
+                        String text = labels[index];
+                        return GestureDetector(
+                          // Inner Navigation
+                          onTap: () {
+                            if (index == 1) {
+                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                            } else if (index == 2) {
+                              RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
+                            } else if (index == 3) {
+                              RoutingService.pushReplacement(const DiscoverCashScreen());
+                            } else {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            }
+                          },
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.h, vertical: 0),
+                                child: selectedIndex == index
+                                    ? GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffFCA509), Color(0xff880306)],
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      )
+                                    : GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffCCCCCC), Color(0xff666666)],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                              ),
+                              LayoutBuilder(
+                                builder: (context, constraints) {
+                                  final textPainter = TextPainter(
+                                    text: TextSpan(
+                                      text: text,
+                                      style: GoogleFonts.inter(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    maxLines: 1,
+                                    textDirection: TextDirection.ltr,
+                                  )..layout();
+
+                                  return Container(
+                                    width: textPainter.width, // Dynamic width
+                                    height: 2,
+                                    // margin: const EdgeInsets.only(top: 4),
+                                    decoration: BoxDecoration(
+                                      gradient: selectedIndex == index
+                                          ? const LinearGradient(
+                                              colors: [Color(0xffFCA509), Color(0xff880306)],
+                                            )
+                                          : null,
+                                      color: selectedIndex == index ? null : const Color(0xff666666),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                    5.hSpace,
+                    Expanded(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SvgPicture.asset("assets/svg/inof.svg"),
+                      ],
+                    )),
+                  ],
+                ),
+                20.vSpace,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Container(
+                    height: 50.h,
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: Color(0xFF1A1A1A),
+                      borderRadius: BorderRadius.circular(40),
+                      border: Border.all(
+                        color: Colors.white.withOpacity(0.08), // Shattered border base
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white.withOpacity(0.04),
+                          blurRadius: 12,
+                          spreadRadius: 1,
+                          offset: Offset(0, 0),
+                        ),
+                        BoxShadow(
+                          color: Colors.white.withOpacity(0.06),
+                          blurRadius: 2,
+                          spreadRadius: 2,
+                          offset: Offset(0, 0),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset("assets/svg/searchh.svg"),
+                        SizedBox(width: 10),
+                        Text(
+                          'Search',
+                          style: GoogleFonts.inter(color: Color(0xffCDCDCD), fontSize: 14, fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                30.vSpace,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: GestureDetector(
+                    onTap: () {
+                      RoutingService.push(const ChatDetailing());
+                    },
+                    child: Column(
+                      children: [
+                        chatTile("Jhon Doe", "Order Message ( Seller received payment.", "Just now"),
+                        10.vSpace,
+                        chatTile("Chris", "Order Message ( Seller received payment.", "25 min Ago"),
+                        10.vSpace,
+                        chatTile("Williams", "Order Message ( Seller received payment.", "5h ago"),
+                        10.vSpace,
+                        chatTile("Alex", "Order Message ( Seller received payment.", "Yesterday"),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget chatTile(String titile, String msg, String timeAgo) {
+    return Row(
+      children: [
+        Expanded(
+          child: Row(
+            children: [
+              CircleAvatar(
+                radius: 17.r,
+                backgroundImage: AssetImage("assets/images/person.png"),
+              ),
+              16.hSpace,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    titile,
+                    style: GoogleFonts.inter(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    msg,
+                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 10, fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            GradientText(
+              timeAgo,
+              gradient: LinearGradient(colors: [
+                Color(0xffCCCCCC),
+                Color(0xff666666),
+              ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+              style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 10, fontWeight: FontWeight.w400),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class ChatDetailing extends StatefulWidget {
+  const ChatDetailing({super.key});
+
+  @override
+  State<ChatDetailing> createState() => _ChatDetailingState();
+}
+
+class _ChatDetailingState extends State<ChatDetailing> with SingleTickerProviderStateMixin {
+  int i = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      i = index;
+    });
+  }
+
+  late TabController _tabController;
+  int selectedIndex = 0;
+  int? j;
+
+  final List<String> labels = ["Express", "P2P", "Block Trade", "Cash"];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: i,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                50.vSpace,
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: AppColors.white,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: List.generate(labels.length, (index) {
+                        String text = labels[index];
+                        return GestureDetector(
+                          // Inner Navigation
+                          onTap: () {
+                            if (index == 1) {
+                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                            } else if (index == 2) {
+                              RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
+                            } else if (index == 3) {
+                              RoutingService.pushReplacement(const DiscoverCashScreen());
+                            } else {
+                              setState(() {
+                                selectedIndex = index;
+                              });
+                            }
+                          },
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.h, vertical: 0),
+                                child: selectedIndex == index
+                                    ? GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffFCA509), Color(0xff880306)],
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      )
+                                    : GradientText(
+                                        text,
+                                        gradient: const LinearGradient(
+                                          colors: [Color(0xffCCCCCC), Color(0xff666666)],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                              ),
+                              LayoutBuilder(
+                                builder: (context, constraints) {
+                                  final textPainter = TextPainter(
+                                    text: TextSpan(
+                                      text: text,
+                                      style: GoogleFonts.inter(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    maxLines: 1,
+                                    textDirection: TextDirection.ltr,
+                                  )..layout();
+
+                                  return Container(
+                                    width: textPainter.width,
+                                    height: 2,
+                                    decoration: BoxDecoration(
+                                      gradient: selectedIndex == index
+                                          ? const LinearGradient(
+                                              colors: [Color(0xffFCA509), Color(0xff880306)],
+                                            )
+                                          : null,
+                                      color: selectedIndex == index ? null : const Color(0xff666666),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+                    5.hSpace,
+                    Expanded(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SvgPicture.asset("assets/svg/inof.svg"),
+                      ],
+                    )),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Divider(
+                    height: 1.0,
+                    color: Color(0xff212121),
+                  ),
+                ),
+                20.vSpace,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: _buildBorderedBox(
+                    title: 'You have a buy order awaiting your payment',
+                    subtitle: 'You have a buy order awaiting your payment',
+                    buttonText: 'Pay now',
+                  ),
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                  onTap: () {
+                    RoutingService.push(const PersonalProfile());
+                  },
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 14,
+                        backgroundImage: AssetImage("assets/images/person.png"),
+                      ),
+                      7.hSpace,
+                      Text("Trader-Name",
+                          style: GoogleFonts.poppins(
+                            color: Color(0xff8E8E8E),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10,
+                          )),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20, left: 30),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: const Color(0xFF212121),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("No third-party payments are accepted. ",
+                            style: GoogleFonts.poppins(
+                              color: Color(0xff8E8E8E),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                            )),
+                        10.vSpace,
+                        Divider(
+                          height: 1.0,
+                          color: Color(0xff282828),
+                        ),
+                        10.vSpace,
+                        Text("This is an automated message",
+                            style: GoogleFonts.poppins(
+                              color: Color(0xff8E8E8E),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10,
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+                10.vSpace,
+                Padding(
+                  padding: const EdgeInsets.only(right: 10, left: 25),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: const Color(0xFF212121),
+                        ),
+                        child: Row(
+                          children: [
+                            Text("No third-party payments are accepted. ",
+                                style: GoogleFonts.poppins(
+                                  color: Color(0xff8E8E8E),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12,
+                                )),
+                            SizedBox(height: 15.h, width: 15.w, child: SvgPicture.asset("assets/svg/double.svg"))
+                          ],
+                        ),
+                      ),
+                      10.hSpace,
+                      Container(
+                        height: 30.h,
+                        width: 30.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30.r),
+                          color: const Color(0xFF212121),
+                        ),
+                        child: Center(
+                          child: Text("S",
+                              style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                              )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                10.vSpace,
+                GestureDetector(
+                  onTap: () {
+                    RoutingService.push(const PersonalProfile());
+                  },
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 14,
+                        backgroundImage: AssetImage("assets/images/person.png"),
+                      ),
+                      7.hSpace,
+                      Text("Trader-Name",
+                          style: GoogleFonts.poppins(
+                            color: Color(0xff8E8E8E),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10,
+                          )),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20, left: 30),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: const Color(0xFF212121),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("uiux.shah”gmail.com",
+                            style: GoogleFonts.poppins(
+                              color: Color(0xff8E8E8E),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                            )),
+                        10.vSpace,
+                        Text("Paypal Acount send payment here.",
+                            style: GoogleFonts.poppins(
+                              color: Color(0xff8E8E8E),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10,
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+                10.vSpace,
+                Padding(
+                  padding: const EdgeInsets.only(right: 20, left: 100),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: const Color(0xFF212121),
+                        ),
+                        child: Row(
+                          children: [
+                            Text("ok ",
+                                style: GoogleFonts.poppins(
+                                  color: Color(0xff8E8E8E),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12,
+                                )),
+                            SizedBox(height: 15.h, width: 15.w, child: SvgPicture.asset("assets/svg/double.svg"))
+                          ],
+                        ),
+                      ),
+                      10.hSpace,
+                      Container(
+                        height: 30.h,
+                        width: 30.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30.r),
+                          color: const Color(0xFF212121),
+                        ),
+                        child: Center(
+                          child: Text("S",
+                              style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                              )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                10.vSpace,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: _buildBorderedBox(
+                    title: 'Order paid. Pending confirmation from the seller.',
+                    subtitle: 'You should receive the crypto within 01:27.',
+                    buttonText: 'view details',
+                  ),
+                ),
+                10.vSpace,
+                Padding(
+                  padding: const EdgeInsets.only(right: 20, left: 100),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: const Color(0xFF212121),
+                        ),
+                        child: Row(
+                          children: [
+                            Text("ok ",
+                                style: GoogleFonts.poppins(
+                                  color: Color(0xff8E8E8E),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12,
+                                )),
+                            SizedBox(height: 15.h, width: 15.w, child: SvgPicture.asset("assets/svg/double.svg"))
+                          ],
+                        ),
+                      ),
+                      10.hSpace,
+                      Container(
+                        height: 30.h,
+                        width: 30.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30.r),
+                          color: const Color(0xFF212121),
+                        ),
+                        child: Center(
+                          child: Text("S",
+                              style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                              )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: _buildBorderedBox(
+                    title: 'Seller received payment. Order is complete.',
+                    subtitle: 'the assets are now in your funding account.',
+                    buttonText: 'view Assets',
+                  ),
+                ),
+                100.vSpace
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBorderedBox({required String title, required String subtitle, required String buttonText}) {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        border: GradientBoxBorder(
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFFFCA509), Color(0xFF880306)],
+          ),
+          width: 0.9,
+        ),
+        borderRadius: BorderRadius.circular(12),
+        color: const Color(0xFF212121),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style: GoogleFonts.poppins(
+                color: Color(0xffFAFAFA),
+                fontWeight: FontWeight.w400,
+                fontSize: 12,
+              )),
+          const SizedBox(height: 4),
+          Text(subtitle,
+              style: GoogleFonts.poppins(
+                color: Color(0xff8E8E8E),
+                fontWeight: FontWeight.w400,
+                fontSize: 10,
+              )),
+          10.vSpace,
+          Divider(
+            height: 1.0,
+            color: Color(0xff282828),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Text(buttonText,
+                  style: GoogleFonts.poppins(
+                    color: Color(0xffFAFAFA),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12,
+                  )),
+              const SizedBox(width: 4),
+              const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Colors.white)
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class PersonalProfile extends StatefulWidget {
+  const PersonalProfile({super.key});
+
+  @override
+  State<PersonalProfile> createState() => _PersonalProfileState();
+}
+
+class _PersonalProfileState extends State<PersonalProfile> with SingleTickerProviderStateMixin {
+  int i = 4;
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      i = index;
+    });
+  }
+
+  late TabController _tabController;
+  int selectedIndex = 0;
+  int? j;
+
+  final List<String> labels = ["Express", "P2P", "Block Trade", "Cash"];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
+          ),
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: i,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  30.vSpace,
+                  SizedBox(
+                    height: 120.h,
+                    width: double.infinity,
+                    child: Image.asset(
+                      "assets/images/scene.png",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  20.vSpace,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      "Sa***",
+                      style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 11, color: Color(0xffD5D5D5)),
+                    ),
+                  ),
+                  10.vSpace,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      children: [
+                        Image.asset("assets/images/pak.png"),
+                        Text(
+                          " Pakistan | Joined on : 03/04/2025",
+                          style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 10, color: Color(0xffD5D5D5)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  10.vSpace,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      children: [
+                        Image.asset("assets/images/v1.png"),
+                        Text(
+                          " ID verified on 03/05/2025",
+                          style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 11, color: Color(0xff25C866)),
+                        ),
+                        10.hSpace,
+                        Image.asset("assets/images/v2.png"),
+                        Text(
+                          " Email",
+                          style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 11, color: Color(0xff25C866)),
+                        ),
+                        10.hSpace,
+                        Image.asset("assets/images/v2.png"),
+                        Text(
+                          " Mobile",
+                          style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 11, color: Color(0xff25C866)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  10.vSpace,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(color: const Color(0xFF0F0F0F), borderRadius: BorderRadius.circular(12.r), border: Border.all(color: Color(0xff393737))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "My P2P funds",
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(height: 12.h),
+                          const Divider(
+                            height: 1.0,
+                            color: Color(0xff393737),
+                          ),
+                          SizedBox(height: 12.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Available", style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 11, color: Color(0xffD5D5D5))),
+                              Text("32.54 USDT", style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 11, color: Color(0xffD5D5D5))),
+                            ],
+                          ),
+                          SizedBox(height: 6.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Locked", style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 11, color: Color(0xffD5D5D5))),
+                              Text("10.54 USDT", style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 11, color: Color(0xffD5D5D5))),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 16.h),
+
+                  // Information box
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      padding: EdgeInsets.all(16.w),
+                      decoration: BoxDecoration(color: const Color(0xFF0F0F0F), borderRadius: BorderRadius.circular(12.r), border: Border.all(color: Color(0xff393737))),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "information",
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(height: 12.h),
+                          const Divider(
+                            height: 1.0,
+                            color: Color(0xff393737),
+                          ),
+                          SizedBox(height: 12.h),
+                          infoRow("Total Completed Orders", "1"),
+                          infoRow("Completion Rate (%)", "100.00%"),
+                          infoRow("Avg. Payment Time", "6m 54s"),
+                          infoRow("Positive Reviews (%)", "N/A"),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 16.h),
+
+                  // Menu Items
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: menuTile("Payment", () {
+                      // RoutingService.push(const Paymentscreen());
+                    }),
+                  ),
+                  10.vSpace,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: menuTile("Become a Super merchant", () {
+                      // RoutingService.push(const Paymentscreen());
+                    }),
+                  ),
+                  10.vSpace,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: menuTile("Setting", () {
+                      // RoutingService.push(const SettingScreen());
+                    }),
+                  ),
+                  10.vSpace,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: menuTile("P2P guide", () {}),
+                  ),
+                ],
+              ),
+              Positioned(
+                child: SizedBox(height: 35.h, width: 35.w, child: Image.asset("assets/images/person.png")),
+                top: 130.h,
+                left: 10.w,
+              ),
+              Positioned(
+                child: Container(
+                  height: 10,
+                  width: 10,
+                  decoration: BoxDecoration(color: Color(0xff25C866), borderRadius: BorderRadius.circular(10.r)),
+                ),
+                top: 155.h,
+                left: 35.w,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget infoRow(String label, String value) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 4.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(label, style: GoogleFonts.inter(fontSize: 11, color: Color(0xffD5D5D5), fontWeight: FontWeight.w400)),
+          Text(value, style: GoogleFonts.inter(fontSize: 11, color: Color(0xffD5D5D5), fontWeight: FontWeight.w400)),
+        ],
+      ),
+    );
+  }
+
+  Widget menuTile(String title, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.only(bottom: 10.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 18.h),
+        decoration: BoxDecoration(color: const Color(0xFF0F0F0F), borderRadius: BorderRadius.circular(12.r), border: Border.all(color: Color(0xff393737))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: GoogleFonts.poppins(fontSize: 12, color: Colors.white, fontWeight: FontWeight.w300)),
+            SizedBox(
+              height: 12.h,
+              width: 12.w,
+              child: SvgPicture.asset("assets/svg/dr.svg"),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

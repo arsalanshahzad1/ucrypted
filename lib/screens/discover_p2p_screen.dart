@@ -55,6 +55,9 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.bottomSheet(p2pBottomSheet(400.h));
+    });
   }
 
   @override
@@ -344,7 +347,9 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
     );
   }
 
-  Widget p2pBottomSheet(double height, String title, String subtitle, VoidCallback onTap, BuildContext c) {
+  Widget p2pBottomSheet(
+    double height,
+  ) {
     return Container(
       width: double.infinity,
       height: height,
@@ -2665,7 +2670,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
           image: AssetImage(
             "assets/images/modal.png",
           ),
-          fit: BoxFit.contain,
+          fit: BoxFit.cover,
         ),
         // gradient: LinearGradient(
         //   colors: [

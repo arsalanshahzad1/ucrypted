@@ -172,7 +172,9 @@ class _CompaignScreenState extends State<CompaignScreen> {
               child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.transparent, // Background color
+                  image: DecorationImage(image: AssetImage("assets/images/trackpg.png"), fit: BoxFit.fill),
+
+                  // color: Colors.transparent, // Background color
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(color: Colors.white.withOpacity(0.2)), // Border effect
                 ),

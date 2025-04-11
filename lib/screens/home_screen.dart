@@ -124,6 +124,8 @@ class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
   int selectedIndexCustom = 1;
   bool isBalanceHide = true;
+  bool showConverter = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,60 +187,62 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               10.vSpace,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () => setState(() => selectedIndex = 0),
-                    child: GradientText(
-                      "Overview",
-                      style: GoogleFonts.inter(color: selectedIndex == 0 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
-                      gradient: selectedIndex == 0
-                          ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
-                          : const LinearGradient(
-                              colors: [Colors.white, Colors.white],
-                            ),
+              if (showConverter == false) ...[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () => setState(() => selectedIndex = 0),
+                      child: GradientText(
+                        "Overview",
+                        style: GoogleFonts.inter(color: selectedIndex == 0 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                        gradient: selectedIndex == 0
+                            ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
+                            : const LinearGradient(
+                                colors: [Colors.white, Colors.white],
+                              ),
+                      ),
                     ),
-                  ),
-                  20.hSpace,
-                  GestureDetector(
-                    onTap: () => setState(() => selectedIndex = 1),
-                    child: GradientText(
-                      "Spot",
-                      style: GoogleFonts.inter(color: selectedIndex == 1 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
-                      gradient: selectedIndex == 1
-                          ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
-                          : const LinearGradient(
-                              colors: [Colors.white, Colors.white],
-                            ),
+                    20.hSpace,
+                    GestureDetector(
+                      onTap: () => setState(() => selectedIndex = 1),
+                      child: GradientText(
+                        "Spot",
+                        style: GoogleFonts.inter(color: selectedIndex == 1 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                        gradient: selectedIndex == 1
+                            ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
+                            : const LinearGradient(
+                                colors: [Colors.white, Colors.white],
+                              ),
+                      ),
                     ),
-                  ),
-                  20.hSpace,
-                  GestureDetector(
-                    onTap: () => setState(() => selectedIndex = 2),
-                    child: GradientText(
-                      "Funding",
-                      style: GoogleFonts.inter(color: selectedIndex == 2 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
-                      gradient: selectedIndex == 2
-                          ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
-                          : const LinearGradient(
-                              colors: [Colors.white, Colors.white],
-                            ),
+                    20.hSpace,
+                    GestureDetector(
+                      onTap: () => setState(() => selectedIndex = 2),
+                      child: GradientText(
+                        "Funding",
+                        style: GoogleFonts.inter(color: selectedIndex == 2 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                        gradient: selectedIndex == 2
+                            ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
+                            : const LinearGradient(
+                                colors: [Colors.white, Colors.white],
+                              ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              10.vSpace,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 1.0,
-                    width: 220.w,
-                    decoration: BoxDecoration(color: AppColors.disableBtnColor, borderRadius: BorderRadius.circular(12)),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                10.vSpace,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 1.0,
+                      width: 220.w,
+                      decoration: BoxDecoration(color: AppColors.disableBtnColor, borderRadius: BorderRadius.circular(12)),
+                    ),
+                  ],
+                ),
+              ],
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -291,107 +295,433 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Balances", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white)),
-                  Text("See all", style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xff838383))),
+                  GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          showConverter = !showConverter;
+                        });
+                      },
+                      child: Text("See all", style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xff838383)))),
                 ],
               ),
               25.vSpace,
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    coinCard(
-                      "assets/svg/eth.svg",
-                      "ETH",
-                      "19,654",
-                    ),
-                    18.hSpace,
-                    coinCard("assets/svg/bsc.svg", "BSC", "112,654", i: true),
-                    18.hSpace,
-                    coinCard(
-                      "assets/svg/eth.svg",
-                      "ETH",
-                      "19.8878",
-                    ),
-                  ],
+              if (showConverter == false) ...[
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      coinCard(
+                        "assets/svg/eth.svg",
+                        "ETH",
+                        "19,654",
+                        () {},
+                        "assets/images/irc2.png",
+                      ),
+                      18.hSpace,
+                      coinCard("assets/svg/bsc.svg", "BSC", "112,654", () {}, "assets/images/irc1.png", i: true),
+                      18.hSpace,
+                      coinCard(
+                        "assets/svg/eth.svg",
+                        "ETH",
+                        "19.8878",
+                        () {},
+                        "assets/images/irc2.png",
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              30.vSpace,
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                        onTap: () => setState(() => selectedIndexCustom = 0),
+                30.vSpace,
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                          onTap: () => setState(() => selectedIndexCustom = 0),
+                          child: Text(
+                            "Recent Transactions",
+                            style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                          )),
+                      30.hSpace,
+                      GestureDetector(
+                        onTap: () => setState(() => selectedIndexCustom = 1),
                         child: Text(
-                          "Recent Transactions",
+                          "Exchange History",
                           style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
-                        )),
-                    30.hSpace,
-                    GestureDetector(
-                      onTap: () => setState(() => selectedIndexCustom = 1),
-                      child: Text(
-                        "Exchange History",
-                        style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                        ),
                       ),
-                    ),
-                    30.hSpace,
-                    GestureDetector(
-                      onTap: () => setState(() => selectedIndexCustom = 2),
-                      child: Text(
-                        "Transaction",
-                        style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                      30.hSpace,
+                      GestureDetector(
+                        onTap: () => setState(() => selectedIndexCustom = 2),
+                        child: Text(
+                          "Transaction",
+                          style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              10.vSpace,
-              SizedBox(
-                height: 1.5,
-                child: Row(
-                  children: [
-                    // Gradient part (1/3)
-                    Expanded(
-                      flex: 3, // 3 + 3 = 6 to match 3 sections total
-                      child: Container(
-                        color: Color(0xFF1B1B1F),
+                10.vSpace,
+                SizedBox(
+                  height: 1.5,
+                  child: Row(
+                    children: [
+                      // Gradient part (1/3)
+                      Expanded(
+                        flex: 3, // 3 + 3 = 6 to match 3 sections total
+                        child: Container(
+                          color: Color(0xFF1B1B1F),
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0xFFDA6B1A),
-                              Color(0xFFAC2C24),
-                            ],
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0xFFDA6B1A),
+                                Color(0xFFAC2C24),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
 
-                    // Solid dark gray part (2/3)
-                    Expanded(
-                      flex: 1, // 3 + 3 = 6 to match 3 sections total
-                      child: Container(
-                        color: Color(0xFF1B1B1F),
+                      // Solid dark gray part (2/3)
+                      Expanded(
+                        flex: 1, // 3 + 3 = 6 to match 3 sections total
+                        child: Container(
+                          color: Color(0xFF1B1B1F),
+                        ),
                       ),
+                    ],
+                  ),
+                ),
+                15.vSpace,
+                Column(
+                  children: [
+                    exchangeWidget("assets/svg/bscexc.svg"),
+                    exchangeWidget("assets/svg/ethex.svg"),
+                    exchangeWidget("assets/svg/bscexc.svg"),
+                    exchangeWidget("assets/svg/ethex.svg"),
+                    exchangeWidget("assets/svg/bscexc.svg"),
+                  ],
+                ),
+              ],
+              if (showConverter == true) ...[
+                Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.center,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          height: 110.h,
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                            color: Color(0xff0000003).withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(10),
+                            // gradient: RadialGradient(
+                            //   center: Alignment.bottomRight,
+                            //   radius: 1.0,
+                            //   colors: [
+                            //     Colors.green.withOpacity(0.2),
+                            //     Colors.transparent,
+                            //   ],
+                            //   stops: const [0.2, 1.0],
+                            // ),
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Exchange",
+                                    style: GoogleFonts.inter(
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              20.vSpace,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor: Colors.blue,
+                                        backgroundImage: AssetImage("assets/images/dol1.png"),
+                                      ),
+                                      10.hSpace,
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "DOLLAR",
+                                                style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 22, color: Colors.white),
+                                              ),
+                                              // 10.hSpace,
+                                              GestureDetector(
+                                                onTap: () {
+                                                  RoutingService.push(const DepositCryptoscreen());
+                                                },
+                                                child: const Icon(
+                                                  Icons.arrow_drop_down_outlined,
+                                                  color: Colors.white,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "0\$",
+                                        style: GoogleFonts.poppins(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        0.vSpace,
+                        Stack(
+                          children: [
+                            // Gradient layer 1 (bottomLeft - blue)
+                            Container(
+                              height: 110.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: RadialGradient(
+                                  center: Alignment.bottomLeft,
+                                  radius: 1.0,
+                                  colors: [
+                                    Colors.blue.withOpacity(0.2),
+                                    Colors.transparent,
+                                  ],
+                                  stops: const [0.2, 1.0],
+                                ),
+                              ),
+                            ),
+                            // Gradient layer 2 (bottomRight - green)
+                            // Container(
+                            //   height: 110.h,
+                            //   decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(10),
+                            //     gradient: RadialGradient(
+                            //       center: Alignment.topRight,
+                            //       radius: 1.0,
+                            //       colors: [
+                            //         Colors.green.withOpacity(0.2),
+                            //         Colors.transparent,
+                            //       ],
+                            //       stops: const [0.2, 1.0],
+                            //     ),
+                            //   ),
+                            // ),
+                            // Actual content
+                            Container(
+                              height: 110.h,
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Column(
+                                children: [
+                                  20.vSpace,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Exchange To",
+                                        style: GoogleFonts.inter(
+                                          color: AppColors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  10.vSpace,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          CircleAvatar(
+                                            radius: 20,
+                                            backgroundColor: Colors.blue.withOpacity(.6),
+                                            backgroundImage: AssetImage("assets/images/dol.png"),
+                                          ),
+                                          10.hSpace,
+                                          Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "USDC",
+                                                    style: GoogleFonts.inter(
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 22,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      RoutingService.push(const DepositCryptoscreen());
+                                                    },
+                                                    child: Icon(
+                                                      Icons.arrow_drop_down_outlined,
+                                                      color: Colors.white,
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            "0\$",
+                                            style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Positioned(
+                      top: 75.h,
+                      child: Center(
+                          child: SvgPicture.asset(
+                        "assets/svg/convert.svg",
+                        height: 48.h,
+                        width: 48.w,
+                      )),
                     ),
                   ],
                 ),
-              ),
-              15.vSpace,
-              Column(
-                children: [
-                  exchangeWidget("assets/svg/bscexc.svg"),
-                  exchangeWidget("assets/svg/ethex.svg"),
-                  exchangeWidget("assets/svg/bscexc.svg"),
-                  exchangeWidget("assets/svg/ethex.svg"),
-                  exchangeWidget("assets/svg/bscexc.svg"),
-                ],
-              ),
+                20.vSpace,
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(15), border: Border.all(color: Color(0xff393737))),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Buy USDC",
+                            style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "USDC",
+                                style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                              ),
+                              10.hSpace,
+                              SvgPicture.asset("assets/svg/con.svg")
+                            ],
+                          ),
+                        ],
+                      ),
+                      5.vSpace,
+                      Divider(
+                        height: 1.0,
+                        color: Color(0xff393737),
+                      ),
+                      15.vSpace,
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Unit price 291.50",
+                                    style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                                  ),
+                                  10.vSpace,
+                                  Text(
+                                    "Quantity 5.14 USDT",
+                                    style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                "03/01/2025, 19:53",
+                                style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      10.vSpace,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Saqib Trander",
+                            style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                          ),
+                          Row(
+                            children: [
+                              GradientText(
+                                "Convert",
+                                style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 14),
+                                gradient: LinearGradient(colors: [
+                                  Color(0xffFCA509),
+                                  Color(0xff880306),
+                                ]),
+                              ),
+                              5.hSpace,
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 14,
+                                color: Color(0xff7E8088),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                100.vSpace,
+              ]
             ],
           ),
         ),
@@ -444,71 +774,116 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget coinCard(String image, String title, String value, {bool? i}) {
-    return Container(
-      height: 172.h,
-      width: 200.w,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.white, width: 2.0),
-        color: Colors.grey.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  Widget coinCard(String image, String title, String value, VoidCallback onTap, String asset, {bool? i}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Stack(
         children: [
-          10.vSpace,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              children: [
-                SvgPicture.asset(
-                  image,
-                  height: 45,
-                  width: 45,
-                ),
-                15.hSpace,
-                Text(
-                  title,
-                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 18),
-                )
-              ],
+          // Positioned image at bottom right middle
+          Positioned(
+            bottom: -40,
+            right: -60,
+            child: SizedBox(
+              height: 180.h,
+              width: 180.w,
+              child: Image.asset(asset),
             ),
           ),
-          30.vSpace,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Text(
-              "Portfolio",
-              style: GoogleFonts.inter(color: AppColors.grey, fontWeight: FontWeight.w400, fontSize: 16),
+
+          // Main card container
+          Container(
+            height: 172.h,
+            width: 200.w,
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            decoration: BoxDecoration(
+              border: Border.all(color: AppColors.white, width: 1.0),
+              color: Color(0xff202226).withOpacity(0.5),
+              borderRadius: BorderRadius.circular(18),
             ),
-          ),
-          15.vSpace,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GradientText(
-                  "\$$value",
-                  style: GoogleFonts.plusJakartaSans(color: AppColors.textColor, fontWeight: FontWeight.w600, fontSize: 18),
-                  gradient: i != true
-                      ? LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
-                      : LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [
-                          Colors.white,
-                          Colors.white,
-                        ]),
+                10.vSpace,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        image,
+                        height: 45,
+                        width: 45,
+                        
+                      ),
+                      15.hSpace,
+                      Text(
+                        title,
+                        style: GoogleFonts.inter(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-                Row(
-                  children: [
-                    SizedBox(height: 10.h, width: 10.w, child: SvgPicture.asset("assets/svg/ic.svg")),
-                    3.hSpace,
-                    Text(
-                      "+10%",
-                      style: GoogleFonts.inter(color: const Color(0xFF00C566), fontWeight: FontWeight.w400, fontSize: 16),
+                30.vSpace,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    "Portfolio",
+                    style: GoogleFonts.inter(
+                      color: AppColors.grey,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
                     ),
-                  ],
-                )
+                  ),
+                ),
+                15.vSpace,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GradientText(
+                        "\$$value",
+                        style: GoogleFonts.plusJakartaSans(
+                          color: AppColors.textColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
+                        gradient: i != true
+                            ? LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                              )
+                            : LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [Colors.white, Colors.white],
+                              ),
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            height: 10.h,
+                            width: 10.w,
+                            child: SvgPicture.asset("assets/svg/ic.svg"),
+                          ),
+                          3.hSpace,
+                          Text(
+                            "+10%",
+                            style: GoogleFonts.inter(
+                              color: const Color(0xFF00C566),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

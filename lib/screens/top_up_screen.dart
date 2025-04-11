@@ -477,7 +477,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
           image: AssetImage(
             "assets/images/modal.png",
           ),
-          fit: BoxFit.contain,
+          fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),

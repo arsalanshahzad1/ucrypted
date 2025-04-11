@@ -296,7 +296,7 @@ class _TierScreenState extends State<TierScreen> {
               ),
               25.vSpace,
               Text(
-                "Cardholder Name",
+                "Card Holder Name",
                 style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
               ),
               20.vSpace,
