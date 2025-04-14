@@ -1895,7 +1895,7 @@ class _ChatListingState extends State<ChatListing> with SingleTickerProviderStat
                     },
                     child: Column(
                       children: [
-                        chatTile("Jhon Doe", "Order Message ( Seller received payment.", "Just now"),
+                        chatTile1("Jhon Doe", "Order Message ( Seller received payment.", "Just now"),
                         10.vSpace,
                         chatTile("Chris", "Order Message ( Seller received payment.", "25 min Ago"),
                         10.vSpace,
@@ -1911,6 +1911,83 @@ class _ChatListingState extends State<ChatListing> with SingleTickerProviderStat
           ),
         ),
       ),
+    );
+  }
+
+  Widget chatTile1(String titile, String msg, String timeAgo) {
+    return Stack(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+          decoration: BoxDecoration(
+            border: GradientBoxBorder(
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFFFCA509), Color(0xFF880306)],
+              ),
+              width: 0.9,
+            ),
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 17.r,
+                      backgroundImage: AssetImage("assets/images/person.png"),
+                    ),
+                    16.hSpace,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          titile,
+                          style: GoogleFonts.inter(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          msg,
+                          style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 10, fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GradientText(
+                    timeAgo,
+                    gradient: LinearGradient(colors: [
+                      Color(0xffCCCCCC),
+                      Color(0xff666666),
+                    ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 10, fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color.fromARGB(255, 228, 145, 12).withOpacity(0.3), // Light orange glow
+                  Color.fromARGB(0, 56, 54, 50),
+                ],
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 

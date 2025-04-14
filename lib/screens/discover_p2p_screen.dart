@@ -311,38 +311,58 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
           j = index;
         });
       },
-      child: Container(
-        decoration: BoxDecoration(
-            color: Color.fromARGB(255, 22, 22, 23),
-            borderRadius: BorderRadius.circular(8.r),
-            border: j != index
-                ? Border.all(color: Colors.transparent)
-                : GradientBoxBorder(gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]))),
-        padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
-        child: Row(
-          children: [
-            Container(
-                height: 30.h,
-                width: 30.w,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.r), color: Colors.transparent),
-                child: Image.asset(
-                  icon,
-                  // fit: BoxFit.cover,
-                )),
-            15.hSpace,
-            Expanded(
-              child: Text(
-                title,
-                style: GoogleFonts.inter(
-                  fontSize: 16.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
+      child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                color: Color.fromARGB(255, 22, 22, 23),
+                borderRadius: BorderRadius.circular(5.r),
+                border: j != index
+                    ? Border.all(color: Colors.transparent)
+                    : GradientBoxBorder(gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]))),
+            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+            child: Row(
+              children: [
+                Container(
+                    height: 30.h,
+                    width: 30.w,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.r), color: Colors.transparent),
+                    child: Image.asset(
+                      icon,
+                      // fit: BoxFit.cover,
+                    )),
+                15.hSpace,
+                Expanded(
+                  child: Text(
+                    title,
+                    style: GoogleFonts.inter(
+                      fontSize: 16.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ), 
                 ),
-              ),
+              ],
             ),
-            Icon(Icons.arrow_forward_ios, size: 16.sp, color: Colors.grey[800]),
-          ],
-        ),
+          ),
+          j == index
+              ? Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.fromARGB(255, 228, 145, 12).withOpacity(0.22), // Light orange glow
+                          Colors.transparent,
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              : const SizedBox.shrink(),
+        ],
       ),
     );
   }

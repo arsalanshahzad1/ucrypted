@@ -45,6 +45,7 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -110,6 +111,25 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
                   ),
                   Row(
                     children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: SvgPicture.asset(
+                          "assets/svg/chats.svg",
+                          width: 30,
+                          height: 30,
+                        ),
+                      ),
+                      15.hSpace,
+                      GestureDetector(
+                        onTap: () {
+                          RoutingService.push(const NotificationScreen());
+                        },
+                        child: SizedBox(
+                          height: 30,
+                          width: 30,
+                          child: SvgPicture.asset("assets/svg/notification.svg"),
+                        ),
+                      ),
                       15.hSpace,
                       GestureDetector(
                         onTap: () {
@@ -133,11 +153,11 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
               ),
               20.vSpace,
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24.0),
+                  borderRadius: BorderRadius.circular(32.0),
                   color: Colors.transparent,
-                  border: Border.all(color: Color(0xffB6B6B6)),
+                  border: Border.all(color: Color(0xffB6B6B6), width: 1.0),
                 ),
                 child: TextField(
                   controller: TextEditingController(),
@@ -147,16 +167,30 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
                     fontSize: 18,
                   ),
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
                     isDense: true,
                     border: InputBorder.none,
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 8), // optional spacing
+                      child: SizedBox(
+                        height: 20.h, // increase height
+                        width: 20.w, // increase width
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: SvgPicture.asset(
+                            "assets/svg/s124.svg",
+                            fit: BoxFit.contain, // or BoxFit.scaleDown
+                          ),
+                        ),
+                      ),
+                    ),
+
                     // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                     hintText: "Where do you need internet?",
                     hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
                   ),
                 ),
               ),
-              20.vSpace,
               20.vSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -582,6 +616,8 @@ class _PayBillState extends State<PayBill> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -1305,7 +1341,8 @@ class _NationalPowerSuccessScreenState extends State<NationalPowerSuccessScreen>
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Container(
-                  decoration: BoxDecoration(color: Color(0xff151515), borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xffCCCCCC).withOpacity(0.2))),
+                  decoration: BoxDecoration(
+                      color: Color(0xff151515).withOpacity(0.5), borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xffCCCCCC).withOpacity(0.2))),
                   padding: const EdgeInsets.all(26),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -1314,14 +1351,14 @@ class _NationalPowerSuccessScreenState extends State<NationalPowerSuccessScreen>
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
                             decoration: BoxDecoration(
                               color: Color(0xff212121),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
                               "Utility Payment Details",
-                              style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w600, fontSize: 18),
+                              style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 23),
                             ),
                           ),
                         ],

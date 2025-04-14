@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/discover_block_trade_screen.dart';
 import 'package:ucrypted_app/screens/discover_express_screen.dart';
@@ -62,6 +63,8 @@ class _DiscoverCashScreenState extends State<DiscoverCashScreen> with SingleTick
     _tabController.dispose();
     super.dispose();
   }
+
+  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -232,183 +235,216 @@ class _DiscoverCashScreenState extends State<DiscoverCashScreen> with SingleTick
   ) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        // width: 350,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(color: const Color(0xFF0F0F0F), borderRadius: BorderRadius.circular(16), border: Border.all(color: Color(0xff393737))),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header row
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Stack(
-                  children: [
-                    const CircleAvatar(
-                      radius: 20,
-                      backgroundImage: AssetImage('assets/images/person.png'), // Replace with your avatar
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: Container(
-                        width: 10,
-                        height: 10,
-                        decoration: BoxDecoration(
-                          color: isOnline == true ? Color(0xff00B300) : Color(0xffFF9500),
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.black, width: 1.5),
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                border: isSelected
+                    ? const GradientBoxBorder(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Color(0xFFFCA509), Color(0xFF880306)],
                         ),
+                        width: 0.9,
+                      )
+                    : Border.all(
+                        color: Color(0xff393737),
+                      )),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header row
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Stack(
+                      children: [
+                        const CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('assets/images/person.png'), // Replace with your avatar
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            width: 10,
+                            height: 10,
+                            decoration: BoxDecoration(
+                              color: isOnline == true ? Color(0xff00B300) : Color(0xffFF9500),
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.black, width: 1.5),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title,
+                            style: GoogleFonts.inter(
+                              color: Color(0xffD5D5D5),
+                              fontSize: 11,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          GradientText(
+                            isOnline == true ? 'Online' : "Offline",
+                            style: GoogleFonts.inter(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            gradient: isOnline == true
+                                ? LinearGradient(colors: [
+                                    Color(0xff00B300),
+                                    Color(0xff004D00),
+                                  ], end: Alignment.bottomCenter, begin: Alignment.topCenter)
+                                : LinearGradient(colors: [
+                                    Color(0xffFF9500),
+                                    Color(0xffFF9500),
+                                  ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
+                          ),
+                        ],
                       ),
+                    ),
+                    GradientText(
+                      '95.56%',
+                      style: GoogleFonts.inter(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      gradient: const LinearGradient(colors: [
+                        Color(0xff00B300),
+                        Color(0xff004D00),
+                      ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
                     ),
                   ],
                 ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: GoogleFonts.inter(
-                          color: Color(0xffD5D5D5),
-                          fontSize: 11,
-                          fontWeight: FontWeight.w400,
+                const SizedBox(height: 10),
+
+                // Price & Button row
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          price + " ",
+                          style: GoogleFonts.poppins(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      GradientText(
-                        isOnline == true ? 'Online' : "Offline",
-                        style: GoogleFonts.inter(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w400,
+                        Text(
+                          'USD',
+                          style: GoogleFonts.inter(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xffD5D5D5),
+                          ),
                         ),
-                        gradient: isOnline == true
-                            ? LinearGradient(colors: [
+                      ],
+                    ),
+                    isBuy == true
+                        ? Container(
+                            height: 26.h,
+                            width: 60.w,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.r),
+                              gradient: const LinearGradient(colors: [
                                 Color(0xff00B300),
                                 Color(0xff004D00),
-                              ], end: Alignment.bottomCenter, begin: Alignment.topCenter)
-                            : LinearGradient(colors: [
-                                Color(0xffFF9500),
-                                Color(0xffFF9500),
                               ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
-                      ),
-                    ],
-                  ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Buy',
+                                style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                              ),
+                            ),
+                          )
+                        : Container(
+                            height: 26.h,
+                            width: 60.w,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.r),
+                              gradient: const LinearGradient(colors: [
+                                Color(0xffD70365),
+                                Color(0xff880306),
+                              ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Sell',
+                                style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                              ),
+                            ),
+                          )
+                  ],
                 ),
-                GradientText(
-                  '95.56%',
-                  style: GoogleFonts.inter(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  gradient: const LinearGradient(colors: [
-                    Color(0xff00B300),
-                    Color(0xff004D00),
-                  ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
 
-            // Price & Button row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+                const SizedBox(height: 10),
+                Divider(
+                  height: 1.0,
+                  color: Color(0xff393737),
+                ),
+                10.vSpace,
+                // Limits and availability
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      price + " ",
-                      style: GoogleFonts.poppins(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
+                      'Limit : USD 50,000 - 100,000',
+                      style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
                     ),
                     Text(
-                      'USD',
-                      style: GoogleFonts.inter(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xffD5D5D5),
-                      ),
+                      'Available : 170,318.18 USDT',
+                      style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
-                isBuy == true
-                    ? Container(
-                        height: 26.h,
-                        width: 60.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.r),
-                          gradient: const LinearGradient(colors: [
-                            Color(0xff00B300),
-                            Color(0xff004D00),
-                          ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Buy',
-                            style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
-                          ),
-                        ),
-                      )
-                    : Container(
-                        height: 26.h,
-                        width: 60.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.r),
-                          gradient: const LinearGradient(colors: [
-                            Color(0xffD70365),
-                            Color(0xff880306),
-                          ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Sell',
-                            style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
-                          ),
-                        ),
-                      )
-              ],
-            ),
 
-            const SizedBox(height: 10),
-            Divider(
-              height: 1.0,
-              color: Color(0xff393737),
-            ),
-            10.vSpace,
-            // Limits and availability
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Limit : USD 50,000 - 100,000',
-                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
+                const SizedBox(height: 5),
+
+                Divider(
+                  height: 1.0,
+                  color: Color(0xff393737),
                 ),
+
+                const SizedBox(height: 10),
+
                 Text(
-                  'Available : 170,318.18 USDT',
-                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
+                  '68,226 Transactions · 99.83% Completion',
+                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 11, fontWeight: FontWeight.w400),
                 ),
               ],
             ),
-
-            const SizedBox(height: 5),
-
-            Divider(
-              height: 1.0,
-              color: Color(0xff393737),
-            ),
-
-            const SizedBox(height: 10),
-
-            Text(
-              '68,226 Transactions · 99.83% Completion',
-              style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 11, fontWeight: FontWeight.w400),
-            ),
-          ],
-        ),
+          ),
+          isSelected == true
+              ? Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color(0xFFFF6D00).withOpacity(0.15), // Soft orange glow
+                          Colors.transparent,
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              : const SizedBox.shrink(),
+        ],
       ),
     );
   }
@@ -419,23 +455,39 @@ class _DiscoverCashScreenState extends State<DiscoverCashScreen> with SingleTick
         children: [
           25.vSpace,
           BuySellCard(true, true, "Link-Exchange", "88.46", () {
-            RoutingService.pushReplacement(const OrderCreated());
+            setState(() {
+              isSelected = !isSelected;
+            });
+            // RoutingService.pushReplacement(const OrderCreated());
           }),
           5.vSpace,
           BuySellCard(false, true, "Inter-Exchange", "86.32", () {
-            RoutingService.pushReplacement(const OrderCreated());
+            setState(() {
+              isSelected = !isSelected;
+            });
+            // RoutingService.pushReplacement(const OrderCreated());
           }),
           5.vSpace,
           BuySellCard(true, true, "Inter-Exchange", "88.46", () {
-            RoutingService.pushReplacement(const OrderCreated());
+            setState(() {
+              isSelected = !isSelected;
+            });
+            // RoutingService.pushReplacement(const OrderCreated());
           }),
           5.vSpace,
           BuySellCard(false, true, "Inter-Exchange", "86.32", () {
-            RoutingService.pushReplacement(const OrderCreated());
+            setState(() {
+              isSelected = !isSelected;
+            });
+            // RoutingService.pushReplacement(const OrderCreated());
           }),
           5.vSpace,
           BuySellCard(true, true, "Inter-Exchange", "86.32", () {
-            RoutingService.pushReplacement(const OrderCreated());
+            setState(() {
+              isSelected = !isSelected;
+            });
+
+            // RoutingService.pushReplacement(const OrderCreated());
           }),
           5.vSpace,
         ],

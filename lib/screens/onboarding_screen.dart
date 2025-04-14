@@ -103,16 +103,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ],
           ),
           Positioned(
-            top: 75,
-            left: 35,
+            top: 70,
+            left: 25,
             child: Row(
               children: List.generate(
                 _pages.length,
                 (index) => AnimatedContainer(
                   duration: const Duration(milliseconds: 100),
                   margin: const EdgeInsets.symmetric(horizontal: 2),
-                  width: _currentIndex == index ? 25 : 10,
-                  height: 8,
+                  width: _currentIndex == index ? 20 : 8,
+                  height: 6,
                   decoration: BoxDecoration(
                     color: _currentIndex == index ? const Color(0xFFDDDCFE) : AppColors.grey,
                     borderRadius: BorderRadius.circular(4),

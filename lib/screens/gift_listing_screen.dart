@@ -47,6 +47,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -135,11 +136,11 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
               ),
               20.vSpace,
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24.0),
+                  borderRadius: BorderRadius.circular(32.0),
                   color: Colors.transparent,
-                  border: Border.all(color: Color(0xffB6B6B6)),
+                  border: Border.all(color: Color(0xffB6B6B6), width: 2.0),
                 ),
                 child: TextField(
                   controller: TextEditingController(),
@@ -149,9 +150,24 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                     fontSize: 18,
                   ),
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    contentPadding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 10),
                     isDense: true,
                     border: InputBorder.none,
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 8), // optional spacing
+                      child: SizedBox(
+                        height: 20.h, // increase height
+                        width: 20.w, // increase width
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: SvgPicture.asset(
+                            "assets/svg/s124.svg",
+                            fit: BoxFit.contain, // or BoxFit.scaleDown
+                          ),
+                        ),
+                      ),
+                    ),
+
                     // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                     hintText: "Where do you need internet?",
                     hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
@@ -569,6 +585,8 @@ class _FoodScreenState extends State<FoodScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -689,11 +707,11 @@ class _FoodScreenState extends State<FoodScreen> {
                   Expanded(
                     // Wraps TextField to provide bounded width
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24.0),
+                        borderRadius: BorderRadius.circular(32.0),
                         color: Colors.transparent,
-                        border: Border.all(color: AppColors.grey),
+                        border: Border.all(color: Color(0xffB6B6B6), width: 2.0),
                       ),
                       child: TextField(
                         controller: TextEditingController(),
@@ -703,26 +721,42 @@ class _FoodScreenState extends State<FoodScreen> {
                           fontSize: 18,
                         ),
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                          contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
                           isDense: true,
                           border: InputBorder.none,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 8), // optional spacing
+                            child: SizedBox(
+                              height: 20.h, // increase height
+                              width: 20.w, // increase width
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: SvgPicture.asset(
+                                  "assets/svg/s124.svg",
+                                  fit: BoxFit.contain, // or BoxFit.scaleDown
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
                           hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: 15),
                   Container(
-                    width: 55.w,
-                    height: 55.h,
+                    width: 50.w,
+                    height: 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
                         color: Colors.white.withOpacity(0.5), // Light grayish-white border
-                        width: 1.5, // Matches thin border in UI
+                        width: 2.0, // Matches thin border in UI
                       ),
-                      borderRadius: BorderRadius.circular(12.r), // Rounded corners
+                      borderRadius: BorderRadius.circular(10.r), // Rounded corners
                     ),
                     child: Center(
                       child: SvgPicture.asset(
@@ -806,6 +840,8 @@ class _TravelScreenState extends State<TravelScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -926,11 +962,11 @@ class _TravelScreenState extends State<TravelScreen> {
                   Expanded(
                     // Wraps TextField to provide bounded width
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24.0),
+                        borderRadius: BorderRadius.circular(32.0),
                         color: Colors.transparent,
-                        border: Border.all(color: AppColors.grey),
+                        border: Border.all(color: Color(0xffB6B6B6), width: 2.0),
                       ),
                       child: TextField(
                         controller: TextEditingController(),
@@ -940,26 +976,42 @@ class _TravelScreenState extends State<TravelScreen> {
                           fontSize: 18,
                         ),
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                          contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
                           isDense: true,
                           border: InputBorder.none,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 8), // optional spacing
+                            child: SizedBox(
+                              height: 20.h, // increase height
+                              width: 20.w, // increase width
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: SvgPicture.asset(
+                                  "assets/svg/s124.svg",
+                                  fit: BoxFit.contain, // or BoxFit.scaleDown
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
                           hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: 15),
                   Container(
-                    width: 55.w,
-                    height: 55.h,
+                    width: 50.w,
+                    height: 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
                         color: Colors.white.withOpacity(0.5), // Light grayish-white border
-                        width: 1.5, // Matches thin border in UI
+                        width: 2.0, // Matches thin border in UI
                       ),
-                      borderRadius: BorderRadius.circular(12.r), // Rounded corners
+                      borderRadius: BorderRadius.circular(10.r), // Rounded corners
                     ),
                     child: Center(
                       child: SvgPicture.asset(
@@ -1043,6 +1095,8 @@ class _TechScreenState extends State<TechScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -1163,11 +1217,11 @@ class _TechScreenState extends State<TechScreen> {
                   Expanded(
                     // Wraps TextField to provide bounded width
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24.0),
+                        borderRadius: BorderRadius.circular(32.0),
                         color: Colors.transparent,
-                        border: Border.all(color: AppColors.grey),
+                        border: Border.all(color: Color(0xffB6B6B6), width: 2.0),
                       ),
                       child: TextField(
                         controller: TextEditingController(),
@@ -1177,26 +1231,42 @@ class _TechScreenState extends State<TechScreen> {
                           fontSize: 18,
                         ),
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                          contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
                           isDense: true,
                           border: InputBorder.none,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 8), // optional spacing
+                            child: SizedBox(
+                              height: 20.h, // increase height
+                              width: 20.w, // increase width
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: SvgPicture.asset(
+                                  "assets/svg/s124.svg",
+                                  fit: BoxFit.contain, // or BoxFit.scaleDown
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
                           hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: 15),
                   Container(
-                    width: 55.w,
-                    height: 55.h,
+                    width: 50.w,
+                    height: 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
                         color: Colors.white.withOpacity(0.5), // Light grayish-white border
-                        width: 1.5, // Matches thin border in UI
+                        width: 2.0, // Matches thin border in UI
                       ),
-                      borderRadius: BorderRadius.circular(12.r), // Rounded corners
+                      borderRadius: BorderRadius.circular(10.r), // Rounded corners
                     ),
                     child: Center(
                       child: SvgPicture.asset(
@@ -1281,6 +1351,8 @@ class _SportsScreenState extends State<SportsScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -1401,11 +1473,11 @@ class _SportsScreenState extends State<SportsScreen> {
                   Expanded(
                     // Wraps TextField to provide bounded width
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24.0),
+                        borderRadius: BorderRadius.circular(32.0),
                         color: Colors.transparent,
-                        border: Border.all(color: AppColors.grey),
+                        border: Border.all(color: Color(0xffB6B6B6), width: 2.0),
                       ),
                       child: TextField(
                         controller: TextEditingController(),
@@ -1415,26 +1487,42 @@ class _SportsScreenState extends State<SportsScreen> {
                           fontSize: 18,
                         ),
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                          contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
                           isDense: true,
                           border: InputBorder.none,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 8), // optional spacing
+                            child: SizedBox(
+                              height: 20.h, // increase height
+                              width: 20.w, // increase width
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: SvgPicture.asset(
+                                  "assets/svg/s124.svg",
+                                  fit: BoxFit.contain, // or BoxFit.scaleDown
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
                           hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: 15),
                   Container(
-                    width: 55.w,
-                    height: 55.h,
+                    width: 50.w,
+                    height: 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
                         color: Colors.white.withOpacity(0.5), // Light grayish-white border
-                        width: 1.5, // Matches thin border in UI
+                        width: 2.0, // Matches thin border in UI
                       ),
-                      borderRadius: BorderRadius.circular(12.r), // Rounded corners
+                      borderRadius: BorderRadius.circular(10.r), // Rounded corners
                     ),
                     child: Center(
                       child: SvgPicture.asset(
@@ -1519,6 +1607,8 @@ class _SocialScreenState extends State<SocialScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -1639,11 +1729,11 @@ class _SocialScreenState extends State<SocialScreen> {
                   Expanded(
                     // Wraps TextField to provide bounded width
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24.0),
+                        borderRadius: BorderRadius.circular(32.0),
                         color: Colors.transparent,
-                        border: Border.all(color: AppColors.grey),
+                        border: Border.all(color: Color(0xffB6B6B6), width: 2.0),
                       ),
                       child: TextField(
                         controller: TextEditingController(),
@@ -1653,26 +1743,42 @@ class _SocialScreenState extends State<SocialScreen> {
                           fontSize: 18,
                         ),
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                          contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
                           isDense: true,
                           border: InputBorder.none,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 8), // optional spacing
+                            child: SizedBox(
+                              height: 20.h, // increase height
+                              width: 20.w, // increase width
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: SvgPicture.asset(
+                                  "assets/svg/s124.svg",
+                                  fit: BoxFit.contain, // or BoxFit.scaleDown
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
                           hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: 15),
                   Container(
-                    width: 55.w,
-                    height: 55.h,
+                    width: 50.w,
+                    height: 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
                         color: Colors.white.withOpacity(0.5), // Light grayish-white border
-                        width: 1.5, // Matches thin border in UI
+                        width: 2.0, // Matches thin border in UI
                       ),
-                      borderRadius: BorderRadius.circular(12.r), // Rounded corners
+                      borderRadius: BorderRadius.circular(10.r), // Rounded corners
                     ),
                     child: Center(
                       child: SvgPicture.asset(
@@ -1757,6 +1863,8 @@ class _StreamScreenState extends State<StreamScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -1877,11 +1985,11 @@ class _StreamScreenState extends State<StreamScreen> {
                   Expanded(
                     // Wraps TextField to provide bounded width
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24.0),
+                        borderRadius: BorderRadius.circular(32.0),
                         color: Colors.transparent,
-                        border: Border.all(color: AppColors.grey),
+                        border: Border.all(color: Color(0xffB6B6B6), width: 2.0),
                       ),
                       child: TextField(
                         controller: TextEditingController(),
@@ -1891,26 +1999,42 @@ class _StreamScreenState extends State<StreamScreen> {
                           fontSize: 18,
                         ),
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                          contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
                           isDense: true,
                           border: InputBorder.none,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 8), // optional spacing
+                            child: SizedBox(
+                              height: 20.h, // increase height
+                              width: 20.w, // increase width
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: SvgPicture.asset(
+                                  "assets/svg/s124.svg",
+                                  fit: BoxFit.contain, // or BoxFit.scaleDown
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
                           hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: 15),
                   Container(
-                    width: 55.w,
-                    height: 55.h,
+                    width: 50.w,
+                    height: 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
                         color: Colors.white.withOpacity(0.5), // Light grayish-white border
-                        width: 1.5, // Matches thin border in UI
+                        width: 2.0, // Matches thin border in UI
                       ),
-                      borderRadius: BorderRadius.circular(12.r), // Rounded corners
+                      borderRadius: BorderRadius.circular(10.r), // Rounded corners
                     ),
                     child: Center(
                       child: SvgPicture.asset(
@@ -1995,6 +2119,8 @@ class _GamingScreenState extends State<GamingScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -2115,11 +2241,11 @@ class _GamingScreenState extends State<GamingScreen> {
                   Expanded(
                     // Wraps TextField to provide bounded width
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24.0),
+                        borderRadius: BorderRadius.circular(32.0),
                         color: Colors.transparent,
-                        border: Border.all(color: AppColors.grey),
+                        border: Border.all(color: Color(0xffB6B6B6), width: 2.0),
                       ),
                       child: TextField(
                         controller: TextEditingController(),
@@ -2129,26 +2255,42 @@ class _GamingScreenState extends State<GamingScreen> {
                           fontSize: 18,
                         ),
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                          contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
                           isDense: true,
                           border: InputBorder.none,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 8), // optional spacing
+                            child: SizedBox(
+                              height: 20.h, // increase height
+                              width: 20.w, // increase width
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: SvgPicture.asset(
+                                  "assets/svg/s124.svg",
+                                  fit: BoxFit.contain, // or BoxFit.scaleDown
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
                           hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: 15),
                   Container(
-                    width: 55.w,
-                    height: 55.h,
+                    width: 50.w,
+                    height: 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
                         color: Colors.white.withOpacity(0.5), // Light grayish-white border
-                        width: 1.5, // Matches thin border in UI
+                        width: 2.0, // Matches thin border in UI
                       ),
-                      borderRadius: BorderRadius.circular(12.r), // Rounded corners
+                      borderRadius: BorderRadius.circular(10.r), // Rounded corners
                     ),
                     child: Center(
                       child: SvgPicture.asset(
@@ -2233,6 +2375,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -2353,11 +2497,11 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                   Expanded(
                     // Wraps TextField to provide bounded width
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24.0),
+                        borderRadius: BorderRadius.circular(32.0),
                         color: Colors.transparent,
-                        border: Border.all(color: AppColors.grey),
+                        border: Border.all(color: Color(0xffB6B6B6), width: 2.0),
                       ),
                       child: TextField(
                         controller: TextEditingController(),
@@ -2367,26 +2511,42 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                           fontSize: 18,
                         ),
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                          contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
                           isDense: true,
                           border: InputBorder.none,
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 8), // optional spacing
+                            child: SizedBox(
+                              height: 20.h, // increase height
+                              width: 20.w, // increase width
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: SvgPicture.asset(
+                                  "assets/svg/s124.svg",
+                                  fit: BoxFit.contain, // or BoxFit.scaleDown
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
                           hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: 15),
                   Container(
-                    width: 55.w,
-                    height: 55.h,
+                    width: 50.w,
+                    height: 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
                         color: Colors.white.withOpacity(0.5), // Light grayish-white border
-                        width: 1.5, // Matches thin border in UI
+                        width: 2.0, // Matches thin border in UI
                       ),
-                      borderRadius: BorderRadius.circular(12.r), // Rounded corners
+                      borderRadius: BorderRadius.circular(10.r), // Rounded corners
                     ),
                     child: Center(
                       child: SvgPicture.asset(

@@ -425,7 +425,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: selectedAmount == amount ? Color(0xff2C2C30) : Colors.transparent,
+              color: selectedAmount == amount ? Color(0xff2C2C30) : Color(0xff2C2C30),
             ),
             color: selectedAmount == amount ? null : const Color(0xFF161618), // Default color if gradient isn't applied
             gradient: selectedAmount == amount
@@ -441,8 +441,8 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                     end: Alignment.topCenter,
                     begin: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFF2C2C30),
                       Color(0xFF161618),
+                      Color(0xFF2C2C30),
                     ],
                   ),
           ),
@@ -765,16 +765,16 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [
-              Color(0xFF2C2C30),
-              Color(0xFF161618),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-          borderRadius: BorderRadius.circular(8),
-        ),
+            gradient: const LinearGradient(
+              end: Alignment.topCenter,
+              begin: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF161618),
+                Color(0xFF2C2C30),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: Color(0xff2C2C30))),
         child: Center(
           child: Text(
             text,

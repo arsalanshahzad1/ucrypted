@@ -181,7 +181,8 @@ class _GiftingScreenState extends State<GiftingScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      backgroundImage: "assets/images/onboard.png",
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -740,6 +741,7 @@ class _GiftingSucessState extends State<GiftingSucess> {
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -872,7 +874,7 @@ class _GiftingSucessState extends State<GiftingSucess> {
                           //   RoutingService.push(const RedeemStatus());
                           // },
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                            padding: EdgeInsets.symmetric(horizontal: 55.w, vertical: 30),
                             decoration: BoxDecoration(
                               color: AppColors.grey.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
@@ -885,7 +887,7 @@ class _GiftingSucessState extends State<GiftingSucess> {
                         ),
                       ],
                     ),
-                    15.vSpace,
+                    35.vSpace,
                     _transactionRow("Payment Method", "Wallet"),
                     10.vSpace,
                     _transactionRow("Amount", "\$200.00"),

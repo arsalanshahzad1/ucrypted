@@ -501,14 +501,18 @@ class _TradingScreenState extends State<TradingScreen> {
                                         7.hSpace,
                                         Text(
                                           "Month",
-                                          style: GoogleFonts.poppins(color: Color(0xff0F0F0F), fontSize: 11, fontWeight: FontWeight.w400),
+                                          style: GoogleFonts.poppins(
+                                            color: Color(0xff0F0F0F),
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
                                         7.hSpace,
                                         Icon(
                                           Icons.keyboard_arrow_down_sharp,
                                           color: Color(0xff0F0F0F),
                                           size: 16,
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -527,6 +531,23 @@ class _TradingScreenState extends State<TradingScreen> {
                           ),
                         ),
                         10.vSpace,
+                        if (isTable == true) ...[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _buildIndicator("MA"),
+                              _buildIndicator("EMA"),
+                              _buildIndicator("BOLL"),
+                              _buildIndicator("SAR"),
+                              _buildIndicator("AVL"),
+                              _buildIndicator("MACD"),
+                              _buildIndicator("RSI"),
+                              _buildIndicator("KDJ"),
+                              _buildIndicator("V"),
+                            ].map((child) => Expanded(child: Center(child: child))).toList(),
+                          ),
+                          20.vSpace,
+                        ],
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -660,7 +681,8 @@ class _TradingScreenState extends State<TradingScreen> {
                         Container(
                           height: 4.h,
                           width: 45.w,
-                          decoration: BoxDecoration(color: Color(0xff4598D3)),),
+                          decoration: BoxDecoration(color: Color(0xff4598D3)),
+                        ),
                       ],
                     ),
                     const Divider(
@@ -680,8 +702,32 @@ class _TradingScreenState extends State<TradingScreen> {
                         ],
                       ),
                     ),
-                    customBidRow(),
-                    customBidRow(),
+                    Stack(
+                      children: [
+                        customBidRow(),
+                        Positioned(
+                          left: 35.w,
+                          child: Container(
+                            height: 30.h,
+                            width: 120.w,
+                            decoration: BoxDecoration(color: Color(0xFF38B781).withOpacity(0.2)),
+                          ),
+                        )
+                      ],
+                    ),
+                    Stack(
+                      children: [
+                        customBidRow(),
+                        Positioned(
+                          right: 70.w,
+                          child: Container(
+                            height: 28.h,
+                            width: 90.w,
+                            decoration: BoxDecoration(color: Color(0xFFFF545E).withOpacity(0.2)),
+                          ),
+                        )
+                      ],
+                    ),
                     customBidRow(),
                     customBidRow(),
                     customBidRow(),
@@ -817,6 +863,19 @@ class _TradingScreenState extends State<TradingScreen> {
     );
   }
 
+  Widget _buildIndicator(String label) {
+    return Text(
+      label,
+      textAlign: TextAlign.center,
+      style: GoogleFonts.spaceGrotesk(
+        color: Colors.white.withOpacity(0.5),
+        fontSize: 11,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 1,
+      ),
+    );
+  }
+
   Widget exchangeWidget(String image) {
     return Container(
       // height: 100.h,
@@ -902,7 +961,7 @@ class _TradingScreenState extends State<TradingScreen> {
 
   Widget customBidRow() {
     return Padding(
-      padding: const EdgeInsets.only(top: 2.0),
+      padding: const EdgeInsets.only(top: 5.0, bottom: 2),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -436,11 +436,16 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                 children: [
                   Row(
                     children: [
-                      Text(
-                        "Reference",
-                        style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: 14, fontWeight: FontWeight.w400),
+                      Row(
+                        children: [
+                          Text(
+                            "Reference",
+                            style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: 14, fontWeight: FontWeight.w400),
+                          ),
+                          4.hSpace,
+                          const Icon(Icons.help_outline, color: Colors.grey, size: 14),
+                        ],
                       ),
-                      4.hSpace,
                     ],
                   ),
                   Row(
@@ -827,7 +832,7 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                 ),
                 Text(
                   "  -2,62   ",
-                  style: GoogleFonts.poppins( 
+                  style: GoogleFonts.poppins(
                     color: Color(0xffD33535),
                     fontSize: 12,
                     fontWeight: FontWeight.w400,

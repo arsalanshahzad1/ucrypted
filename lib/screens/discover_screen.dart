@@ -92,7 +92,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 26),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             children: [
               10.vSpace,
@@ -159,17 +159,17 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               ),
               20.vSpace,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: _buildSection("Shortcut", ["Send", "Request", "Withdraw", "Add wallet", "Deposit", "Edit Wallet", "Buy Crypto", "Sell Crypto"]),
               ),
               const SizedBox(height: 16),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: _buildSection("Recommended", ["Trade", "P2P", "Gift card", "Esim", "Utility Payment", "Gift Redeem", "Mobile Top-Up", "Nauta Cuba"]),
               ),
               const SizedBox(height: 16),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: _buildSection("Others", ["Order History", "Campaign", "Tier Payments", "Disable Ac."]),
               ),
               40.vSpace,
@@ -206,16 +206,16 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
     return Container(
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xFF13171A),
-            Color.fromARGB(255, 29, 29, 31),
-          ],
-          end: Alignment.topCenter,
-          begin: Alignment.bottomCenter,
-        ),
-        borderRadius: BorderRadius.circular(12),
-      ),
+          gradient: const LinearGradient(
+            colors: [
+              Color(0xFF13171A),
+              Color.fromARGB(255, 29, 29, 31),
+            ],
+            end: Alignment.topCenter,
+            begin: Alignment.bottomCenter,
+          ),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: const Color(0xff2C2C30))),
       // padding: const EdgeInsets.all(12),
       child: Column(
         children: [
@@ -250,7 +250,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
                 mainAxisSpacing: 10,
-                crossAxisSpacing: 16,
+                // crossAxisSpacing: 16,
                 childAspectRatio: 0.9,
               ),
               itemCount: labels.length,
@@ -265,12 +265,12 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       Center(
                         child: SvgPicture.asset(
                           iconMap[labels[index]] ?? "assets/images/chats.png",
-                          width: 20,
-                          height: 20,
+                          width: 25.w,
+                          height: 25.h,
                           fit: BoxFit.contain,
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 14.h),
                       SizedBox(
                         width: double.infinity,
                         child: Text(
@@ -280,7 +280,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           softWrap: false,
                           style: GoogleFonts.inter(
                             color: Colors.white,
-                            fontSize: 12,
+                            fontSize: 10,
                             fontWeight: FontWeight.w500,
                           ),
                           textAlign: TextAlign.center,

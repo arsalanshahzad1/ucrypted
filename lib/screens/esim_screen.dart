@@ -50,6 +50,8 @@ class _ESimScreenState extends State<ESimScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -141,7 +143,7 @@ class _ESimScreenState extends State<ESimScreen> {
                         },
                         child: const CircleAvatar(
                           backgroundColor: AppColors.disableBtnColor,
-                          radius: 15,
+                          radius: 22,
                           backgroundImage: AssetImage("assets/images/person.png"),
                         ),
                       ),
@@ -157,11 +159,11 @@ class _ESimScreenState extends State<ESimScreen> {
               ),
               20.vSpace,
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24.0),
+                  borderRadius: BorderRadius.circular(32.0),
                   color: Colors.transparent,
-                  border: Border.all(color: AppColors.grey),
+                  border: Border.all(color: Color(0xffB6B6B6), width: 1.0),
                 ),
                 child: TextField(
                   controller: TextEditingController(),
@@ -171,9 +173,24 @@ class _ESimScreenState extends State<ESimScreen> {
                     fontSize: 18,
                   ),
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+                    contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
                     isDense: true,
                     border: InputBorder.none,
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 8), // optional spacing
+                      child: SizedBox(
+                        height: 20.h, // increase height
+                        width: 20.w, // increase width
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: SvgPicture.asset(
+                            "assets/svg/s124.svg",
+                            fit: BoxFit.contain, // or BoxFit.scaleDown
+                          ),
+                        ),
+                      ),
+                    ),
+
                     // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                     hintText: "Where do you need internet?",
                     hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
@@ -237,7 +254,7 @@ class _ESimScreenState extends State<ESimScreen> {
                           },
                           countryName: isUSA ? "USA" : "Turkey",
                           rating: "4.6",
-                          flagAsset:  "assets/images/ex.png",
+                          flagAsset: "assets/images/ex.png",
                           esimIcon: "assets/svg/esim.svg",
                         );
                       },
@@ -362,7 +379,6 @@ class CountryCard extends StatelessWidget {
   }
 }
 
-
 class CountryCard2 extends StatelessWidget {
   final VoidCallback onTap;
   final String countryName;
@@ -483,7 +499,7 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
     width: double.infinity,
     height: height,
     decoration: const BoxDecoration(
-      color: AppColors.disableBtnColor,
+      color: Color(0xff212121),
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(20),
         topRight: Radius.circular(20),
@@ -496,10 +512,10 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
         children: <Widget>[
           Text(
             "United States of America",
-            style: GoogleFonts.inter(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+            style: GoogleFonts.poppins(
+              color: Color(0xffFAFAFA),
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 5),
@@ -510,13 +526,13 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
                 children: [
                   Text(
                     "Rating 4.6 ",
-                    style: GoogleFonts.inter(color: Colors.white),
+                    style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 13),
                   ),
-                  SvgPicture.asset(
-                    "assets/svg/star1.svg",
-                    height: 16,
-                    width: 16,
-                  ),
+                  Icon(
+                    Icons.star,
+                    color: Color(0xffFFAE00),
+                    size: 16,
+                  )
                 ],
               ),
               GestureDetector(
@@ -537,7 +553,7 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
                       const SizedBox(width: 5),
                       Text(
                         "Check compatibility",
-                        style: GoogleFonts.inter(color: Colors.white, fontSize: 10),
+                        style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: 12, fontWeight: FontWeight.w400),
                       ),
                     ],
                   ),
@@ -548,7 +564,7 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
           const SizedBox(height: 15),
           Text(
             "Number of Days",
-            style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+            style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 5),
           Container(
@@ -561,18 +577,18 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Select here", style: GoogleFonts.inter(color: Colors.white, fontSize: 14)),
+                Text("Select here", style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w400)),
                 const Icon(Icons.arrow_drop_down, color: Colors.white),
               ],
             ),
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 4),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "More details on data plan",
-                style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),
               ),
               const Icon(Icons.arrow_drop_down, color: Colors.white),
             ],
@@ -606,10 +622,10 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
                       child: Center(
                         child: Text(
                           labels[index],
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontSize: 12,
-                            fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w600,
                           ),
                         ),
                       ),
@@ -620,129 +636,131 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
             );
           }),
           const SizedBox(height: 15),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            decoration: BoxDecoration(
-              border: const Border(
-                top: BorderSide(color: AppColors.grey),
-                left: BorderSide(color: AppColors.grey),
-                right: BorderSide(color: AppColors.grey),
-                bottom: BorderSide.none,
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              decoration: BoxDecoration(
+                border: const Border(
+                  top: BorderSide(color: AppColors.grey),
+                  left: BorderSide(color: AppColors.grey),
+                  right: BorderSide(color: AppColors.grey),
+                  bottom: BorderSide.none,
+                ),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(4),
+                  topRight: Radius.circular(4),
+                ),
               ),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(4),
-                topRight: Radius.circular(4),
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Choose a recommended data only plan", style: GoogleFonts.inter(color: Colors.white, fontSize: 12)),
-                const SizedBox(height: 15),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 75.h,
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white54),
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("15 Days 2GB", style: GoogleFonts.inter(color: Colors.white, fontSize: 8)),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text("\$ 50.00", style: GoogleFonts.inter(color: Colors.white, fontSize: 14)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Container(
-                        height: 75.h,
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        decoration: BoxDecoration(
-                          border: GradientBoxBorder(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomRight,
-                              colors: [Color(0xFFFCA509), Color(0xFF880306)],
-                            ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Choose a recommended data only plan", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: 12, fontWeight: FontWeight.w400)),
+                  const SizedBox(height: 15),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 75.h,
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white54),
+                            borderRadius: BorderRadius.circular(2),
                           ),
-                          borderRadius: BorderRadius.circular(2),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("15 Days 2GB", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: 6, fontWeight: FontWeight.w400)),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text("\$ 50.00", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: 12, fontWeight: FontWeight.w600)),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("15 Days 2GB", style: GoogleFonts.inter(color: Colors.white, fontSize: 8)),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text("\$ 50.00", style: GoogleFonts.inter(color: Colors.white, fontSize: 14)),
-                              ],
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Container(
+                          height: 75.h,
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          decoration: BoxDecoration(
+                            border: GradientBoxBorder(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomRight,
+                                colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                              ),
                             ),
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("15 Days 2GB", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: 6, fontWeight: FontWeight.w400)),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text("\$ 50.00", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: 12, fontWeight: FontWeight.w600)),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(border: Border.all(color: AppColors.grey)),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.remove, color: Colors.white),
+                            const SizedBox(width: 10),
+                            Text("1", style: GoogleFonts.poppins(fontWeight: FontWeight.w500, color: Color(0xffFAFAFA), fontSize: 8)),
+                            const SizedBox(width: 10),
+                            const Icon(Icons.add, color: Colors.white),
                           ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(border: Border.all(color: AppColors.grey)),
-                      child: Row(
-                        children: [
-                          const Icon(Icons.remove, color: Colors.white),
-                          const SizedBox(width: 10),
-                          Text("1", style: GoogleFonts.inter(color: Colors.white, fontSize: 18)),
-                          const SizedBox(width: 10),
-                          const Icon(Icons.add, color: Colors.white),
-                        ],
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Total", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: 12, fontWeight: FontWeight.w500)),
+                      Text("\$20.00", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: 16, fontWeight: FontWeight.w600)),
+                    ],
+                  ),
+                  const SizedBox(height: 25),
+                  GestureDetector(
+                    onTap: () {
+                      RoutingService.push(const ESimBuyScreen());
+                    },
+                    child: Container(
+                      height: 40.h,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Total", style: GoogleFonts.inter(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w300)),
-                    Text("\$20.00", style: GoogleFonts.inter(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
-                  ],
-                ),
-                const SizedBox(height: 25),
-                GestureDetector(
-                  onTap: () {
-                    RoutingService.push(const ESimBuyScreen());
-                  },
-                  child: Container(
-                    height: 40.h,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Buy Now",
-                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 16),
+                      child: Center(
+                        child: Text(
+                          "Buy Now",
+                          style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 12),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
@@ -980,6 +998,8 @@ class _DeviceCheckerScreenState extends State<DeviceCheckerScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -1231,6 +1251,8 @@ class _DeviceCheckerScreen1State extends State<DeviceCheckerScreen1> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -1465,6 +1487,8 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -1556,7 +1580,7 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
                         },
                         child: const CircleAvatar(
                           backgroundColor: AppColors.disableBtnColor,
-                          radius: 15,
+                          radius: 22,
                           backgroundImage: AssetImage("assets/images/person.png"),
                         ),
                       ),
@@ -1726,6 +1750,8 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -1817,7 +1843,7 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
                         },
                         child: const CircleAvatar(
                           backgroundColor: AppColors.disableBtnColor,
-                          radius: 15,
+                          radius: 22,
                           backgroundImage: AssetImage("assets/images/person.png"),
                         ),
                       ),
@@ -1987,6 +2013,8 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -2088,15 +2116,44 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
                 ],
               ),
               30.vSpace,
-              Text("United States of America", style: GoogleFonts.inter(color: AppColors.white, fontSize: 18, fontWeight: FontWeight.w600)),
+              Text("United States of America", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: 18, fontWeight: FontWeight.w600)),
               20.vSpace,
-              Text("Payment Method", style: GoogleFonts.inter(color: AppColors.white, fontSize: 16)),
+              Text(
+                "Amount",
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+              ),
+              10.vSpace,
+              TextField(
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                decoration: InputDecoration(
+                  fillColor: Colors.transparent,
+                  filled: true,
+                  hintText: '\$150',
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                ),
+              ),
+              20.vSpace,
+              Text("Payment ", style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400)),
               10.vSpace,
               SizedBox(
                 width: double.infinity,
                 child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.grey),
+                    color: const Color(0xFF212121),
+                    border: Border.all(color: Color(0xffCCCCCC)),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -2107,16 +2164,21 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
                       value: selectedPaymentMethod,
                       hint: Text(
                         "Select Payment Method",
-                        style: GoogleFonts.inter(color: Colors.white),
+                        style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),
                       ),
-                      icon: const Icon(Icons.arrow_drop_down, color: Colors.white),
-                      items: [
-                        "Wallet",
-                        "Credit Card",
-                      ]
+                      icon: Row(
+                        children: [
+                          Image.asset(
+                            "assets/images/drop.png",
+                            color: Colors.white,
+                          ),
+                          5.hSpace,
+                        ],
+                      ),
+                      items: ["Visa", "MasterCard", "PayPal"]
                           .map((method) => DropdownMenuItem(
                                 value: method,
-                                child: Text(method, style: GoogleFonts.inter(color: Colors.white)),
+                                child: Text(method, style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 12)),
                               ))
                           .toList(),
                       onChanged: (value) {
@@ -2128,114 +2190,73 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
                   ),
                 ),
               ),
-              if (selectedPaymentMethod == "Credit Card") ...[
-                20.vSpace,
-                Text(
-                  "Cardholder Name",
-                  style: GoogleFonts.inter(
-                    color: AppColors.white,
-                    fontSize: 14,
-                  ),
-                ),
-                10.vSpace,
-                CustomTextField(
-                  controller: TextEditingController(),
-                  keyboardType: TextInputType.name,
-                  isPassword: false,
-                  hintText: "Enter Cardholder Name",
-                ),
-                10.vSpace,
-                Text(
-                  "Expiration Date",
-                  style: GoogleFonts.inter(
-                    color: AppColors.white,
-                    fontSize: 14,
-                  ),
-                ),
-                10.vSpace,
-                CustomTextField(
-                  controller: TextEditingController(),
-                  keyboardType: TextInputType.datetime,
-                  isPassword: false,
-                  hintText: "MM/YY",
-                ),
-                10.vSpace,
-                Text(
-                  "CVV",
-                  style: GoogleFonts.inter(
-                    color: AppColors.white,
-                    fontSize: 14,
-                  ),
-                ),
-                10.vSpace,
-                CustomTextField(
-                  controller: TextEditingController(),
-                  keyboardType: TextInputType.number,
-                  isPassword: true,
-                  hintText: "Enter CVV",
-                ),
-              ],
+              // if (selectedPaymentMethod == "Credit Card") ...[
+              //   20.vSpace,
+              //   Text(
+              //     "Cardholder Name",
+              //     style: GoogleFonts.inter(
+              //       color: AppColors.white,
+              //       fontSize: 14,
+              //     ),
+              //   ),
+              //   10.vSpace,
+              //   CustomTextField(
+              //     controller: TextEditingController(),
+              //     keyboardType: TextInputType.name,
+              //     isPassword: false,
+              //     hintText: "Enter Cardholder Name",
+              //   ),
+              //   10.vSpace,
+              //   Text(
+              //     "Expiration Date",
+              //     style: GoogleFonts.inter(
+              //       color: AppColors.white,
+              //       fontSize: 14,
+              //     ),
+              //   ),
+              //   10.vSpace,
+              //   CustomTextField(
+              //     controller: TextEditingController(),
+              //     keyboardType: TextInputType.datetime,
+              //     isPassword: false,
+              //     hintText: "MM/YY",
+              //   ),
+              //   10.vSpace,
+              //   Text(
+              //     "CVV",
+              //     style: GoogleFonts.inter(
+              //       color: AppColors.white,
+              //       fontSize: 14,
+              //     ),
+              //   ),
+              //   10.vSpace,
+              //   CustomTextField(
+              //     controller: TextEditingController(),
+              //     keyboardType: TextInputType.number,
+              //     isPassword: true,
+              //     hintText: "Enter CVV",
+              //   ),
+              // ],
               20.vSpace,
-              Text(
-                "Phone Number",
-                style: GoogleFonts.inter(
-                  color: AppColors.white,
-                  fontSize: 14,
-                ),
-              ),
-              10.vSpace,
-              CustomTextField(
-                controller: TextEditingController(),
-                keyboardType: TextInputType.phone,
-                isPassword: false,
-                hintText: "Enter phone number",
-              ),
-              10.vSpace,
-              Text(
-                "Amount",
-                style: GoogleFonts.inter(
-                  color: AppColors.white,
-                  fontSize: 14,
-                ),
-              ),
-              10.vSpace,
-              CustomTextField(
-                controller: TextEditingController(),
-                keyboardType: TextInputType.number,
-                isPassword: false,
-                hintText: "Enter amount",
-              ),
-              5.vSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    "Select an amount between \$20.00 - \$1000.00",
-                    style: GoogleFonts.inter(color: Colors.white54, fontSize: 12),
+                    "Available balance",
+                    style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
-              15.vSpace,
               Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Checkbox(
-                    value: isChecked,
-                    activeColor: Colors.orange,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value ?? false;
-                      });
-                    },
-                  ),
-                  Expanded(
-                    child: Text(
-                      "By clicking 'Buy Now', you agree to our Terms and Conditions, including our Cancellation Policy.",
-                      style: GoogleFonts.inter(color: AppColors.white, fontSize: 12),
-                    ),
+                  Text(
+                    "\$400.00",
+                    style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),
                   ),
                 ],
               ),
-              200.vSpace,
+              150.vSpace,
               GestureDetector(
                 onTap: () {
                   RoutingService.push(const ESimBuySuccessScreen());
@@ -2297,6 +2318,8 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/background1.png",
+      fit: BoxFit.fill,
       bottomNavChild: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 28, 28, 30),
@@ -2392,7 +2415,7 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
                         },
                         child: const CircleAvatar(
                           backgroundColor: AppColors.disableBtnColor,
-                          radius: 15,
+                          radius: 22,
                           backgroundImage: AssetImage("assets/images/person.png"),
                         ),
                       ),
@@ -2418,21 +2441,24 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
                 ],
               ),
               20.vSpace,
-              Text(
-                "Your Transactions has been Successfully Proceed!",
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Text(
+                  "Your Transactions has been Successfully Proceed!",
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
               30.vSpace,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Container(
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), border: Border.all(color: AppColors.grey)),
+                  decoration: BoxDecoration(color: Color(0xff151515).withOpacity(0.5), borderRadius: BorderRadius.circular(12), border: Border.all(color: Color(0xffCCCCCC))),
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -2441,27 +2467,27 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                            padding: EdgeInsets.symmetric(horizontal: 70.w, vertical: 15),
                             decoration: BoxDecoration(
                               color: AppColors.grey.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
                               "Esim Details",
-                              style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 18),
+                              style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w600, fontSize: 18),
                             ),
                           ),
                         ],
                       ),
-                      10.vSpace,
+                      35.vSpace,
                       _transactionRow("Payment Method", "Wallet"),
-                      5.vSpace,
-                      _transactionRow("Top-up Amount", "\$100.00"),
-                      5.vSpace,
-                      _transactionRow("Country", "USA"),
-                      5.vSpace,
-                      _transactionRow("Plan", "5GB(30 Days)"),
                       10.vSpace,
+                      _transactionRow("Top-up Amount", "\$100.00"),
+                      10.vSpace,
+                      _transactionRow("Country", "USA"),
+                      10.vSpace,
+                      _transactionRow("Plan", "5GB(30 Days)"),
+                      20.vSpace,
                       const Divider(color: AppColors.grey),
                       20.vSpace,
                       GestureDetector(
@@ -2481,7 +2507,7 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
                                 10.hSpace,
                                 Text(
                                   "Download Plan Details",
-                                  style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 16),
+                                  style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 16),
                                 ),
                               ],
                             ),
@@ -2509,7 +2535,7 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
                                 10.hSpace,
                                 Text(
                                   "Send to email",
-                                  style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 16),
+                                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.normal, fontSize: 16),
                                 ),
                               ],
                             ),
@@ -2524,7 +2550,7 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
               Text(
                 "For any discrepancies or complaints, please contact: support@ucrypted.com. The top-up should reflect in the recipient's account shortly. If you encounter any issues, feel free to contact our support team.",
                 textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(color: AppColors.grey, fontWeight: FontWeight.w300, fontSize: 12),
+                style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w300, fontSize: 12),
               ),
               10.vSpace,
             ],
@@ -2543,17 +2569,18 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
             child: Text(
               label,
               style: GoogleFonts.poppins(
-                color: Colors.grey,
+                color: Color(0xffDADADA),
                 fontSize: 14,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),
           Text(
             value,
             style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontSize: 14,
-              fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+              color: Color(0xffFAFAFA),
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],

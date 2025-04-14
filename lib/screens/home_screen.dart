@@ -8,6 +8,8 @@ import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/convert_screen.dart';
 import 'package:ucrypted_app/screens/deposit_crypto_screen.dart';
 import 'package:ucrypted_app/screens/discover_screen.dart';
+import 'package:ucrypted_app/screens/discover_send_screen.dart';
+import 'package:ucrypted_app/screens/discover_withdraw_screen.dart';
 import 'package:ucrypted_app/screens/gift_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/screens/trading_screen.dart';
@@ -254,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        isBalanceHide = !isBalanceHide;
+                        showConverter = !showConverter;
                       });
                     },
                   ),
@@ -265,7 +267,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   10.hSpace,
                   Text(
-                    isBalanceHide ? "\$12,765.00" : "•••••••",
+                    "\$12,765.00",
                     style: GoogleFonts.inter(
                       fontWeight: FontWeight.w600,
                       fontSize: 36,
@@ -280,31 +282,31 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    buildActionButton(Icons.arrow_upward, "Send", () {}),
+                    buildActionButton(Icons.arrow_upward, "Send", () {
+                      RoutingService.push(const DiscoverSendScreen());
+                    }),
                     10.hSpace,
                     buildActionButton(Icons.arrow_downward, "Deposit", () {
                       RoutingService.push(const DepositCryptoscreen());
                     }),
                     10.hSpace,
-                    buildActionButton(Icons.arrow_downward, "Withdraw", () {}),
+                    buildActionButton(Icons.arrow_downward, "Withdraw", () {
+                      RoutingService.push(const DiscoverWithdrawScreen());
+                    }),
                   ],
                 ),
               ),
               35.vSpace,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Balances", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white)),
-                  GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          showConverter = !showConverter;
-                        });
-                      },
-                      child: Text("See all", style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xff838383)))),
-                ],
-              ),
-              25.vSpace,
+              if (!showConverter) ...[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Balances", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white)),
+                    GestureDetector(onTap: () {}, child: Text("See all", style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xff838383)))),
+                  ],
+                ),
+                25.vSpace,
+              ],
               if (showConverter == false) ...[
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -786,7 +788,10 @@ class _HomePageState extends State<HomePage> {
             child: SizedBox(
               height: 180.h,
               width: 180.w,
-              child: Image.asset(asset),
+              child: Image.asset(
+                asset,
+                color: Color(0xff202226).withOpacity(0.5),
+              ),
             ),
           ),
 
@@ -797,7 +802,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.white, width: 1.0),
-              color: Color(0xff202226).withOpacity(0.5),
+              color: Color(0xff202226).withOpacity(0.2),
               borderRadius: BorderRadius.circular(18),
             ),
             child: Column(
@@ -812,7 +817,6 @@ class _HomePageState extends State<HomePage> {
                         image,
                         height: 45,
                         width: 45,
-                        
                       ),
                       15.hSpace,
                       Text(

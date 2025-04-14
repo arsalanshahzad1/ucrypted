@@ -15,12 +15,14 @@ class DiscoverWithdrawScreen extends StatefulWidget {
 
 class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
   String selectedCrypto = "BTC";
-  TextEditingController amountController = TextEditingController(text: "0.121412");
+  TextEditingController amountController = TextEditingController(text: "0.121412|");
   TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/topupbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -125,18 +127,18 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                     Text(
                       "1 BTC : 71,350.70 USD",
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.inter(color: AppColors.grey, fontSize: 12, fontWeight: FontWeight.w400),
+                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
                 const SizedBox(height: 24),
-                const Divider(color: Color(0xFF2E2E2E)),
+                const Divider(color: Color(0xFF2C2C30)),
                 const SizedBox(height: 24),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Select withdrawal address",
-                    style: GoogleFonts.inter(color: AppColors.grey, fontSize: 14, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -144,7 +146,7 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: AppColors.grey),
+                    border: Border.all(color: Color(0xff2C2C30)),
                   ),
                   child: Row(
                     children: [
@@ -155,7 +157,7 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                           decoration: InputDecoration(
                             hintText: "Enter email address",
                             hintStyle: GoogleFonts.inter(
-                              color: Colors.grey,
+                              color: Color(0xffACB5BB),
                               fontWeight: FontWeight.w400,
                               fontSize: 14,
                             ),
