@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -86,22 +87,47 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      padding: const EdgeInsets.only(left: 12, right: 6, top: 8, bottom: 8),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF2C2C30),
-                        borderRadius: BorderRadius.circular(8),
+                        color: const Color(0xFF2C2C30), // Background color
+                        borderRadius: BorderRadius.circular(8), // Rounded corners
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(Icons.currency_bitcoin, color: Colors.white),
-                          8.hSpace,
-                          Text(selectedCrypto, style: GoogleFonts.inter(color: Colors.white, fontSize: 14)),
-                          4.hSpace,
-                          const Icon(Icons.keyboard_arrow_down, color: Colors.white),
+                          Container(
+                            height: 28,
+                            width: 28,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF3A3A3F), // Circle behind icon
+                              shape: BoxShape.circle,
+                            ),
+                            alignment: Alignment.center,
+                            child: SvgPicture.asset(
+                              "assets/svg/tkn1.svg",
+                              height: 22.h,
+                              width: 22.w,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            "BTC",
+                            style: GoogleFonts.inter(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          const Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            color: Color(0xFF8E8E93),
+                            size: 22,
+                          ),
                         ],
                       ),
-                    ),
+                    )
                   ],
                 ),
                 30.vSpace,
@@ -153,7 +179,7 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                       Expanded(
                         child: TextField(
                           controller: emailController,
-                          style: GoogleFonts.inter(color: Colors.white),
+                          style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
                           decoration: InputDecoration(
                             hintText: "Enter email address",
                             hintStyle: GoogleFonts.inter(
@@ -162,7 +188,7 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                               fontSize: 14,
                             ),
                             border: InputBorder.none,
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 16,vertical: 12),
                           ),
                         ),
                       ),

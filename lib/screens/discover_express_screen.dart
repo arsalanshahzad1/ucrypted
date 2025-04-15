@@ -58,6 +58,8 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
     _tabController = TabController(length: 2, vsync: this);
   }
 
+  bool isSwapped = false;
+
   @override
   void dispose() {
     _tabController.dispose();
@@ -67,6 +69,8 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/p2pbg.png",
+      fit: BoxFit.cover,
       bottomNavChild: selectedIndex == 0
           ? Container(
               decoration: const BoxDecoration(
@@ -143,7 +147,9 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                           // Inner Navigation
                           onTap: () {
                             if (index == 1) {
-                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                              RoutingService.pushReplacement(const DiscoverP2PScreen(
+                                fromExpress: false,
+                              ));
                             } else if (index == 2) {
                               RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
                             } else if (index == 3) {
@@ -166,8 +172,8 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       )
                                     : GradientText(
@@ -178,8 +184,8 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                               ),
@@ -189,8 +195,8 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     maxLines: 1,
@@ -199,7 +205,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
 
                                   return Container(
                                     width: textPainter.width, // Dynamic width
-                                    height: 2,
+                                    height: 1,
                                     // margin: const EdgeInsets.only(top: 4),
                                     decoration: BoxDecoration(
                                       gradient: selectedIndex == index
@@ -271,7 +277,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                 Visibility(
                     visible: selectedIndex == 1,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: p2pDetail(),
                     )),
               ],
@@ -385,7 +391,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
     );
   }
 
-  Widget p2pBottomSheet(double height, String title, String subtitle, VoidCallback onTap, BuildContext c) {
+  Widget p2pBottomSheet(double height, VoidCallback onTap, BuildContext c) {
     return Container(
       width: double.infinity,
       height: height,
@@ -473,13 +479,16 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
               ),
             ),
           ),
-          20.vSpace,
+          // 20.vSpace,
+          Spacer(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: GestureDetector(
               onTap: () {
-                Get.back();
-                // RoutingService.push(const PaymentSelectScreenP2P());
+                // Get.back();
+                RoutingService.push(const DiscoverP2PScreen(
+                  fromExpress: true,
+                ));
               },
               child: Container(
                 height: 50,
@@ -519,8 +528,10 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: GestureDetector(
               onTap: () {
-                Get.back();
-                // RoutingService.push(const PaymentSelectScreenP2P());
+                // Get.back();
+                RoutingService.push(const DiscoverP2PScreen(
+                  fromExpress: true,
+                ));
               },
               child: Container(
                 height: 50,
@@ -538,6 +549,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
               ),
             ),
           ),
+          10.vSpace,
         ],
       ),
     );
@@ -558,17 +570,8 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                   height: 110.h,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
-                    color: Color(0xff0000003).withOpacity(0.1),
+                    color: const Color(0xff0000003).withOpacity(0.1),
                     borderRadius: BorderRadius.circular(10),
-                    // gradient: RadialGradient(
-                    //   center: Alignment.bottomRight,
-                    //   radius: 1.0,
-                    //   colors: [
-                    //     Colors.green.withOpacity(0.2),
-                    //     Colors.transparent,
-                    //   ],
-                    //   stops: const [0.2, 1.0],
-                    // ),
                   ),
                   child: Column(
                     children: [
@@ -578,7 +581,11 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                         children: [
                           Text(
                             "Your Pay",
-                            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                            style: GoogleFonts.inter(
+                              color: AppColors.white,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
                           ),
                         ],
                       ),
@@ -588,10 +595,12 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                         children: [
                           Row(
                             children: [
-                              const CircleAvatar(
+                              CircleAvatar(
                                 radius: 20,
                                 backgroundColor: Colors.blue,
-                                backgroundImage: AssetImage("assets/images/dol1.png"),
+                                backgroundImage: AssetImage(
+                                  isSwapped ? "assets/images/dol.png" : "assets/images/dol1.png",
+                                ),
                               ),
                               10.hSpace,
                               Column(
@@ -600,13 +609,18 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                   Row(
                                     children: [
                                       Text(
-                                        "DOLLAR",
-                                        style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 22, color: Colors.white),
+                                        isSwapped ? "USDC" : "DOLLAR",
+                                        style: GoogleFonts.inter(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 22,
+                                          color: Colors.white,
+                                        ),
                                       ),
-                                      // 10.hSpace,
                                       GestureDetector(
                                         onTap: () {
-                                          RoutingService.push(const DepositCryptoscreen());
+                                          RoutingService.push(
+                                            const DepositCryptoscreen(),
+                                          );
                                         },
                                         child: const Icon(
                                           Icons.arrow_drop_down_outlined,
@@ -624,7 +638,11 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                             children: [
                               Text(
                                 "0\$",
-                                style: GoogleFonts.poppins(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
+                                style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ],
                           ),
@@ -636,7 +654,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                 15.vSpace,
                 Stack(
                   children: [
-                    // Gradient layer 1 (bottomLeft - blue)
+                    // Gradient layer 1
                     Container(
                       height: 110.h,
                       decoration: BoxDecoration(
@@ -652,7 +670,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                         ),
                       ),
                     ),
-                    // Gradient layer 2 (bottomRight - green)
+                    // Gradient layer 2
                     Container(
                       height: 110.h,
                       decoration: BoxDecoration(
@@ -672,9 +690,6 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                     Container(
                       height: 110.h,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
                       child: Column(
                         children: [
                           20.vSpace,
@@ -700,7 +715,9 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                   CircleAvatar(
                                     radius: 20,
                                     backgroundColor: Colors.blue.withOpacity(.6),
-                                    backgroundImage: AssetImage("assets/images/dol.png"),
+                                    backgroundImage: AssetImage(
+                                      isSwapped ? "assets/images/dol1.png" : "assets/images/dol.png",
+                                    ),
                                   ),
                                   10.hSpace,
                                   Column(
@@ -709,7 +726,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                       Row(
                                         children: [
                                           Text(
-                                            "USDC",
+                                            isSwapped ? "DOLLAR" : "USDC",
                                             style: GoogleFonts.inter(
                                               fontWeight: FontWeight.w600,
                                               fontSize: 22,
@@ -718,9 +735,11 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                           ),
                                           GestureDetector(
                                             onTap: () {
-                                              RoutingService.push(const DepositCryptoscreen());
+                                              RoutingService.push(
+                                                const DepositCryptoscreen(),
+                                              );
                                             },
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.arrow_drop_down_outlined,
                                               color: Colors.white,
                                             ),
@@ -753,14 +772,23 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                 ),
               ],
             ),
+            // Convert icon
             Positioned(
               top: 95.h,
               child: Center(
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isSwapped = !isSwapped;
+                    });
+                  },
                   child: SvgPicture.asset(
-                "assets/svg/convert.svg",
-                height: 48.h,
-                width: 48.w,
-              )),
+                    "assets/svg/convert.svg",
+                    height: 48.h,
+                    width: 48.w,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
@@ -858,7 +886,12 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
         40.vSpace,
         GestureDetector(
           onTap: () {
-            RoutingService.push(const P2PConfirmScreen());
+            // RoutingService.push(const P2PConfirmScreen());
+            Get.bottomSheet(
+              p2pBottomSheet(400.h, () {
+                // RoutingService.push(const InputRecoverySuccessScreen());
+              }, context),
+            );
           },
           child: Container(
             height: 50,
@@ -1021,7 +1054,9 @@ class _P2PConfirmScreenState extends State<P2PConfirmScreen> {
                           // Inner Navigation
                           onTap: () {
                             if (j == 1) {
-                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                              RoutingService.pushReplacement(const DiscoverP2PScreen(
+                                fromExpress: false,
+                              ));
                             } else if (j == 2) {
                               RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
                             } else if (j == 3) {
@@ -1497,7 +1532,9 @@ class _ExpressNoAdScreenState extends State<ExpressNoAdScreen> with SingleTicker
                           // Inner Navigation
                           onTap: () {
                             if (index == 1) {
-                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                              RoutingService.pushReplacement(const DiscoverP2PScreen(
+                                fromExpress: false,
+                              ));
                             } else if (index == 2) {
                               RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
                             } else if (index == 3) {
@@ -1764,7 +1801,9 @@ class _ChatListingState extends State<ChatListing> with SingleTickerProviderStat
                           // Inner Navigation
                           onTap: () {
                             if (index == 1) {
-                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                              RoutingService.pushReplacement(const DiscoverP2PScreen(
+                                fromExpress: false,
+                              ));
                             } else if (index == 2) {
                               RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
                             } else if (index == 3) {
@@ -2161,7 +2200,9 @@ class _ChatDetailingState extends State<ChatDetailing> with SingleTickerProvider
                           // Inner Navigation
                           onTap: () {
                             if (index == 1) {
-                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                              RoutingService.pushReplacement(const DiscoverP2PScreen(
+                                fromExpress: false,
+                              ));
                             } else if (index == 2) {
                               RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
                             } else if (index == 3) {

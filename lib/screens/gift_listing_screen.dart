@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/esim_screen.dart';
 import 'package:ucrypted_app/screens/gifting_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
@@ -48,51 +49,51 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/background1.png",
       fit: BoxFit.fill,
-      bottomNavChild: Container(
-        decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 28, 28, 30),
-          border: Border(
-            top: BorderSide(color: Colors.black, width: 0.5),
-          ),
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          selectedFontSize: 0.0,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.orange,
-          unselectedItemColor: Colors.white,
-          items: List.generate(5, (index) {
-            return BottomNavigationBarItem(
-              label: "",
-              icon: Column(
-                children: [
-                  SizedBox(
-                    height: 50,
-                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
-                  ),
-                  25.vSpace,
-                ],
-              ),
-              activeIcon: Column(
-                children: [
-                  SizedBox(
-                    child: SvgPicture.asset(
-                      _selectedIcons[index],
-                      width: 60,
-                      height: 60,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  25.vSpace,
-                ],
-              ),
-            );
-          }),
-        ),
-      ),
+      // bottomNavChild: Container(
+      //   decoration: const BoxDecoration(
+      //     color: Color.fromARGB(255, 28, 28, 30),
+      //     border: Border(
+      //       top: BorderSide(color: Colors.black, width: 0.5),
+      //     ),
+      //   ),
+      //   child: BottomNavigationBar(
+      //     backgroundColor: Colors.transparent,
+      //     elevation: 0,
+      //     currentIndex: _selectedIndex,
+      //     onTap: _onItemTapped,
+      //     selectedFontSize: 0.0,
+      //     type: BottomNavigationBarType.fixed,
+      //     selectedItemColor: Colors.orange,
+      //     unselectedItemColor: Colors.white,
+      //     items: List.generate(5, (index) {
+      //       return BottomNavigationBarItem(
+      //         label: "",
+      //         icon: Column(
+      //           children: [
+      //             SizedBox(
+      //               height: 50,
+      //               child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+      //             ),
+      //             25.vSpace,
+      //           ],
+      //         ),
+      //         activeIcon: Column(
+      //           children: [
+      //             SizedBox(
+      //               child: SvgPicture.asset(
+      //                 _selectedIcons[index],
+      //                 width: 60,
+      //                 height: 60,
+      //                 fit: BoxFit.fill,
+      //               ),
+      //             ),
+      //             25.vSpace,
+      //           ],
+      //         ),
+      //       );
+      //     }),
+      //   ),
+      // ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -335,7 +336,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                       flagAsset: "assets/images/nord.png",
                       esimIcon: "assets/svg/esim.svg",
                       baseName: "Nord Vpn",
-                      c: "assets/svg/fcard.svg",
+                      c: "assets/svg/ebill.svg",
                     ),
                     20.hSpace,
                     CountryCard(
@@ -346,7 +347,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                       flagAsset: "assets/images/nord.png",
                       esimIcon: "assets/svg/esim.svg",
                       baseName: "App Store and iTunes",
-                      c: "assets/svg/fcard.svg",
+                      c: "assets/svg/ebill.svg",
                     ),
                   ],
                 ),
@@ -653,7 +654,9 @@ class _FoodScreenState extends State<FoodScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -908,7 +911,9 @@ class _TravelScreenState extends State<TravelScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -1163,7 +1168,9 @@ class _TechScreenState extends State<TechScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -1419,7 +1426,9 @@ class _SportsScreenState extends State<SportsScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -2187,7 +2196,9 @@ class _GamingScreenState extends State<GamingScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -2443,7 +2454,9 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,

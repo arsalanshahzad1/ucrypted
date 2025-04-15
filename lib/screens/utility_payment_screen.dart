@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/home_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
@@ -112,7 +113,9 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -216,7 +219,9 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
                 child: Row(
                   children: [
                     CountryCard(
-                      onTap: () {},
+                      onTap: () {
+                        RoutingService.push(const NationalPowerScreen());
+                      },
                       countryName: "National Power",
                       rating: "4.6",
                       cardName: "Electricity Bill",
@@ -227,7 +232,9 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
                     ),
                     20.hSpace,
                     CountryCard(
-                      onTap: () {},
+                      onTap: () {
+                        RoutingService.push(const NationalPowerScreen());
+                      },
                       countryName: "National Power",
                       rating: "4.6",
                       cardName: "Electricity Bill",
@@ -684,7 +691,9 @@ class _PayBillState extends State<PayBill> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -1033,7 +1042,7 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 ),
               ),
-              10.vSpace,
+              20.vSpace,
               Text(
                 "Billing Type",
                 style: GoogleFonts.poppins(
@@ -1064,7 +1073,7 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 ),
               ),
-              10.vSpace,
+              20.vSpace,
               Text(
                 "Account Number",
                 style: GoogleFonts.poppins(
@@ -1127,16 +1136,16 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
                   contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 ),
               ),
-              15.vSpace,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    "Select an amount between \$20.00 - \$1000.00",
-                    style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),
-                  ),
-                ],
-              ),
+              // 15.vSpace,
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     Text(
+              //       "Select an amount between \$20.00 - \$1000.00",
+              //       style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),
+              //     ),
+              //   ],
+              // ),
               40.vSpace,
               GestureDetector(
                 onTap: () {
@@ -1270,7 +1279,9 @@ class _NationalPowerSuccessScreenState extends State<NationalPowerSuccessScreen>
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -1309,9 +1320,13 @@ class _NationalPowerSuccessScreenState extends State<NationalPowerSuccessScreen>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: 55.h,
-                    width: 55.w,
-                    decoration: BoxDecoration(color: Color.fromARGB(32, 87, 140, 26), borderRadius: BorderRadius.circular(55)),
+                    height: 65.h, // Outer circle
+                    width: 65.w,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 94, 155, 25).withOpacity(0.1), // Green outer ring
+                      shape: BoxShape.circle,
+                    ),
+                    alignment: Alignment.center,
                     child: SizedBox(
                       height: 45.h,
                       width: 45.w,
@@ -1363,7 +1378,7 @@ class _NationalPowerSuccessScreenState extends State<NationalPowerSuccessScreen>
                           ),
                         ],
                       ),
-                      15.vSpace,
+                      35.vSpace,
                       _transactionRow("Payment Method", "Wallet"),
                       15.vSpace,
                       _transactionRow("Amount", "\$200.00"),

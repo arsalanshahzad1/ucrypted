@@ -3,17 +3,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/compaign_screen.dart';
 import 'package:ucrypted_app/screens/deposit_crypto_screen.dart';
 import 'package:ucrypted_app/screens/discover_buy_screen.dart';
 import 'package:ucrypted_app/screens/discover_edit_screen.dart';
 import 'package:ucrypted_app/screens/discover_express_screen.dart';
+import 'package:ucrypted_app/screens/discover_p2p_screen.dart';
 import 'package:ucrypted_app/screens/discover_sell_screen.dart';
 import 'package:ucrypted_app/screens/discover_send_screen.dart';
 import 'package:ucrypted_app/screens/discover_withdraw_screen.dart';
 import 'package:ucrypted_app/screens/esim_screen.dart';
 import 'package:ucrypted_app/screens/gift_listing_screen.dart';
 import 'package:ucrypted_app/screens/gift_redeem_screen.dart';
+import 'package:ucrypted_app/screens/gift_screen.dart';
 import 'package:ucrypted_app/screens/gifting_screen.dart';
 import 'package:ucrypted_app/screens/mobile_top_up_screen.dart';
 import 'package:ucrypted_app/screens/nauta_cuba_topup_screen.dart';
@@ -29,7 +32,9 @@ import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 
 class DiscoverScreen extends StatefulWidget {
-  const DiscoverScreen({super.key});
+  final void Function(int)? onNavChange;
+
+  const DiscoverScreen({super.key, this.onNavChange});
 
   @override
   State<DiscoverScreen> createState() => _DiscoverScreenState();
@@ -58,7 +63,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         ),
         actions: [
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              RoutingService.push(const ChatRoomScreen());
+            },
             child: SvgPicture.asset(
               "assets/svg/chats.svg",
               width: 30,
@@ -308,7 +315,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appPrint("Request tapped");
         break;
       case "Withdraw":
-        RoutingService.push(const DiscoverWithdrawScreen());
+        // RoutingService.push(const DiscoverWithdrawScreen());
+        RoutingService.push(const TopUpScreen());
         appPrint("Withdraw tapped");
         break;
       case "Add wallet":
@@ -316,7 +324,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appPrint("Add wallet tapped");
         break;
       case "Deposit":
-        RoutingService.push(const DepositCryptoscreen());
+        // RoutingService.push(const DepositCryptoscreen());
+        RoutingService.push(const TopUpScreen());
         appPrint("Deposit tapped");
         break;
       case "Edit Wallet":
@@ -332,15 +341,17 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appPrint("Sell Crypto tapped");
         break;
       case "Trade":
-        //  RoutingService.push(const SomeScreen);
+        widget.onNavChange?.call(1);
         appPrint("Trade tapped");
         break;
       case "P2P":
-        RoutingService.push(const DiscoverExpressScreen());
+        // RoutingService.push(const DiscoverExpressScreen());
+        RoutingService.push(const DiscoverP2PScreen(fromExpress: false,));
         appPrint("P2P tapped");
         break;
       case "Gift card":
-        RoutingService.push(const GiftListingScreen());
+        // RoutingService.push(const GiftListingScreen());
+        widget.onNavChange?.call(3);
         appPrint("Gift card tapped");
         break;
       case "Esim":
@@ -352,7 +363,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appPrint("Utility Payment tapped");
         break;
       case "Gift Redeem":
-        RoutingService.push(const GiftRedeemScreen());
+        // RoutingService.push(const GiftRedeemScreen());
+        RoutingService.push(const GiftScreen());
         appPrint("Gift Redeem tapped");
         break;
       case "Mobile Top-Up":
@@ -360,7 +372,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appPrint("Mobile Top-Up tapped");
         break;
       case "Nauta Cuba":
-        RoutingService.push(const NautaCubaTopUpScreen());
+        // RoutingService.push(const NautaCubaTopUpScreen());
+        RoutingService.push(const MobileTopUpScreen());
         appPrint("Nauta Cuba tapped");
         break;
       case "Order History":
@@ -376,7 +389,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appPrint("Tier Payments tapped");
         break;
       case "Disable Ac.":
-        RoutingService.push(const TopUpScreen());
         break;
       default:
         appPrint("Unknown item tapped");

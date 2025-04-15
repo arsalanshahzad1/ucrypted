@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
@@ -115,7 +118,9 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -172,18 +177,23 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
                         ),
                       ),
                       10.hSpace,
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "KLV/USDT",
-                            style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.white),
-                          ),
-                          Text(
-                            "+50.47%",
-                            style: GoogleFonts.nunito(fontWeight: FontWeight.w700, fontSize: 12, color: Color(0xff38B781)),
-                          )
-                        ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "KLV/USDT",
+                              style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.white),
+                            ),
+                            Text(
+                              "+50.47%",
+                              style: GoogleFonts.nunito(fontWeight: FontWeight.w700, fontSize: 12, color: Color(0xff38B781)),
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),

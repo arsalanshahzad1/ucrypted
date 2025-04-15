@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
+import 'package:ucrypted_app/screens/deposit_crypto_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
@@ -128,7 +130,9 @@ class _WalletScreenState extends State<WalletScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -260,7 +264,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           buildActionButton(Icons.arrow_upward, "Send", () {}),
                           10.hSpace,
                           buildActionButton(Icons.arrow_downward, "Deposit", () {
-                            // RoutingService.push(const DepositCryptoscreen());
+                            RoutingService.push(const DepositCryptoscreen());
                           }),
                           10.hSpace,
                           buildActionButton(Icons.arrow_downward, "Withdraw", () {}),

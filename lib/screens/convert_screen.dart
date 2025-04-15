@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
@@ -49,7 +50,9 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
         ),
         actions: [
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              RoutingService.push(const ChatRoomScreen());
+            },
             child: SvgPicture.asset(
               "assets/svg/chats.svg",
               width: 30,

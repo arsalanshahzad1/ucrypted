@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
@@ -116,7 +117,9 @@ class _TierScreenState extends State<TierScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -564,7 +567,9 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -659,7 +664,7 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
                         ],
                       ),
                       15.vSpace,
-                      _transactionRow("Payment Method", "Wallet"),
+                      _transactionRow("Payment Method", "Credit Card"),
                       15.vSpace,
                       _transactionRow("Service", "Support Tier"),
                       15.vSpace,

@@ -10,6 +10,7 @@ import 'package:ucrypted_app/screens/deposit_crypto_screen.dart';
 import 'package:ucrypted_app/screens/discover_screen.dart';
 import 'package:ucrypted_app/screens/discover_send_screen.dart';
 import 'package:ucrypted_app/screens/discover_withdraw_screen.dart';
+import 'package:ucrypted_app/screens/gift_listing_screen.dart';
 import 'package:ucrypted_app/screens/gift_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/screens/trading_screen.dart';
@@ -30,13 +31,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Widget> _pages = [
-    const HomePage(),
-    const TradingScreen(),
-    const ConvertScreen(),
-    const GiftScreen(),
-    const DiscoverScreen(),
-  ];
+  late List<Widget> _pages;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  // final List<Widget> _pages = [
+  //   HomePage(onNavChange: _onItemTapped),
+  //   const TradingScreen(),
+  //   const ConvertScreen(),
+  //   const GiftScreen(),
+  //   const DiscoverScreen(),
+  // ];
   int _selectedIndex = 0;
 
   final List<String> _selectedIcons = [
@@ -54,10 +63,18 @@ class _HomeScreenState extends State<HomeScreen> {
     "assets/svg/discover-bottom.svg"
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+      HomePage(onNavChange: _onItemTapped),
+      const TradingScreen(),
+      const ConvertScreen(),
+      const GiftListingScreen(),
+      DiscoverScreen(
+        onNavChange: _onItemTapped,
+      ),
+    ];
   }
 
   @override
@@ -116,7 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final void Function(int)? onNavChange;
+  const HomePage({super.key, this.onNavChange});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -316,17 +334,23 @@ class _HomePageState extends State<HomePage> {
                         "assets/svg/eth.svg",
                         "ETH",
                         "19,654",
-                        () {},
+                        () {
+                          widget.onNavChange?.call(1);
+                        },
                         "assets/images/irc2.png",
                       ),
                       18.hSpace,
-                      coinCard("assets/svg/bsc.svg", "BSC", "112,654", () {}, "assets/images/irc1.png", i: true),
+                      coinCard("assets/svg/bsc.svg", "BSC", "112,654", () {
+                        widget.onNavChange?.call(1);
+                      }, "assets/images/irc1.png", i: true),
                       18.hSpace,
                       coinCard(
                         "assets/svg/eth.svg",
                         "ETH",
                         "19.8878",
-                        () {},
+                        () {
+                          widget.onNavChange?.call(1);
+                        },
                         "assets/images/irc2.png",
                       ),
                     ],
@@ -402,11 +426,13 @@ class _HomePageState extends State<HomePage> {
                 15.vSpace,
                 Column(
                   children: [
-                    exchangeWidget("assets/svg/bscexc.svg"),
-                    exchangeWidget("assets/svg/ethex.svg"),
-                    exchangeWidget("assets/svg/bscexc.svg"),
-                    exchangeWidget("assets/svg/ethex.svg"),
-                    exchangeWidget("assets/svg/bscexc.svg"),
+                    exchangeWidget("assets/svg/bscexc.svg", () {
+                      widget.onNavChange?.call(1);
+                    }),
+                    exchangeWidget("assets/svg/ethex.svg", () {}),
+                    exchangeWidget("assets/svg/bscexc.svg", () {}),
+                    exchangeWidget("assets/svg/ethex.svg", () {}),
+                    exchangeWidget("assets/svg/bscexc.svg", () {}),
                   ],
                 ),
               ],
@@ -896,40 +922,67 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget exchangeWidget(String image) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 0),
-      decoration: BoxDecoration(
-        // color: const Color(0xFF1E1E1E),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          // Circle with Icon
-          Container(
-            height: 50,
-            width: 50,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              // color: Colors.black,
-            ),
-            child: Center(
-              child: SvgPicture.asset(
-                image,
-                width: 43.w,
-                height: 43.h,
+  Widget exchangeWidget(String image, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 0),
+        decoration: BoxDecoration(
+          // color: const Color(0xFF1E1E1E),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(
+          children: [
+            // Circle with Icon
+            Container(
+              height: 50,
+              width: 50,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                // color: Colors.black,
+              ),
+              child: Center(
+                child: SvgPicture.asset(
+                  image,
+                  width: 43.w,
+                  height: 43.h,
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: 5),
+            const SizedBox(width: 5),
 
-          // Transaction Details
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            // Transaction Details
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "BTC → ETH",
+                    style: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    "#12123TRA",
+                    style: GoogleFonts.inter(
+                      color: Color(0xffACB5BB),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Amount Details
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  "BTC → ETH",
+                  "6,21 ETH",
                   style: GoogleFonts.inter(
                     color: Colors.white,
                     fontSize: 14,
@@ -938,7 +991,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  "#12123TRA",
+                  "0.342 BTC",
                   style: GoogleFonts.inter(
                     color: Color(0xffACB5BB),
                     fontSize: 12,
@@ -947,32 +1000,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-          ),
-
-          // Amount Details
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                "6,21 ETH",
-                style: GoogleFonts.inter(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                "0.342 BTC",
-                style: GoogleFonts.inter(
-                  color: Color(0xffACB5BB),
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

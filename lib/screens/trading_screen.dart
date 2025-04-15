@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_chart/interactive_chart.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
 import 'package:ucrypted_app/screens/buy_sell_detail_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/candle_data.dart';
@@ -53,7 +54,9 @@ class _TradingScreenState extends State<TradingScreen> {
         ),
         actions: [
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              RoutingService.push(const ChatRoomScreen());
+            },
             child: SvgPicture.asset(
               "assets/svg/chats.svg",
               width: 30,
@@ -439,18 +442,18 @@ class _TradingScreenState extends State<TradingScreen> {
                 ],
               ),
               10.vSpace,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          showCandle = !showCandle;
-                        });
-                      },
-                      child: SvgPicture.asset("assets/svg/more.svg"))
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     GestureDetector(
+              //         onTap: () {
+              //           setState(() {
+              //             showCandle = !showCandle;
+              //           });
+              //         },
+              //         child: SvgPicture.asset("assets/svg/more.svg"))
+              //   ],
+              // ),
               showCandle
                   ? Column(
                       children: [
@@ -522,12 +525,19 @@ class _TradingScreenState extends State<TradingScreen> {
                           ],
                         ),
                         10.vSpace,
-                        SizedBox(
-                          height: 220.h,
-                          width: double.infinity,
-                          child: SvgPicture.asset(
-                            "assets/svg/bar1.svg",
-                            fit: BoxFit.fitWidth,
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isTable = !isTable;
+                            });
+                          },
+                          child: SizedBox(
+                            height: 220.h,
+                            width: double.infinity,
+                            child: SvgPicture.asset(
+                              "assets/svg/bar1.svg",
+                              fit: BoxFit.fitWidth,
+                            ),
                           ),
                         ),
                         10.vSpace,
@@ -622,9 +632,9 @@ class _TradingScreenState extends State<TradingScreen> {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    setState(() {
-                                      isTable = !isTable;
-                                    });
+                                    // setState(() {
+                                    //   isTable = !isTable;
+                                    // });
                                   },
                                   child: Container(
                                     height: 25.h,
@@ -704,7 +714,7 @@ class _TradingScreenState extends State<TradingScreen> {
                     ),
                     Stack(
                       children: [
-                        customBidRow(),
+                        customBidRow("6,414.16", "0.041835", "0.058508", "166,938.50"),
                         Positioned(
                           left: 35.w,
                           child: Container(
@@ -717,7 +727,7 @@ class _TradingScreenState extends State<TradingScreen> {
                     ),
                     Stack(
                       children: [
-                        customBidRow(),
+                        customBidRow("7,169.23", "0.041605", "0.057310", "499.45"),
                         Positioned(
                           right: 70.w,
                           child: Container(
@@ -728,15 +738,15 @@ class _TradingScreenState extends State<TradingScreen> {
                         )
                       ],
                     ),
-                    customBidRow(),
-                    customBidRow(),
-                    customBidRow(),
-                    customBidRow(),
-                    customBidRow(),
-                    customBidRow(),
-                    customBidRow(),
-                    customBidRow(),
-                    customBidRow(),
+                    customBidRow("7,208.80", "0.041377", "0.056189", "437.00"),
+                    customBidRow("5,056408", "0.056687", "0.056408", "25,870.80"),
+                    customBidRow("4,562.13", "0.078669", "0.056213", "7,052.45"),
+                    customBidRow("2,561.02", "0.056767", "0.056102", "4,455.80"),
+                    customBidRow("3,585.08", "0.564384", "0.058508", "166,938.50"),
+                    customBidRow("4,057310", "0.0764.06", "0.057310", "499.45"),
+                    customBidRow("5,056.89", "0.045678", "0.056189", "437.00"),
+                    customBidRow("2.056.08", "0.078585", "0.056408", "25,870.80"),
+                    customBidRow("1.056.13", "0.036578", "0.056213", "7,052.45"),
                     10.vSpace,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -959,7 +969,7 @@ class _TradingScreenState extends State<TradingScreen> {
     );
   }
 
-  Widget customBidRow() {
+  Widget customBidRow(String first, String second, String third, String fourth) {
     return Padding(
       padding: const EdgeInsets.only(top: 5.0, bottom: 2),
       child: Row(
@@ -969,7 +979,7 @@ class _TradingScreenState extends State<TradingScreen> {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                "62,4146",
+                first,
                 style: GoogleFonts.nunito(color: Color(0xffF7F7F7), fontWeight: FontWeight.w700, fontSize: 13),
               ),
             ),
@@ -978,7 +988,7 @@ class _TradingScreenState extends State<TradingScreen> {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                "0.12120",
+                second,
                 style: GoogleFonts.nunito(color: const Color(0xFF38B781), fontWeight: FontWeight.w700, fontSize: 13),
               ),
             ),
@@ -987,7 +997,7 @@ class _TradingScreenState extends State<TradingScreen> {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                "0.012121",
+                third,
                 style: GoogleFonts.nunito(color: const Color(0xFFFF545E), fontWeight: FontWeight.w700, fontSize: 13),
               ),
             ),
@@ -996,7 +1006,7 @@ class _TradingScreenState extends State<TradingScreen> {
             child: Align(
               alignment: Alignment.center,
               child: Text(
-                "499,1212",
+                fourth,
                 style: GoogleFonts.nunito(color: Color(0xffF7F7F7), fontWeight: FontWeight.w700, fontSize: 13),
               ),
             ),

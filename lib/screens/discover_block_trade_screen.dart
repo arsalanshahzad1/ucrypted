@@ -65,6 +65,8 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/p2pbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -95,7 +97,9 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                             if (index == 0) {
                               RoutingService.pushReplacement(const DiscoverExpressScreen());
                             } else if (index == 1) {
-                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                              RoutingService.pushReplacement(const DiscoverP2PScreen(
+                                fromExpress: false,
+                              ));
                             } else if (index == 3) {
                               RoutingService.pushReplacement(const DiscoverCashScreen());
                             } else {
@@ -115,8 +119,8 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       )
                                     : GradientText(
@@ -127,8 +131,8 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                               ),
@@ -138,8 +142,8 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     maxLines: 1,
@@ -148,7 +152,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
 
                                   return Container(
                                     width: textPainter.width, // Dynamic width
-                                    height: 2,
+                                    height: 1,
                                     // margin: const EdgeInsets.only(top: 4),
                                     decoration: BoxDecoration(
                                       gradient: selectedIndex == index
@@ -204,7 +208,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.75,
+                      height: MediaQuery.of(context).size.height * 0.80,
                       child: TabBarView(
                         controller: _tabController,
                         children: [
@@ -490,6 +494,8 @@ class _OrderCreatedState extends State<OrderCreated> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/p2pbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -539,8 +545,8 @@ class _OrderCreatedState extends State<OrderCreated> {
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       )
                                     : GradientText(
@@ -551,8 +557,8 @@ class _OrderCreatedState extends State<OrderCreated> {
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                               ),
@@ -562,8 +568,8 @@ class _OrderCreatedState extends State<OrderCreated> {
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     maxLines: 1,
@@ -572,7 +578,7 @@ class _OrderCreatedState extends State<OrderCreated> {
 
                                   return Container(
                                     width: textPainter.width, // Dynamic width
-                                    height: 2,
+                                    height: 1,
                                     // margin: const EdgeInsets.only(top: 4),
                                     decoration: BoxDecoration(
                                       gradient: selectedIndex == index
@@ -899,6 +905,8 @@ class _PayTheSellerState extends State<PayTheSeller> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/p2pbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -928,7 +936,9 @@ class _PayTheSellerState extends State<PayTheSeller> {
                             if (index == 0) {
                               RoutingService.pushReplacement(const DiscoverExpressScreen());
                             } else if (index == 1) {
-                              RoutingService.pushReplacement(const DiscoverP2PScreen());
+                              RoutingService.pushReplacement(const DiscoverP2PScreen(
+                                fromExpress: false,
+                              ));
                             } else if (index == 2) {
                               RoutingService.pushReplacement(const DiscoverBlockTradeScreen());
                             } else {
@@ -948,8 +958,8 @@ class _PayTheSellerState extends State<PayTheSeller> {
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       )
                                     : GradientText(
@@ -960,8 +970,8 @@ class _PayTheSellerState extends State<PayTheSeller> {
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                               ),
@@ -971,8 +981,8 @@ class _PayTheSellerState extends State<PayTheSeller> {
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     maxLines: 1,
@@ -981,7 +991,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
 
                                   return Container(
                                     width: textPainter.width, // Dynamic width
-                                    height: 2,
+                                    height: 1,
                                     // margin: const EdgeInsets.only(top: 4),
                                     decoration: BoxDecoration(
                                       gradient: selectedIndex == index
@@ -1293,6 +1303,8 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/p2pbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -1342,8 +1354,8 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       )
                                     : GradientText(
@@ -1354,8 +1366,8 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                               ),
@@ -1365,8 +1377,8 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     maxLines: 1,
@@ -1375,7 +1387,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
 
                                   return Container(
                                     width: textPainter.width, // Dynamic width
-                                    height: 2,
+                                    height: 1,
                                     // margin: const EdgeInsets.only(top: 4),
                                     decoration: BoxDecoration(
                                       gradient: selectedIndex == index

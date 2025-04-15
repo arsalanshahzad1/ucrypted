@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/app_print.dart';
@@ -118,7 +119,9 @@ class _ESimScreenState extends State<ESimScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -819,8 +822,9 @@ void showFullWidthDialog(BuildContext context) {
                 }),
                 const SizedBox(height: 10),
                 _buildGradientButton("My Device Is Compatible", () {
-                  Get.close(2);
-                  RoutingService.push(const DeviceCheckerScreen());
+                  // Get.close(2);
+                  // RoutingService.push(const DeviceCheckerScreen());
+                  Get.back();
                 }),
                 const SizedBox(height: 10),
                 GestureDetector(
@@ -1555,7 +1559,9 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -2081,7 +2087,9 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -2390,7 +2398,9 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
@@ -145,7 +147,11 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
               20.vSpace,
               Row(
                 children: [
-                  const Icon(Icons.arrow_back_ios, color: Colors.white, size: 23),
+                  GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 23)),
                   5.hSpace,
                   Expanded(
                     child: Text(

@@ -15,13 +15,14 @@ import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
 
 class DiscoverP2PScreen extends StatefulWidget {
-  const DiscoverP2PScreen({super.key});
+  final bool fromExpress;
+  const DiscoverP2PScreen({super.key, required this.fromExpress});
 
   @override
   State<DiscoverP2PScreen> createState() => _DiscoverP2PScreenState();
 }
 
-class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTickerProviderStateMixin {
+class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with TickerProviderStateMixin {
   int i = 4;
 
   final List<String> _selectedIcons = [
@@ -46,6 +47,7 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
   }
 
   late TabController _tabController;
+  late TabController _tabController1;
   int selectedIndex = 1;
   int? j;
 
@@ -55,20 +57,31 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.bottomSheet(p2pBottomSheet(400.h));
-    });
+    _tabController1 = TabController(length: 2, vsync: this);
+
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   Get.bottomSheet(p2pBottomSheet(400.h));
+    // });
   }
 
   @override
   void dispose() {
     _tabController.dispose();
+    _tabController1.dispose();
     super.dispose();
   }
+
+  int selectedIndex1 = 1;
+  bool isChecked = false;
+  int? j1;
+
+  final List<String> labels1 = ["Express", "P2P", "Block Trade", "Cash"];
 
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/p2pbg.png",
+      fit: BoxFit.cover,
       bottomNavChild: selectedIndex == 0
           ? Container(
               decoration: const BoxDecoration(
@@ -167,8 +180,8 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       )
                                     : GradientText(
@@ -179,8 +192,8 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                               ),
@@ -190,8 +203,8 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     maxLines: 1,
@@ -200,7 +213,7 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
 
                                   return Container(
                                     width: textPainter.width, // Dynamic width
-                                    height: 2,
+                                    height: 1,
                                     // margin: const EdgeInsets.only(top: 4),
                                     decoration: BoxDecoration(
                                       gradient: selectedIndex == index
@@ -230,8 +243,51 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
                 ),
                 20.vSpace,
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: p2pDetail(),
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: widget.fromExpress == true
+                      ? p2pDetail()
+                      : Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 35.h,
+                                  width: 120.w,
+                                  decoration:
+                                      BoxDecoration(color: Color.fromARGB(255, 27, 27, 28), borderRadius: BorderRadius.circular(30), border: Border.all(color: Color(0xff3C3C3C))),
+                                  child: TabBar(
+                                    indicatorSize: TabBarIndicatorSize.tab,
+                                    isScrollable: false,
+                                    dividerColor: Colors.transparent,
+                                    controller: _tabController,
+                                    indicator: BoxDecoration(
+                                      color: Colors.grey[300],
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    labelColor: Colors.black,
+                                    unselectedLabelColor: Colors.white,
+                                    labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14),
+                                    tabs: const [
+                                      Tab(text: "Buy"),
+                                      Tab(text: "Sell"),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.80,
+                              child: TabBarView(
+                                controller: _tabController,
+                                children: [
+                                  BuyBlockTrade(),
+                                  SellBlockTrade(),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                 ),
               ],
             ),
@@ -276,26 +332,52 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
         10.vSpace,
         settingsItem("assets/images/add.png", "Add new Card", 3),
         100.vSpace,
-        GestureDetector(
-          onTap: () {
-            // Get.bottomSheet(isScrollControlled: true, filterBottomSheet(700.h, "\$21.00", "\$23.0120", () {}, context));
-            RoutingService.pushReplacement(const P2PBuyScreen());
-          },
-          child: Container(
-            height: 40.h,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-              borderRadius: BorderRadius.circular(28),
-            ),
-            child: Center(
-              child: Text(
-                "continue",
-                style: GoogleFonts.inter(color: Color(0xffffffff), fontWeight: FontWeight.w600, fontSize: 14),
+        (j == 0 || j == 1 || j == 2 || j == 3)
+            ? GestureDetector(
+                onTap: () {
+                  // Get.bottomSheet(isScrollControlled: true, filterBottomSheet(700.h, "\$21.00", "\$23.0120", () {}, context));
+                  RoutingService.pushReplacement(const P2PBuyScreen());
+                },
+                child: Container(
+                  height: 40.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                    borderRadius: BorderRadius.circular(28),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Continue",
+                      style: GoogleFonts.inter(color: Color(0xffffffff), fontWeight: FontWeight.w600, fontSize: 14),
+                    ),
+                  ),
+                ),
+              )
+            : GestureDetector(
+                onTap: () {
+                  // RoutingService.push(const P2PConfirmScreen());
+                  // Get.bottomSheet(
+                  //   p2pBottomSheet(400.h, () {
+                  //     // RoutingService.push(const InputRecoverySuccessScreen());
+                  //   }, context),
+                  // );
+                },
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient:
+                        const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color.fromARGB(255, 28, 28, 29), Color.fromARGB(255, 53, 50, 50)]),
+                    borderRadius: BorderRadius.circular(28),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Select payment method",
+                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
       ],
     );
   }
@@ -340,7 +422,7 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
                     ),
-                  ), 
+                  ),
                 ),
               ],
             ),
@@ -526,6 +608,797 @@ class _DiscoverP2PScreenState extends State<DiscoverP2PScreen> with SingleTicker
       ),
     );
   }
+
+  Widget BuyBlockTrade() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          25.vSpace,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    height: 20.h,
+                    width: 20.w,
+                    child: SvgPicture.asset("assets/svg/btcc.svg"),
+                  ),
+                  10.hSpace,
+                  Text(
+                    "BTC",
+                    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                  ),
+                  5.hSpace,
+                  Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.white,
+                  ),
+                  10.hSpace,
+                  Text(
+                    "Amount",
+                    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                  ),
+                  5.hSpace,
+                  Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.white,
+                  ),
+                  10.hSpace,
+                  Text(
+                    "Payment",
+                    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                  ),
+                  5.hSpace,
+                  Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.bottomSheet(isScrollControlled: true, filterBottomSheet(700.h, "\$21.00", "\$23.0120", () {}, context));
+                },
+                child: Container(
+                  height: 28.h,
+                  width: 33.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6.r),
+                    border: Border.all(color: Color(0xff393737)),
+                  ),
+                  child: Center(
+                    child: SvgPicture.asset("assets/svg/filter2.svg"),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          10.vSpace,
+          BuySellCard(true, true, "Link-Exchange", "88.46", () {
+            // RoutingService.pushReplacement(const OrderCreated());
+            RoutingService.pushReplacement(const OrderCreated());
+          }),
+          5.vSpace,
+          BuySellCard(false, true, "Inter-Exchange", "86.32", () {
+            RoutingService.pushReplacement(const OrderCreated());
+          }),
+          5.vSpace,
+          BuySellCard(true, true, "Inter-Exchange", "88.46", () {
+            RoutingService.pushReplacement(const OrderCreated());
+          }),
+          5.vSpace,
+          BuySellCard(false, true, "Inter-Exchange", "86.32", () {
+            RoutingService.pushReplacement(const OrderCreated());
+          }),
+          5.vSpace,
+          BuySellCard(true, true, "Inter-Exchange", "86.32", () {
+            RoutingService.pushReplacement(const OrderCreated());
+          }),
+          5.vSpace,
+        ],
+      ),
+    );
+  }
+
+  Widget SellBlockTrade() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          25.vSpace,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    height: 20.h,
+                    width: 20.w,
+                    child: SvgPicture.asset("assets/svg/btcc.svg"),
+                  ),
+                  10.hSpace,
+                  Text(
+                    "BTC",
+                    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                  ),
+                  5.hSpace,
+                  Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.white,
+                  ),
+                  10.hSpace,
+                  Text(
+                    "Amount",
+                    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                  ),
+                  5.hSpace,
+                  Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.white,
+                  ),
+                  10.hSpace,
+                  Text(
+                    "Payment",
+                    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                  ),
+                  5.hSpace,
+                  Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.bottomSheet(isScrollControlled: true, filterBottomSheet(700.h, "\$21.00", "\$23.0120", () {}, context));
+                },
+                child: Container(
+                  height: 28.h,
+                  width: 33.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6.r),
+                    border: Border.all(color: Color(0xff393737)),
+                  ),
+                  child: Center(
+                    child: SvgPicture.asset("assets/svg/filter2.svg"),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          10.vSpace,
+          BuySellCard(true, false, "Link-Exchange", "88.46", () {
+            RoutingService.pushReplacement(const OrderCreated());
+          }),
+          5.vSpace,
+          BuySellCard(false, false, "Inter-Exchange", "86.32", () {
+            RoutingService.pushReplacement(const OrderCreated());
+          }),
+          5.vSpace,
+          BuySellCard(true, false, "Inter-Exchange", "88.46", () {
+            RoutingService.pushReplacement(const OrderCreated());
+          }),
+          5.vSpace,
+          BuySellCard(false, false, "Inter-Exchange", "86.32", () {
+            RoutingService.pushReplacement(const OrderCreated());
+          }),
+          5.vSpace,
+          BuySellCard(true, false, "Inter-Exchange", "86.32", () {
+            RoutingService.pushReplacement(const OrderCreated());
+          }),
+          5.vSpace,
+        ],
+      ),
+    );
+  }
+
+  Widget filterBottomSheet(double height, String title, String subtitle, VoidCallback onTap, BuildContext c) {
+    bool first = false;
+    bool second = true;
+    bool third = false;
+    return Container(
+      width: double.infinity,
+      height: height,
+      decoration: const BoxDecoration(
+        color: Color(0xff161618),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 4.h,
+                    width: 70.w,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Color(0xff44444A)),
+                  ),
+                ],
+              ),
+            ),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.arrow_back_ios,
+                    color: Colors.white,
+                  ),
+                  10.hSpace,
+                  Text(
+                    "Filter",
+                    style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 28, color: AppColors.white),
+                  ),
+                ],
+              ),
+            ),
+            30.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "Ad Type",
+                style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18, color: AppColors.white),
+              ),
+            ),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Tradable Ads Only",
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: Color(0xff6C7278),
+                    ),
+                  ),
+                  SizedBox(height: 20.h, width: 30.w, child: Image.asset("assets/images/toggle1.png"))
+                ],
+              ),
+            ),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Verified Merchants Ads only",
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: Color(0xff6C7278),
+                    ),
+                  ),
+                  SizedBox(height: 20.h, width: 30.w, child: Image.asset("assets/images/toggle2.png"))
+                ],
+              ),
+            ),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Ads with no Verification Requires",
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: Color(0xff6C7278),
+                    ),
+                  ),
+                  SizedBox(height: 20.h, width: 30.w, child: Image.asset("assets/images/toggle1.png"))
+                ],
+              ),
+            ),
+            5.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Divider(
+                height: 1.0,
+                color: Color(0xff2C2C30),
+              ),
+            ),
+            5.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "Amount",
+                style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18, color: AppColors.white),
+              ),
+            ),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextField(
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'Enter total Amount',
+                  hintStyle: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w400),
+                  suffixText: 'USD',
+                  suffixStyle: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w400),
+                  filled: true,
+                  fillColor: Color(0xFF1C1C1E),
+                  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: BorderSide(color: Color(0xff2C2C30)), // subtle visible border
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                      borderSide: BorderSide(
+                        color: Color(0xff2C2C30),
+                      ) // )border color when focused
+                      ),
+                ),
+              ),
+            ),
+            20.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Divider(
+                height: 1.0,
+                color: Color(0xff2C2C30),
+              ),
+            ),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "Payment Time Limit (minutes)",
+                style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18, color: AppColors.white),
+              ),
+            ),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 38.h,
+                    width: 50.w,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xff2C2C30)),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "All",
+                        style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14, color: Color(0xff6C7278)),
+                      ),
+                    ),
+                  ),
+                  15.hSpace,
+                  Container(
+                    height: 38.h,
+                    width: 50.w,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xff2C2C30)),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "15",
+                        style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14, color: Color(0xff6C7278)),
+                      ),
+                    ),
+                  ),
+                  15.hSpace,
+                  Container(
+                    height: 38.h,
+                    width: 50.w,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xff2C2C30)),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "30",
+                        style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14, color: Color(0xff6C7278)),
+                      ),
+                    ),
+                  ),
+                  15.hSpace,
+                  Container(
+                    height: 38.h,
+                    width: 50.w,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xff2C2C30)),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "45",
+                        style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14, color: Color(0xff6C7278)),
+                      ),
+                    ),
+                  ),
+                  15.hSpace,
+                  Container(
+                    height: 38.h,
+                    width: 50.w,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xff2C2C30)),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "60",
+                        style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14, color: Color(0xff6C7278)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            20.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Divider(
+                height: 1.0,
+                color: Color(0xff2C2C30),
+              ),
+            ),
+            20.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "Payment Method(s)",
+                style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18, color: AppColors.white),
+              ),
+            ),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xff2C2C30)),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "All",
+                          style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14, color: Color(0xff6C7278)),
+                        ),
+                      ),
+                    ),
+                  ),
+                  15.hSpace,
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xff2C2C30)),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Bank Transfer",
+                          style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14, color: Color(0xff6C7278)),
+                        ),
+                      ),
+                    ),
+                  ),
+                  15.hSpace,
+                ],
+              ),
+            ),
+            5.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xff2C2C30)),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Paypal Only",
+                          style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14, color: Color(0xff6C7278)),
+                        ),
+                      ),
+                    ),
+                  ),
+                  15.hSpace,
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xff2C2C30)),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Payoneer",
+                          style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14, color: Color(0xff6C7278)),
+                        ),
+                      ),
+                    ),
+                  ),
+                  15.hSpace,
+                ],
+              ),
+            ),
+            5.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xff2C2C30)),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Other",
+                          style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14, color: Color(0xff6C7278)),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            20.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        height: 40.h,
+                        width: double.infinity,
+                        decoration: BoxDecoration(color: Color(0xff222223), borderRadius: BorderRadius.circular(28), border: Border.all(color: Color(0xff2C2C30))),
+                        child: Center(
+                          child: Text(
+                            "Reset",
+                            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 14),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  10.hSpace,
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        height: 40.h,
+                        width: double.infinity,
+                        decoration: BoxDecoration(color: Color(0xffFFFFFF), borderRadius: BorderRadius.circular(28), border: Border.all(color: Color(0xffFFFFFF))),
+                        child: Center(
+                          child: Text(
+                            "Continue",
+                            style: GoogleFonts.inter(color: AppColors.black, fontWeight: FontWeight.w600, fontSize: 14),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            20.vSpace,
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget BuySellCard(
+    bool isOnline,
+    bool isBuy,
+    String title,
+    String price,
+    VoidCallback onTap,
+  ) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        // width: 350,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(color: const Color(0xFF0F0F0F), borderRadius: BorderRadius.circular(16), border: Border.all(color: Color(0xff393737))),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header row
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Stack(
+                  children: [
+                    const CircleAvatar(
+                      radius: 20,
+                      backgroundImage: AssetImage('assets/images/person.png'), // Replace with your avatar
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: isOnline == true ? Color(0xff00B300) : Color(0xffFF9500),
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.black, width: 1.5),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: GoogleFonts.inter(
+                          color: Color(0xffD5D5D5),
+                          fontSize: 11,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      GradientText(
+                        isOnline == true ? 'Online' : "Offline",
+                        style: GoogleFonts.inter(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        gradient: isOnline == true
+                            ? LinearGradient(colors: [
+                                Color(0xff00B300),
+                                Color(0xff004D00),
+                              ], end: Alignment.bottomCenter, begin: Alignment.topCenter)
+                            : LinearGradient(colors: [
+                                Color(0xffFF9500),
+                                Color(0xffFF9500),
+                              ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
+                      ),
+                    ],
+                  ),
+                ),
+                GradientText(
+                  '95.56%',
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  gradient: const LinearGradient(colors: [
+                    Color(0xff00B300),
+                    Color(0xff004D00),
+                  ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+
+            // Price & Button row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      price + " ",
+                      style: GoogleFonts.poppins(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'USD',
+                      style: GoogleFonts.inter(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xffD5D5D5),
+                      ),
+                    ),
+                  ],
+                ),
+                isBuy == true
+                    ? Container(
+                        height: 26.h,
+                        width: 60.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.r),
+                          gradient: const LinearGradient(colors: [
+                            Color(0xff00B300),
+                            Color(0xff004D00),
+                          ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Buy',
+                            style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                          ),
+                        ),
+                      )
+                    : Container(
+                        height: 26.h,
+                        width: 60.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.r),
+                          gradient: const LinearGradient(colors: [
+                            Color(0xffD70365),
+                            Color(0xff880306),
+                          ], end: Alignment.bottomCenter, begin: Alignment.topCenter),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Sell',
+                            style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                          ),
+                        ),
+                      )
+              ],
+            ),
+
+            const SizedBox(height: 10),
+            Divider(
+              height: 1.0,
+              color: Color(0xff393737),
+            ),
+            10.vSpace,
+            // Limits and availability
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Limit : USD 50,000 - 100,000',
+                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
+                ),
+                Text(
+                  'Available : 170,318.18 USDT',
+                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 5),
+
+            Divider(
+              height: 1.0,
+              color: Color(0xff393737),
+            ),
+
+            const SizedBox(height: 10),
+
+            Text(
+              '68,226 Transactions · 99.83% Completion',
+              style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 11, fontWeight: FontWeight.w400),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class P2PBuyScreen extends StatefulWidget {
@@ -605,8 +1478,8 @@ class _P2PBuyScreenState extends State<P2PBuyScreen> with SingleTickerProviderSt
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       )
                                     : GradientText(
@@ -617,8 +1490,8 @@ class _P2PBuyScreenState extends State<P2PBuyScreen> with SingleTickerProviderSt
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                               ),
@@ -628,8 +1501,8 @@ class _P2PBuyScreenState extends State<P2PBuyScreen> with SingleTickerProviderSt
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     maxLines: 1,
@@ -638,7 +1511,7 @@ class _P2PBuyScreenState extends State<P2PBuyScreen> with SingleTickerProviderSt
 
                                   return Container(
                                     width: textPainter.width, // Dynamic width
-                                    height: 2,
+                                    height: 1,
                                     // margin: const EdgeInsets.only(top: 4),
                                     decoration: BoxDecoration(
                                       gradient: selectedIndex == index
@@ -697,7 +1570,7 @@ class _P2PBuyScreenState extends State<P2PBuyScreen> with SingleTickerProviderSt
                       ],
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.75,
+                      height: MediaQuery.of(context).size.height * 0.80,
                       child: TabBarView(
                         controller: _tabController,
                         children: [
@@ -1524,6 +2397,8 @@ class _OrderCreatedState extends State<OrderCreated> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/p2pbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -1573,8 +2448,8 @@ class _OrderCreatedState extends State<OrderCreated> {
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       )
                                     : GradientText(
@@ -1585,8 +2460,8 @@ class _OrderCreatedState extends State<OrderCreated> {
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                               ),
@@ -1596,8 +2471,8 @@ class _OrderCreatedState extends State<OrderCreated> {
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     maxLines: 1,
@@ -1606,7 +2481,7 @@ class _OrderCreatedState extends State<OrderCreated> {
 
                                   return Container(
                                     width: textPainter.width, // Dynamic width
-                                    height: 2,
+                                    height: 1,
                                     // margin: const EdgeInsets.only(top: 4),
                                     decoration: BoxDecoration(
                                       gradient: selectedIndex == index
@@ -1933,6 +2808,8 @@ class _PayTheSellerState extends State<PayTheSeller> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
+      backgroundImage: "assets/images/p2pbg.png",
+      fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -1982,8 +2859,8 @@ class _PayTheSellerState extends State<PayTheSeller> {
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       )
                                     : GradientText(
@@ -1994,8 +2871,8 @@ class _PayTheSellerState extends State<PayTheSeller> {
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                               ),
@@ -2005,8 +2882,8 @@ class _PayTheSellerState extends State<PayTheSeller> {
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     maxLines: 1,
@@ -2015,7 +2892,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
 
                                   return Container(
                                     width: textPainter.width, // Dynamic width
-                                    height: 2,
+                                    height: 1,
                                     // margin: const EdgeInsets.only(top: 4),
                                     decoration: BoxDecoration(
                                       gradient: selectedIndex == index
@@ -2376,8 +3253,8 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       )
                                     : GradientText(
@@ -2388,8 +3265,8 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                               ),
@@ -2399,8 +3276,8 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     maxLines: 1,
@@ -2409,7 +3286,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
 
                                   return Container(
                                     width: textPainter.width, // Dynamic width
-                                    height: 2,
+                                    height: 1,
                                     // margin: const EdgeInsets.only(top: 4),
                                     decoration: BoxDecoration(
                                       gradient: selectedIndex == index

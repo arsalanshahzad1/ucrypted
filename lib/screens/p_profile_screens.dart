@@ -105,9 +105,9 @@ class _PProfileScreenState extends State<PProfileScreen> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                20.vSpace,
+                25.vSpace,
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 28.w),
                   child: Text(
                     "Sa***",
                     style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 11, color: Color(0xffD5D5D5)),
@@ -115,20 +115,28 @@ class _PProfileScreenState extends State<PProfileScreen> {
                 ),
                 10.vSpace,
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 28.w),
                   child: Row(
                     children: [
                       Image.asset("assets/images/pak.png"),
                       Text(
-                        " Pakistan | Joined on : 03/04/2025",
+                        "   Pakistan | Joined on : 03/04/2025",
                         style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 10, color: Color(0xffD5D5D5)),
                       ),
                     ],
                   ),
                 ),
+                5.vSpace,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 28.w),
+                  child: Divider(
+                    height: 1.0,
+                    color: Color(0xff393737),
+                  ),
+                ),
                 10.vSpace,
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 28.w),
                   child: Row(
                     children: [
                       Image.asset("assets/images/v1.png"),
@@ -153,7 +161,7 @@ class _PProfileScreenState extends State<PProfileScreen> {
                 ),
                 10.vSpace,
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 28.w),
                   child: Container(
                     padding: EdgeInsets.all(16.w),
                     decoration: BoxDecoration(color: const Color(0xFF0F0F0F), borderRadius: BorderRadius.circular(12.r), border: Border.all(color: Color(0xff393737))),
@@ -198,7 +206,7 @@ class _PProfileScreenState extends State<PProfileScreen> {
 
                 // Information box
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 28.w),
                   child: Container(
                     padding: EdgeInsets.all(16.w),
                     decoration: BoxDecoration(color: const Color(0xFF0F0F0F), borderRadius: BorderRadius.circular(12.r), border: Border.all(color: Color(0xff393737))),
@@ -232,21 +240,21 @@ class _PProfileScreenState extends State<PProfileScreen> {
 
                 // Menu Items
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 28.w),
                   child: menuTile("Payment", () {
                     RoutingService.push(const Paymentscreen());
                   }),
                 ),
                 10.vSpace,
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 28.w),
                   child: menuTile("Setting", () {
                     RoutingService.push(const SettingScreen());
                   }),
                 ),
                 10.vSpace,
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 28.w),
                   child: menuTile("P2P guide", () {}),
                 ),
               ],
@@ -254,7 +262,7 @@ class _PProfileScreenState extends State<PProfileScreen> {
             Positioned(
               child: SizedBox(height: 35.h, width: 35.w, child: Image.asset("assets/images/person.png")),
               top: 130.h,
-              left: 10.w,
+              left: 23.w,
             ),
             Positioned(
               child: Container(
@@ -262,8 +270,8 @@ class _PProfileScreenState extends State<PProfileScreen> {
                 width: 10,
                 decoration: BoxDecoration(color: Color(0xff25C866), borderRadius: BorderRadius.circular(10.r)),
               ),
-              top: 155.h,
-              left: 35.w,
+              top: 157.h,
+              left: 47.w,
             ),
           ],
         ),
@@ -662,7 +670,7 @@ class _AQMessageScreenState extends State<AQMessageScreen> {
               ),
               30.verticalSpace,
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     height: 30.h,
@@ -693,7 +701,7 @@ class _AQMessageScreenState extends State<AQMessageScreen> {
               ),
               16.verticalSpace,
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     height: 30.h,
@@ -744,7 +752,7 @@ class _VCPreferenceScreenState extends State<VCPreferenceScreen> {
       backgroundImage: "assets/images/profilebg.png",
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1032,7 +1040,7 @@ class _AddNowScreenState extends State<AddNowScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Divider(
                   height: 1.0,
-                  color: Color(0xff8E8E8E),
+                  color: Color(0xff282828),
                 )),
             10.vSpace,
             Padding(
@@ -1043,19 +1051,19 @@ class _AddNowScreenState extends State<AddNowScreen> {
                   Row(
                     children: [
                       CircleAvatar(
-                        radius: 10.r,
+                        radius: 13.r,
                         backgroundColor: Colors.transparent,
                         child: ClipOval(
                           child: Image.asset(
                             "assets/images/pak.png",
-                            fit: BoxFit.cover,
+                            fit: BoxFit.contain,
                             width: 30.r, // Ensure the image fully fits the avatar
                             height: 30.r,
                           ),
                         ),
                       ),
                       Text(
-                        " PKR",
+                        "   PKR",
                         style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 12, color: Color(0xffFAFAFA)),
                       ),
                     ],
@@ -1083,7 +1091,7 @@ class _AddNowScreenState extends State<AddNowScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Divider(
                   height: 1.0,
-                  color: Color(0xff8E8E8E),
+                  color: Color(0xff282828),
                 )),
             10.vSpace,
             Padding(
@@ -1233,7 +1241,7 @@ class _AddNowScreenState extends State<AddNowScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Divider(
                 height: 1.0,
-                color: Color(0xff8E8E8E),
+                color: Color(0xff282828),
               )),
           10.vSpace,
           Padding(
@@ -1293,7 +1301,7 @@ class _AddNowScreenState extends State<AddNowScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Divider(
                 height: 1.0,
-                color: Color(0xff8E8E8E),
+                color: Color(0xff282828),
               )),
           10.vSpace,
           Padding(

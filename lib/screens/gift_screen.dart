@@ -3,11 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/app_print.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
+import 'package:ucrypted_app/utilities/scaffold_background.dart';
 
 class GiftScreen extends StatefulWidget {
   const GiftScreen({super.key});
@@ -17,63 +19,136 @@ class GiftScreen extends StatefulWidget {
 }
 
 class _GiftScreenState extends State<GiftScreen> {
+  int _selectedIndex = 4;
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  final List<String> _selectedIcons = [
+    "assets/svg/home-bottoms.svg",
+    "assets/svg/trade-bottoms.svg",
+    "assets/svg/convert-bottoms.svg",
+    "assets/svg/gift-bottoms.svg",
+    "assets/svg/discover-bottoms.svg"
+  ];
+  final List<String> _unselectedIcons = [
+    "assets/svg/home-bottom.svg",
+    "assets/svg/trade-bottom.svg",
+    "assets/svg/convert-bottom.svg",
+    "assets/svg/gift-bottom.svg",
+    "assets/svg/discover-bottom.svg"
+  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: GestureDetector(
-          onTap: () {},
-          child: SizedBox(
-            height: 20,
-            width: 20,
-            child: SvgPicture.asset(
-              "assets/svg/menu-dots.svg",
-              fit: BoxFit.scaleDown,
-            ),
+    return ScaffoldWithBackground(
+      bottomNavChild: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 28, 28, 30),
+          border: Border(
+            top: BorderSide(color: Colors.black, width: 0.5),
           ),
         ),
-        actions: [
-          GestureDetector(
-            onTap: () {},
-            child: SvgPicture.asset(
-              "assets/svg/chats.svg",
-              width: 30,
-              height: 30,
-            ),
-          ),
-          15.hSpace,
-          GestureDetector(
-            onTap: () {
-              RoutingService.push(const NotificationScreen());
-            },
-            child: SizedBox(
-              height: 30,
-              width: 30,
-              child: SvgPicture.asset("assets/svg/notification.svg"),
-            ),
-          ),
-          15.hSpace,
-          GestureDetector(
-            onTap: () {
-              RoutingService.push(const AccountScreen());
-            },
-            child: const CircleAvatar(
-              backgroundColor: AppColors.disableBtnColor,
-              radius: 22,
-              backgroundImage: AssetImage("assets/images/person.png"),
-            ),
-          ),
-          10.hSpace,
-        ],
+        child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedFontSize: 0.0,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.orange,
+          unselectedItemColor: Colors.white,
+          items: List.generate(5, (index) {
+            return BottomNavigationBarItem(
+              label: "",
+              icon: Column(
+                children: [
+                  SizedBox(
+                    height: 50,
+                    child: SvgPicture.asset(_unselectedIcons[index], width: 60, height: 60),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+              activeIcon: Column(
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      _selectedIcons[index],
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  25.vSpace,
+                ],
+              ),
+            );
+          }),
+        ),
       ),
-      body: SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              15.vSpace,
+              50.vSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: SvgPicture.asset(
+                          "assets/svg/menu-dots.svg",
+                          fit: BoxFit.scaleDown,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
+                        child: SvgPicture.asset(
+                          "assets/svg/chats.svg",
+                          width: 30,
+                          height: 30,
+                        ),
+                      ),
+                      15.hSpace,
+                      GestureDetector(
+                        onTap: () {
+                          RoutingService.push(const NotificationScreen());
+                        },
+                        child: SizedBox(
+                          height: 30,
+                          width: 30,
+                          child: SvgPicture.asset("assets/svg/notification.svg"),
+                        ),
+                      ),
+                      15.hSpace,
+                      GestureDetector(
+                        onTap: () {
+                          RoutingService.push(const AccountScreen());
+                        },
+                        child: const CircleAvatar(
+                          backgroundColor: AppColors.disableBtnColor,
+                          radius: 22,
+                          backgroundImage: AssetImage("assets/images/person.png"),
+                        ),
+                      ),
+                      10.hSpace,
+                    ],
+                  ),
+                ],
+              ),
+              20.vSpace,
               Row(
                 children: [
                   Expanded(
@@ -236,11 +311,12 @@ class _GiftScreenState extends State<GiftScreen> {
                   )
                 ],
               ),
-              10.verticalSpace,
+              // 10.verticalSpace,
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 5,
+                padding: EdgeInsets.zero,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),

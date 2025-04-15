@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/home_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
@@ -120,7 +121,9 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -177,7 +180,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                       dropdownColor: AppColors.disableBtnColor,
                       value: selectedPaymentMethod,
                       hint: Text(
-                        "Wallet",
+                        "Selected Payment Method",
                         style: GoogleFonts.poppins(color: const Color(0xFFCCCCCC), fontWeight: FontWeight.w300, fontSize: 12),
                       ),
                       icon: Row(
@@ -311,7 +314,6 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                     Row(
                       children: [
                         const SizedBox(width: 5), // Space between flag & dropdown
-
                         Image.asset(
                           "assets/images/america.png", // Replace with your flag image
                           width: 24,
@@ -537,7 +539,9 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -576,15 +580,22 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: 80,
-                    width: 80,
-                    decoration: const BoxDecoration(
+                    height: 65.h, // Outer circle
+                    width: 65.w,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 94, 155, 25).withOpacity(0.1), // Green outer ring
                       shape: BoxShape.circle,
                     ),
-                    child: Center(
-                      child: SvgPicture.asset("assets/svg/success1.svg"),
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      height: 45.h,
+                      width: 45.w,
+                      child: SvgPicture.asset(
+                        "assets/svg/success1.svg",
+                        fit: BoxFit.contain,
+                      ),
                     ),
-                  ),
+                  )
                 ],
               ),
               20.vSpace,

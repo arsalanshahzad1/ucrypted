@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/notifications_screen.dart';
+import 'package:ucrypted_app/screens/tier_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
@@ -115,7 +117,9 @@ class _CompaignScreenState extends State<CompaignScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          RoutingService.push(const ChatRoomScreen());
+                        },
                         child: SvgPicture.asset(
                           "assets/svg/chats.svg",
                           width: 30,
@@ -250,13 +254,13 @@ class _CompaignScreenState extends State<CompaignScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: GestureDetector(
                 onTap: () {
-                  // RoutingService.pushAndRemoveUntil(const HomeScreen());
+                  RoutingService.push(const TierScreenSuccess());
                 },
                 child: Container(
                   height: 44.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                    gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color.fromARGB(255, 176, 4, 7)]),
                     borderRadius: BorderRadius.circular(28),
                   ),
                   child: Center(
@@ -464,15 +468,16 @@ class _CompaignScreenState extends State<CompaignScreen> {
                               "Be among the first to access the Ucrypted Global Exchange before its public release.",
                               "Exclusive insights into the platform’s functionalities and early features.",
                             ],
+                            icon: "assets/svg/search1.svg",
                           ),
                           const SizedBox(width: 16),
                           _buildCard2(
-                            title: "Exclusive Early Access",
-                            bulletPoints: [
-                              "Be among the first to access the Ucrypted Global Exchange before its public release.",
-                              "Exclusive insights into the platform’s functionalities and early features.",
-                            ],
-                          ),
+                              title: "Exclusive Early Access",
+                              bulletPoints: [
+                                "Be among the first to access the Ucrypted Global Exchange before its public release.",
+                                "Exclusive insights into the platform’s functionalities and early features.",
+                              ],
+                              icon: "assets/svg/search22.svg"),
                         ],
                       ),
                     ),
@@ -482,7 +487,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
             ),
             20.vSpace,
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -536,7 +541,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                   20.vSpace,
                   GestureDetector(
                     onTap: () {
-                      // RoutingService.pushAndRemoveUntil(const HomeScreen());
+                      RoutingService.push(const TierScreenSuccess());
                     },
                     child: Container(
                       height: 44.h,
@@ -788,14 +793,14 @@ class _CompaignScreenState extends State<CompaignScreen> {
     );
   }
 
-  Widget _buildCard2({required String title, required List<String> bulletPoints}) {
+  Widget _buildCard2({required String title, required List<String> bulletPoints, required String icon}) {
     return Container(
       width: 250, // Fixed width for each card
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 35),
       decoration: BoxDecoration(
         color: Color(0xff212121), // Background color
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: Color.fromARGB(255, 123, 120, 120).withOpacity(0.2)), // Border effect
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: Color(0xff505050)), // Border effect
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -809,7 +814,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
             ),
             child: Center(
               child: SvgPicture.asset(
-                "assets/svg/search1.svg",
+                icon,
                 height: 20,
                 width: 20,
               ),
@@ -857,10 +862,10 @@ class _CompaignScreenState extends State<CompaignScreen> {
   Widget _buildCard3({required String title, required List<String> bulletPoints, String? svg}) {
     return Container(
       width: 300,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.only(left: 10,right: 20, top: 8, bottom: 10),
       decoration: BoxDecoration(
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Color(0xffEBEBEB)),
       ),
       child: Column(
@@ -889,12 +894,15 @@ class _CompaignScreenState extends State<CompaignScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Supporter",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xffFAFAFA),
+              Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child: Text(
+                  "Supporter",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xffFAFAFA),
+                  ),
                 ),
               ),
               Text(
@@ -909,7 +917,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
           ),
           const SizedBox(height: 12),
           ...bulletPoints.map((point) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
+                padding: const EdgeInsets.only(bottom: 8, left: 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
