@@ -23,21 +23,6 @@ class DiscoverBlockTradeScreen extends StatefulWidget {
 class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> with SingleTickerProviderStateMixin {
   int i = 4;
 
-  final List<String> _selectedIcons = [
-    "assets/svg/home-bottoms.svg",
-    "assets/svg/trade-bottoms.svg",
-    "assets/svg/convert-bottoms.svg",
-    "assets/svg/gift-bottoms.svg",
-    "assets/svg/discover-bottoms.svg"
-  ];
-  final List<String> _unselectedIcons = [
-    "assets/svg/home-bottom.svg",
-    "assets/svg/trade-bottom.svg",
-    "assets/svg/convert-bottom.svg",
-    "assets/svg/gift-bottom.svg",
-    "assets/svg/discover-bottom.svg"
-  ];
-
   void _onItemTapped(int index) {
     setState(() {
       i = index;

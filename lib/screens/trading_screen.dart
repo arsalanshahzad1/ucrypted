@@ -1005,6 +1005,7 @@ class _TradingScreenState extends State<TradingScreen> {
           Expanded(
             child: Align(
               alignment: Alignment.center,
+              // alignment: Alignment.bottomRight,
               child: Text(
                 fourth,
                 style: GoogleFonts.nunito(color: Color(0xffF7F7F7), fontWeight: FontWeight.w700, fontSize: 13),

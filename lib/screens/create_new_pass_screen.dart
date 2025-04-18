@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/reset_pass_success_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
-import 'package:ucrypted_app/utilities/app_print.dart';
-import 'package:ucrypted_app/utilities/custom_textfield.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/gradient_text.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';

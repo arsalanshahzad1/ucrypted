@@ -151,6 +151,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         leading: GestureDetector(
           onTap: () {
@@ -206,7 +207,7 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              10.vSpace,
+              5.vSpace,
               if (showConverter == false) ...[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -251,7 +252,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                10.vSpace,
+                6.vSpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -294,7 +295,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              20.vSpace,
+              15.vSpace,
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -314,7 +315,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              35.vSpace,
+              20.vSpace,
               if (!showConverter) ...[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -323,7 +324,7 @@ class _HomePageState extends State<HomePage> {
                     GestureDetector(onTap: () {}, child: Text("See all", style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xff838383)))),
                   ],
                 ),
-                25.vSpace,
+                10.vSpace,
               ],
               if (showConverter == false) ...[
                 SingleChildScrollView(
@@ -816,7 +817,7 @@ class _HomePageState extends State<HomePage> {
               width: 180.w,
               child: Image.asset(
                 asset,
-                color: Color(0xff202226).withOpacity(0.5),
+                color: Color(0xff202226).withOpacity(0.70),
               ),
             ),
           ),
@@ -828,7 +829,8 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.white, width: 1.0),
-              color: Color(0xff202226).withOpacity(0.2),
+              // color: Color(0xff202226).withOpacity(0.55),
+              color: Color.fromARGB(255, 41, 44, 49).withOpacity(0.55),
               borderRadius: BorderRadius.circular(18),
             ),
             child: Column(

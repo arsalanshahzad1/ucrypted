@@ -222,8 +222,8 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                           ),
                         );
                       }),
-                    ),
-                    5.hSpace,
+                    ),  
+                    5.hSpace, 
                     Expanded(
                         child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,

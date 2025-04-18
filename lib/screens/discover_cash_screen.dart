@@ -8,7 +8,6 @@ import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/discover_block_trade_screen.dart';
 import 'package:ucrypted_app/screens/discover_express_screen.dart';
 import 'package:ucrypted_app/screens/discover_p2p_screen.dart';
-import 'package:ucrypted_app/screens/discover_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/gradient_text.dart';
@@ -25,20 +24,6 @@ class DiscoverCashScreen extends StatefulWidget {
 class _DiscoverCashScreenState extends State<DiscoverCashScreen> with SingleTickerProviderStateMixin {
   int i = 4;
 
-  final List<String> _selectedIcons = [
-    "assets/svg/home-bottoms.svg",
-    "assets/svg/trade-bottoms.svg",
-    "assets/svg/convert-bottoms.svg",
-    "assets/svg/gift-bottoms.svg",
-    "assets/svg/discover-bottoms.svg"
-  ];
-  final List<String> _unselectedIcons = [
-    "assets/svg/home-bottom.svg",
-    "assets/svg/trade-bottom.svg",
-    "assets/svg/convert-bottom.svg",
-    "assets/svg/gift-bottom.svg",
-    "assets/svg/discover-bottom.svg"
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
