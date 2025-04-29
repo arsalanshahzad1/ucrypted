@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class DiscoverWithdrawScreen extends StatefulWidget {
   const DiscoverWithdrawScreen({super.key});
@@ -26,7 +27,7 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height, // Ensure Column has constrained height
             child: Column(
@@ -58,7 +59,7 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                           style: GoogleFonts.inter(
                             color: AppColors.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 16,
+                            fontSize: ScreenService.isTablet ? 18 : 16,
                           ),
                         ),
                       ),
@@ -78,7 +79,7 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                   children: [
                     Text(
                       "How much would you want to withdraw",
-                      style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+                      style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),
@@ -153,7 +154,7 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                     Text(
                       "1 BTC : 71,350.70 USD",
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w400),
+                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
@@ -164,7 +165,7 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Select withdrawal address",
-                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -185,10 +186,10 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                             hintStyle: GoogleFonts.inter(
                               color: Color(0xffACB5BB),
                               fontWeight: FontWeight.w400,
-                              fontSize: 14,
+                              fontSize: ScreenService.isTablet ? 16 : 14,
                             ),
                             border: InputBorder.none,
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 16,vertical: 12),
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                           ),
                         ),
                       ),
@@ -236,7 +237,7 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                       Expanded(
                         child: Text(
                           "Specify the wallet address where you want to send your cryptocurrency. Double-check the address to avoid errors.",
-                          style: GoogleFonts.inter(color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w400),
+                          style: GoogleFonts.inter(color: Colors.grey, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ],
@@ -245,12 +246,12 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                 const Spacer(),
                 Container(
                   width: double.infinity,
-                  height: 50,
+                  height: ScreenService.isTablet ? 45.h : 50,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
                       colors: [Color(0xFFFCA509), Color(0xFF880306)],
                     ),
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(ScreenService.isTablet ? 34 : 30),
                   ),
                   child: ElevatedButton(
                     onPressed: () {},
@@ -260,7 +261,7 @@ class _DiscoverWithdrawScreenState extends State<DiscoverWithdrawScreen> {
                     ),
                     child: Text(
                       "Continue",
-                      style: GoogleFonts.inter(color: Colors.white, fontSize: 16),
+                      style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16),
                     ),
                   ),
                 ),

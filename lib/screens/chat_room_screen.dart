@@ -11,6 +11,7 @@ import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/gradient_text.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class ChatRoomScreen extends StatefulWidget {
   const ChatRoomScreen({super.key});
@@ -27,7 +28,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -113,7 +114,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                       SizedBox(width: 10),
                       Text(
                         'Search',
-                        style: GoogleFonts.inter(color: Color(0xffCDCDCD), fontSize: 14, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.inter(color: Color(0xffCDCDCD), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -124,7 +125,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   "Chats",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w600),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 32 : 28, fontWeight: FontWeight.w600),
                 ),
               ),
               10.vSpace,
@@ -161,7 +162,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
           child: Row(
             children: [
               CircleAvatar(
-                radius: 17.r,
+                radius: ScreenService.isTablet ? 20.r : 17.r,
                 backgroundImage: AssetImage("assets/images/person.png"),
               ),
               16.hSpace,
@@ -170,11 +171,11 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                 children: [
                   Text(
                     titile,
-                    style: GoogleFonts.inter(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500),
+                    style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 20 : 18, fontWeight: FontWeight.w500),
                   ),
                   Text(
                     msg,
-                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 10, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 14 : 10, fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -190,7 +191,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
                 Color(0xffCCCCCC),
                 Color(0xff666666),
               ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-              style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 10, fontWeight: FontWeight.w400),
+              style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 14 : 10, fontWeight: FontWeight.w400),
             ),
           ],
         ),
@@ -212,7 +213,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
     return ScaffoldWithBackground(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -233,10 +234,10 @@ class _OneToOneChatState extends State<OneToOneChat> {
                   ),
                   Row(
                     children: [
-                      const CircleAvatar(
+                      CircleAvatar(
                         backgroundColor: AppColors.disableBtnColor,
-                        radius: 18,
-                        backgroundImage: AssetImage("assets/images/person.png"),
+                        radius: ScreenService.isTablet ? 18.r : 18,
+                        backgroundImage: const AssetImage("assets/images/person.png"),
                       ),
                       10.hSpace,
                       Text(
@@ -244,7 +245,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
                         style: GoogleFonts.inter(
                           color: AppColors.white,
                           fontWeight: FontWeight.w500,
-                          fontSize: 16.sp,
+                          fontSize: ScreenService.isTablet ? 20 : 16.sp,
                         ),
                       ),
                     ],
@@ -278,7 +279,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
               Row(
                 children: [
                   CircleAvatar(
-                    radius: 14,
+                    radius: ScreenService.isTablet ? 16 : 14,
                     backgroundImage: AssetImage("assets/images/person.png"),
                   ),
                   7.hSpace,
@@ -286,7 +287,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
                       style: GoogleFonts.poppins(
                         color: Color(0xff8E8E8E),
                         fontWeight: FontWeight.w400,
-                        fontSize: 10,
+                        fontSize: ScreenService.isTablet ? 16 : 10,
                       )),
                 ],
               ),
@@ -306,7 +307,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
                           style: GoogleFonts.poppins(
                             color: Color(0xff8E8E8E),
                             fontWeight: FontWeight.w400,
-                            fontSize: 12,
+                            fontSize: ScreenService.isTablet ? 16 : 12,
                           )),
                       10.vSpace,
                       Divider(
@@ -318,7 +319,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
                           style: GoogleFonts.poppins(
                             color: Color(0xff8E8E8E),
                             fontWeight: FontWeight.w400,
-                            fontSize: 10,
+                            fontSize: ScreenService.isTablet ? 12 : 10,
                           )),
                     ],
                   ),
@@ -328,6 +329,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
               Padding(
                 padding: const EdgeInsets.only(right: 10, left: 25),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -336,12 +338,13 @@ class _OneToOneChatState extends State<OneToOneChat> {
                         color: const Color(0xFF212121),
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text("No third-party payments are accepted. ",
                               style: GoogleFonts.poppins(
                                 color: Color(0xff8E8E8E),
                                 fontWeight: FontWeight.w400,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 16 : 12,
                               )),
                           SizedBox(height: 15.h, width: 15.w, child: SvgPicture.asset("assets/svg/double.svg"))
                         ],
@@ -349,8 +352,8 @@ class _OneToOneChatState extends State<OneToOneChat> {
                     ),
                     10.hSpace,
                     Container(
-                      height: 30.h,
-                      width: 30.w,
+                      height: ScreenService.isTablet ? 50 : 30.h,
+                      width: ScreenService.isTablet ? 50 : 30.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30.r),
                         color: const Color(0xFF212121),
@@ -360,7 +363,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
                             style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
-                              fontSize: 12,
+                              fontSize: ScreenService.isTablet ? 16 : 12,
                             )),
                       ),
                     ),
@@ -371,7 +374,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
               Row(
                 children: [
                   CircleAvatar(
-                    radius: 14,
+                    radius: ScreenService.isTablet ? 16 : 14,
                     backgroundImage: AssetImage("assets/images/person.png"),
                   ),
                   7.hSpace,
@@ -379,7 +382,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
                       style: GoogleFonts.poppins(
                         color: Color(0xff8E8E8E),
                         fontWeight: FontWeight.w400,
-                        fontSize: 10,
+                        fontSize: ScreenService.isTablet ? 16 : 10,
                       )),
                 ],
               ),
@@ -399,14 +402,14 @@ class _OneToOneChatState extends State<OneToOneChat> {
                           style: GoogleFonts.poppins(
                             color: Color(0xff8E8E8E),
                             fontWeight: FontWeight.w400,
-                            fontSize: 12,
+                            fontSize: ScreenService.isTablet ? 16 : 12,
                           )),
                       10.vSpace,
                       Text("Paypal Acount send payment here.",
                           style: GoogleFonts.poppins(
                             color: Color(0xff8E8E8E),
                             fontWeight: FontWeight.w400,
-                            fontSize: 10,
+                            fontSize: ScreenService.isTablet ? 14 : 10,
                           )),
                     ],
                   ),
@@ -430,7 +433,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
                               style: GoogleFonts.poppins(
                                 color: Color(0xff8E8E8E),
                                 fontWeight: FontWeight.w400,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 16 : 12,
                               )),
                           SizedBox(height: 15.h, width: 15.w, child: SvgPicture.asset("assets/svg/double.svg"))
                         ],
@@ -438,8 +441,8 @@ class _OneToOneChatState extends State<OneToOneChat> {
                     ),
                     10.hSpace,
                     Container(
-                      height: 30.h,
-                      width: 30.w,
+                      height: ScreenService.isTablet ? 50 : 30.h,
+                      width: ScreenService.isTablet ? 50 : 30.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30.r),
                         color: const Color(0xFF212121),
@@ -449,7 +452,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
                             style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
-                              fontSize: 12,
+                              fontSize: ScreenService.isTablet ? 16 : 12,
                             )),
                       ),
                     ),
@@ -483,7 +486,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
                               style: GoogleFonts.poppins(
                                 color: Color(0xff8E8E8E),
                                 fontWeight: FontWeight.w400,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 16 : 12,
                               )),
                           SizedBox(height: 15.h, width: 15.w, child: SvgPicture.asset("assets/svg/double.svg"))
                         ],
@@ -491,8 +494,8 @@ class _OneToOneChatState extends State<OneToOneChat> {
                     ),
                     10.hSpace,
                     Container(
-                      height: 30.h,
-                      width: 30.w,
+                      height: ScreenService.isTablet ? 50 : 30.h,
+                      width: ScreenService.isTablet ? 50 : 30.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30.r),
                         color: const Color(0xFF212121),
@@ -502,7 +505,7 @@ class _OneToOneChatState extends State<OneToOneChat> {
                             style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
-                              fontSize: 12,
+                              fontSize: ScreenService.isTablet ? 16 : 12,
                             )),
                       ),
                     ),
@@ -548,14 +551,14 @@ class _OneToOneChatState extends State<OneToOneChat> {
               style: GoogleFonts.poppins(
                 color: Color(0xffFAFAFA),
                 fontWeight: FontWeight.w400,
-                fontSize: 12,
+                fontSize: ScreenService.isTablet ? 16 : 12,
               )),
           const SizedBox(height: 4),
           Text(subtitle,
               style: GoogleFonts.poppins(
                 color: Color(0xff8E8E8E),
                 fontWeight: FontWeight.w400,
-                fontSize: 10,
+                fontSize: ScreenService.isTablet ? 12 : 10,
               )),
           10.vSpace,
           Divider(
@@ -569,10 +572,10 @@ class _OneToOneChatState extends State<OneToOneChat> {
                   style: GoogleFonts.poppins(
                     color: Color(0xffFAFAFA),
                     fontWeight: FontWeight.w400,
-                    fontSize: 12,
+                    fontSize: ScreenService.isTablet ? 14 : 12,
                   )),
               const SizedBox(width: 4),
-              const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Colors.white)
+              Icon(Icons.arrow_forward_ios_rounded, size: ScreenService.isTablet ? 12 : 14, color: Colors.white)
             ],
           )
         ],

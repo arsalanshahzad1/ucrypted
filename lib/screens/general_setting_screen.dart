@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class GeneralSettingScreen extends StatefulWidget {
   const GeneralSettingScreen({super.key});
@@ -94,7 +95,7 @@ class _GeneralSettingScreenState extends State<GeneralSettingScreen> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -124,7 +125,7 @@ class _GeneralSettingScreenState extends State<GeneralSettingScreen> {
                       style: GoogleFonts.inter(
                         color: AppColors.white,
                         fontWeight: FontWeight.w500,
-                        fontSize: 16.sp,
+                        fontSize: ScreenService.isTablet ? 20 : 16.sp,
                       ),
                     ),
                   ),
@@ -141,7 +142,7 @@ class _GeneralSettingScreenState extends State<GeneralSettingScreen> {
             30.vSpace,
             Text(
               "Language",
-              style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+              style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w500),
             ),
             20.vSpace,
             SizedBox(
@@ -160,7 +161,7 @@ class _GeneralSettingScreenState extends State<GeneralSettingScreen> {
                     value: sLanguage,
                     hint: Text(
                       "Select Language",
-                      style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                      style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w400),
                     ),
                     icon: Row(
                       children: [
@@ -189,7 +190,7 @@ class _GeneralSettingScreenState extends State<GeneralSettingScreen> {
             25.vSpace,
             Text(
               "Currency Display",
-              style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+              style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w500),
             ),
             20.vSpace,
             SizedBox(
@@ -237,7 +238,7 @@ class _GeneralSettingScreenState extends State<GeneralSettingScreen> {
             25.vSpace,
             Text(
               "Select timezone",
-              style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+              style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w500),
             ),
             20.vSpace,
             SizedBox(
@@ -285,7 +286,7 @@ class _GeneralSettingScreenState extends State<GeneralSettingScreen> {
             25.vSpace,
             Text(
               "Timezone format",
-              style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
+              style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w500),
             ),
             20.vSpace,
             SizedBox(
@@ -339,16 +340,16 @@ class _GeneralSettingScreenState extends State<GeneralSettingScreen> {
                 // RoutingService.pushAndRemoveUntil(const HomeScreen());
               },
               child: Container(
-                height: 45.h,
+                height: ScreenService.isTablet ? 40.h : 45.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                  borderRadius: BorderRadius.circular(28),
+                  borderRadius: BorderRadius.circular(ScreenService.isTablet ? 32 : 28),
                 ),
                 child: Center(
                   child: Text(
                     "Update",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 22 : 18),
                   ),
                 ),
               ),

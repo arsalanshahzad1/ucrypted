@@ -19,10 +19,12 @@ class InputRecoverySuccessScreen extends StatefulWidget {
 class _InputRecoverySuccessScreenState extends State<InputRecoverySuccessScreen> {
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth >= 600 && screenWidth < 1024;
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/bg1.png",
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: isTablet ? 30 : 20),
         child: Column(
           children: [
             Expanded(
@@ -64,10 +66,15 @@ class _InputRecoverySuccessScreenState extends State<InputRecoverySuccessScreen>
                       ],
                     ),
                     20.vSpace,
-                    Text(
-                      "Your secret recovery word has been successfully verified and saved. Keep it safe",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: 14, fontWeight: FontWeight.w500),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Your secret recovery word has been successfully verified and saved. Keep it safe",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: isTablet ? 17 : 14, fontWeight: FontWeight.w500),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -80,7 +87,7 @@ class _InputRecoverySuccessScreenState extends State<InputRecoverySuccessScreen>
                   RoutingService.pushAndRemoveUntil(const HomeScreen());
                 },
                 child: Container(
-                  height: 50,
+                  height: isTablet ? 50.h : 50,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
@@ -88,7 +95,7 @@ class _InputRecoverySuccessScreenState extends State<InputRecoverySuccessScreen>
                       end: Alignment.bottomRight,
                       colors: [Color(0xFFFCA509), Color(0xFF880306)],
                     ),
-                    borderRadius: BorderRadius.circular(28),
+                    borderRadius: BorderRadius.circular(isTablet ? 34 : 28),
                   ),
                   child: Center(
                     child: Text(
@@ -96,7 +103,7 @@ class _InputRecoverySuccessScreenState extends State<InputRecoverySuccessScreen>
                       style: GoogleFonts.inter(
                         color: AppColors.white,
                         fontWeight: FontWeight.normal,
-                        fontSize: 18,
+                        fontSize: isTablet ? 22 : 18,
                       ),
                     ),
                   ),

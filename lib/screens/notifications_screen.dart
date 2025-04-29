@@ -8,6 +8,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -140,9 +141,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     color: AppColors.white,
                   ),
                 ),
-                const Text(
+                Text(
                   "Notifications",
-                  style: TextStyle(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 26),
+                  style: TextStyle(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 26),
                 )
               ],
             ),
@@ -167,8 +168,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 Column(
                   children: [
                     const SizedBox(height: 8),
-                    const CircleAvatar(
-                      radius: 18,
+                    CircleAvatar(
+                      radius: ScreenService.isTablet ? 20 : 18,
                       backgroundImage: AssetImage("assets/images/s1.png"), // Replace with your image
                     ),
                   ],
@@ -191,7 +192,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                             TextSpan(
@@ -199,7 +200,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                             TextSpan(
@@ -207,7 +208,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                           ],
@@ -218,7 +219,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
                       Text(
                         "Last Wednesday at 9:42 AM",
-                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
@@ -249,8 +250,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 Column(
                   children: [
                     const SizedBox(height: 8),
-                    const CircleAvatar(
-                      radius: 18,
+                    CircleAvatar(
+                      radius: ScreenService.isTablet ? 20 : 18,
                       backgroundImage: AssetImage("assets/images/s2.png"), // Replace with your image
                     ),
                   ],
@@ -273,7 +274,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                             TextSpan(
@@ -281,7 +282,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                             TextSpan(
@@ -289,7 +290,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                           ],
@@ -312,7 +313,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         child: Text(
                           "“Oh, I finished de-bugging the phones, but the system's compiling for eighteen minutes, or twenty.  So, some minor systems may go on and off for a while.”",
                           maxLines: 2,
-                          style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                          style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
                         ),
                       ),
 
@@ -320,7 +321,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
                       Text(
                         "Last Wednesday at 9:42 AM",
-                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
@@ -352,8 +353,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 Column(
                   children: [
                     const SizedBox(height: 8),
-                    const CircleAvatar(
-                      radius: 18,
+                    CircleAvatar(
+                      radius: ScreenService.isTablet ? 20 : 18,
                       backgroundImage: AssetImage("assets/images/s3.png"), // Replace with your image
                     ),
                   ],
@@ -376,7 +377,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                             TextSpan(
@@ -384,7 +385,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                             TextSpan(
@@ -392,7 +393,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                           ],
@@ -411,11 +412,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
                           ),
                           Text(
                             "  landing_paage_ver2.fig",
-                            style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),
+                            style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
                           ),
                           Text(
                             "  2mb",
-                            style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                            style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
                           ),
                         ],
                       ),
@@ -424,7 +425,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
                       Text(
                         "Last Wednesday at 9:42 AM",
-                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
@@ -456,8 +457,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 Column(
                   children: [
                     const SizedBox(height: 8),
-                    const CircleAvatar(
-                      radius: 18,
+                    CircleAvatar(
+                      radius: ScreenService.isTablet ? 20 : 18,
                       backgroundImage: AssetImage("assets/images/s5.png"), // Replace with your image
                     ),
                   ],
@@ -480,7 +481,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                             TextSpan(
@@ -488,7 +489,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                             TextSpan(
@@ -496,7 +497,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                           ],
@@ -519,7 +520,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         child: Text(
                           "“Oh, I finished de-bugging the phones, but the system's compiling for eighteen minutes, or twenty.  So, some minor systems may go on and off for a while.”",
                           maxLines: 2,
-                          style: GoogleFonts.inter(color: Color(0xffDEDEDE), fontSize: 12, fontWeight: FontWeight.w500),
+                          style: GoogleFonts.inter(color: Color(0xffDEDEDE), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
                         ),
                       ),
 
@@ -527,7 +528,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
                       Text(
                         "Last Wednesday at 9:42 AM",
-                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
@@ -560,8 +561,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 Column(
                   children: [
                     const SizedBox(height: 8),
-                    const CircleAvatar(
-                      radius: 18,
+                    CircleAvatar(
+                      radius: ScreenService.isTablet ? 20 : 18,
                       backgroundImage: AssetImage("assets/images/s6.png"), // Replace with your image
                     ),
                   ],
@@ -584,7 +585,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                             TextSpan(
@@ -592,7 +593,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               style: GoogleFonts.inter(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                               ),
                             ),
                           ],
@@ -605,7 +606,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
                       Text(
                         "Last Wednesday at 9:42 AM",
-                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: 12, fontWeight: FontWeight.w500),
+                        style: GoogleFonts.inter(color: Color(0xffA5ACB8), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),

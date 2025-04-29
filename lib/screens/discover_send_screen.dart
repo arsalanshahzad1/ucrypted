@@ -9,6 +9,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class DiscoverSendScreen extends StatefulWidget {
   const DiscoverSendScreen({super.key});
@@ -25,7 +26,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -57,7 +58,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                           style: GoogleFonts.inter(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 16,
+                            fontSize: ScreenService.isTablet ? 20 : 16,
                           ),
                         ),
                       ),
@@ -76,7 +77,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                 // Wallet Selection
                 Text(
                   "Select Wallet",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 10),
 
@@ -105,13 +106,13 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                             children: [
                               Container(
                                 width: 4,
-                                height: 20,
+                                height: ScreenService.isTablet ? 25 : 20,
                                 color: Color(0xffECAC31),
                               ),
                               const SizedBox(width: 8),
                               Text(
                                 "BTC Balance",
-                                style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                                style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                               ),
                             ],
                           ),
@@ -123,7 +124,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                                 "0.34545 ",
                                 style: GoogleFonts.inter(
                                   color: Colors.white,
-                                  fontSize: 24,
+                                  fontSize: ScreenService.isTablet ? 26 : 24,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -131,7 +132,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                                 "BTC",
                                 style: GoogleFonts.inter(
                                   color: Color(0xffACB5BB),
-                                  fontSize: 14,
+                                  fontSize: ScreenService.isTablet ? 20 : 14,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -146,14 +147,14 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                           20.vSpace,
                           Text(
                             "21900,84 USD",
-                            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 8),
+                ScreenService.isTablet ? 20.vSpace : const SizedBox(height: 8),
 
                 // ETH Card
                 Container(
@@ -169,13 +170,13 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                             children: [
                               Container(
                                 width: 4,
-                                height: 20,
+                                height: ScreenService.isTablet ? 25 : 20,
                                 color: Color(0xffBBB9FD),
                               ),
                               const SizedBox(width: 8),
                               Text(
                                 "ETH Balance",
-                                style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                                style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                               ),
                             ],
                           ),
@@ -187,7 +188,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                                 "12,345 ",
                                 style: GoogleFonts.inter(
                                   color: Colors.white,
-                                  fontSize: 24,
+                                  fontSize: ScreenService.isTablet ? 26 : 24,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -195,7 +196,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                                 "ETH",
                                 style: GoogleFonts.inter(
                                   color: Color(0xffACB5BB),
-                                  fontSize: 14,
+                                  fontSize: ScreenService.isTablet ? 20 : 14,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -210,7 +211,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                           20.vSpace,
                           Text(
                             "37870,88 USD",
-                            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
@@ -222,7 +223,7 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                 Center(
                   child: Text(
                     "View more",
-                    style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                    style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                   ),
                 ),
                 const SizedBox(height: 25),
@@ -234,13 +235,13 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                 // Crypto Amount Input
                 Text(
                   "Crypto Amount",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
-                const SizedBox(height: 8),
+                ScreenService.isTablet ? 15.vSpace : const SizedBox(height: 8),
                 TextField(
                   style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    contentPadding: EdgeInsets.symmetric(vertical: ScreenService.isTablet ? 15 : 10, horizontal: 10),
                     hintText: "min amount 0,00001 BTC",
                     hintStyle: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: 14, fontWeight: FontWeight.w400),
                     filled: true,
@@ -251,18 +252,18 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                ScreenService.isTablet ? 15.vSpace : const SizedBox(height: 20),
 
                 // Wallet Address Input
                 Text(
                   "Wallet Address",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
-                const SizedBox(height: 8),
+                ScreenService.isTablet ? 15.vSpace : const SizedBox(height: 8),
                 TextField(
                   style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    contentPadding: EdgeInsets.symmetric(vertical: ScreenService.isTablet ? 16 : 10, horizontal: 10),
                     hintText: "Enter wallet address",
                     hintStyle: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: 14, fontWeight: FontWeight.w400),
                     filled: true,
@@ -288,16 +289,16 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
                     RoutingService.push(const SelectNetwork());
                   },
                   child: Container(
-                    height: 50,
+                    height: ScreenService.isTablet ? 40.h : 50,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                      borderRadius: BorderRadius.circular(28),
+                      borderRadius: BorderRadius.circular(ScreenService.isTablet ? 32 : 28),
                     ),
                     child: Center(
                       child: Text(
                         "Continue",
-                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                       ),
                     ),
                   ),
@@ -314,8 +315,8 @@ class _DiscoverSendScreenState extends State<DiscoverSendScreen> {
   // Dummy exchangeWidget function, replace with your actual implementation
   Widget exchangeWidget(String assetPath) {
     return SizedBox(
-      width: 40,
-      height: 40,
+      width: ScreenService.isTablet ? 50 : 40,
+      height: ScreenService.isTablet ? 50 : 40,
       child: SvgPicture.asset(assetPath), // Adjust if needed
     );
   }
@@ -339,7 +340,7 @@ class _SelectNetworkState extends State<SelectNetwork> {
           // Back button and title
           Positioned(
             top: 60, // Adjust based on your UI
-            left: 16,
+            left: ScreenService.isTablet ? 20 : 16,
             child: Row(
               children: [
                 IconButton(
@@ -356,7 +357,7 @@ class _SelectNetworkState extends State<SelectNetwork> {
                   style: GoogleFonts.inter(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
-                    fontSize: 24,
+                    fontSize: ScreenService.isTablet ? 26 : 24,
                   ),
                 ),
               ],
@@ -375,7 +376,7 @@ class _SelectNetworkState extends State<SelectNetwork> {
                 image: DecorationImage(image: AssetImage("assets/images/sendmodel.png"), fit: BoxFit.cover),
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16, vertical: 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -398,7 +399,7 @@ class _SelectNetworkState extends State<SelectNetwork> {
                     style: GoogleFonts.inter(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
-                      fontSize: 20,
+                      fontSize: ScreenService.isTablet ? 24 : 20,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -444,22 +445,22 @@ class _SelectNetworkState extends State<SelectNetwork> {
             title,
             style: GoogleFonts.inter(
               color: Colors.white,
-              fontSize: 12,
+              fontSize: ScreenService.isTablet ? 16 : 12,
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 8),
           Text(
             confirmation,
-            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 10, fontWeight: FontWeight.w400),
+            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 14 : 10, fontWeight: FontWeight.w400),
           ),
           Text(
             minDeposit,
-            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 10, fontWeight: FontWeight.w400),
+            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 14 : 10, fontWeight: FontWeight.w400),
           ),
           Text(
             arrival,
-            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 10, fontWeight: FontWeight.w400),
+            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 14 : 10, fontWeight: FontWeight.w400),
           ),
         ],
       ),

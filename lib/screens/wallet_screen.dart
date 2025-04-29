@@ -12,6 +12,7 @@ import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/gradient_text.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
@@ -668,14 +669,14 @@ class _WalletScreenState extends State<WalletScreen> {
                             onTap: () => setState(() => selectedIndexCustom = 0),
                             child: Text(
                               "Recent Transactions",
-                              style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                              style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w600),
                             )),
                         30.hSpace,
                         GestureDetector(
                           onTap: () => setState(() => selectedIndexCustom = 1),
                           child: Text(
                             "Exchange History",
-                            style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                            style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w600),
                           ),
                         ),
                         30.hSpace,
@@ -683,7 +684,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           onTap: () => setState(() => selectedIndexCustom = 2),
                           child: Text(
                             "Transaction",
-                            style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                            style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w600),
                           ),
                         ),
                       ],
@@ -968,7 +969,7 @@ class _WalletScreenState extends State<WalletScreen> {
               ),
             ),
           ),
-          const SizedBox(width: 5),
+          ScreenService.isTablet ? 8.hSpace : const SizedBox(width: 5),
 
           // Transaction Details
           Expanded(
@@ -979,7 +980,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   "BTC → ETH",
                   style: GoogleFonts.inter(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: ScreenService.isTablet ? 16 : 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -988,7 +989,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   "#12123TRA",
                   style: GoogleFonts.inter(
                     color: Color(0xffACB5BB),
-                    fontSize: 12,
+                    fontSize: ScreenService.isTablet ? 14 : 12,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -1004,7 +1005,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 "6,21 ETH",
                 style: GoogleFonts.inter(
                   color: Colors.white,
-                  fontSize: 14,
+                  fontSize: ScreenService.isTablet ? 16 : 14,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -1013,7 +1014,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 "0.342 BTC",
                 style: GoogleFonts.inter(
                   color: Color(0xffACB5BB),
-                  fontSize: 12,
+                  fontSize: ScreenService.isTablet ? 14 : 12,
                   fontWeight: FontWeight.w400,
                 ),
               ),

@@ -35,11 +35,13 @@ class _RecoveryScreemState extends State<RecoveryScreem> {
   ];
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth >= 600 && screenWidth < 1024;
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/bg1.png",
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
+        padding: EdgeInsets.symmetric(
+          horizontal: isTablet ? 30 : 20,
         ),
         child: Column(
           children: [
@@ -71,28 +73,28 @@ class _RecoveryScreemState extends State<RecoveryScreem> {
               "Secret Recovery Word",
               style: GoogleFonts.inter(
                 color: AppColors.white,
-                fontSize: 28,
+                fontSize: isTablet ? 32 : 28,
                 fontWeight: FontWeight.w500,
               ),
             ),
             5.vSpace,
             Text(
               "This is the only way you will be able to recover your account. Please store it somewhere safe!",
-              style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: 14, fontWeight: FontWeight.w500),
-              textAlign: TextAlign.start,
+              style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: isTablet ? 18 : 14, fontWeight: FontWeight.w500),
+              textAlign: isTablet ? TextAlign.center : TextAlign.start,
             ),
-            50.vSpace,
+            isTablet ? 30.vSpace : 50.vSpace,
             Expanded(
               child: GridView.builder(
                 shrinkWrap: true,
                 padding: const EdgeInsets.all(0.0),
                 itemCount: recoveryWords.length,
                 // physics: NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
-                  childAspectRatio: 3.2,
+                  childAspectRatio: isTablet ? 3.9 : 3.2,
                 ),
                 itemBuilder: (context, index) {
                   return Container(
@@ -108,7 +110,7 @@ class _RecoveryScreemState extends State<RecoveryScreem> {
                         style: GoogleFonts.inter(
                           color: AppColors.white,
                           fontWeight: FontWeight.w400,
-                          fontSize: 14,
+                          fontSize: isTablet ? 16 : 14,
                         ),
                       ),
                     ),
@@ -126,12 +128,12 @@ class _RecoveryScreemState extends State<RecoveryScreem> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                  borderRadius: BorderRadius.circular(28),
+                  borderRadius: BorderRadius.circular(isTablet ? 32 : 28),
                 ),
                 child: Center(
                   child: Text(
                     "Confirm",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: isTablet ? 22 : 18),
                   ),
                 ),
               ),

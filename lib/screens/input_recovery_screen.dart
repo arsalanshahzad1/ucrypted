@@ -21,10 +21,12 @@ class _InputRecoveryscreenState extends State<InputRecoveryscreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth >= 600 && screenWidth < 1024;
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/bg1.png",
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: isTablet ? 30 : 16),
         child: Column(
           children: [
             50.vSpace,
@@ -55,7 +57,7 @@ class _InputRecoveryscreenState extends State<InputRecoveryscreen> {
               "Input Recovery Word",
               style: GoogleFonts.inter(
                 color: AppColors.white,
-                fontSize: 32,
+                fontSize: isTablet ? 34 : 28,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -64,21 +66,21 @@ class _InputRecoveryscreenState extends State<InputRecoveryscreen> {
               "Enter the secret recovery word that was given previously in the correct order and sequence.",
               style: GoogleFonts.inter(
                 color: AppColors.grey,
-                fontSize: 14,
+                fontSize: isTablet ? 18 : 14,
               ),
               textAlign: TextAlign.center,
             ),
-            50.vSpace,
+            isTablet ? 30.vSpace : 50.vSpace,
             Expanded(
               child: GridView.builder(
                 itemCount: 14,
                 shrinkWrap: true,
                 padding: const EdgeInsets.all(0.0),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
-                  childAspectRatio: 3.2,
+                  childAspectRatio: isTablet ? 3.9 : 3.2,
                 ),
                 itemBuilder: (context, index) {
                   return Container(
@@ -102,7 +104,7 @@ class _InputRecoveryscreenState extends State<InputRecoveryscreen> {
                           isDense: true,
                           border: InputBorder.none,
                           hintText: index == 0 ? "1. Nebula" : "",
-                          hintStyle: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14)),
+                          hintStyle: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: isTablet ? 16 : 14)),
                     ),
                   );
                 },
@@ -118,16 +120,16 @@ class _InputRecoveryscreenState extends State<InputRecoveryscreen> {
                 }));
               },
               child: Container(
-                height: 50,
+                height: isTablet ? 50.h : 50,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 34, 34, 37),
-                  borderRadius: BorderRadius.circular(28),
+                  borderRadius: BorderRadius.circular(isTablet ? 32 : 28),
                 ),
                 child: Center(
                   child: Text(
                     "Continue",
-                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w600, fontSize: 14),
+                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w600, fontSize: isTablet ? 17 : 14),
                   ),
                 ),
               ),

@@ -9,6 +9,7 @@ import 'package:ucrypted_app/utilities/custom_textfield.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class DiscoverSellScreen extends StatefulWidget {
   const DiscoverSellScreen({super.key});
@@ -25,7 +26,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -57,7 +58,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                           style: GoogleFonts.inter(
                             color: AppColors.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 16.sp,
+                            fontSize: ScreenService.isTablet ? 20 : 16.sp,
                           ),
                         ),
                       ),
@@ -74,7 +75,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                 40.vSpace,
                 Text(
                   "Select Crypto Currency",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
                 10.vSpace,
                 TextField(
@@ -83,7 +84,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                     hintText: "BTC (Bitcoin)",
                     hintStyle: GoogleFonts.inter(
                       color: Colors.white, // Light grey text color
-                      fontSize: 12,
+                      fontSize: ScreenService.isTablet ? 14 : 12,
                       fontWeight: FontWeight.w500,
                     ),
                     filled: true,
@@ -139,7 +140,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                 20.vSpace,
                 Text(
                   "Crypto Ammount",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
                 10.vSpace,
                 TextField(
@@ -147,7 +148,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                     hintText: "min amount 0,00001 BTC",
                     hintStyle: GoogleFonts.inter(
                         color: Color(0xFF6C7278), // Grey text color
-                        fontSize: 14,
+                        fontSize: ScreenService.isTablet ? 16 : 14,
                         fontWeight: FontWeight.w400),
                     filled: true,
                     fillColor: Color(0xFF2C2C30), // Dark background
@@ -183,7 +184,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                 20.vSpace,
                 Text(
                   "Wallet Password",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
                 10.vSpace,
                 TextField(
@@ -250,7 +251,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                         children: [
                           Text(
                             "Exchage Operation",
-                            style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                            style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                           ),
                           10.vSpace,
                           TextField(
@@ -258,7 +259,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                               hintText: "Input Amount",
                               hintStyle: GoogleFonts.inter(
                                   color: Color(0xFF6C7278), // Grey text color
-                                  fontSize: 14,
+                                  fontSize: ScreenService.isTablet ? 16 : 14,
                                   fontWeight: FontWeight.w400),
                               filled: true,
                               fillColor: Color(0xFF2C2C30), // Dark background
@@ -313,7 +314,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                         children: [
                           Text(
                             "Equivalent Amount",
-                            style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                            style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                           ),
                           10.vSpace,
                           TextField(
@@ -321,7 +322,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                               hintText: "Equivalent",
                               hintStyle: GoogleFonts.inter(
                                   color: Color(0xFF6C7278), // Grey text color
-                                  fontSize: 14,
+                                  fontSize: ScreenService.isTablet ? 16 : 14,
                                   fontWeight: FontWeight.w400),
                               filled: true,
                               fillColor: Color(0xFF2C2C30), // Dark background
@@ -384,7 +385,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                     10.hSpace,
                     Text(
                       "Minimun value Sell crypto = 0,0001 BTC",
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w400),
+                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
@@ -394,7 +395,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                     RoutingService.push(const SellDetailScreen());
                   },
                   child: Container(
-                    height: 50,
+                    height: 40.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
@@ -403,7 +404,7 @@ class _DiscoverSellScreenState extends State<DiscoverSellScreen> {
                     child: Center(
                       child: Text(
                         "Continue",
-                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                       ),
                     ),
                   ),
@@ -433,7 +434,7 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -465,7 +466,7 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
                           style: GoogleFonts.inter(
                             color: AppColors.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 16.sp,
+                            fontSize: ScreenService.isTablet ? 20 : 16.sp,
                           ),
                         ),
                       ),
@@ -485,8 +486,8 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
                   children: [
                     SvgPicture.asset(
                       "assets/svg/code.svg",
-                      height: 250.h,
-                      width: 250.w,
+                      height: ScreenService.isTablet ? 200 : 250.h,
+                      width: ScreenService.isTablet ? 200 : 250.w,
                     ),
                   ],
                 ),
@@ -499,20 +500,20 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
                       style: GoogleFonts.inter(
                         color: Color(0xffACB5BB),
                         fontWeight: FontWeight.w500,
-                        fontSize: 14.sp,
+                        fontSize: ScreenService.isTablet ? 16 : 14.sp,
                       ),
                     ),
                     10.hSpace,
                     SvgPicture.asset(
                       "assets/svg/clipoboard.svg",
-                      height: 20.h,
-                      width: 20.w,
+                      height: ScreenService.isTablet ? 20 : 20.h,
+                      width: ScreenService.isTablet ? 20 : 20.w,
                     ),
                   ],
                 ),
                 20.vSpace,
                 Container(
-                  height: 55.h,
+                  height: ScreenService.isTablet ? 60.h : 55.h,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
                     color: const Color(0xFF2C2C30),
@@ -528,7 +529,7 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
                           style: GoogleFonts.inter(
                             color: AppColors.grey,
                             fontWeight: FontWeight.w500,
-                            fontSize: 12.sp,
+                            fontSize: ScreenService.isTablet ? 20 : 12.sp,
                           ),
                           maxLines: 2,
                         ),
@@ -545,17 +546,17 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
                           RoutingService.pushAndRemoveUntil(const HomeScreen());
                         },
                         child: Container(
-                          height: 45.h,
+                          height: ScreenService.isTablet ? 50.h : 45.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: const Color(0xFF222223),
                             border: Border.all(color: const Color(0xFF2C2C30)),
-                            borderRadius: BorderRadius.circular(28),
+                            borderRadius: BorderRadius.circular(ScreenService.isTablet ? 36 : 28),
                           ),
                           child: Center(
                             child: Text(
                               "Share",
-                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                             ),
                           ),
                         ),
@@ -568,16 +569,16 @@ class _SellDetailScreenState extends State<SellDetailScreen> {
                           RoutingService.pushAndRemoveUntil(const HomeScreen());
                         },
                         child: Container(
-                          height: 45.h,
+                          height: ScreenService.isTablet ? 50.h : 45.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                            borderRadius: BorderRadius.circular(28),
+                            borderRadius: BorderRadius.circular(ScreenService.isTablet ? 36 : 28),
                           ),
                           child: Center(
                             child: Text(
                               "Print",
-                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                             ),
                           ),
                         ),

@@ -25,6 +25,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth >= 600 && screenWidth < 1024;
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -33,8 +36,8 @@ class _LoginScreenState extends State<LoginScreen> {
           backgroundImage: "assets/images/onboard.png",
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+              padding: EdgeInsets.symmetric(
+                horizontal: isTablet ? 30 : 20,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,16 +67,32 @@ class _LoginScreenState extends State<LoginScreen> {
                   30.vSpace,
                   Text(
                     "Login",
-                    style: GoogleFonts.inter(color: AppColors.white, fontSize: 36, fontWeight: FontWeight.w500),
+                    style: isTablet
+                        ? GoogleFonts.inter(
+                            color: AppColors.white,
+                            fontSize: 40,
+                            fontWeight: FontWeight.w600,
+                          )
+                        : GoogleFonts.inter(
+                            color: AppColors.white,
+                            fontSize: 36,
+                            fontWeight: FontWeight.w500,
+                          ),
                   ),
                   5.vSpace,
                   Text(
                     "Let's create new account",
-                    style: GoogleFonts.inter(
-                      color: AppColors.grey,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style: isTablet
+                        ? GoogleFonts.inter(
+                            color: AppColors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          )
+                        : GoogleFonts.inter(
+                            color: AppColors.grey,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                          ),
                   ),
                   25.vSpace,
                   SocialAuthBtn(
@@ -121,11 +140,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Text(
                         "Or",
-                        style: GoogleFonts.poppins(
-                          color: const Color(0xff7E8088),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        style: isTablet
+                            ? GoogleFonts.poppins(
+                                color: const Color(0xff7E8088),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              )
+                            : GoogleFonts.poppins(
+                                color: const Color(0xff7E8088),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
                       ),
                       const Expanded(
                         child: Divider(
@@ -141,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   //For Email
                   Text(
                     "Email",
-                    style: GoogleFonts.inter(color: const Color(0xff93989F), fontSize: 14, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.inter(color: const Color(0xff93989F), fontSize: isTablet ? 15 : 14, fontWeight: FontWeight.w400),
                   ),
                   10.vSpace,
                   CustomTextField(
@@ -154,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   //For Password
                   Text(
                     "Password",
-                    style: GoogleFonts.inter(color: const Color(0xff93989F), fontSize: 14, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.inter(color: const Color(0xff93989F), fontSize: isTablet ? 15 : 14, fontWeight: FontWeight.w400),
                   ),
                   10.vSpace,
                   CustomTextField2(
@@ -177,7 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           "Forgot Password?",
                           style: GoogleFonts.poppins(
                             color: Color(0xff7E8088),
-                            fontSize: 12,
+                            fontSize: isTablet ? 15 : 12,
                           ),
                         ),
                       ),
@@ -212,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       5.hSpace,
                       Text(
                         "Remember Me",
-                        style: GoogleFonts.inter(fontSize: 14, color: Color(0xff93989F), fontWeight: FontWeight.w400),
+                        style: GoogleFonts.inter(fontSize: isTablet ? 15 : 14, color: Color(0xff93989F), fontWeight: FontWeight.w400),
                       ),
                     ],
                   ),
@@ -222,16 +247,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       RoutingService.pushAndRemoveUntil(const HomeScreen());
                     },
                     child: Container(
-                      height: 50,
+                      height: isTablet ? 45.h : 50,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                        borderRadius: BorderRadius.circular(28),
+                        borderRadius: BorderRadius.circular(isTablet ? 40 : 28),
                       ),
                       child: Center(
                         child: Text(
                           "Log In",
-                          style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                          style: isTablet
+                              ? GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 22)
+                              : GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
                         ),
                       ),
                     ),
@@ -242,7 +269,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         "Doesn’t have an Account? ",
-                        style: GoogleFonts.inter(color: Color(0xFF93989F), fontSize: 14),
+                        style: GoogleFonts.inter(
+                          color: Color(0xFF93989F),
+                          fontSize: isTablet ? 16 : 14,
+                        ),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -252,7 +282,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           "SignUp",
                           style: GoogleFonts.inter(
                             color: Color(0Xff6179FD),
-                            fontSize: 14,
+                            fontSize: isTablet ? 16 : 14,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -282,10 +312,12 @@ class SocialAuthBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth >= 600 && screenWidth < 1024;
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 50,
+        height: isTablet ? 55.h : 50,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Color(0xff171717),
@@ -296,11 +328,17 @@ class SocialAuthBtn extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(imagePath),
+              isTablet
+                  ? SvgPicture.asset(
+                      imagePath,
+                      height: 20.h,
+                      width: 20.w,
+                    )
+                  : SvgPicture.asset(imagePath),
               10.hSpace,
               Text(
                 text,
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14),
+                style: isTablet ? GoogleFonts.poppins(color: AppColors.white, fontSize: 17) : GoogleFonts.poppins(color: AppColors.white, fontSize: 14),
               ),
             ],
           ),

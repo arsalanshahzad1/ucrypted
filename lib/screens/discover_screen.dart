@@ -30,6 +30,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/app_print.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class DiscoverScreen extends StatefulWidget {
   final void Function(int)? onNavChange;
@@ -99,7 +100,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 35 : 10),
           child: Column(
             children: [
               10.vSpace,
@@ -111,14 +112,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     },
                     child: Text(
                       "Discover",
-                      style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: AppColors.white, fontSize: 26),
+                      style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: AppColors.white, fontSize: ScreenService.isTablet ? 30 : 26),
                     ),
                   ),
                   15.hSpace,
                   Expanded(
                     child: Container(
-                      width: 150.w,
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      // width: 150.w,
+                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: ScreenService.isTablet ? 14 : 8),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         gradient: const LinearGradient(
@@ -152,7 +153,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                 hintText: "Search more",
                                 hintStyle: GoogleFonts.inter(
                                   color: Color(0xff9C9C9C),
-                                  fontSize: 12,
+                                  fontSize: ScreenService.isTablet ? 16 : 12,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -238,7 +239,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 Icon(
                   Icons.close,
                   color: Color(0xffACB5BB),
-                  size: 20.sp,
+                  size: ScreenService.isTablet ? 15.sp : 20.sp,
                 )
               ],
             ),
@@ -254,11 +255,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             child: GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
-                mainAxisSpacing: 10,
+                mainAxisSpacing: ScreenService.isTablet ? 0 : 10,
                 // crossAxisSpacing: 16,
-                childAspectRatio: 0.9,
+                childAspectRatio: ScreenService.isTablet ? 1.2 : 0.9,
               ),
               itemCount: labels.length,
               itemBuilder: (context, index) {
@@ -287,7 +288,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           softWrap: false,
                           style: GoogleFonts.inter(
                             color: Colors.white,
-                            fontSize: 10,
+                            fontSize: ScreenService.isTablet ? 13 : 10,
                             fontWeight: FontWeight.w500,
                           ),
                           textAlign: TextAlign.center,
@@ -346,7 +347,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         break;
       case "P2P":
         // RoutingService.push(const DiscoverExpressScreen());
-        RoutingService.push(const DiscoverP2PScreen(fromExpress: false,));
+        RoutingService.push(const DiscoverP2PScreen(
+          fromExpress: false,
+        ));
         appPrint("P2P tapped");
         break;
       case "Gift card":

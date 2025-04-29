@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class TradingSettingScreen extends StatefulWidget {
   const TradingSettingScreen({super.key});
@@ -91,7 +92,7 @@ class _TradingSettingScreenState extends State<TradingSettingScreen> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -121,7 +122,7 @@ class _TradingSettingScreenState extends State<TradingSettingScreen> {
                       style: GoogleFonts.inter(
                         color: AppColors.white,
                         fontWeight: FontWeight.w500,
-                        fontSize: 16.sp,
+                        fontSize: ScreenService.isTablet ? 20 : 16.sp,
                       ),
                     ),
                   ),
@@ -166,12 +167,12 @@ class _TradingSettingScreenState extends State<TradingSettingScreen> {
       children: [
         Text(
           title,
-          style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+          style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600, color: Colors.white),
         ),
         15.vSpace,
         Text(
           subtitle,
-          style: GoogleFonts.inter(fontSize: 14, color: Colors.grey[500]),
+          style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 14, color: Colors.grey[500]),
         ),
         15.vSpace,
         Row(

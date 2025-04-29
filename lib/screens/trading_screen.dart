@@ -12,6 +12,7 @@ import 'package:ucrypted_app/utilities/candle_data.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/gradient_text.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class TradingScreen extends StatefulWidget {
   const TradingScreen({super.key});
@@ -103,14 +104,14 @@ class _TradingScreenState extends State<TradingScreen> {
                         Text("Wallet Balance",
                             style: GoogleFonts.inter(
                               fontWeight: FontWeight.w400,
-                              fontSize: 14,
+                              fontSize: ScreenService.isTablet ? 18 : 14,
                               color: Color(0xffACB5BB),
                             )),
                         10.vSpace,
                         Text("\$227.169,85",
                             style: GoogleFonts.inter(
                               fontWeight: FontWeight.w600,
-                              fontSize: 36,
+                              fontSize: ScreenService.isTablet ? 40 : 36,
                               color: Colors.white,
                             ))
                       ],
@@ -125,7 +126,7 @@ class _TradingScreenState extends State<TradingScreen> {
                     children: [
                       Text(
                         "My Assets",
-                        style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+                        style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600, color: Colors.white),
                       ),
                     ],
                   ),
@@ -350,15 +351,15 @@ class _TradingScreenState extends State<TradingScreen> {
                           children: [
                             Text(
                               "Current price",
-                              style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
+                              style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
                             ),
                             Text(
                               "0.057508",
-                              style: GoogleFonts.nunito(fontSize: 20, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
+                              style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 22 : 20, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
                             ),
                             Text(
                               "= \$0.057508",
-                              style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
+                              style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
                             ),
                           ],
                         ),
@@ -376,11 +377,11 @@ class _TradingScreenState extends State<TradingScreen> {
                               children: [
                                 Text(
                                   "24h High",
-                                  style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
+                                  style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
                                 ),
                                 Text(
                                   "0.057508",
-                                  style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
+                                  style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
                                 ),
                               ],
                             ),
@@ -391,11 +392,11 @@ class _TradingScreenState extends State<TradingScreen> {
                               children: [
                                 Text(
                                   "24h Vol(KLV)",
-                                  style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
+                                  style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
                                 ),
                                 Text(
                                   "5.87M",
-                                  style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
+                                  style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
                                 ),
                               ],
                             ),
@@ -411,11 +412,11 @@ class _TradingScreenState extends State<TradingScreen> {
                               children: [
                                 Text(
                                   "24h Low",
-                                  style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
+                                  style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
                                 ),
                                 Text(
                                   "0.04893",
-                                  style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
+                                  style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
                                 ),
                               ],
                             ),
@@ -426,11 +427,11 @@ class _TradingScreenState extends State<TradingScreen> {
                               children: [
                                 Text(
                                   "24h Low",
-                                  style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
+                                  style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w700, color: Color(0xff99A6AFCC)),
                                 ),
                                 Text(
                                   "\$ 180.92k",
-                                  style: GoogleFonts.nunito(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
+                                  style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w700, color: Color(0xffF7F7F7)),
                                 ),
                               ],
                             ),
@@ -479,24 +480,24 @@ class _TradingScreenState extends State<TradingScreen> {
                               children: [
                                 Text(
                                   "Your spending",
-                                  style: GoogleFonts.poppins(color: Color(0xff838383), fontSize: 11, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.poppins(color: Color(0xff838383), fontSize: ScreenService.isTablet ? 14 : 11, fontWeight: FontWeight.w400),
                                 ),
                                 10.vSpace,
                                 Text(
                                   "IDR 12.000.000",
-                                  style: GoogleFonts.manrope(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w700),
+                                  style: GoogleFonts.manrope(color: Colors.white, fontSize: ScreenService.isTablet ? 17 : 15, fontWeight: FontWeight.w700),
                                 ),
                               ],
                             ),
                             Row(
                               children: [
                                 Container(
-                                  height: 30.h,
-                                  width: 75.w,
+                                  height: ScreenService.isTablet ? 25.h : 30.h,
+                                  width: ScreenService.isTablet ? 50.w : 75.w,
                                   padding: EdgeInsets.symmetric(horizontal: 5),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8.r),
+                                    borderRadius: BorderRadius.circular(ScreenService.isTablet ? 6.r : 8.r),
                                   ),
                                   child: Center(
                                     child: Row(
@@ -506,7 +507,7 @@ class _TradingScreenState extends State<TradingScreen> {
                                           "Month",
                                           style: GoogleFonts.poppins(
                                             color: Color(0xff0F0F0F),
-                                            fontSize: 11,
+                                            fontSize: ScreenService.isTablet ? 14 : 11,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -514,7 +515,7 @@ class _TradingScreenState extends State<TradingScreen> {
                                         Icon(
                                           Icons.keyboard_arrow_down_sharp,
                                           color: Color(0xff0F0F0F),
-                                          size: 16,
+                                          size: ScreenService.isTablet ? 18 : 16,
                                         ),
                                       ],
                                     ),
@@ -532,11 +533,11 @@ class _TradingScreenState extends State<TradingScreen> {
                             });
                           },
                           child: SizedBox(
-                            height: 220.h,
+                            height: ScreenService.isTablet ? 400.h : 220.h,
                             width: double.infinity,
                             child: SvgPicture.asset(
                               "assets/svg/bar1.svg",
-                              fit: BoxFit.fitWidth,
+                              fit: ScreenService.isTablet ? BoxFit.contain : BoxFit.fitWidth,
                             ),
                           ),
                         ),
@@ -565,7 +566,7 @@ class _TradingScreenState extends State<TradingScreen> {
                               children: [
                                 Container(
                                   height: 25.h,
-                                  width: 40.w,
+                                  width: ScreenService.isTablet ? 35.w : 40.w,
                                   decoration: BoxDecoration(
                                     gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
                                     borderRadius: BorderRadius.circular(6.r),
@@ -574,55 +575,55 @@ class _TradingScreenState extends State<TradingScreen> {
                                   child: Center(
                                     child: Text(
                                       "24H",
-                                      style: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: 11, color: Colors.white),
+                                      style: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 14 : 11, color: Colors.white),
                                     ),
                                   ),
                                 ),
                                 10.hSpace,
                                 Container(
                                   height: 25.h,
-                                  width: 40.w,
+                                  width: ScreenService.isTablet ? 35.w : 40.w,
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.r), border: Border.all(color: Color(0xffEDEDED))),
                                   child: Center(
                                     child: Text(
                                       "1W",
-                                      style: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: 11, color: Colors.white),
+                                      style: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 14 : 11, color: Colors.white),
                                     ),
                                   ),
                                 ),
                                 10.hSpace,
                                 Container(
                                   height: 25.h,
-                                  width: 40.w,
+                                  width: ScreenService.isTablet ? 35.w : 40.w,
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.r), border: Border.all(color: Color(0xffEDEDED))),
                                   child: Center(
                                     child: Text(
                                       "1M",
-                                      style: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: 11, color: Colors.white),
+                                      style: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 14 : 11, color: Colors.white),
                                     ),
                                   ),
                                 ),
                                 10.hSpace,
                                 Container(
                                   height: 25.h,
-                                  width: 40.w,
+                                  width: ScreenService.isTablet ? 35.w : 40.w,
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.r), border: Border.all(color: Color(0xffEDEDED))),
                                   child: Center(
                                     child: Text(
                                       "1Y",
-                                      style: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: 11, color: Colors.white),
+                                      style: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 14 : 11, color: Colors.white),
                                     ),
                                   ),
                                 ),
                                 10.hSpace,
                                 Container(
                                   height: 25.h,
-                                  width: 40.w,
+                                  width: ScreenService.isTablet ? 35.w : 40.w,
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.r), border: Border.all(color: Color(0xffEDEDED))),
                                   child: Center(
                                     child: Text(
                                       "ALL",
-                                      style: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: 11, color: Colors.white),
+                                      style: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 14 : 11, color: Colors.white),
                                     ),
                                   ),
                                 ),
@@ -638,7 +639,7 @@ class _TradingScreenState extends State<TradingScreen> {
                                   },
                                   child: Container(
                                     height: 25.h,
-                                    width: 27.w,
+                                    width: ScreenService.isTablet ? 20.w : 27.w,
                                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(6.r), border: Border.all(color: Color(0xffEDEDED))),
                                     child: Center(
                                       child: SvgPicture.asset("assets/svg/bars.svg"),
@@ -800,14 +801,14 @@ class _TradingScreenState extends State<TradingScreen> {
                         onTap: () => setState(() => selectedIndexCustom = 0),
                         child: Text(
                           "Exchange History",
-                          style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                          style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w600),
                         )),
                     30.hSpace,
                     GestureDetector(
                       onTap: () => setState(() => selectedIndexCustom = 1),
                       child: Text(
                         "Transaction History",
-                        style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w500),
+                        style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w500),
                       ),
                     ),
 
@@ -913,7 +914,7 @@ class _TradingScreenState extends State<TradingScreen> {
               ),
             ),
           ),
-          const SizedBox(width: 5),
+          ScreenService.isTablet ? 10.hSpace : const SizedBox(width: 5),
 
           // Transaction Details
           Expanded(
@@ -924,7 +925,7 @@ class _TradingScreenState extends State<TradingScreen> {
                   "BTC → ETH",
                   style: GoogleFonts.inter(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: ScreenService.isTablet ? 18 : 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -933,7 +934,7 @@ class _TradingScreenState extends State<TradingScreen> {
                   "#12123TRA",
                   style: GoogleFonts.inter(
                     color: Color(0xffACB5BB),
-                    fontSize: 12,
+                    fontSize: ScreenService.isTablet ? 16 : 12,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -949,7 +950,7 @@ class _TradingScreenState extends State<TradingScreen> {
                 "6,21 ETH",
                 style: GoogleFonts.inter(
                   color: Colors.white,
-                  fontSize: 14,
+                  fontSize: ScreenService.isTablet ? 18 : 14,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -958,7 +959,7 @@ class _TradingScreenState extends State<TradingScreen> {
                 "0.342 BTC",
                 style: GoogleFonts.inter(
                   color: Color(0xffACB5BB),
-                  fontSize: 12,
+                  fontSize: ScreenService.isTablet ? 16 : 12,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -980,7 +981,7 @@ class _TradingScreenState extends State<TradingScreen> {
               alignment: Alignment.center,
               child: Text(
                 first,
-                style: GoogleFonts.nunito(color: Color(0xffF7F7F7), fontWeight: FontWeight.w700, fontSize: 13),
+                style: GoogleFonts.nunito(color: Color(0xffF7F7F7), fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 16 : 13),
               ),
             ),
           ),

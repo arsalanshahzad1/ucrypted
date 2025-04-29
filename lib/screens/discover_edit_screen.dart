@@ -9,6 +9,7 @@ import 'package:ucrypted_app/utilities/custom_textfield.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class DiscoverEditScreen extends StatefulWidget {
   const DiscoverEditScreen({super.key});
@@ -26,7 +27,7 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -58,7 +59,7 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                           style: GoogleFonts.inter(
                             color: AppColors.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 16.sp,
+                            fontSize: ScreenService.isTablet ? 20 : 16.sp,
                           ),
                         ),
                       ),
@@ -75,9 +76,9 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                 40.vSpace,
                 Text(
                   "Select Coin/Crypto",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
-                10.vSpace,
+                ScreenService.isTablet ? 15.vSpace : 10.vSpace,
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(color: const Color(0xFF2C2C30), borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xff44444A))),
@@ -100,12 +101,12 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                     },
                   ),
                 ),
-                25.vSpace,
+                ScreenService.isTablet ? 30.vSpace : 25.vSpace,
                 Text(
                   "Connect API",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
-                10.vSpace,
+                ScreenService.isTablet ? 15.vSpace : 10.vSpace,
                 Container(
                   decoration: BoxDecoration(color: const Color(0xFF2C2C30), borderRadius: BorderRadius.circular(8), border: Border.all(color: Color(0xff44444A))),
                   child: Row(
@@ -136,18 +137,18 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                 15.vSpace,
                 Row(
                   children: [
-                    const Icon(Icons.info_outline, color: Color(0xffACB5BB), size: 16),
+                    Icon(Icons.info_outline, color: Color(0xffACB5BB), size: ScreenService.isTablet ? 20 : 16),
                     const SizedBox(width: 6),
                     Text(
                       "Get the API from your bank wallet or digital wallet",
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w400),
+                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
                 const SizedBox(height: 30),
                 Text(
                   "Enter Wallet Name",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
                 10.vSpace,
                 Container(
@@ -165,11 +166,11 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                 20.vSpace,
                 Row(
                   children: [
-                    const Icon(Icons.info_outline, color: Color(0xffACB5BB), size: 16),
+                    Icon(Icons.info_outline, color: Color(0xffACB5BB), size: ScreenService.isTablet ? 20 : 16),
                     const SizedBox(width: 6),
                     Text(
                       "Get address from your digital wallet or bank account",
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w400),
+                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
@@ -188,12 +189,12 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                           decoration: BoxDecoration(
                             color: const Color(0xFF222223),
                             border: Border.all(color: const Color(0xFF2C2C30)),
-                            borderRadius: BorderRadius.circular(28),
+                            borderRadius: BorderRadius.circular(ScreenService.isTablet ? 36 : 28),
                           ),
                           child: Center(
                             child: Text(
                               "Cancel",
-                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 17 : 14),
                             ),
                           ),
                         ),
@@ -210,12 +211,12 @@ class _DiscoverEditScreenState extends State<DiscoverEditScreen> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                            borderRadius: BorderRadius.circular(28),
+                            borderRadius: BorderRadius.circular(ScreenService.isTablet ? 36 : 28),
                           ),
                           child: Center(
                             child: Text(
                               "Save",
-                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 17 : 14),
                             ),
                           ),
                         ),

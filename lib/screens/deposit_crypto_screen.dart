@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class DepositCryptoscreen extends StatefulWidget {
   const DepositCryptoscreen({super.key});
@@ -105,7 +106,7 @@ class _DepositCryptoscreenState extends State<DepositCryptoscreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -130,7 +131,7 @@ class _DepositCryptoscreenState extends State<DepositCryptoscreen> {
                     style: GoogleFonts.inter(
                       color: AppColors.white,
                       fontWeight: FontWeight.w600,
-                      fontSize: 24,
+                      fontSize: ScreenService.isTablet ? 26 : 24,
                     ),
                   ),
                 ],
@@ -138,8 +139,8 @@ class _DepositCryptoscreenState extends State<DepositCryptoscreen> {
               30.vSpace,
               Container(
                 width: double.infinity.w,
-                height: 40.h,
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                height: ScreenService.isTablet ? 35.h : 40.h,
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: ScreenService.isTablet ? 10 : 3),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   gradient: const LinearGradient(
@@ -163,7 +164,7 @@ class _DepositCryptoscreenState extends State<DepositCryptoscreen> {
                     hintText: "Search Coins",
                     hintStyle: GoogleFonts.inter(
                       color: Color(0xff9C9C9C),
-                      fontSize: 10,
+                      fontSize: ScreenService.isTablet ? 14 : 10,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -176,7 +177,7 @@ class _DepositCryptoscreenState extends State<DepositCryptoscreen> {
                   Text(
                     "Trending",
                     style: GoogleFonts.inter(
-                      fontSize: 10,
+                      fontSize: ScreenService.isTablet ? 16 : 10,
                       fontWeight: FontWeight.w400,
                       color: Color(0xff9C9C9C),
                     ),
@@ -187,7 +188,7 @@ class _DepositCryptoscreenState extends State<DepositCryptoscreen> {
                   Text(
                     "1",
                     style: GoogleFonts.inter(
-                      fontSize: 10,
+                      fontSize: ScreenService.isTablet ? 16 : 10,
                       fontWeight: FontWeight.w400,
                       color: Color(0xff9C9C9C),
                     ),
@@ -214,7 +215,7 @@ class TrendingItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          Image.asset(item['icon']!, width: 32, height: 32),
+          Image.asset(item['icon']!, width: ScreenService.isTablet ? 50 : 32, height: ScreenService.isTablet ? 50 : 32,),
           const SizedBox(width: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -222,7 +223,7 @@ class TrendingItem extends StatelessWidget {
               Text(
                 item['title']!,
                 style: GoogleFonts.inter(
-                  fontSize: 14,
+                  fontSize: ScreenService.isTablet ? 16 : 14,
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
@@ -230,7 +231,7 @@ class TrendingItem extends StatelessWidget {
               Text(
                 item['subtitle']!,
                 style: GoogleFonts.inter(
-                  fontSize: 12,
+                  fontSize: ScreenService.isTablet ? 14 : 12,
                   fontWeight: FontWeight.w400,
                   color: Color(0xffACB5BB),
                 ),

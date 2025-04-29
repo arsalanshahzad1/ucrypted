@@ -8,6 +8,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class DiscoverBuyScreen extends StatefulWidget {
   const DiscoverBuyScreen({super.key});
@@ -25,7 +26,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -57,7 +58,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                           style: GoogleFonts.inter(
                             color: AppColors.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 16.sp,
+                            fontSize: ScreenService.isTablet ? 20 : 16.sp,
                           ),
                         ),
                       ),
@@ -74,7 +75,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                 40.vSpace,
                 Text(
                   "Select Crypto Currency",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
                 10.vSpace,
                 TextField(
@@ -83,7 +84,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                     hintText: "BTC (Bitcoin)",
                     hintStyle: GoogleFonts.inter(
                       color: Colors.white, // Light grey text color
-                      fontSize: 12,
+                      fontSize: ScreenService.isTablet ? 14 : 12,
                       fontWeight: FontWeight.w500,
                     ),
                     filled: true,
@@ -139,7 +140,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                 20.vSpace,
                 Text(
                   "Choose payment method",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
                 10.vSpace,
                 SizedBox(
@@ -160,7 +161,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                         value: selectedPaymentMethod,
                         hint: Text(
                           "Select Payment Method",
-                          style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: 14, fontWeight: FontWeight.w400),
+                          style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                         ),
                         icon: Row(
                           children: [
@@ -189,7 +190,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                 20.vSpace,
                 Text(
                   "Wallet Address",
-                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                 ),
                 10.vSpace,
                 TextField(
@@ -197,7 +198,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                     hintText: "X21haskana...",
                     hintStyle: GoogleFonts.inter(
                         color: Color(0xFF6C7278), // Grey text color
-                        fontSize: 14,
+                        fontSize: ScreenService.isTablet ? 16 : 14,
                         fontWeight: FontWeight.w400),
                     filled: true,
                     fillColor: Color(0xFF2C2C30), // Dark background
@@ -256,7 +257,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                         children: [
                           Text(
                             "Exchage Operation",
-                            style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                            style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                           ),
                           10.vSpace,
                           TextField(
@@ -264,7 +265,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                               hintText: "Input Amount",
                               hintStyle: GoogleFonts.inter(
                                   color: Color(0xFF6C7278), // Grey text color
-                                  fontSize: 14,
+                                  fontSize: ScreenService.isTablet ? 16 : 14,
                                   fontWeight: FontWeight.w400),
                               filled: true,
                               fillColor: Color(0xFF2C2C30), // Dark background
@@ -319,7 +320,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                         children: [
                           Text(
                             "Equivalent Amount",
-                            style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                            style: GoogleFonts.plusJakartaSans(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                           ),
                           10.vSpace,
                           TextField(
@@ -327,7 +328,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                               hintText: "Equivalent",
                               hintStyle: GoogleFonts.inter(
                                   color: Color(0xFF6C7278), // Grey text color
-                                  fontSize: 14,
+                                  fontSize: ScreenService.isTablet ? 16 : 14,
                                   fontWeight: FontWeight.w400),
                               filled: true,
                               fillColor: Color(0xFF2C2C30), // Dark background
@@ -383,14 +384,14 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                   children: [
                     SvgPicture.asset(
                       "assets/svg/inof.svg",
-                      height: 15.h,
-                      width: 15.w,
+                      height: ScreenService.isTablet ? 20 : 15.h,
+                      width: ScreenService.isTablet ? 20 : 15.w,
                       color: Color(0xffACB5BB),
                     ),
                     10.hSpace,
                     Text(
                       "Minimun value buy crypto = 0,0001 BTC",
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
@@ -409,7 +410,7 @@ class _DiscoverBuyScreenState extends State<DiscoverBuyScreen> {
                     child: Center(
                       child: Text(
                         "Continue",
-                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                       ),
                     ),
                   ),
@@ -439,7 +440,7 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -471,7 +472,7 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
                           style: GoogleFonts.inter(
                             color: AppColors.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 16.sp,
+                            fontSize: ScreenService.isTablet ? 20 : 16.sp,
                           ),
                         ),
                       ),
@@ -491,8 +492,8 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
                   children: [
                     SvgPicture.asset(
                       "assets/svg/code.svg",
-                      height: 250.h,
-                      width: 250.w,
+                      height: ScreenService.isTablet ? 200 : 250.h,
+                      width: ScreenService.isTablet ? 200 : 250.w,
                     ),
                   ],
                 ),
@@ -505,20 +506,20 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
                       style: GoogleFonts.inter(
                         color: Color(0xffACB5BB),
                         fontWeight: FontWeight.w500,
-                        fontSize: 14.sp,
+                        fontSize: ScreenService.isTablet ? 16 : 14.sp,
                       ),
                     ),
                     10.hSpace,
                     SvgPicture.asset(
                       "assets/svg/clipoboard.svg",
-                      height: 20.h,
-                      width: 20.w,
+                      height: ScreenService.isTablet ? 20 : 20.h,
+                      width: ScreenService.isTablet ? 20 : 20.w,
                     ),
                   ],
                 ),
                 20.vSpace,
                 Container(
-                  height: 55.h,
+                  height: ScreenService.isTablet ? 60.h : 55.h,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   decoration: BoxDecoration(
                     color: const Color(0xFF2C2C30),
@@ -534,7 +535,7 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
                           style: GoogleFonts.inter(
                             color: AppColors.grey,
                             fontWeight: FontWeight.w500,
-                            fontSize: 12.sp,
+                            fontSize: ScreenService.isTablet ? 20 : 12.sp,
                           ),
                           maxLines: 2,
                         ),
@@ -551,18 +552,17 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
                           RoutingService.pushAndRemoveUntil(const HomeScreen());
                         },
                         child: Container(
-                          height: 45.h,
+                          height: ScreenService.isTablet ? 50.h : 45.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: const Color(0xFF222223),
                             border: Border.all(color: const Color(0xFF2C2C30)),
-                            borderRadius: BorderRadius.circular(28),
+                            borderRadius: BorderRadius.circular(ScreenService.isTablet ? 36 : 28),
                           ),
                           child: Center(
                             child: Text(
                               "Share",
-                              style: GoogleFonts.inter(color: AppColors.white, 
-                              fontWeight: FontWeight.w600, fontSize: 14),
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                             ),
                           ),
                         ),
@@ -575,16 +575,16 @@ class _BuyDetailScreenState extends State<BuyDetailScreen> {
                           RoutingService.pushAndRemoveUntil(const HomeScreen());
                         },
                         child: Container(
-                          height: 45.h,
+                          height: ScreenService.isTablet ? 50.h : 45.h,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                            borderRadius: BorderRadius.circular(28),
+                            borderRadius: BorderRadius.circular(ScreenService.isTablet ? 36 : 28),
                           ),
                           child: Center(
                             child: Text(
                               "Print",
-                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                             ),
                           ),
                         ),

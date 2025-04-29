@@ -22,6 +22,7 @@ import 'package:ucrypted_app/utilities/gradient_text.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
 import 'package:interactive_chart/interactive_chart.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -148,6 +149,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth >= 600 && screenWidth < 1024;
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
@@ -204,7 +207,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: isTablet ? 30 : 16),
           child: Column(
             children: [
               5.vSpace,
@@ -216,7 +219,8 @@ class _HomePageState extends State<HomePage> {
                       onTap: () => setState(() => selectedIndex = 0),
                       child: GradientText(
                         "Overview",
-                        style: GoogleFonts.inter(color: selectedIndex == 0 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.inter(
+                            color: selectedIndex == 0 ? AppColors.textColor : Colors.white, fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w600),
                         gradient: selectedIndex == 0
                             ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
                             : const LinearGradient(
@@ -229,7 +233,8 @@ class _HomePageState extends State<HomePage> {
                       onTap: () => setState(() => selectedIndex = 1),
                       child: GradientText(
                         "Spot",
-                        style: GoogleFonts.inter(color: selectedIndex == 1 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.inter(
+                            color: selectedIndex == 1 ? AppColors.textColor : Colors.white, fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w600),
                         gradient: selectedIndex == 1
                             ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
                             : const LinearGradient(
@@ -242,7 +247,8 @@ class _HomePageState extends State<HomePage> {
                       onTap: () => setState(() => selectedIndex = 2),
                       child: GradientText(
                         "Funding",
-                        style: GoogleFonts.inter(color: selectedIndex == 2 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.inter(
+                            color: selectedIndex == 2 ? AppColors.textColor : Colors.white, fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w600),
                         gradient: selectedIndex == 2
                             ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
                             : const LinearGradient(
@@ -258,7 +264,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       height: 1.0,
-                      width: 220.w,
+                      width: ScreenService.isTablet ? 150.w : 220.w,
                       decoration: BoxDecoration(color: AppColors.disableBtnColor, borderRadius: BorderRadius.circular(12)),
                     ),
                   ],
@@ -320,8 +326,10 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Balances", style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.white)),
-                    GestureDetector(onTap: () {}, child: Text("See all", style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xff838383)))),
+                    Text("Balances", style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w600, color: AppColors.white)),
+                    GestureDetector(
+                        onTap: () {},
+                        child: Text("See all", style: GoogleFonts.poppins(fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500, color: Color(0xff838383)))),
                   ],
                 ),
                 10.vSpace,
@@ -367,22 +375,22 @@ class _HomePageState extends State<HomePage> {
                           onTap: () => setState(() => selectedIndexCustom = 0),
                           child: Text(
                             "Recent Transactions",
-                            style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                            style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w600),
                           )),
-                      30.hSpace,
+                      ScreenService.isTablet ? 50.hSpace : 30.hSpace,
                       GestureDetector(
                         onTap: () => setState(() => selectedIndexCustom = 1),
                         child: Text(
                           "Exchange History",
-                          style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                          style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w600),
                         ),
                       ),
-                      30.hSpace,
+                      ScreenService.isTablet ? 40.hSpace : 30.hSpace,
                       GestureDetector(
                         onTap: () => setState(() => selectedIndexCustom = 2),
                         child: Text(
                           "Transaction",
-                          style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                          style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w600),
                         ),
                       ),
                     ],
@@ -766,12 +774,12 @@ class _HomePageState extends State<HomePage> {
       // onTap: onTap(),
       child: IntrinsicWidth(
         child: Container(
-          height: 55,
+          height: ScreenService.isTablet ? 45.h : 55,
           decoration: BoxDecoration(
             color: const Color(0xFF202226),
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(ScreenService.isTablet ? 32 : 24),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 20 : 12),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -786,12 +794,12 @@ class _HomePageState extends State<HomePage> {
               ),
               10.hSpace,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 20 : 10),
                 child: Text(
                   label,
                   style: GoogleFonts.inter(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: ScreenService.isTablet ? 18 : 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -858,7 +866,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                30.vSpace,
+                ScreenService.isTablet ? 40.vSpace : 30.vSpace,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
@@ -866,11 +874,11 @@ class _HomePageState extends State<HomePage> {
                     style: GoogleFonts.inter(
                       color: AppColors.grey,
                       fontWeight: FontWeight.w400,
-                      fontSize: 16,
+                      fontSize: ScreenService.isTablet ? 18 : 16,
                     ),
                   ),
                 ),
-                15.vSpace,
+                ScreenService.isTablet ? 30.vSpace : 15.vSpace,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
@@ -884,12 +892,12 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 18,
                         ),
                         gradient: i != true
-                            ? LinearGradient(
+                            ? const LinearGradient(
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                                 colors: [Color(0xFFFCA509), Color(0xFF880306)],
                               )
-                            : LinearGradient(
+                            : const LinearGradient(
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                                 colors: [Colors.white, Colors.white],
@@ -951,8 +959,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const SizedBox(width: 5),
-
+            ScreenService.isTablet ? const SizedBox(width: 10) : const SizedBox(width: 5),
             // Transaction Details
             Expanded(
               child: Column(
@@ -962,7 +969,7 @@ class _HomePageState extends State<HomePage> {
                     "BTC → ETH",
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: 14,
+                      fontSize: ScreenService.isTablet ? 17 : 14,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -971,7 +978,7 @@ class _HomePageState extends State<HomePage> {
                     "#12123TRA",
                     style: GoogleFonts.inter(
                       color: Color(0xffACB5BB),
-                      fontSize: 12,
+                      fontSize: ScreenService.isTablet ? 14 : 12,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -987,7 +994,7 @@ class _HomePageState extends State<HomePage> {
                   "6,21 ETH",
                   style: GoogleFonts.inter(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: ScreenService.isTablet ? 16 : 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -996,7 +1003,7 @@ class _HomePageState extends State<HomePage> {
                   "0.342 BTC",
                   style: GoogleFonts.inter(
                     color: Color(0xffACB5BB),
-                    fontSize: 12,
+                    fontSize: ScreenService.isTablet ? 14 : 12,
                     fontWeight: FontWeight.w400,
                   ),
                 ),

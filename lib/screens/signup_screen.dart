@@ -22,6 +22,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool? isTandC = false;
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth >= 600 && screenWidth < 1024;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -30,8 +32,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           backgroundImage: "assets/images/onboard.png",
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
+              padding: EdgeInsets.symmetric(
+                horizontal: isTablet ? 30 : 20,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,16 +63,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   30.vSpace,
                   Text(
                     "Create account",
-                    style: GoogleFonts.inter(color: AppColors.white, fontSize: 36, fontWeight: FontWeight.w500),
+                    style: isTablet
+                        ? GoogleFonts.inter(
+                            color: AppColors.white,
+                            fontSize: 40,
+                            fontWeight: FontWeight.w600,
+                          )
+                        : GoogleFonts.inter(
+                            color: AppColors.white,
+                            fontSize: 36,
+                            fontWeight: FontWeight.w500,
+                          ),
                   ),
                   5.vSpace,
                   Text(
                     "Let's create new account",
-                    style: GoogleFonts.inter(
-                      color: Color(0xff93989F),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w400,
-                    ),
+                    style: isTablet
+                        ? GoogleFonts.inter(
+                            color: AppColors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          )
+                        : GoogleFonts.inter(
+                            color: AppColors.grey,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                          ),
                   ),
                   25.vSpace,
                   SocialAuthBtn(
@@ -120,7 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         "Or",
                         style: GoogleFonts.poppins(
                           color: Color(0xff7E8088),
-                          fontSize: 14,
+                          fontSize: isTablet ? 16 : 14,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -139,7 +157,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   //For Name
                   Text(
                     "Name",
-                    style: GoogleFonts.inter(color: Color(0xff93989F), fontSize: 14, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.inter(color: Color(0xff93989F), fontSize: isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                   ),
                   5.vSpace,
                   CustomTextField(
@@ -154,7 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   //For Email
                   Text(
                     "Email",
-                    style: GoogleFonts.inter(color: Color(0xff93989F), fontSize: 14, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.inter(color: Color(0xff93989F), fontSize: isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                   ),
                   5.vSpace,
                   CustomTextField(
@@ -169,7 +187,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   //For Phone Number
                   Text(
                     "Phone Number",
-                    style: GoogleFonts.inter(color: Color(0xff93989F), fontSize: 14, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.inter(color: Color(0xff93989F), fontSize: isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                   ),
                   5.vSpace,
                   CustomTextField(
@@ -184,7 +202,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   //For Password
                   Text(
                     "Password",
-                    style: GoogleFonts.inter(color: Color(0xff93989F), fontSize: 14, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.inter(color: Color(0xff93989F), fontSize: isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                   ),
                   5.vSpace,
                   CustomTextField(
@@ -199,7 +217,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   //For Confirm Password
                   Text(
                     "Confirm Password",
-                    style: GoogleFonts.inter(color: Color(0xffffffff), fontSize: 14, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.inter(color: Color(0xffffffff), fontSize: isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                   ),
                   10.vSpace,
                   CustomTextField2(
@@ -234,11 +252,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         children: [
                           Text(
                             "I agree to ",
-                            style: GoogleFonts.poppins(color: Color(0xff7E8088), fontSize: 14),
+                            style: GoogleFonts.poppins(color: Color(0xff7E8088), fontSize: isTablet ? 16 : 14),
                           ),
                           Text(
                             "Terms and Condition",
-                            style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14),
+                            style: GoogleFonts.poppins(color: AppColors.white, fontSize: isTablet ? 16 : 14),
                           )
                         ],
                       ),
@@ -252,16 +270,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       RoutingService.push(const RecoveryScreem());
                     },
                     child: Container(
-                      height: 50,
+                      height: isTablet ? 45.h : 50,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                        borderRadius: BorderRadius.circular(28),
+                        borderRadius: BorderRadius.circular(isTablet ? 40 : 28),
                       ),
                       child: Center(
                         child: Text(
                           "Signup",
-                          style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                          style: isTablet
+                              ? GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 22)
+                              : GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
                         ),
                       ),
                     ),
@@ -272,7 +292,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       Text(
                         "Already have an account? ",
-                        style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: isTablet ? 16 : 14),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -282,7 +302,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           "Log In",
                           style: GoogleFonts.inter(
                             color: Colors.blue,
-                            fontSize: 14,
+                            fontSize: isTablet ? 16 : 14,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

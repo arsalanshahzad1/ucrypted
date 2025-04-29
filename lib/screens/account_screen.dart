@@ -16,6 +16,7 @@ import 'package:ucrypted_app/utilities/app_print.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -99,7 +100,7 @@ class _AccountScreenState extends State<AccountScreen> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -151,11 +152,11 @@ class _AccountScreenState extends State<AccountScreen> {
                   children: [
                     Text(
                       "user name",
-                      style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
+                      style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 24 : 20, fontWeight: FontWeight.w500, color: Colors.white),
                     ),
                     Text(
                       "useremail@Mail.com",
-                      style: GoogleFonts.inter(fontSize: 14, color: Colors.grey[500], fontWeight: FontWeight.w400),
+                      style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 16 : 14, color: Colors.grey[500], fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
@@ -171,7 +172,7 @@ class _AccountScreenState extends State<AccountScreen> {
             30.vSpace,
             Text(
               "Preferences",
-              style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xffACB5BB)),
+              style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w400, color: Color(0xffACB5BB)),
             ),
             const SizedBox(height: 10),
             settingsItem("assets/svg/account.svg", "Account Settings", () {
@@ -188,7 +189,7 @@ class _AccountScreenState extends State<AccountScreen> {
             30.vSpace,
             Text(
               "Other",
-              style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xffACB5BB)),
+              style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w400, color: Color(0xffACB5BB)),
             ),
             10.vSpace,
             settingsItem("assets/svg/portfolio.svg", "Portfolio Settings", () {
@@ -232,7 +233,7 @@ class _AccountScreenState extends State<AccountScreen> {
             Expanded(
               child: Text(
                 title,
-                style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.w400, color: Color(0xffEDF1F3)),
+                style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 17 : 14, fontWeight: FontWeight.w400, color: Color(0xffEDF1F3)),
               ),
             ),
             Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[600]),
