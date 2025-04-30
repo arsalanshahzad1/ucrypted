@@ -277,7 +277,7 @@ class _TradingScreenState extends State<TradingScreen> {
                         children: [
                           Container(
                             height: 35.h,
-                            width: 45.w,
+                            width: ScreenService.isTablet ? 40.w : 45.w,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
                               border: Border.all(color: Color(0xff505050)),
@@ -292,11 +292,11 @@ class _TradingScreenState extends State<TradingScreen> {
                             children: [
                               Text(
                                 "KLV/USDT",
-                                style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.white),
+                                style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 20 : 18, color: Colors.white),
                               ),
                               Text(
                                 "+50.47%",
-                                style: GoogleFonts.nunito(fontWeight: FontWeight.w700, fontSize: 12, color: Color(0xff38B781)),
+                                style: GoogleFonts.nunito(fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 14 : 12, color: Color(0xff38B781)),
                               )
                             ],
                           ),
@@ -703,13 +703,13 @@ class _TradingScreenState extends State<TradingScreen> {
                     10.vSpace,
                     // Header Row
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Bid", style: GoogleFonts.nunito(color: Color(0xff99A6AFCC), fontSize: 12, fontWeight: FontWeight.w600)),
-                          Text("Price", style: GoogleFonts.nunito(color: Color(0xff99A6AFCC), fontSize: 12, fontWeight: FontWeight.w600)),
-                          Text("Ask", style: GoogleFonts.nunito(color: Color(0xff99A6AFCC), fontSize: 12, fontWeight: FontWeight.w600)),
+                          Text("Bid", style: GoogleFonts.nunito(color: Color(0xff99A6AFCC), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w600)),
+                          Text("Price", style: GoogleFonts.nunito(color: Color(0xff99A6AFCC), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w600)),
+                          Text("Ask", style: GoogleFonts.nunito(color: Color(0xff99A6AFCC), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w600)),
                         ],
                       ),
                     ),
@@ -880,7 +880,7 @@ class _TradingScreenState extends State<TradingScreen> {
       textAlign: TextAlign.center,
       style: GoogleFonts.spaceGrotesk(
         color: Colors.white.withOpacity(0.5),
-        fontSize: 11,
+        fontSize: ScreenService.isTablet ? 16 : 11,
         fontWeight: FontWeight.w500,
         letterSpacing: 1,
       ),

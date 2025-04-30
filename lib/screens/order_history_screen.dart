@@ -10,6 +10,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class OrderHistoryScreen extends StatefulWidget {
   const OrderHistoryScreen({super.key});
@@ -111,7 +112,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -159,7 +160,7 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                       style: GoogleFonts.inter(
                         fontWeight: FontWeight.w600,
                         color: AppColors.white,
-                        fontSize: 26,
+                        fontSize: ScreenService.isTablet ? 30 : 26,
                       ),
                     ),
                   ),
@@ -187,20 +188,23 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                               children: [
                                 CircleAvatar(
                                   backgroundImage: AssetImage(transaction.image),
-                                  radius: 24,
+                                  radius: ScreenService.isTablet ? 26 : 24,
                                 ),
                                 SizedBox(width: 12),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(transaction.name, style: GoogleFonts.inter(color: Color(0xff747474), fontSize: 14, fontWeight: FontWeight.w600)),
+                                      Text(transaction.name,
+                                          style: GoogleFonts.inter(color: Color(0xff747474), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w600)),
                                       SizedBox(height: 2),
-                                      Text("Today, 12:30AM", style: GoogleFonts.inter(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
+                                      Text("Today, 12:30AM",
+                                          style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w600)),
                                     ],
                                   ),
                                 ),
-                                Text("+\$520.00", style: GoogleFonts.poppins(color: Color(0xff388DEB), fontSize: 12, fontWeight: FontWeight.w600)),
+                                Text("+\$520.00", style: GoogleFonts.poppins(color: Color(0xff388DEB), fontSize: 
+                                ScreenService.isTablet ? 14 :12, fontWeight: FontWeight.w600)),
                               ],
                             ),
                           );

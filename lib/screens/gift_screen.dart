@@ -10,6 +10,7 @@ import 'package:ucrypted_app/utilities/app_print.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class GiftScreen extends StatefulWidget {
   const GiftScreen({super.key});
@@ -90,7 +91,7 @@ class _GiftScreenState extends State<GiftScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             children: [
               50.vSpace,
@@ -154,7 +155,7 @@ class _GiftScreenState extends State<GiftScreen> {
                   Expanded(
                     child: Text(
                       "Gift Redeem",
-                      style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: AppColors.white, fontSize: 28),
+                      style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: AppColors.white, fontSize: ScreenService.isTablet ? 30 : 28),
                     ),
                   ),
                 ],
@@ -172,7 +173,7 @@ class _GiftScreenState extends State<GiftScreen> {
                           10.hSpace,
                           Text(
                             "Points",
-                            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                           ),
                         ],
                       ),
@@ -181,7 +182,7 @@ class _GiftScreenState extends State<GiftScreen> {
                         padding: const EdgeInsets.only(left: 20), // Adjust left padding
                         child: Text(
                           "0",
-                          style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w700, fontSize: 38),
+                          style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 40 : 38),
                         ),
                       ),
                       5.vSpace,
@@ -190,13 +191,13 @@ class _GiftScreenState extends State<GiftScreen> {
                         children: [
                           Text(
                             "Reward Shop ",
-                            style: GoogleFonts.inter(color: AppColors.textColor, fontWeight: FontWeight.w400, fontSize: 16),
+                            style: GoogleFonts.inter(color: AppColors.textColor, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                           ),
                           2.hSpace,
-                          const Icon(
+                          Icon(
                             Icons.arrow_forward_ios_rounded,
                             color: AppColors.textColor,
-                            size: 14,
+                            size: ScreenService.isTablet ? 16 : 14,
                           )
                         ],
                       ),
@@ -212,14 +213,14 @@ class _GiftScreenState extends State<GiftScreen> {
                           10.hSpace,
                           Text(
                             "Gift Cards",
-                            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                           ),
                         ],
                       ),
                       5.vSpace,
                       Text(
                         "0",
-                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w700, fontSize: 38),
+                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 40 : 38),
                       ),
                       5.vSpace,
                       Row(
@@ -228,13 +229,13 @@ class _GiftScreenState extends State<GiftScreen> {
                         children: [
                           Text(
                             "My Gift Cards ",
-                            style: GoogleFonts.inter(color: AppColors.textColor, fontWeight: FontWeight.w400, fontSize: 16),
+                            style: GoogleFonts.inter(color: AppColors.textColor, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                           ),
                           2.hSpace,
-                          const Icon(
+                          Icon(
                             Icons.arrow_forward_ios_rounded,
                             color: AppColors.textColor,
-                            size: 14,
+                            size: ScreenService.isTablet ? 16 : 14,
                           )
                         ],
                       ),
@@ -250,18 +251,18 @@ class _GiftScreenState extends State<GiftScreen> {
                   children: [
                     Text(
                       "Get Rewards",
-                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 26),
+                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 28 : 26),
                     ),
                     Row(
                       children: [
                         Text(
                           "More   ",
-                          style: GoogleFonts.inter(color: Color(0xff7A808C), fontSize: 16, fontWeight: FontWeight.w400),
+                          style: GoogleFonts.inter(color: Color(0xff7A808C), fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                         ),
-                        const Icon(
+                        Icon(
                           Icons.arrow_forward_ios_outlined,
                           color: Color(0xff7A808C),
-                          size: 12,
+                          size: ScreenService.isTablet ? 14 : 12,
                         )
                       ],
                     ),
@@ -276,7 +277,7 @@ class _GiftScreenState extends State<GiftScreen> {
                     text: TextSpan(
                       style: GoogleFonts.inter(
                         color: AppColors.white,
-                        fontSize: 16,
+                        fontSize: ScreenService.isTablet ? 18 : 16,
                         fontWeight: FontWeight.w500,
                       ),
                       children: [
@@ -285,7 +286,7 @@ class _GiftScreenState extends State<GiftScreen> {
                           text: "r",
                           style: GoogleFonts.inter(
                             color: AppColors.white,
-                            fontSize: 16,
+                            fontSize: ScreenService.isTablet ? 18 : 16,
                             fontWeight: FontWeight.w500,
                             decoration: TextDecoration.underline,
                             decorationColor: Color(0xffFCA509),
@@ -297,7 +298,7 @@ class _GiftScreenState extends State<GiftScreen> {
                           text: "e",
                           style: GoogleFonts.inter(
                             color: AppColors.white,
-                            fontSize: 16,
+                            fontSize: ScreenService.isTablet ? 18 : 16,
                             fontWeight: FontWeight.w500,
                             decoration: TextDecoration.underline,
                             decorationColor: Color(0xffFCA509),
@@ -352,7 +353,7 @@ class _GiftScreenState extends State<GiftScreen> {
                   style: GoogleFonts.inter(
                     color: AppColors.white,
                     fontWeight: FontWeight.w400,
-                    fontSize: 14,
+                    fontSize: ScreenService.isTablet ? 16 : 14,
                   ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
@@ -369,7 +370,7 @@ class _GiftScreenState extends State<GiftScreen> {
             children: [
               Text(
                 "Progress",
-                style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
               ),
               Row(
                 children: [
@@ -377,7 +378,7 @@ class _GiftScreenState extends State<GiftScreen> {
                     "0",
                     style: GoogleFonts.inter(
                       color: Colors.green,
-                      fontSize: 14,
+                      fontSize: ScreenService.isTablet ? 16 : 14,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -385,7 +386,7 @@ class _GiftScreenState extends State<GiftScreen> {
                     "/10 USDT",
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: 14,
+                      fontSize: ScreenService.isTablet ? 16 : 14,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -401,7 +402,7 @@ class _GiftScreenState extends State<GiftScreen> {
             children: [
               Text(
                 "Reward",
-                style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
               ),
               Row(
                 children: [
@@ -411,7 +412,7 @@ class _GiftScreenState extends State<GiftScreen> {
                     "USDT Trading Fee Rebate Voucher",
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: 14,
+                      fontSize: ScreenService.isTablet ? 16 : 14,
                       fontWeight: FontWeight.w400,
                     ),
                     textAlign: TextAlign.right,
@@ -428,13 +429,13 @@ class _GiftScreenState extends State<GiftScreen> {
             children: [
               Text(
                 "Time Left to complete Task",
-                style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
               ),
               Text(
                 "02D:00H:30M",
                 style: GoogleFonts.inter(
                   color: Colors.white,
-                  fontSize: 14,
+                  fontSize: ScreenService.isTablet ? 16 : 14,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -445,7 +446,7 @@ class _GiftScreenState extends State<GiftScreen> {
             alignment: Alignment.centerRight,
             child: Container(
               height: 28.h,
-              width: 70.w,
+              width: ScreenService.isTablet ? 65.w : 70.w,
               // padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
@@ -456,7 +457,7 @@ class _GiftScreenState extends State<GiftScreen> {
                   "Do Task",
                   style: GoogleFonts.inter(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: ScreenService.isTablet ? 16 : 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

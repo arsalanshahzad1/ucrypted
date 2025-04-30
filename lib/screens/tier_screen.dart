@@ -9,6 +9,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class TierScreen extends StatefulWidget {
   const TierScreen({super.key});
@@ -94,7 +95,7 @@ class _TierScreenState extends State<TierScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -161,7 +162,7 @@ class _TierScreenState extends State<TierScreen> {
                     "Tier Payment",
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: 28,
+                      fontSize: ScreenService.isTablet ? 30 : 28,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -169,7 +170,7 @@ class _TierScreenState extends State<TierScreen> {
                     "\$25.00",
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: 28,
+                      fontSize: ScreenService.isTablet ? 30 : 28,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -180,7 +181,7 @@ class _TierScreenState extends State<TierScreen> {
                 "Supporter",
                 style: GoogleFonts.inter(
                   color: Colors.white,
-                  fontSize: 23,
+                  fontSize: ScreenService.isTablet ? 25 : 23,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -189,12 +190,12 @@ class _TierScreenState extends State<TierScreen> {
                 "Each contribution brings us closer to\nrevolutionizing the trading experience.",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: ScreenService.isTablet ? 18 : 16,
                   fontWeight: FontWeight.w300,
                 ),
               ),
               20.vSpace,
-              Text("Choose Tier", style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400)),
+              Text("Choose Tier", style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400)),
               20.vSpace,
               SizedBox(
                 width: double.infinity,
@@ -212,7 +213,7 @@ class _TierScreenState extends State<TierScreen> {
                       value: selectedPaymentMethod,
                       hint: Text(
                         "Wallet",
-                        style: GoogleFonts.poppins(color: const Color(0xFFCCCCCC), fontWeight: FontWeight.w300, fontSize: 12),
+                        style: GoogleFonts.poppins(color: const Color(0xFFCCCCCC), fontWeight: FontWeight.w300, fontSize: ScreenService.isTablet ? 14 : 12),
                       ),
                       icon: Row(
                         children: [
@@ -229,7 +230,7 @@ class _TierScreenState extends State<TierScreen> {
                       ]
                           .map((method) => DropdownMenuItem(
                                 value: method,
-                                child: Text(method, style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 12)),
+                                child: Text(method, style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w300, fontSize: ScreenService.isTablet ? 14 : 12)),
                               ))
                           .toList(),
                       onChanged: (value) {
@@ -244,16 +245,16 @@ class _TierScreenState extends State<TierScreen> {
               25.vSpace,
               Text(
                 "Email",
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
               ),
               20.vSpace,
               TextField(
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: 'desmond@gmail.com',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -272,16 +273,16 @@ class _TierScreenState extends State<TierScreen> {
               25.vSpace,
               Text(
                 "CVV",
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
               ),
               20.vSpace,
               TextField(
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: 'desmond',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -300,16 +301,16 @@ class _TierScreenState extends State<TierScreen> {
               25.vSpace,
               Text(
                 "Card Holder Name",
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
               ),
               20.vSpace,
               TextField(
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: 'Enter your Full Name',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -328,16 +329,16 @@ class _TierScreenState extends State<TierScreen> {
               25.vSpace,
               Text(
                 "Card Number",
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
               ),
               20.vSpace,
               TextField(
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: '41112121212121212',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -356,16 +357,16 @@ class _TierScreenState extends State<TierScreen> {
               25.vSpace,
               Text(
                 "Expiration Date",
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
               ),
               20.vSpace,
               TextField(
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: '12/25',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -384,16 +385,16 @@ class _TierScreenState extends State<TierScreen> {
               20.vSpace,
               Text(
                 "Amount",
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 14 : 16, fontWeight: FontWeight.w400),
               ),
               20.vSpace,
               TextField(
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: '\$20.00',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -417,16 +418,16 @@ class _TierScreenState extends State<TierScreen> {
                     RoutingService.push(const TierScreenSuccess());
                   },
                   child: Container(
-                    height: 40.h,
+                    height: ScreenService.isTablet ? 42.h : 40.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                      borderRadius: BorderRadius.circular(28),
+                      borderRadius: BorderRadius.circular(ScreenService.isTablet ? 32 : 28),
                     ),
                     child: Center(
                       child: Text(
                         "Confirm Support",
-                        style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                        style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                       ),
                     ),
                   ),
@@ -440,13 +441,13 @@ class _TierScreenState extends State<TierScreen> {
                     // RoutingService.pushAndRemoveUntil(const HomeScreen());
                   },
                   child: Container(
-                    height: 40.h,
+                    height: ScreenService.isTablet ? 42.h : 40.h,
                     width: double.infinity,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(28), border: Border.all(color: Colors.white)),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(ScreenService.isTablet ? 32 : 28), border: Border.all(color: Colors.white)),
                     child: Center(
                       child: Text(
                         "Back",
-                        style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                        style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                       ),
                     ),
                   ),
@@ -544,7 +545,7 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -608,34 +609,39 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: 68.h,
-                    width: 68.w,
-                    decoration: BoxDecoration(color: Color.fromARGB(32, 87, 140, 26), borderRadius: BorderRadius.circular(65)),
+                    height: ScreenService.isTablet ? 70.h : 68.h,
+                    width: ScreenService.isTablet ? 70.h : 68.w,
+                    decoration: BoxDecoration(color: Color.fromARGB(32, 87, 140, 26), borderRadius: BorderRadius.circular(ScreenService.isTablet ? 67 : 65)),
                     child: SizedBox(
-                      height: 60,
-                      width: 60,
+                      height: ScreenService.isTablet ? 62 : 60,
+                      width: ScreenService.isTablet ? 62 : 60,
                       child: SvgPicture.asset(
                         "assets/svg/badge.svg",
-                        fit: BoxFit.cover,
+                        fit: ScreenService.isTablet ? BoxFit.contain : BoxFit.cover,
                       ),
                     ),
                   )
                 ],
               ),
               15.vSpace,
-              Text(
-                "Your Transaction has been Successfully Processed!",
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                style: GoogleFonts.poppins(
-                  color: Color(0xffFAFAFA),
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Your Transaction has been Successfully Processed!",
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: GoogleFonts.poppins(
+                      color: Color(0xffFAFAFA),
+                      fontSize: 24,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
               30.vSpace,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 20 : 10),
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
@@ -693,7 +699,7 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
                                 10.hSpace,
                                 Text(
                                   "Download Payment Details",
-                                  style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                                  style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                                 ),
                               ],
                             ),
@@ -721,7 +727,7 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
                                 10.hSpace,
                                 Text(
                                   "Send To Email",
-                                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: 16),
+                                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                                 ),
                               ],
                             ),
@@ -738,7 +744,7 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
                 child: Text(
                   "For any discrepancies or complaints, please contact: info@ucrypted.com. Together, we can make Ucrypted a reality and shape the future of secure financial trading. Thank you for being an essential part of our journey!",
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 12, fontWeight: FontWeight.w300),
+                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w300),
                 ),
               ),
               30.vSpace,
@@ -757,14 +763,14 @@ class _TierScreenSuccessState extends State<TierScreenSuccess> {
           Expanded(
             child: Text(
               label,
-              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 14, fontWeight: FontWeight.w400),
+              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w400),
             ),
           ),
           Text(
             value,
             style: GoogleFonts.poppins(
               color: Color(0xffFAFAFA),
-              fontSize: 12,
+              fontSize: ScreenService.isTablet ? 16 : 12,
               fontWeight: isBold ? FontWeight.bold : FontWeight.w500,
             ),
           ),

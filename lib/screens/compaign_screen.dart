@@ -10,6 +10,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class CompaignScreen extends StatefulWidget {
   const CompaignScreen({super.key});
@@ -98,7 +99,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
           children: [
             50.vSpace,
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -159,7 +160,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "Transforming Digital Assets into Everyday Cash",
-                style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: 23, color: Colors.white),
+                style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 25 : 23, color: Colors.white),
               ),
             ),
             10.vSpace,
@@ -167,7 +168,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "Ucrypted Global Exchange makes cryptocurrency as easy to use as cash. Pay bills, shop, and connect globally, all with the power of digital assets. Join us in revolutionizing the way the world handles money.",
-                style: GoogleFonts.poppins(fontWeight: FontWeight.w300, fontSize: 16, color: Colors.white),
+                style: GoogleFonts.poppins(fontWeight: FontWeight.w300, fontSize: ScreenService.isTablet ? 18 : 16, color: Colors.white),
               ),
             ),
             20.vSpace,
@@ -208,7 +209,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                     Text(
                       "Together, We're Changing The World Of Money",
                       style: GoogleFonts.poppins(
-                        fontSize: 16,
+                        fontSize: ScreenService.isTablet ? 18 : 16,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ),
@@ -229,19 +230,19 @@ class _CompaignScreenState extends State<CompaignScreen> {
                         Text(
                           "80.000€ Raised",
                           style: GoogleFonts.poppins(
-                            fontSize: 12,
+                            fontSize: ScreenService.isTablet ? 14 : 12,
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
                           ),
                         ),
                         Container(
-                          width: 32,
-                          height: 32,
+                          width: ScreenService.isTablet ? 34 : 32,
+                          height: ScreenService.isTablet ? 34 : 32,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(color: Colors.white),
                           ),
-                          child: const Icon(Icons.arrow_outward, color: Colors.white, size: 16),
+                          child: Icon(Icons.arrow_outward, color: Colors.white, size: ScreenService.isTablet ? 18 : 16),
                         ),
                       ],
                     ),
@@ -261,12 +262,12 @@ class _CompaignScreenState extends State<CompaignScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color.fromARGB(255, 176, 4, 7)]),
-                    borderRadius: BorderRadius.circular(28),
+                    borderRadius: BorderRadius.circular(ScreenService.isTablet ? 32 : 28),
                   ),
                   child: Center(
                     child: Text(
                       "Confirm Support",
-                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 20 : 18),
                     ),
                   ),
                 ),
@@ -282,7 +283,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                 child: Center(
                   child: Text(
                     "Video Will be here.",
-                    style: GoogleFonts.inter(color: Color(0xffFAFAFA), fontWeight: FontWeight.w500, fontSize: 24),
+                    style: GoogleFonts.inter(color: Color(0xffFAFAFA), fontWeight: FontWeight.w500, fontSize: ScreenService.isTablet ? 26 : 24),
                   ),
                 ),
               ),
@@ -294,7 +295,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                 "Introduction",
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.w400,
-                  fontSize: 18,
+                  fontSize: ScreenService.isTablet ? 20 : 18,
                   color: Colors.white,
                 ),
               ),
@@ -306,7 +307,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                 text: TextSpan(
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w300,
-                    fontSize: 14,
+                    fontSize: ScreenService.isTablet ? 16 : 14,
                     color: Colors.white,
                   ),
                   children: [
@@ -317,7 +318,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       text: "Ucrypted Global Exchange",
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w600,
-                        fontSize: 14,
+                        fontSize: ScreenService.isTablet ? 16 : 14,
                       ), // Bold
                     ),
                     TextSpan(
@@ -338,13 +339,13 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       // RoutingService.pushAndRemoveUntil(const HomeScreen());
                     },
                     child: Container(
-                      height: 50.h,
+                      height: ScreenService.isTablet ? 45.h : 50.h,
                       width: 120.w,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(28), border: Border.all(color: Color(0xffFFFFFF))),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(ScreenService.isTablet ? 32 : 28), border: Border.all(color: Color(0xffFFFFFF))),
                       child: Center(
                         child: Text(
                           "About Us",
-                          style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 18),
+                          style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 20 : 18),
                         ),
                       ),
                     ),
@@ -362,7 +363,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                   children: [
                     Image.asset(
                       "assets/images/man.png",
-                      height: 80, // Adjust based on your image size
+                      height: ScreenService.isTablet ? 100 : 80, // Adjust based on your image size
                       fit: BoxFit.contain,
                     ),
                     const SizedBox(height: 12),
@@ -370,7 +371,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       "What We Need & What You Get",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
-                        fontSize: 18,
+                        fontSize: ScreenService.isTablet ? 20 : 18,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ),
@@ -380,7 +381,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       "At Ucrypted, we’re on a mission to build the next-generation Global Exchange, one that redefines the way the world engages with secure, transparent, and efficient financial trading. To achieve this, we are raising €500,000. This funding will enable us to finalize the platform's development and bring our vision to life.",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
-                        fontSize: 14,
+                        fontSize: ScreenService.isTablet ? 16 : 14,
                         fontWeight: FontWeight.w400,
                         color: Colors.white,
                       ),
@@ -394,7 +395,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "What We Need",
-                style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 23, color: Color(0xffFAFAFA)),
+                style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: ScreenService.isTablet ? 25 : 23, color: Color(0xffFAFAFA)),
               ),
             ),
             10.vSpace,
@@ -402,7 +403,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "We believe in creating value for those who invest in our journey. Here’s how your contributions will directly benefit you.",
-                style: GoogleFonts.poppins(fontWeight: FontWeight.w300, fontSize: 16, color: Colors.white),
+                style: GoogleFonts.poppins(fontWeight: FontWeight.w300, fontSize: ScreenService.isTablet ? 18 : 16, color: Colors.white),
               ),
             ),
             20.vSpace,
@@ -429,6 +430,15 @@ class _CompaignScreenState extends State<CompaignScreen> {
                         "Partnering with top-tier legal firms to ensure full regulatory compliance.",
                       ],
                     ),
+                    const SizedBox(width: 16),
+                    _buildCard(
+                      title: "Legal Compliance",
+                      bulletPoints: [
+                        "Navigating the complexities of international regulatory jurisdictions.",
+                        "Securing necessary licensing and compliance with GDPR, MiFID II, and other regulations.",
+                        "Partnering with top-tier legal firms to ensure full regulatory compliance.",
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -444,7 +454,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       "What We Need",
-                      style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 23, color: Color(0xffFAFAFA)),
+                      style: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: ScreenService.isTablet ? 25 : 23, color: Color(0xffFAFAFA)),
                     ),
                   ),
                   10.vSpace,
@@ -452,7 +462,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       "We believe in creating value for those who invest in our journey. Here’s how your contributions will directly benefit you.",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.w300, fontSize: 16, color: Colors.white),
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.w300, fontSize: ScreenService.isTablet ? 18 : 16, color: Colors.white),
                     ),
                   ),
                   20.vSpace,
@@ -470,6 +480,14 @@ class _CompaignScreenState extends State<CompaignScreen> {
                             ],
                             icon: "assets/svg/search1.svg",
                           ),
+                          const SizedBox(width: 16),
+                          _buildCard2(
+                              title: "Exclusive Early Access",
+                              bulletPoints: [
+                                "Be among the first to access the Ucrypted Global Exchange before its public release.",
+                                "Exclusive insights into the platform’s functionalities and early features.",
+                              ],
+                              icon: "assets/svg/search22.svg"),
                           const SizedBox(width: 16),
                           _buildCard2(
                               title: "Exclusive Early Access",
@@ -506,7 +524,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                   Text(
                     "Shape the Future of Finance with Ucrypted",
                     style: GoogleFonts.inter(
-                      fontSize: 23,
+                      fontSize: ScreenService.isTablet ? 25 : 23,
                       fontWeight: FontWeight.w400,
                       color: Colors.white,
                     ),
@@ -515,7 +533,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                   Text(
                     "The world is moving towards decentralized, secure, and user-centric financial systems. Ucrypted is positioned to lead this transformation, but we need your support to make this vision a reality. Every contribution brings us closer to launching a platform that empowers individuals and businesses globally. Together, we can shape the future of secure and innovative trading. Join us on this transformative journey!",
                     style: GoogleFonts.poppins(
-                      fontSize: 16,
+                      fontSize: ScreenService.isTablet ? 18 : 16,
                       fontWeight: FontWeight.w300,
                       color: Colors.white,
                     ),
@@ -524,7 +542,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                   Text(
                     "our Tier",
                     style: GoogleFonts.poppins(
-                      fontSize: 23,
+                      fontSize: ScreenService.isTablet ? 25 : 23,
                       fontWeight: FontWeight.w400,
                       color: Colors.white,
                     ),
@@ -533,7 +551,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                   Text(
                     "Your support helps build a secure, user-friendly, and globally compliant financial trading platform. Choose the tier that resonates with you and unlock exclusive rewards while contributing to a revolutionary exchange.",
                     style: GoogleFonts.poppins(
-                      fontSize: 16,
+                      fontSize: ScreenService.isTablet ? 18 : 16,
                       fontWeight: FontWeight.w300,
                       color: Colors.white,
                     ),
@@ -548,12 +566,12 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                        borderRadius: BorderRadius.circular(28),
+                        borderRadius: BorderRadius.circular(ScreenService.isTablet ? 32 : 28),
                       ),
                       child: Center(
                         child: Text(
                           "Confirm Support",
-                          style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                          style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 20 : 18),
                         ),
                       ),
                     ),
@@ -586,6 +604,14 @@ class _CompaignScreenState extends State<CompaignScreen> {
                               "Exclusive insights into the platform’s functionalities and early features.",
                             ],
                             svg: "assets/svg/badge22.svg"),
+                        const SizedBox(width: 16),
+                        _buildCard3(
+                            title: "Exclusive Early Access",
+                            bulletPoints: [
+                              "Be among the first to access the Ucrypted Global Exchange before its public release.",
+                              "Exclusive insights into the platform’s functionalities and early features.",
+                            ],
+                            svg: "assets/svg/badge22.svg"),
                       ],
                     ),
                   ),
@@ -609,7 +635,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       "Join The Movement,\nStay In The Loop!",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
-                        fontSize: 18,
+                        fontSize: ScreenService.isTablet ? 20 : 18,
                         fontWeight: FontWeight.w500,
                         color: Color(0xffFAFAFA),
                       ),
@@ -619,7 +645,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       "Be Part Of Something Bigger! Stay Connected With Our Mission, Campaigns, And Exclusive Updates. Subscribe To Our Newsletter And Follow Us On Social Media To Spread Awareness And Foster Engagement. Together, We Can Build A Thriving Community And Drive Meaningful Change. Let's Make An Impact!",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
-                        fontSize: 10,
+                        fontSize: ScreenService.isTablet ? 12 : 10,
                         fontWeight: FontWeight.w400,
                         color: Color(0xffEBEBEB),
                       ),
@@ -641,7 +667,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                                 hintText: "Enter your Email",
                                 hintStyle: GoogleFonts.poppins(
                                   color: const Color(0xffBCBCBC),
-                                  fontSize: 12,
+                                  fontSize: ScreenService.isTablet ? 14 : 12,
                                   fontWeight: FontWeight.w400,
                                 ),
                                 filled: false,
@@ -671,7 +697,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                             child: Text(
                               "Subscribe Now",
                               style: GoogleFonts.poppins(
-                                fontSize: 12,
+                                fontSize: ScreenService.isTablet ? 14 : 12,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
@@ -684,7 +710,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                     Text(
                       "Follow Us on Social Media",
                       style: GoogleFonts.poppins(
-                        fontSize: 12,
+                        fontSize: ScreenService.isTablet ? 14 : 12,
                         fontWeight: FontWeight.w600,
                         color: Color(0xffFAFAFA),
                       ),
@@ -720,8 +746,8 @@ class _CompaignScreenState extends State<CompaignScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: SvgPicture.asset(
         assetPath,
-        height: 24,
-        width: 24,
+        height: ScreenService.isTablet ? 26 : 24,
+        width: ScreenService.isTablet ? 26 : 24,
         colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
       ),
     );
@@ -729,8 +755,8 @@ class _CompaignScreenState extends State<CompaignScreen> {
 
   Widget _buildCard({required String title, required List<String> bulletPoints}) {
     return Container(
-      width: 300, // Fixed width for each card
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      width: ScreenService.isTablet ? 310 : 300, // Fixed width for each card
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: ScreenService.isTablet ? 30 : 20),
       decoration: BoxDecoration(
         color: Color(0xff212121), // Background color
         borderRadius: BorderRadius.circular(16),
@@ -741,7 +767,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
         children: [
           Container(
             height: 30.h,
-            width: 30.w,
+            width: ScreenService.isTablet ? 25.w : 30.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4.r),
               gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
@@ -749,8 +775,8 @@ class _CompaignScreenState extends State<CompaignScreen> {
             child: Center(
               child: SvgPicture.asset(
                 "assets/svg/web.svg",
-                height: 10,
-                width: 10,
+                height: ScreenService.isTablet ? 20 : 10,
+                width: ScreenService.isTablet ? 20 : 10,
               ),
             ),
           ),
@@ -807,7 +833,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
         children: [
           Container(
             height: 30.h,
-            width: 30.w,
+            width: ScreenService.isTablet ? 25.w : 30.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4.r),
               gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
@@ -846,7 +872,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       child: Text(
                         point,
                         style: GoogleFonts.poppins(
-                          fontSize: 10,
+                          fontSize: ScreenService.isTablet ? 12 : 10,
                           color: Color(0xffEBEBEB),
                         ),
                       ),
@@ -862,7 +888,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
   Widget _buildCard3({required String title, required List<String> bulletPoints, String? svg}) {
     return Container(
       width: 300,
-      padding: const EdgeInsets.only(left: 10,right: 20, top: 8, bottom: 10),
+      padding: const EdgeInsets.only(left: 10, right: 20, top: 8, bottom: 10),
       decoration: BoxDecoration(
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(12),
@@ -899,7 +925,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                 child: Text(
                   "Supporter",
                   style: GoogleFonts.poppins(
-                    fontSize: 16,
+                    fontSize: ScreenService.isTablet ? 18 : 16,
                     fontWeight: FontWeight.w500,
                     color: Color(0xffFAFAFA),
                   ),
@@ -908,7 +934,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
               Text(
                 "€25",
                 style: GoogleFonts.poppins(
-                  fontSize: 16,
+                  fontSize: ScreenService.isTablet ? 18 : 16,
                   fontWeight: FontWeight.w500,
                   color: Color(0xffFAFAFA),
                 ),
@@ -924,7 +950,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                     Text(
                       "• ",
                       style: GoogleFonts.poppins(
-                        fontSize: 12,
+                        fontSize: ScreenService.isTablet ? 14 : 12,
                         color: Color(0xffEBEBEB),
                       ),
                     ),
@@ -932,7 +958,7 @@ class _CompaignScreenState extends State<CompaignScreen> {
                       child: Text(
                         "Personalized Thank You Email from the Ucrypted team.",
                         style: GoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: ScreenService.isTablet ? 14 : 12,
                           color: Color(0xffEBEBEB),
                         ),
                       ),

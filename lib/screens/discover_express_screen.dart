@@ -14,6 +14,7 @@ import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/gradient_text.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class DiscoverExpressScreen extends StatefulWidget {
   const DiscoverExpressScreen({super.key});
@@ -120,7 +121,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
           : null,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -172,7 +173,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 16,
+                                          fontSize: ScreenService.isTablet ? 18 : 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       )
@@ -184,7 +185,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 16,
+                                          fontSize: ScreenService.isTablet ? 18 : 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -195,7 +196,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 16,
+                                        fontSize: ScreenService.isTablet ? 18 : 16,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -222,8 +223,8 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                           ),
                         );
                       }),
-                    ),  
-                    5.hSpace, 
+                    ),
+                    5.hSpace,
                     Expanded(
                         child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -255,7 +256,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                             ),
                             labelColor: Colors.black,
                             unselectedLabelColor: Colors.white,
-                            labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14),
+                            labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: ScreenService.isTablet ? 16 : 14),
                             tabs: const [
                               Tab(text: "Buy"),
                               Tab(text: "Sell"),
@@ -584,7 +585,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                             style: GoogleFonts.inter(
                               color: AppColors.white,
                               fontWeight: FontWeight.w400,
-                              fontSize: 14,
+                              fontSize: ScreenService.isTablet ? 16 : 14,
                             ),
                           ),
                         ],
@@ -596,7 +597,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                           Row(
                             children: [
                               CircleAvatar(
-                                radius: 20,
+                                radius: ScreenService.isTablet ? 22 : 20,
                                 backgroundColor: Colors.blue,
                                 backgroundImage: AssetImage(
                                   isSwapped ? "assets/images/dol.png" : "assets/images/dol1.png",
@@ -612,7 +613,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                         isSwapped ? "USDC" : "DOLLAR",
                                         style: GoogleFonts.inter(
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 22,
+                                          fontSize: ScreenService.isTablet ? 24 : 22,
                                           color: Colors.white,
                                         ),
                                       ),
@@ -640,7 +641,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                 "0\$",
                                 style: GoogleFonts.poppins(
                                   color: Colors.white,
-                                  fontSize: 22,
+                                  fontSize: ScreenService.isTablet ? 24 : 22,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -701,7 +702,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                 style: GoogleFonts.inter(
                                   color: AppColors.white,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14,
+                                  fontSize: ScreenService.isTablet ? 16 : 14,
                                 ),
                               ),
                             ],
@@ -713,7 +714,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                               Row(
                                 children: [
                                   CircleAvatar(
-                                    radius: 20,
+                                    radius: ScreenService.isTablet ? 22 : 20,
                                     backgroundColor: Colors.blue.withOpacity(.6),
                                     backgroundImage: AssetImage(
                                       isSwapped ? "assets/images/dol1.png" : "assets/images/dol.png",
@@ -729,7 +730,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                             isSwapped ? "DOLLAR" : "USDC",
                                             style: GoogleFonts.inter(
                                               fontWeight: FontWeight.w600,
-                                              fontSize: 22,
+                                              fontSize: ScreenService.isTablet ? 24 : 22,
                                               color: Colors.white,
                                             ),
                                           ),
@@ -757,7 +758,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                                     "0\$",
                                     style: GoogleFonts.poppins(
                                       color: Colors.white,
-                                      fontSize: 22,
+                                      fontSize: ScreenService.isTablet ? 24 : 22,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -805,13 +806,13 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                 children: [
                   Text(
                     "Buy USDC",
-                    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16),
+                    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 18 : 16),
                   ),
                   Row(
                     children: [
                       Text(
                         "USDC",
-                        style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                        style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                       ),
                       10.hSpace,
                       SvgPicture.asset("assets/svg/con.svg")
@@ -835,18 +836,18 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                         children: [
                           Text(
                             "Unit price 291.50",
-                            style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                            style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 13 : 11),
                           ),
                           10.vSpace,
                           Text(
                             "Quantity 5.14 USDT",
-                            style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                            style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 13 : 11),
                           ),
                         ],
                       ),
                       Text(
                         "03/01/2025, 19:53",
-                        style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                        style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 13 : 11),
                       ),
                     ],
                   ),
@@ -858,13 +859,13 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                 children: [
                   Text(
                     "Saqib Trander",
-                    style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: 11),
+                    style: GoogleFonts.inter(color: Color(0xff7E8088), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 13 : 11),
                   ),
                   Row(
                     children: [
                       GradientText(
                         "Completed",
-                        style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 14),
+                        style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                         gradient: LinearGradient(colors: [
                           Color(0xffFCA509),
                           Color(0xff880306),
@@ -873,7 +874,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
                       5.hSpace,
                       Icon(
                         Icons.arrow_forward_ios_rounded,
-                        size: 14,
+                        size: ScreenService.isTablet ? 16 : 14,
                         color: Color(0xff7E8088),
                       )
                     ],
@@ -894,7 +895,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
             );
           },
           child: Container(
-            height: 50,
+            height: ScreenService.isTablet ? 60 : 50,
             width: double.infinity,
             decoration: BoxDecoration(
               gradient: const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color.fromARGB(255, 28, 28, 29), Color.fromARGB(255, 53, 50, 50)]),
@@ -903,7 +904,7 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
             child: Center(
               child: Text(
                 "Select payment method",
-                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
               ),
             ),
           ),

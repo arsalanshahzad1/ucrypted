@@ -108,7 +108,7 @@ class _WalletScreenState extends State<WalletScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -178,7 +178,8 @@ class _WalletScreenState extends State<WalletScreen> {
                           onTap: () => setState(() => selectedIndex = 0),
                           child: GradientText(
                             "Overview",
-                            style: GoogleFonts.inter(color: selectedIndex == 0 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                            style: GoogleFonts.inter(
+                                color: selectedIndex == 0 ? AppColors.textColor : Colors.white, fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w600),
                             gradient: selectedIndex == 0
                                 ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
                                 : const LinearGradient(
@@ -191,7 +192,8 @@ class _WalletScreenState extends State<WalletScreen> {
                           onTap: () => setState(() => selectedIndex = 1),
                           child: GradientText(
                             "Spot",
-                            style: GoogleFonts.inter(color: selectedIndex == 1 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                            style: GoogleFonts.inter(
+                                color: selectedIndex == 1 ? AppColors.textColor : Colors.white, fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w600),
                             gradient: selectedIndex == 1
                                 ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
                                 : const LinearGradient(
@@ -204,7 +206,8 @@ class _WalletScreenState extends State<WalletScreen> {
                           onTap: () => setState(() => selectedIndex = 2),
                           child: GradientText(
                             "Funding",
-                            style: GoogleFonts.inter(color: selectedIndex == 2 ? AppColors.textColor : Colors.white, fontSize: 14, fontWeight: FontWeight.w600),
+                            style: GoogleFonts.inter(
+                                color: selectedIndex == 2 ? AppColors.textColor : Colors.white, fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w600),
                             gradient: selectedIndex == 2
                                 ? const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])
                                 : const LinearGradient(
@@ -220,7 +223,7 @@ class _WalletScreenState extends State<WalletScreen> {
                       children: [
                         Container(
                           height: 1.0,
-                          width: 220.w,
+                          width: ScreenService.isTablet ? 150.w : 220.w,
                           decoration: BoxDecoration(color: AppColors.disableBtnColor, borderRadius: BorderRadius.circular(12)),
                         ),
                       ],
@@ -293,7 +296,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   10.hSpace,
                                   Text(
                                     "BTC Wallet",
-                                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w400, fontSize: 14),
+                                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                                   )
                                 ],
                               ),
@@ -308,17 +311,17 @@ class _WalletScreenState extends State<WalletScreen> {
                                 children: [
                                   Text(
                                     "0.34545 ",
-                                    style: GoogleFonts.inter(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600),
+                                    style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 26 : 24, fontWeight: FontWeight.w600),
                                   ),
                                   Text(
                                     "BTC",
-                                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                                   ),
                                 ],
                               ),
                               Text(
                                 "21900,84 USD",
-                                style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                                style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                               ),
                             ],
                           ),
@@ -332,7 +335,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                 Text(
                                   "OxsD12F32xvW3deG5...",
                                   style: GoogleFonts.inter(
-                                    fontSize: 14,
+                                    fontSize: ScreenService.isTablet ? 16 : 14,
                                     fontWeight: FontWeight.w400,
                                     color: Color(0xffACB5BB),
                                   ),
@@ -361,7 +364,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                     Text(
                                       "1 BTC : 70859,40 USD",
                                       style: GoogleFonts.inter(
-                                        fontSize: 12,
+                                        fontSize: ScreenService.isTablet ? 14 : 12,
                                         fontWeight: FontWeight.w400,
                                         color: Color(0xffACB5BB),
                                       ),
@@ -370,7 +373,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                     Text(
                                       "Total selling amount : 54,634 \$",
                                       style: GoogleFonts.inter(
-                                        fontSize: 12,
+                                        fontSize: ScreenService.isTablet ? 14 : 12,
                                         fontWeight: FontWeight.w400,
                                         color: Color(0xffACB5BB),
                                       ),
@@ -379,7 +382,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                     Text(
                                       "Total buying buy : 534,263 \$",
                                       style: GoogleFonts.inter(
-                                        fontSize: 12,
+                                        fontSize: ScreenService.isTablet ? 14 : 12,
                                         fontWeight: FontWeight.w400,
                                         color: Color(0xffACB5BB),
                                       ),
@@ -441,7 +444,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   10.hSpace,
                                   Text(
                                     "ETH Wallet",
-                                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w400, fontSize: 14),
+                                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                                   )
                                 ],
                               ),
@@ -456,17 +459,17 @@ class _WalletScreenState extends State<WalletScreen> {
                                 children: [
                                   Text(
                                     "12,345 ",
-                                    style: GoogleFonts.inter(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w600),
+                                    style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 26 : 24, fontWeight: FontWeight.w600),
                                   ),
                                   Text(
                                     "ETH",
-                                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                                    style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                                   ),
                                 ],
                               ),
                               Text(
                                 "37870,88 USD",
-                                style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 14, fontWeight: FontWeight.w400),
+                                style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                               ),
                             ],
                           ),
@@ -480,7 +483,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                 Text(
                                   "OxsD12F32xvW3deG5...",
                                   style: GoogleFonts.inter(
-                                    fontSize: 14,
+                                    fontSize: ScreenService.isTablet ? 16 : 14,
                                     fontWeight: FontWeight.w400,
                                     color: Color(0xffACB5BB),
                                   ),
@@ -509,7 +512,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                     Text(
                                       "1 ETH : 273 USD",
                                       style: GoogleFonts.inter(
-                                        fontSize: 12,
+                                        fontSize: ScreenService.isTablet ? 14 : 12,
                                         fontWeight: FontWeight.w400,
                                         color: Color(0xffACB5BB),
                                       ),
@@ -518,7 +521,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                     Text(
                                       "Total selling amount : 79,634 \$",
                                       style: GoogleFonts.inter(
-                                        fontSize: 12,
+                                        fontSize: ScreenService.isTablet ? 14 : 12,
                                         fontWeight: FontWeight.w400,
                                         color: Color(0xffACB5BB),
                                       ),
@@ -527,7 +530,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                     Text(
                                       "Total buying buy : 534,263 \$",
                                       style: GoogleFonts.inter(
-                                        fontSize: 12,
+                                        fontSize: ScreenService.isTablet ? 14 : 12,
                                         fontWeight: FontWeight.w400,
                                         color: Color(0xffACB5BB),
                                       ),
@@ -565,21 +568,30 @@ class _WalletScreenState extends State<WalletScreen> {
                       ),
                     ),
                     20.vSpace,
-                    SizedBox(
-                      height: 470.h,
-                      width: 330.w,
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth, // or .scaleDown, .fitWidth etc.
-                        child: SvgPicture.asset("assets/svg/balance-flow.svg"),
-                      ),
-                    )
+                    ScreenService.isTablet
+                        ? SizedBox(
+                            height: 600.h,
+                            // width: double.infinity,
+                            child: FittedBox(
+                              // fit: BoxFit.contain, // or .scaleDown, .fitWidth etc.
+                              child: SvgPicture.asset("assets/svg/balance-flow.svg"),
+                            ),
+                          )
+                        : SizedBox(
+                            height: 470.h,
+                            width: 330.w,
+                            child: FittedBox(
+                              fit: BoxFit.fitWidth, // or .scaleDown, .fitWidth etc.
+                              child: SvgPicture.asset("assets/svg/balance-flow.svg"),
+                            ),
+                          )
                   ],
                   35.vSpace,
                   Row(
                     mainAxisAlignment: showWallet != true ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
                     children: [
                       if (showWallet == true) ...[
-                        Text("My Cards", style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w400, color: AppColors.white)),
+                        Text("My Cards", style: GoogleFonts.poppins(fontSize: ScreenService.isTablet ? 20 : 16, fontWeight: FontWeight.w400, color: AppColors.white)),
                       ],
                       GestureDetector(
                           onTap: () {
@@ -605,7 +617,7 @@ class _WalletScreenState extends State<WalletScreen> {
                               itemCount: cardGradients.length,
                               itemBuilder: (context, index) {
                                 return Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 12.h),
+                                  padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 7.h : 12.h),
                                   child: Column(
                                     children: [
                                       _buildCard(index, cardGradients[index]),
@@ -614,8 +626,8 @@ class _WalletScreenState extends State<WalletScreen> {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           SizedBox(
-                                            height: 20.h,
-                                            width: 40.w,
+                                            height: ScreenService.isTablet ? 15.h : 20.h,
+                                            width: ScreenService.isTablet ? 30.w : 40.w,
                                             child: SvgPicture.asset("assets/svg/dotd.svg"),
                                           )
                                         ],
@@ -748,7 +760,7 @@ class _WalletScreenState extends State<WalletScreen> {
   Widget _buildCard(int index, List<Color> gradientColors) {
     return Container(
       height: 180.h,
-      width: 300.w,
+      width: ScreenService.isTablet ? 240.w : 300.w,
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.r),
@@ -767,7 +779,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 "Debit card",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 12,
+                  fontSize: ScreenService.isTablet ? 16 : 12,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -775,7 +787,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 "Frieda Wirtz",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 12,
+                  fontSize: ScreenService.isTablet ? 16 : 12,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -789,7 +801,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 "\$ 36,654",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 28,
+                  fontSize: ScreenService.isTablet ? 32 : 28,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -803,7 +815,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 "**** **** ****",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 25,
+                  fontSize: ScreenService.isTablet ? 30 : 25,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -811,13 +823,13 @@ class _WalletScreenState extends State<WalletScreen> {
                 " 3465",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 25,
+                  fontSize: ScreenService.isTablet ? 30 : 25,
                   fontWeight: FontWeight.w400,
                 ),
               ),
             ],
           ),
-          5.vSpace,
+          ScreenService.isTablet ? 20.vSpace : 5.vSpace,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -826,7 +838,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 " 7/25",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 25,
+                  fontSize: ScreenService.isTablet ? 30 : 25,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -845,12 +857,12 @@ class _WalletScreenState extends State<WalletScreen> {
       // onTap: onTap(),
       child: IntrinsicWidth(
         child: Container(
-          height: 55,
+          height: ScreenService.isTablet ? 45.h : 55,
           decoration: BoxDecoration(
             color: const Color(0xFF202226),
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(ScreenService.isTablet ? 32 : 24),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 20 : 12),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -870,7 +882,7 @@ class _WalletScreenState extends State<WalletScreen> {
                   label,
                   style: GoogleFonts.inter(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: ScreenService.isTablet ? 18 : 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

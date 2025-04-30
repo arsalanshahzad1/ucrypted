@@ -12,6 +12,7 @@ import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/gradient_text.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class DiscoverBlockTradeScreen extends StatefulWidget {
   const DiscoverBlockTradeScreen({super.key});
@@ -54,7 +55,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -104,7 +105,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 16,
+                                          fontSize: ScreenService.isTablet ? 18 : 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       )
@@ -116,7 +117,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 16,
+                                          fontSize: ScreenService.isTablet ? 18 : 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -127,7 +128,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 16,
+                                        fontSize: ScreenService.isTablet ? 18 : 16,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -185,7 +186,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                         ),
                         labelColor: Colors.black,
                         unselectedLabelColor: Colors.white,
-                        labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: 14),
+                        labelStyle: GoogleFonts.inter(fontWeight: FontWeight.w500, fontSize: ScreenService.isTablet ? 16 : 14),
                         tabs: const [
                           Tab(text: "Buy"),
                           Tab(text: "Sell"),
@@ -234,16 +235,16 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
               children: [
                 Stack(
                   children: [
-                    const CircleAvatar(
-                      radius: 20,
+                    CircleAvatar(
+                      radius: ScreenService.isTablet ? 22 : 20,
                       backgroundImage: AssetImage('assets/images/person.png'), // Replace with your avatar
                     ),
                     Positioned(
                       bottom: 0,
                       right: 0,
                       child: Container(
-                        width: 10,
-                        height: 10,
+                        width: ScreenService.isTablet ? 12 : 10,
+                        height: ScreenService.isTablet ? 12 : 10,
                         decoration: BoxDecoration(
                           color: isOnline == true ? Color(0xff00B300) : Color(0xffFF9500),
                           shape: BoxShape.circle,
@@ -262,14 +263,14 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                         title,
                         style: GoogleFonts.inter(
                           color: Color(0xffD5D5D5),
-                          fontSize: 11,
+                          fontSize: ScreenService.isTablet ? 13 : 11,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                       GradientText(
                         isOnline == true ? 'Online' : "Offline",
                         style: GoogleFonts.inter(
-                          fontSize: 11,
+                          fontSize: ScreenService.isTablet ? 13 : 11,
                           fontWeight: FontWeight.w400,
                         ),
                         gradient: isOnline == true
@@ -288,7 +289,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                 GradientText(
                   '95.56%',
                   style: GoogleFonts.inter(
-                    fontSize: 13,
+                    fontSize: ScreenService.isTablet ? 15 : 13,
                     fontWeight: FontWeight.w400,
                   ),
                   gradient: const LinearGradient(colors: [
@@ -309,7 +310,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                     Text(
                       price + " ",
                       style: GoogleFonts.poppins(
-                        fontSize: 22,
+                        fontSize: ScreenService.isTablet ? 24 : 22,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
                       ),
@@ -317,7 +318,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                     Text(
                       'USD',
                       style: GoogleFonts.inter(
-                        fontSize: 11,
+                        fontSize: ScreenService.isTablet ? 13 : 11,
                         fontWeight: FontWeight.w400,
                         color: Color(0xffD5D5D5),
                       ),
@@ -338,7 +339,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                         child: Center(
                           child: Text(
                             'Buy',
-                            style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                            style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                           ),
                         ),
                       )
@@ -355,7 +356,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
                         child: Center(
                           child: Text(
                             'Sell',
-                            style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                            style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                           ),
                         ),
                       )
@@ -374,11 +375,11 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
               children: [
                 Text(
                   'Limit : USD 50,000 - 100,000',
-                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 12 : 10, fontWeight: FontWeight.w400),
                 ),
                 Text(
                   'Available : 170,318.18 USDT',
-                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 12 : 10, fontWeight: FontWeight.w400),
                 ),
               ],
             ),
@@ -394,7 +395,7 @@ class _DiscoverBlockTradeScreenState extends State<DiscoverBlockTradeScreen> wit
 
             Text(
               '68,226 Transactions · 99.83% Completion',
-              style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 11, fontWeight: FontWeight.w400),
+              style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 13 : 11, fontWeight: FontWeight.w400),
             ),
           ],
         ),
@@ -483,7 +484,7 @@ class _OrderCreatedState extends State<OrderCreated> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -530,7 +531,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 16,
+                                          fontSize: ScreenService.isTablet ? 18 : 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       )
@@ -542,7 +543,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 16,
+                                          fontSize: ScreenService.isTablet ? 18 : 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -553,7 +554,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 16,
+                                        fontSize: ScreenService.isTablet ? 18 : 16,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -599,12 +600,12 @@ class _OrderCreatedState extends State<OrderCreated> {
                     children: [
                       Text(
                         "Order Created",
-                        style: GoogleFonts.inter(fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
+                        style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 30 : 28, fontWeight: FontWeight.w600, color: Colors.white),
                       ),
                       10.vSpace,
                       Text(
                         "Pay the seller within  14:48",
-                        style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+                        style: GoogleFonts.poppins(fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600, color: Colors.white),
                       ),
                       10.vSpace,
                       Divider(
@@ -614,7 +615,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                       10.vSpace,
                       Text(
                         "Enable order shortcuts",
-                        style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Color(0xffD5D5D5)),
+                        style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600, color: Color(0xffD5D5D5)),
                       ),
                       10.vSpace,
                       Container(
@@ -631,16 +632,16 @@ class _OrderCreatedState extends State<OrderCreated> {
                               children: [
                                 Stack(
                                   children: [
-                                    const CircleAvatar(
-                                      radius: 20,
+                                    CircleAvatar(
+                                      radius: ScreenService.isTablet ? 22 : 20,
                                       backgroundImage: AssetImage('assets/images/person.png'), // Replace with your avatar
                                     ),
                                     Positioned(
                                       bottom: 0,
                                       right: 0,
                                       child: Container(
-                                        width: 10,
-                                        height: 10,
+                                        width: ScreenService.isTablet ? 12 : 10,
+                                        height: ScreenService.isTablet ? 12 : 10,
                                         decoration: BoxDecoration(
                                           color: Color(0xff00B300),
                                           shape: BoxShape.circle,
@@ -659,13 +660,13 @@ class _OrderCreatedState extends State<OrderCreated> {
                                         "Link-Exchange",
                                         style: GoogleFonts.inter(
                                           color: Color(0xffD5D5D5),
-                                          fontSize: 11,
+                                          fontSize: ScreenService.isTablet ? 13 : 11,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
                                       GradientText('Online',
                                           style: GoogleFonts.inter(
-                                            fontSize: 11,
+                                            fontSize: ScreenService.isTablet ? 13 : 11,
                                             fontWeight: FontWeight.w400,
                                           ),
                                           gradient: LinearGradient(colors: [
@@ -689,7 +690,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                                     child: Center(
                                       child: Text(
                                         "Chat",
-                                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 12),
+                                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 14 : 12),
                                       ),
                                     ),
                                   ),
@@ -702,11 +703,11 @@ class _OrderCreatedState extends State<OrderCreated> {
                               children: [
                                 Text(
                                   "Escrowed Crypto",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontWeight: FontWeight.w400, fontSize: 11),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 13 : 11),
                                 ),
                                 Text(
                                   "Escrowed Crypto",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontWeight: FontWeight.w400, fontSize: 11),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 13 : 11),
                                 ),
                               ],
                             ),
@@ -727,7 +728,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                               children: [
                                 Text(
                                   "Buy USDT",
-                                  style: GoogleFonts.poppins(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+                                  style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600),
                                 )
                               ],
                             ),
@@ -742,11 +743,11 @@ class _OrderCreatedState extends State<OrderCreated> {
                               children: [
                                 Text(
                                   "Fiat Amount",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 ),
                                 Text(
                                   "Rs 10,000",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 )
                               ],
                             ),
@@ -756,11 +757,11 @@ class _OrderCreatedState extends State<OrderCreated> {
                               children: [
                                 Text(
                                   "Price",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 ),
                                 Text(
                                   "Rs 291.69",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 )
                               ],
                             ),
@@ -770,11 +771,11 @@ class _OrderCreatedState extends State<OrderCreated> {
                               children: [
                                 Text(
                                   "Recevive Quantity",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 ),
                                 Text(
                                   "34.23 USDT",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 )
                               ],
                             ),
@@ -784,7 +785,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                       20.vSpace,
                       Text(
                         "Payment Method",
-                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 11, fontWeight: FontWeight.w400),
+                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 13 : 11, fontWeight: FontWeight.w400),
                       ),
                       10.vSpace,
                       Divider(
@@ -794,17 +795,17 @@ class _OrderCreatedState extends State<OrderCreated> {
                       10.vSpace,
                       Text(
                         "paypal",
-                        style: GoogleFonts.poppins(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600),
                       ),
                       10.vSpace,
                       Text(
                         "Advertiser’s Terms",
-                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w600),
                       ),
                       10.vSpace,
                       Text(
                         "Third-party party payment not allowed..",
-                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
+                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 12 : 10, fontWeight: FontWeight.w400),
                       ),
                       10.vSpace,
                       GradientText(
@@ -812,14 +813,14 @@ class _OrderCreatedState extends State<OrderCreated> {
                         gradient: const LinearGradient(
                           colors: [Color(0xffFCA509), Color(0xff880306)],
                         ),
-                        style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w400),
+                        style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 12 : 10, fontWeight: FontWeight.w400),
                       ),
                       20.vSpace,
                       Row(
                         children: [
                           Container(
                             height: 20.h,
-                            width: 20.w,
+                            width: ScreenService.isTablet ? 15.w : 20.w,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(4.r),
@@ -828,7 +829,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                               child: Icon(
                                 Icons.check,
                                 color: const Color.fromARGB(255, 185, 111, 2),
-                                size: 15.sp,
+                                size: ScreenService.isTablet ? 13.sp : 15.sp,
                               ),
                             ),
                           ),
@@ -836,7 +837,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                           Expanded(
                             child: Text(
                               "By clicking 'Buy Now', you agree to our Terms and Conditions, including our Cancellation Policy.",
-                              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 10, fontWeight: FontWeight.w400),
+                              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: ScreenService.isTablet ? 12 : 10, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ],
@@ -857,7 +858,7 @@ class _OrderCreatedState extends State<OrderCreated> {
                           child: Center(
                             child: Text(
                               "View Payment Details ",
-                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                             ),
                           ),
                         ),
@@ -894,7 +895,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -943,7 +944,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 16,
+                                          fontSize: ScreenService.isTablet ? 18 : 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       )
@@ -955,7 +956,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 16,
+                                          fontSize: ScreenService.isTablet ? 18 : 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -966,7 +967,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 16,
+                                        fontSize: ScreenService.isTablet ? 18 : 16,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -1015,7 +1016,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                         children: [
                           Text(
                             "Pay the seller",
-                            style: GoogleFonts.inter(fontSize: 28, fontWeight: FontWeight.w600, color: Colors.white),
+                            style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 30 : 28, fontWeight: FontWeight.w600, color: Colors.white),
                           ),
                           GestureDetector(
                             onTap: () {
@@ -1031,7 +1032,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                               child: Center(
                                 child: Text(
                                   "Chat",
-                                  style: GoogleFonts.poppins(color: Color(0xffF2F2F7), fontWeight: FontWeight.w400, fontSize: 11),
+                                  style: GoogleFonts.poppins(color: Color(0xffF2F2F7), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 13 : 11),
                                 ),
                               ),
                             ),
@@ -1041,7 +1042,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                       10.vSpace,
                       Text(
                         "Order will be cancelled in 14:48",
-                        style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+                        style: GoogleFonts.poppins(fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600, color: Colors.white),
                       ),
                       10.vSpace,
                       Divider(
@@ -1051,7 +1052,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                       10.vSpace,
                       Text(
                         "Enable order shortcuts",
-                        style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.w600, color: Color(0xffD5D5D5)),
+                        style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 13 : 11, fontWeight: FontWeight.w600, color: Color(0xffD5D5D5)),
                       ),
                       10.vSpace,
                       Row(
@@ -1074,7 +1075,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                           10.hSpace,
                           Text(
                             "Transfer via paypal Only",
-                            style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                            style: GoogleFonts.poppins(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                           ),
                         ],
                       ),
@@ -1091,7 +1092,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                           children: [
                             Text(
                               "Paypal",
-                              style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+                              style: GoogleFonts.poppins(fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600, color: Colors.white),
                             ),
                             10.vSpace,
                             Divider(
@@ -1104,11 +1105,11 @@ class _PayTheSellerState extends State<PayTheSeller> {
                               children: [
                                 Text(
                                   "You Pay",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                                 Text(
                                   "Rs 10,000",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                               ],
                             ),
@@ -1118,11 +1119,11 @@ class _PayTheSellerState extends State<PayTheSeller> {
                               children: [
                                 Text(
                                   "Full Name",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                                 Text(
                                   "Salman Shah",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                               ],
                             ),
@@ -1132,11 +1133,11 @@ class _PayTheSellerState extends State<PayTheSeller> {
                               children: [
                                 Text(
                                   "Paypal account",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                                 Text(
                                   "uix.shah@gmail.com",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                               ],
                             ),
@@ -1146,11 +1147,11 @@ class _PayTheSellerState extends State<PayTheSeller> {
                               children: [
                                 Text(
                                   "Other payment details",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                                 Text(
                                   "03489914431",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                               ],
                             ),
@@ -1160,11 +1161,11 @@ class _PayTheSellerState extends State<PayTheSeller> {
                               children: [
                                 Text(
                                   "International transfer",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                                 Text(
                                   "Paypal to paypal",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                               ],
                             ),
@@ -1174,11 +1175,11 @@ class _PayTheSellerState extends State<PayTheSeller> {
                               children: [
                                 Text(
                                   "Ref message",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                                 Text(
                                   "23218638712536512",
-                                  style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
+                                  style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400, color: Color(0xffD5D5D5)),
                                 ),
                               ],
                             ),
@@ -1188,14 +1189,14 @@ class _PayTheSellerState extends State<PayTheSeller> {
                       20.vSpace,
                       Text(
                         "Use your own payment account and ensure that the name on the account matches the name you used to verify...",
-                        style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 10, fontWeight: FontWeight.w400),
+                        style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: ScreenService.isTablet ? 12 : 10, fontWeight: FontWeight.w400),
                       ),
                       15.vSpace,
                       Row(
                         children: [
                           Container(
                             height: 18.h,
-                            width: 18.w,
+                            width: ScreenService.isTablet ? 15.w : 18.w,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(4.r),
@@ -1204,7 +1205,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                               child: Icon(
                                 Icons.check,
                                 color: const Color.fromARGB(255, 185, 111, 2),
-                                size: 13.sp,
+                                size: ScreenService.isTablet ? 10.sp : 13.sp,
                               ),
                             ),
                           ),
@@ -1212,7 +1213,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                           Expanded(
                             child: Text(
                               "After payment, tap the button bellow to notify the seller.",
-                              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 12, fontWeight: FontWeight.w400),
+                              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ],
@@ -1233,7 +1234,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                           child: Center(
                             child: Text(
                               "Cancel the order",
-                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                             ),
                           ),
                         ),
@@ -1254,7 +1255,7 @@ class _PayTheSellerState extends State<PayTheSeller> {
                           child: Center(
                             child: Text(
                               "View Payment Details ",
-                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                             ),
                           ),
                         ),
@@ -1292,7 +1293,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
@@ -1339,7 +1340,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                                           colors: [Color(0xffFCA509), Color(0xff880306)],
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 16,
+                                          fontSize: ScreenService.isTablet ? 18 : 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       )
@@ -1351,7 +1352,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                                           end: Alignment.bottomCenter,
                                         ),
                                         style: GoogleFonts.inter(
-                                          fontSize: 16,
+                                          fontSize: ScreenService.isTablet ? 18 : 16,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -1362,7 +1363,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                                     text: TextSpan(
                                       text: text,
                                       style: GoogleFonts.inter(
-                                        fontSize: 16,
+                                        fontSize: ScreenService.isTablet ? 18 : 16,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -1420,16 +1421,16 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                               children: [
                                 Stack(
                                   children: [
-                                    const CircleAvatar(
-                                      radius: 20,
+                                    CircleAvatar(
+                                      radius: ScreenService.isTablet ? 22 : 20,
                                       backgroundImage: AssetImage('assets/images/person.png'), // Replace with your avatar
                                     ),
                                     Positioned(
                                       bottom: 0,
                                       right: 0,
                                       child: Container(
-                                        width: 10,
-                                        height: 10,
+                                        width: ScreenService.isTablet ? 12 : 10,
+                                        height: ScreenService.isTablet ? 12 : 10,
                                         decoration: BoxDecoration(
                                           color: Color(0xff00B300),
                                           shape: BoxShape.circle,
@@ -1448,13 +1449,13 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                                         "Link-Exchange",
                                         style: GoogleFonts.inter(
                                           color: Color(0xffD5D5D5),
-                                          fontSize: 11,
+                                          fontSize: ScreenService.isTablet ? 13 : 11,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
                                       GradientText('Online',
                                           style: GoogleFonts.inter(
-                                            fontSize: 11,
+                                            fontSize: ScreenService.isTablet ? 13 : 11,
                                             fontWeight: FontWeight.w400,
                                           ),
                                           gradient: LinearGradient(colors: [
@@ -1478,7 +1479,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                                     child: Center(
                                       child: Text(
                                         "Chat",
-                                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 12),
+                                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 14 : 12),
                                       ),
                                     ),
                                   ),
@@ -1491,11 +1492,11 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                               children: [
                                 Text(
                                   "Escrowed Crypto",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontWeight: FontWeight.w400, fontSize: 11),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 13 : 11),
                                 ),
                                 Text(
                                   "32.54 USDT",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontWeight: FontWeight.w400, fontSize: 11),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 13 : 11),
                                 ),
                               ],
                             ),
@@ -1516,7 +1517,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                               children: [
                                 Text(
                                   "Buy USDT",
-                                  style: GoogleFonts.poppins(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+                                  style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600),
                                 )
                               ],
                             ),
@@ -1531,11 +1532,11 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                               children: [
                                 Text(
                                   "Fiat Amount",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 ),
                                 Text(
                                   "Rs 10,000",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 )
                               ],
                             ),
@@ -1545,11 +1546,11 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                               children: [
                                 Text(
                                   "Price",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 ),
                                 Text(
                                   "Rs 291.69",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 )
                               ],
                             ),
@@ -1559,11 +1560,11 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                               children: [
                                 Text(
                                   "Recevive Quantity",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 ),
                                 Text(
                                   "34.23 USDT",
-                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w400),
+                                  style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                                 )
                               ],
                             ),
@@ -1573,7 +1574,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                       20.vSpace,
                       Text(
                         "Payment Method",
-                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 11, fontWeight: FontWeight.w400),
+                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 13 : 11, fontWeight: FontWeight.w400),
                       ),
                       10.vSpace,
                       Divider(
@@ -1583,17 +1584,17 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                       10.vSpace,
                       Text(
                         "paypal",
-                        style: GoogleFonts.poppins(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600),
                       ),
                       10.vSpace,
                       Text(
                         "Advertiser’s Terms",
-                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 12, fontWeight: FontWeight.w600),
+                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w600),
                       ),
                       10.vSpace,
                       Text(
                         "Third-party party payment not allowed..",
-                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: 10, fontWeight: FontWeight.w400),
+                        style: GoogleFonts.inter(color: Color(0xffD5D5D5), fontSize: ScreenService.isTablet ? 12 : 10, fontWeight: FontWeight.w400),
                       ),
                       10.vSpace,
                       GradientText(
@@ -1601,7 +1602,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                         gradient: const LinearGradient(
                           colors: [Color(0xffFCA509), Color(0xff880306)],
                         ),
-                        style: GoogleFonts.inter(fontSize: 10, fontWeight: FontWeight.w400),
+                        style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 12 : 10, fontWeight: FontWeight.w400),
                       ),
                       100.vSpace,
                       GestureDetector(
@@ -1621,7 +1622,7 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                           child: Center(
                             child: Text(
                               "Back Payment Details",
-                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                              style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                             ),
                           ),
                         ),

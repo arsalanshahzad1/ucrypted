@@ -11,6 +11,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class BuySellDetailScreen extends StatefulWidget {
   const BuySellDetailScreen({super.key});
@@ -95,7 +96,7 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -167,7 +168,7 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
                     children: [
                       Container(
                         height: 35.h,
-                        width: 45.w,
+                        width: ScreenService.isTablet ? 40.w : 45.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(color: Color(0xff505050)),
@@ -186,11 +187,11 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
                           children: [
                             Text(
                               "KLV/USDT",
-                              style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.white),
+                              style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 20 : 18, color: Colors.white),
                             ),
                             Text(
                               "+50.47%",
-                              style: GoogleFonts.nunito(fontWeight: FontWeight.w700, fontSize: 12, color: Color(0xff38B781)),
+                              style: GoogleFonts.nunito(fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 14 : 12, color: Color(0xff38B781)),
                             )
                           ],
                         ),
@@ -232,24 +233,34 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
                 ]),
               ),
               // 10.vSpace,
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 3),
-                child: SizedBox(
-                  height: 470.h,
-                  width: 355.w,
-                  child: FittedBox(
-                    fit: BoxFit.fitWidth, // or .scaleDown, .fitWidth etc.
-                    child: SvgPicture.asset("assets/svg/buysellgraph.svg"),
-                  ),
-                ),
-              ),
+              ScreenService.isTablet
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      child: SizedBox(
+                        height: 700.h,
+                        child: FittedBox(
+                          child: SvgPicture.asset("assets/svg/buysellgraph.svg"),
+                        ),
+                      ),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      child: SizedBox(
+                        height: 470.h,
+                        width: 355.w,
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth, // or .scaleDown, .fitWidth etc.
+                          child: SvgPicture.asset("assets/svg/buysellgraph.svg"),
+                        ),
+                      ),
+                    ),
               // 10.vSpace,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "Open orders",
-                    style: GoogleFonts.nunito(fontSize: 16, color: Color(0xffF7F7F7), fontWeight: FontWeight.w700),
+                    style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 18 : 16, color: Color(0xffF7F7F7), fontWeight: FontWeight.w700),
                   ),
                   SvgPicture.asset("assets/svg/calendar1.svg")
                 ],
@@ -268,14 +279,14 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
                       children: [
                         50.vSpace,
                         SizedBox(
-                          height: 40.h,
-                          width: 40.w,
+                          height: ScreenService.isTablet ? 45.h : 40.h,
+                          width: ScreenService.isTablet ? 45.w : 40.w,
                           child: SvgPicture.asset("assets/svg/calendar2.svg"),
                         ),
                         15.vSpace,
                         Text(
                           "No order yet",
-                          style: GoogleFonts.nunito(fontSize: 14, color: Color(0xff99A6AFCC), fontWeight: FontWeight.w400),
+                          style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 18 : 14, color: Color(0xff99A6AFCC), fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
