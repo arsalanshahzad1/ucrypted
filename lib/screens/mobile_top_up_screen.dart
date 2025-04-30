@@ -12,6 +12,7 @@ import 'package:ucrypted_app/utilities/custom_textfield.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class MobileTopUpScreen extends StatefulWidget {
   const MobileTopUpScreen({super.key});
@@ -98,7 +99,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -160,10 +161,10 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
               20.vSpace,
               Text(
                 "Mobile Top-Up",
-                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
               ),
               20.vSpace,
-              Text("Payment Method", style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400)),
+              Text("Payment Method", style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400)),
               20.vSpace,
               SizedBox(
                 width: double.infinity,
@@ -181,7 +182,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                       value: selectedPaymentMethod,
                       hint: Text(
                         "Selected Payment Method",
-                        style: GoogleFonts.poppins(color: const Color(0xFFCCCCCC), fontWeight: FontWeight.w300, fontSize: 12),
+                        style: GoogleFonts.poppins(color: const Color(0xFFCCCCCC), fontWeight: FontWeight.w300, fontSize: ScreenService.isTablet ? 14 : 12),
                       ),
                       icon: Row(
                         children: [
@@ -198,7 +199,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                       ]
                           .map((method) => DropdownMenuItem(
                                 value: method,
-                                child: Text(method, style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 12)),
+                                child: Text(method, style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w300, fontSize: ScreenService.isTablet ? 14 : 12)),
                               ))
                           .toList(),
                       onChanged: (value) {
@@ -214,16 +215,16 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                 25.vSpace,
                 Text(
                   "Cardholder Name",
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                 ),
                 20.vSpace,
                 TextField(
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                   decoration: InputDecoration(
                     fillColor: Colors.transparent,
                     filled: true,
                     hintText: 'Enter Card holder name',
-                    hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                    hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -242,16 +243,16 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                 25.vSpace,
                 Text(
                   "Expiration Date",
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                 ),
                 20.vSpace,
                 TextField(
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                   decoration: InputDecoration(
                     fillColor: Colors.transparent,
                     filled: true,
                     hintText: 'Enter Card holder name',
-                    hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                    hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -270,16 +271,16 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                 25.vSpace,
                 Text(
                   "CVV",
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                 ),
                 20.vSpace,
                 TextField(
-                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                   decoration: InputDecoration(
                     fillColor: Colors.transparent,
                     filled: true,
                     hintText: 'Enter Card holder name',
-                    hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                    hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -299,7 +300,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
               25.vSpace,
               Text(
                 "Phone Number",
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
               ),
               20.vSpace,
               Container(
@@ -340,7 +341,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                         style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 13),
                         decoration: InputDecoration(
                           hintText: "Enter receiver number",
-                          hintStyle: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 13),
+                          hintStyle: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 15 : 13),
                           border: InputBorder.none,
                         ),
                       ),
@@ -351,7 +352,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
               25.vSpace,
               Text(
                 "Amount",
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
               ),
               20.vSpace,
               TextField(
@@ -360,7 +361,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: 'Enter Amount',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -382,7 +383,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                 children: [
                   Text(
                     "Select an amount between \$20.00 - \$1000.00",
-                    style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w400),
+                    style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -395,7 +396,7 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                   Expanded(
                     child: Text(
                       "By clicking 'Buy Now', you agree to our Terms and Conditions, including our Cancellation Policy.",
-                      style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 12, fontWeight: FontWeight.w400),
+                      style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
                     ),
                   ),
                 ],
@@ -408,16 +409,16 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                   ));
                 },
                 child: Container(
-                  height: 45,
+                  height: ScreenService.isTablet ? 50 : 45,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
                     borderRadius: BorderRadius.circular(28),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       "Continue",
-                      style: TextStyle(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                      style: TextStyle(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 20 : 18),
                     ),
                   ),
                 ),
@@ -516,7 +517,7 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -580,16 +581,16 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: 65.h, // Outer circle
-                    width: 65.w,
+                    height: ScreenService.isTablet ? 70.h : 65.h, // Outer circle
+                    width: ScreenService.isTablet ? 70.w : 65.w,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 94, 155, 25).withOpacity(0.1), // Green outer ring
                       shape: BoxShape.circle,
                     ),
                     alignment: Alignment.center,
                     child: SizedBox(
-                      height: 45.h,
-                      width: 45.w,
+                      height: ScreenService.isTablet ? 50.h : 45.h,
+                      width: ScreenService.isTablet ? 50.w : 45.w,
                       child: SvgPicture.asset(
                         "assets/svg/success1.svg",
                         fit: BoxFit.contain,
@@ -599,15 +600,20 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
                 ],
               ),
               20.vSpace,
-              Text(
-                "Your Transactions has been Successfully Proceed!",
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                style: GoogleFonts.poppins(
-                  color: Color(0xffFAFAFA),
-                  fontSize: 19,
-                  fontWeight: FontWeight.w500,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Your Transactions has been Successfully Proceed!",
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: GoogleFonts.poppins(
+                      color: Color(0xffFAFAFA),
+                      fontSize: ScreenService.isTablet ? 21 : 19,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
               30.vSpace,
               Padding(
@@ -629,7 +635,7 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
                             ),
                             child: Text(
                               "Mobile Top-up Details",
-                              style: GoogleFonts.poppins(color: AppColors.white, fontSize: 23, fontWeight: FontWeight.w400),
+                              style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 25 : 23, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ],
@@ -679,7 +685,7 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
                                 10.hSpace,
                                 Text(
                                   "Download Top-Up Card",
-                                  style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                                  style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                                 ),
                               ],
                             ),
@@ -703,7 +709,7 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
                                 10.hSpace,
                                 Text(
                                   "Send to email",
-                                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: 16),
+                                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                                 ),
                               ],
                             ),
@@ -721,7 +727,7 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
                   child: Text(
                     "For any discrepancies or complaints, please contact: support@ucrypted.com. The top-up should reflect in the recipient's account shortly. If you encounter any issues, feel free to contact our support team.",
                     textAlign: TextAlign.start,
-                    style: GoogleFonts.poppins(fontSize: 10.sp, color: Color(0xffDADADA), fontWeight: FontWeight.w300),
+                    style: GoogleFonts.poppins(fontSize: ScreenService.isTablet ? 8.sp : 10.sp, color: Color(0xffDADADA), fontWeight: FontWeight.w300),
                   ),
                 ),
                 40.vSpace,
@@ -741,14 +747,14 @@ class _MobileTopUpSuccessScreenState extends State<MobileTopUpSuccessScreen> {
           Expanded(
             child: Text(
               label,
-              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 14, fontWeight: FontWeight.w400),
+              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
             ),
           ),
           Text(
             value,
             style: GoogleFonts.poppins(
               color: Color(0xffFAFAFA),
-              fontSize: 12,
+              fontSize: ScreenService.isTablet ? 14 : 12,
               fontWeight: isBold ? FontWeight.bold : FontWeight.w500,
             ),
           ),

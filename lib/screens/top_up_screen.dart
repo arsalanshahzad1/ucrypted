@@ -9,6 +9,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class TopUpScreen extends StatefulWidget {
   const TopUpScreen({super.key});
@@ -27,7 +28,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
       fit: BoxFit.cover,
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 20.w : 16.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -57,7 +58,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
                         style: GoogleFonts.inter(
                           color: AppColors.white,
                           fontWeight: FontWeight.w500,
-                          fontSize: 16.sp,
+                          fontSize: ScreenService.isTablet ? 12.sp : 16.sp,
                         ),
                       ),
                     ),
@@ -76,7 +77,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
                 "How would you like to top up?",
                 style: GoogleFonts.inter(
                   color: AppColors.white,
-                  fontSize: 32.sp,
+                  fontSize: ScreenService.isTablet ? 20.sp : 32.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -85,7 +86,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
                 "Bank Transfer",
                 style: GoogleFonts.inter(
                   color: AppColors.grey,
-                  fontSize: 16.sp,
+                  fontSize: ScreenService.isTablet ? 12.sp : 16.sp,
                 ),
               ),
               30.vSpace,
@@ -103,7 +104,7 @@ class _TopUpScreenState extends State<TopUpScreen> {
                 "Credit/Debit Card",
                 style: GoogleFonts.inter(
                   color: AppColors.grey,
-                  fontSize: 16,
+                  fontSize: ScreenService.isTablet ? 18 : 16,
                 ),
               ),
               10.vSpace,
@@ -120,12 +121,12 @@ class _TopUpScreenState extends State<TopUpScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                    borderRadius: BorderRadius.circular(28),
+                    borderRadius: BorderRadius.circular(ScreenService.isTablet ? 32 : 28),
                   ),
                   child: Center(
                     child: Text(
                       "Continue",
-                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
                     ),
                   ),
                 ),
@@ -169,8 +170,8 @@ class _TopUpScreenState extends State<TopUpScreen> {
         child: Row(
           children: [
             Container(
-                height: 30.h,
-                width: 30.w,
+                height: ScreenService.isTablet ? 35.h : 30.h,
+                width: ScreenService.isTablet ? 35.w : 30.w,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.r), color: Colors.transparent),
                 child: Image.asset(
                   icon,
@@ -181,13 +182,13 @@ class _TopUpScreenState extends State<TopUpScreen> {
               child: Text(
                 title,
                 style: GoogleFonts.inter(
-                  fontSize: 16.sp,
+                  fontSize: ScreenService.isTablet ? 12.sp : 16.sp,
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
                 ),
               ),
             ),
-            Icon(Icons.arrow_forward_ios, size: 16.sp, color: Colors.grey[800]),
+            Icon(Icons.arrow_forward_ios, size: ScreenService.isTablet ? 12.sp : 16.sp, color: Colors.grey[800]),
           ],
         ),
       ),
@@ -213,7 +214,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
       backgroundImage: "assets/images/topupbg.png",
       fit: BoxFit.cover,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -247,7 +248,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                             style: GoogleFonts.inter(
                               color: AppColors.white,
                               fontWeight: FontWeight.w500,
-                              fontSize: 16,
+                              fontSize: ScreenService.isTablet ? 18 : 16,
                             ),
                           ),
                         ),
@@ -267,7 +268,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                     children: [
                       Text(
                         "How much would you want to Topup ?",
-                        style: GoogleFonts.inter(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w500),
+                        style: GoogleFonts.inter(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
@@ -275,7 +276,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                   TextField(
                     controller: _amountController,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.inter(color: Colors.white, fontSize: 32, fontWeight: FontWeight.w600),
+                    style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 34 : 32, fontWeight: FontWeight.w600),
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -294,12 +295,12 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         2.vSpace,
-                        const Icon(Icons.info_outline, color: Colors.white60, size: 20),
+                        Icon(Icons.info_outline, color: Colors.white60, size: ScreenService.isTablet ? 24 : 20),
                         10.hSpace,
                         Expanded(
                           child: Text(
                             "Enter the amount you wish to add to your account balance. The min top-up amount is \$50, and the max is \$10,000.",
-                            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w400),
+                            style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w400),
                           ),
                         ),
                       ],
@@ -308,7 +309,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                   30.vSpace,
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text("Selected Bank Transfer", style: GoogleFonts.inter(color: Colors.white70, fontSize: 14)),
+                    child: Text("Selected Bank Transfer", style: GoogleFonts.inter(color: Colors.white70, fontSize: ScreenService.isTablet ? 16 : 14)),
                   ),
                   10.vSpace,
                   Container(
@@ -317,8 +318,8 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                     child: Row(
                       children: [
                         Container(
-                            height: 30,
-                            width: 30,
+                            height: ScreenService.isTablet ? 35 : 30,
+                            width: ScreenService.isTablet ? 35 : 30,
                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: const Color(0xFF44444A)),
                             child: Image.asset(
                               _getImagePath(widget.selectedIndex ?? -1),
@@ -327,10 +328,10 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                         Expanded(
                           child: Text(
                             _getTitle(widget.selectedIndex ?? -1),
-                            style: GoogleFonts.inter(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
+                            style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 16, color: Colors.white, fontWeight: FontWeight.w500),
                           ),
                         ),
-                        Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[600]),
+                        Icon(Icons.arrow_forward_ios, size: ScreenService.isTablet ? 18 : 16, color: Colors.grey[600]),
                       ],
                     ),
                   ),
@@ -347,7 +348,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 45,
+                  height: ScreenService.isTablet ? 60 : 45,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
                       colors: [Color(0xFFFCA509), Color(0xFF880306)],
@@ -357,7 +358,7 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
                     borderRadius: BorderRadius.circular(28),
                   ),
                   child: Center(
-                    child: Text("Continue", style: GoogleFonts.inter(color: Colors.white, fontSize: 14)),
+                    child: Text("Continue", style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 14)),
                   ),
                 ),
               ),
@@ -624,7 +625,7 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/bg1.png",
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -652,12 +653,12 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 90,
-                  width: 90,
-                  decoration: BoxDecoration(color: Color.fromARGB(32, 87, 140, 26), borderRadius: BorderRadius.circular(90)),
+                  height: ScreenService.isTablet ? 100 : 90,
+                  width: ScreenService.isTablet ? 100 : 90,
+                  decoration: BoxDecoration(color: Color.fromARGB(32, 87, 140, 26), borderRadius: BorderRadius.circular(ScreenService.isTablet ? 100 : 90)),
                   child: SizedBox(
-                    height: 80,
-                    width: 80,
+                    height: ScreenService.isTablet ? 90 : 80,
+                    width: ScreenService.isTablet ? 90 : 80,
                     child: SvgPicture.asset(
                       "assets/svg/success.svg",
                       fit: BoxFit.contain,
@@ -674,7 +675,7 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
                   "Top-up Successful",
                   style: GoogleFonts.inter(
                     color: Colors.white,
-                    fontSize: 28,
+                    fontSize: ScreenService.isTablet ? 32 : 28,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -688,7 +689,7 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
                   "You've added \$227.00 to your wallet.",
                   style: GoogleFonts.inter(
                     color: Color(0xff6C7278),
-                    fontSize: 14,
+                    fontSize: ScreenService.isTablet ? 18 : 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -734,7 +735,7 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
               },
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 14),
+                padding: EdgeInsets.symmetric(vertical: ScreenService.isTablet ? 18 : 14),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     colors: [Color(0xFFFCA509), Color(0xFF880306)],
@@ -746,7 +747,7 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
                     "Go to Home",
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: 14,
+                      fontSize: ScreenService.isTablet ? 16 : 14,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -778,7 +779,7 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
         child: Center(
           child: Text(
             text,
-            style: GoogleFonts.inter(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w600),
+            style: GoogleFonts.inter(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w600),
           ),
         ),
       ),
@@ -798,14 +799,14 @@ class _TopUpSuccessScreenState extends State<TopUpSuccessScreen> {
           Expanded(
             child: Text(
               label,
-              style: GoogleFonts.inter(color: const Color(0xFF6C7278), fontSize: 14, fontWeight: FontWeight.w500),
+              style: GoogleFonts.inter(color: const Color(0xFF6C7278), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w500),
             ),
           ),
           Text(
             value,
             style: GoogleFonts.inter(
               color: Colors.white,
-              fontSize: 16,
+              fontSize: ScreenService.isTablet ? 18 : 16,
               fontWeight: isBold ? FontWeight.bold : FontWeight.w500,
             ),
           ),

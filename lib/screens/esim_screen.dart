@@ -14,6 +14,7 @@ import 'package:ucrypted_app/utilities/custom_textfield.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class ESimScreen extends StatefulWidget {
   const ESimScreen({super.key});
@@ -100,7 +101,7 @@ class _ESimScreenState extends State<ESimScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -158,7 +159,7 @@ class _ESimScreenState extends State<ESimScreen> {
               30.verticalSpace,
               Text(
                 "eSIM",
-                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
               ),
               20.vSpace,
               Container(
@@ -173,7 +174,7 @@ class _ESimScreenState extends State<ESimScreen> {
                   cursorColor: Colors.orange,
                   style: GoogleFonts.inter(
                     color: AppColors.white,
-                    fontSize: 18,
+                    fontSize: ScreenService.isTablet ? 20 : 18,
                   ),
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
@@ -196,7 +197,7 @@ class _ESimScreenState extends State<ESimScreen> {
 
                     // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                     hintText: "Where do you need internet?",
-                    hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
+                    hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                   ),
                 ),
               ),
@@ -209,7 +210,7 @@ class _ESimScreenState extends State<ESimScreen> {
                 },
                 child: Text(
                   isCountry ? "Country" : "Regional",
-                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 28),
+                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 30 : 28),
                 ),
               ),
               10.vSpace,
@@ -219,11 +220,11 @@ class _ESimScreenState extends State<ESimScreen> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: 20,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        crossAxisSpacing: 10,
+                        crossAxisSpacing: ScreenService.isTablet ? 15 : 10,
                         mainAxisSpacing: 10,
-                        childAspectRatio: 0.9,
+                        childAspectRatio: ScreenService.isTablet ? 1.2 : 0.9,
                       ),
                       itemBuilder: (context, index) {
                         bool isUSA = index % 2 == 0;
@@ -243,11 +244,11 @@ class _ESimScreenState extends State<ESimScreen> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: 20,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        crossAxisSpacing: 10,
+                        crossAxisSpacing: ScreenService.isTablet ? 15 : 10,
                         mainAxisSpacing: 10,
-                        childAspectRatio: 0.9,
+                        childAspectRatio: ScreenService.isTablet ? 1.2 : 0.9,
                       ),
                       itemBuilder: (context, index) {
                         bool isUSA = index % 2 == 0;
@@ -328,13 +329,13 @@ class CountryCard extends StatelessWidget {
                     children: [
                       SizedBox(width: 10.w),
                       CircleAvatar(
-                        radius: 10,
+                        radius: ScreenService.isTablet ? 15 : 10,
                         backgroundImage: AssetImage(flagAsset),
                       ),
                       SizedBox(width: 5.w),
                       Text(
                         countryName,
-                        style: GoogleFonts.inter(color: Colors.white),
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                       )
                     ],
                   ),
@@ -350,13 +351,13 @@ class CountryCard extends StatelessWidget {
                   children: [
                     Text(
                       "Europe",
-                      style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                      style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                     ),
                     Row(
                       children: [
                         Text(
                           rating,
-                          style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                          style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                         ),
                         SizedBox(width: 2.w),
                         SvgPicture.asset(
@@ -371,7 +372,7 @@ class CountryCard extends StatelessWidget {
                 SizedBox(height: 5.h),
                 Text(
                   "\$20-1000",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                 ),
               ],
             ),
@@ -440,13 +441,13 @@ class CountryCard2 extends StatelessWidget {
                     children: [
                       SizedBox(width: 10.w),
                       CircleAvatar(
-                        radius: 10,
+                        radius: ScreenService.isTablet ? 15 : 10,
                         backgroundImage: AssetImage(flagAsset),
                       ),
                       SizedBox(width: 5.w),
                       Text(
                         countryName,
-                        style: GoogleFonts.inter(color: Colors.white),
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                       )
                     ],
                   ),
@@ -462,13 +463,13 @@ class CountryCard2 extends StatelessWidget {
                   children: [
                     Text(
                       "Europe",
-                      style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                      style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                     ),
                     Row(
                       children: [
                         Text(
                           rating,
-                          style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                          style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                         ),
                         SizedBox(width: 2.w),
                         SvgPicture.asset(
@@ -483,7 +484,7 @@ class CountryCard2 extends StatelessWidget {
                 SizedBox(height: 5.h),
                 Text(
                   "\$20-1000",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                 ),
               ],
             ),

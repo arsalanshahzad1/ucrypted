@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/screens/account_screen.dart';
+import 'package:ucrypted_app/screens/app_imports.dart';
 import 'package:ucrypted_app/screens/chat_room_screen.dart';
 import 'package:ucrypted_app/screens/esim_screen.dart';
 import 'package:ucrypted_app/screens/gifting_screen.dart';
@@ -12,6 +13,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class GiftListingScreen extends StatefulWidget {
   const GiftListingScreen({super.key});
@@ -96,7 +98,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
       // ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -133,7 +135,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
               30.vSpace,
               Text(
                 "Gift Cards",
-                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
               ),
               20.vSpace,
               Container(
@@ -148,7 +150,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                   cursorColor: Colors.orange,
                   style: GoogleFonts.inter(
                     color: AppColors.white,
-                    fontSize: 18,
+                    fontSize: ScreenService.isTablet ? 20 : 18,
                   ),
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 10),
@@ -160,7 +162,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                         height: 20.h, // increase height
                         width: 20.w, // increase width
                         child: Padding(
-                          padding: const EdgeInsets.all(5.0),
+                          padding: EdgeInsets.all(ScreenService.isTablet ? 10 : 5.0),
                           child: SvgPicture.asset(
                             "assets/svg/s124.svg",
                             fit: BoxFit.contain, // or BoxFit.scaleDown
@@ -171,7 +173,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
 
                     // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                     hintText: "Where do you need internet?",
-                    hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
+                    hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                   ),
                 ),
               ),
@@ -214,7 +216,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                 children: [
                   Text(
                     "Food",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 20),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 22 : 20),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -222,7 +224,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                     },
                     child: Text(
                       "See all",
-                      style: GoogleFonts.poppins(color: Color.fromARGB(139, 250, 250, 250), fontWeight: FontWeight.w400, fontSize: 14),
+                      style: GoogleFonts.poppins(color: Color.fromARGB(139, 250, 250, 250), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                     ),
                   ),
                 ],
@@ -262,7 +264,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                 children: [
                   Text(
                     "Sports",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 20),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 22 : 20),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -270,7 +272,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                     },
                     child: Text(
                       "See all",
-                      style: GoogleFonts.poppins(color: Color.fromARGB(139, 250, 250, 250), fontWeight: FontWeight.w400, fontSize: 14),
+                      style: GoogleFonts.poppins(color: Color.fromARGB(139, 250, 250, 250), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                     ),
                   ),
                 ],
@@ -310,7 +312,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                 children: [
                   Text(
                     "Tech",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 20),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 22 : 20),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -318,7 +320,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
                     },
                     child: Text(
                       "See all",
-                      style: GoogleFonts.poppins(color: Color.fromARGB(139, 250, 250, 250), fontWeight: FontWeight.w400, fontSize: 14),
+                      style: GoogleFonts.poppins(color: Color.fromARGB(139, 250, 250, 250), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                     ),
                   ),
                 ],
@@ -366,7 +368,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
         onTap();
       },
       child: Container(
-        width: 80.w,
+        width: ScreenService.isTablet ? 75.w : 80.w,
         height: 80.h,
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -382,7 +384,7 @@ class _GiftListingScreenState extends State<GiftListingScreen> {
             const SizedBox(height: 8),
             Text(
               label,
-              style: GoogleFonts.poppins(color: Colors.white, fontSize: 9, fontWeight: FontWeight.w500),
+              style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 11 : 9, fontWeight: FontWeight.w500),
             ),
           ],
         ),
@@ -498,13 +500,13 @@ class CountryCard extends StatelessWidget {
                     children: [
                       SizedBox(width: 10.w),
                       CircleAvatar(
-                        radius: 10,
+                        radius: ScreenService.isTablet ? 15 : 10,
                         backgroundImage: AssetImage(flagAsset),
                       ),
                       SizedBox(width: 5.w),
                       Text(
                         countryName,
-                        style: GoogleFonts.inter(color: Colors.white),
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                       )
                     ],
                   ),
@@ -520,13 +522,13 @@ class CountryCard extends StatelessWidget {
                   children: [
                     Text(
                       baseName,
-                      style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                      style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                     ),
                     Row(
                       children: [
                         Text(
                           rating,
-                          style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                          style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                         ),
                         SizedBox(width: 2.w),
                         SvgPicture.asset(
@@ -541,7 +543,7 @@ class CountryCard extends StatelessWidget {
                 SizedBox(height: 5.h),
                 Text(
                   "\$20-1000",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                 ),
               ],
             ),
@@ -635,7 +637,7 @@ class _FoodScreenState extends State<FoodScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -696,11 +698,11 @@ class _FoodScreenState extends State<FoodScreen> {
                 children: [
                   Text(
                     "Food Card",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
                   ),
                   Text(
                     "See all",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 16),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                   ),
                 ],
               ),
@@ -751,8 +753,8 @@ class _FoodScreenState extends State<FoodScreen> {
                   ),
                   SizedBox(width: 15),
                   Container(
-                    width: 50.w,
-                    height: 50.h,
+                    width: ScreenService.isTablet ? 30.w : 50.w,
+                    height: ScreenService.isTablet ? 40.h : 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
@@ -764,8 +766,8 @@ class _FoodScreenState extends State<FoodScreen> {
                     child: Center(
                       child: SvgPicture.asset(
                         "assets/svg/filter.svg", // Ensure correct path
-                        width: 20.w, // Adjust icon size based on UI
-                        height: 20.h,
+                        width: ScreenService.isTablet ? 10.w : 20.w, // Adjust icon size based on UI
+                        height: ScreenService.isTablet ? 10.h : 20.h,
                         colorFilter: const ColorFilter.mode(
                           Colors.white, // Ensure icon is white
                           BlendMode.srcIn,
@@ -781,11 +783,11 @@ class _FoodScreenState extends State<FoodScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10,
+                  crossAxisSpacing: ScreenService.isTablet ? 15 : 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: ScreenService.isTablet ? 1.2 : 0.9,
                 ),
                 itemBuilder: (context, index) {
                   return CountryCard(
@@ -892,7 +894,7 @@ class _TravelScreenState extends State<TravelScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -953,11 +955,11 @@ class _TravelScreenState extends State<TravelScreen> {
                 children: [
                   Text(
                     "Travel Card",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
                   ),
                   Text(
                     "See all",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 16),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                   ),
                 ],
               ),
@@ -978,7 +980,7 @@ class _TravelScreenState extends State<TravelScreen> {
                         cursorColor: Colors.orange,
                         style: GoogleFonts.inter(
                           color: AppColors.white,
-                          fontSize: 18,
+                          fontSize: ScreenService.isTablet ? 20 : 18,
                         ),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
@@ -1001,15 +1003,15 @@ class _TravelScreenState extends State<TravelScreen> {
 
                           // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
-                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
+                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(width: 15),
                   Container(
-                    width: 50.w,
-                    height: 50.h,
+                    width: ScreenService.isTablet ? 30.w : 50.w,
+                    height: ScreenService.isTablet ? 40.h : 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
@@ -1038,11 +1040,11 @@ class _TravelScreenState extends State<TravelScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10,
+                  crossAxisSpacing: ScreenService.isTablet ? 15 : 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: ScreenService.isTablet ? 1.2 : 0.9,
                 ),
                 itemBuilder: (context, index) {
                   return CountryCard(
@@ -1149,7 +1151,7 @@ class _TechScreenState extends State<TechScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1210,11 +1212,11 @@ class _TechScreenState extends State<TechScreen> {
                 children: [
                   Text(
                     "Tech Card",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
                   ),
                   Text(
                     "See all",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 16),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                   ),
                 ],
               ),
@@ -1265,8 +1267,8 @@ class _TechScreenState extends State<TechScreen> {
                   ),
                   SizedBox(width: 15),
                   Container(
-                    width: 50.w,
-                    height: 50.h,
+                    width: ScreenService.isTablet ? 30.w : 50.w,
+                    height: ScreenService.isTablet ? 40.h : 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
@@ -1295,11 +1297,11 @@ class _TechScreenState extends State<TechScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10,
+                  crossAxisSpacing: ScreenService.isTablet ? 15 : 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: ScreenService.isTablet ? 1.2 : 0.9,
                 ),
                 itemBuilder: (context, index) {
                   return CountryCard(
@@ -1407,7 +1409,7 @@ class _SportsScreenState extends State<SportsScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1468,11 +1470,11 @@ class _SportsScreenState extends State<SportsScreen> {
                 children: [
                   Text(
                     "Sports Card",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
                   ),
                   Text(
                     "See all",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 16),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                   ),
                 ],
               ),
@@ -1493,7 +1495,7 @@ class _SportsScreenState extends State<SportsScreen> {
                         cursorColor: Colors.orange,
                         style: GoogleFonts.inter(
                           color: AppColors.white,
-                          fontSize: 18,
+                          fontSize: ScreenService.isTablet ? 20 : 18,
                         ),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
@@ -1516,15 +1518,15 @@ class _SportsScreenState extends State<SportsScreen> {
 
                           // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
-                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
+                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(width: 15),
                   Container(
-                    width: 50.w,
-                    height: 50.h,
+                    width: ScreenService.isTablet ? 30.w : 50.w,
+                    height: ScreenService.isTablet ? 40.h : 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
@@ -1553,11 +1555,11 @@ class _SportsScreenState extends State<SportsScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10,
+                  crossAxisSpacing: ScreenService.isTablet ? 15 : 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: ScreenService.isTablet ? 1.2 : 0.9,
                 ),
                 itemBuilder: (context, index) {
                   return CountryCard(
@@ -1665,7 +1667,7 @@ class _SocialScreenState extends State<SocialScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1724,11 +1726,11 @@ class _SocialScreenState extends State<SocialScreen> {
                 children: [
                   Text(
                     "Social Card",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
                   ),
                   Text(
                     "See all",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 16),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                   ),
                 ],
               ),
@@ -1749,7 +1751,7 @@ class _SocialScreenState extends State<SocialScreen> {
                         cursorColor: Colors.orange,
                         style: GoogleFonts.inter(
                           color: AppColors.white,
-                          fontSize: 18,
+                          fontSize: ScreenService.isTablet ? 20 : 18,
                         ),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
@@ -1772,15 +1774,15 @@ class _SocialScreenState extends State<SocialScreen> {
 
                           // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
-                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
+                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(width: 15),
                   Container(
-                    width: 50.w,
-                    height: 50.h,
+                    width: ScreenService.isTablet ? 30.w : 50.w,
+                    height: ScreenService.isTablet ? 40.h : 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
@@ -1809,11 +1811,11 @@ class _SocialScreenState extends State<SocialScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10,
+                  crossAxisSpacing: ScreenService.isTablet ? 15 : 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: ScreenService.isTablet ? 1.2 : 0.9,
                 ),
                 itemBuilder: (context, index) {
                   return CountryCard(
@@ -1921,7 +1923,7 @@ class _StreamScreenState extends State<StreamScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1980,11 +1982,11 @@ class _StreamScreenState extends State<StreamScreen> {
                 children: [
                   Text(
                     "Streaming Card",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
                   ),
                   Text(
                     "See all",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 16),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                   ),
                 ],
               ),
@@ -2005,7 +2007,7 @@ class _StreamScreenState extends State<StreamScreen> {
                         cursorColor: Colors.orange,
                         style: GoogleFonts.inter(
                           color: AppColors.white,
-                          fontSize: 18,
+                          fontSize: ScreenService.isTablet ? 20 : 18,
                         ),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
@@ -2028,15 +2030,15 @@ class _StreamScreenState extends State<StreamScreen> {
 
                           // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
-                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
+                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(width: 15),
                   Container(
-                    width: 50.w,
-                    height: 50.h,
+                    width: ScreenService.isTablet ? 30.w : 50.w,
+                    height: ScreenService.isTablet ? 40.h : 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
@@ -2065,11 +2067,11 @@ class _StreamScreenState extends State<StreamScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10,
+                  crossAxisSpacing: ScreenService.isTablet ? 15 : 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: ScreenService.isTablet ? 1.2 : 0.9,
                 ),
                 itemBuilder: (context, index) {
                   return CountryCard(
@@ -2177,7 +2179,7 @@ class _GamingScreenState extends State<GamingScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -2238,11 +2240,11 @@ class _GamingScreenState extends State<GamingScreen> {
                 children: [
                   Text(
                     "Gaming Card",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
                   ),
                   Text(
                     "See all",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 16),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                   ),
                 ],
               ),
@@ -2263,7 +2265,7 @@ class _GamingScreenState extends State<GamingScreen> {
                         cursorColor: Colors.orange,
                         style: GoogleFonts.inter(
                           color: AppColors.white,
-                          fontSize: 18,
+                          fontSize: ScreenService.isTablet ? 20 : 18,
                         ),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
@@ -2286,15 +2288,15 @@ class _GamingScreenState extends State<GamingScreen> {
 
                           // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
-                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
+                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(width: 15),
                   Container(
-                    width: 50.w,
-                    height: 50.h,
+                    width: ScreenService.isTablet ? 30.w : 50.w,
+                    height: ScreenService.isTablet ? 40.h : 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
@@ -2323,11 +2325,11 @@ class _GamingScreenState extends State<GamingScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10,
+                  crossAxisSpacing: ScreenService.isTablet ? 15 : 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: ScreenService.isTablet ? 1.2 : 0.9,
                 ),
                 itemBuilder: (context, index) {
                   return CountryCard(
@@ -2435,7 +2437,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -2496,11 +2498,11 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                 children: [
                   Text(
                     "Shopping Card",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
                   ),
                   Text(
                     "See all",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 16),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                   ),
                 ],
               ),
@@ -2521,7 +2523,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                         cursorColor: Colors.orange,
                         style: GoogleFonts.inter(
                           color: AppColors.white,
-                          fontSize: 18,
+                          fontSize: ScreenService.isTablet ? 20 : 18,
                         ),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 10),
@@ -2544,15 +2546,15 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
 
                           // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                           hintText: "Where do you need internet?",
-                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
+                          hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: ScreenService.isTablet ? 18 : 6, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(width: 15),
                   Container(
-                    width: 50.w,
-                    height: 50.h,
+                    width: ScreenService.isTablet ? 30.w : 50.w,
+                    height: ScreenService.isTablet ? 40.h : 50.h,
                     decoration: BoxDecoration(
                       color: Colors.transparent, // Transparent background
                       border: Border.all(
@@ -2581,11 +2583,11 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 10,
+                  crossAxisSpacing: ScreenService.isTablet ? 15 : 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: ScreenService.isTablet ? 1.2 : 0.9,
                 ),
                 itemBuilder: (context, index) {
                   return CountryCard(

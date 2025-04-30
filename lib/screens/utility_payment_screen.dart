@@ -10,6 +10,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class UtilityPaymentScreen extends StatefulWidget {
   const UtilityPaymentScreen({super.key});
@@ -94,7 +95,7 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -152,7 +153,7 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
               30.vSpace,
               Text(
                 "Utility Bills",
-                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
               ),
               20.vSpace,
               Container(
@@ -190,7 +191,7 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
 
                     // suffixIcon: const Icon(Icons.search, color: AppColors.grey),
                     hintText: "Where do you need internet?",
-                    hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: 16, fontWeight: FontWeight.w400),
+                    hintStyle: GoogleFonts.inter(color: AppColors.grey, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                   ),
                 ),
               ),
@@ -200,7 +201,7 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
                 children: [
                   Text(
                     "Electricity",
-                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 20),
+                    style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 22 : 20),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -208,7 +209,7 @@ class _UtilityPaymentScreenState extends State<UtilityPaymentScreen> {
                     },
                     child: Text(
                       "See all",
-                      style: GoogleFonts.poppins(color: Color.fromARGB(139, 250, 250, 250), fontWeight: FontWeight.w400, fontSize: 14),
+                      style: GoogleFonts.poppins(color: Color.fromARGB(139, 250, 250, 250), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                     ),
                   ),
                 ],
@@ -535,13 +536,13 @@ class CountryCard extends StatelessWidget {
                     children: [
                       SizedBox(width: 10.w),
                       CircleAvatar(
-                        radius: 10,
+                        radius: ScreenService.isTablet ? 15 : 10,
                         backgroundImage: AssetImage(flagAsset),
                       ),
                       SizedBox(width: 5.w),
                       Text(
                         countryName,
-                        style: GoogleFonts.inter(color: Colors.white),
+                        style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                       )
                     ],
                   ),
@@ -557,13 +558,13 @@ class CountryCard extends StatelessWidget {
                   children: [
                     Text(
                       baseName,
-                      style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                      style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                     ),
                     Row(
                       children: [
                         Text(
                           rating,
-                          style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                          style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                         ),
                         SizedBox(width: 2.w),
                         SvgPicture.asset(
@@ -578,7 +579,7 @@ class CountryCard extends StatelessWidget {
                 SizedBox(height: 5.h),
                 Text(
                   "\$20-1000",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 14),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                 ),
               ],
             ),
@@ -907,7 +908,7 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -967,10 +968,10 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
               20.vSpace,
               Text(
                 "National Power",
-                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 28),
+                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 30 : 28),
               ),
               20.vSpace,
-              Text("Payment Method", style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400)),
+              Text("Payment Method", style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400)),
               10.vSpace,
               SizedBox(
                 width: double.infinity,
@@ -988,7 +989,7 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
                       value: selectedPaymentMethod,
                       hint: Text(
                         "Wallet",
-                        style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),
+                        style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w300),
                       ),
                       icon: Row(
                         children: [
@@ -1002,7 +1003,7 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
                       items: ["Visa", "MasterCard", "PayPal"]
                           .map((method) => DropdownMenuItem(
                                 value: method,
-                                child: Text(method, style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 12)),
+                                child: Text(method, style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w300, fontSize: ScreenService.isTablet ? 14 : 12)),
                               ))
                           .toList(),
                       onChanged: (value) {
@@ -1017,16 +1018,16 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
               20.vSpace,
               Text(
                 "Service Selection",
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
               ),
               10.vSpace,
               TextField(
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: 'desmond@gmail.com',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -1047,17 +1048,17 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
                 "Billing Type",
                 style: GoogleFonts.poppins(
                   color: AppColors.white,
-                  fontSize: 14,
+                  fontSize: ScreenService.isTablet ? 16 : 14,
                 ),
               ),
               10.vSpace,
               TextField(
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: 'desmond',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -1078,17 +1079,17 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
                 "Account Number",
                 style: GoogleFonts.poppins(
                   color: AppColors.white,
-                  fontSize: 14,
+                  fontSize: ScreenService.isTablet ? 16 : 14,
                 ),
               ),
               10.vSpace,
               TextField(
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: '0193912312312312341',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -1110,17 +1111,17 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
                 "Amount",
                 style: GoogleFonts.poppins(
                   color: AppColors.white,
-                  fontSize: 14,
+                  fontSize: ScreenService.isTablet ? 16 : 14,
                 ),
               ),
               10.vSpace,
               TextField(
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: '\$200.00',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -1152,7 +1153,7 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
                   RoutingService.push(const NationalPowerSuccessScreen());
                 },
                 child: Container(
-                  height: 45,
+                  height: ScreenService.isTablet ? 50 : 45,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
@@ -1161,7 +1162,7 @@ class _NationalPowerScreenState extends State<NationalPowerScreen> {
                   child: Center(
                     child: Text(
                       "Pay",
-                      style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                      style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                     ),
                   ),
                 ),
@@ -1256,7 +1257,7 @@ class _NationalPowerSuccessScreenState extends State<NationalPowerSuccessScreen>
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1320,16 +1321,16 @@ class _NationalPowerSuccessScreenState extends State<NationalPowerSuccessScreen>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: 65.h, // Outer circle
-                    width: 65.w,
+                    height: ScreenService.isTablet ? 70.h : 65.h, // Outer circle
+                    width: ScreenService.isTablet ? 70.w : 65.w,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 94, 155, 25).withOpacity(0.1), // Green outer ring
                       shape: BoxShape.circle,
                     ),
                     alignment: Alignment.center,
                     child: SizedBox(
-                      height: 45.h,
-                      width: 45.w,
+                      height: ScreenService.isTablet ? 50.h : 45.h,
+                      width: ScreenService.isTablet ? 50.w : 45.w,
                       child: SvgPicture.asset(
                         "assets/svg/success1.svg",
                         fit: BoxFit.contain,
@@ -1341,15 +1342,20 @@ class _NationalPowerSuccessScreenState extends State<NationalPowerSuccessScreen>
               30.vSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 80.w),
-                child: Text(
-                  "Thank you for your purchase!",
-                  textAlign: TextAlign.center,
-                  maxLines: 3,
-                  style: GoogleFonts.poppins(
-                    color: Color(0xffFAFAFA),
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Thank you for your purchase!",
+                      textAlign: TextAlign.center,
+                      maxLines: 3,
+                      style: GoogleFonts.poppins(
+                        color: Color(0xffFAFAFA),
+                        fontSize: ScreenService.isTablet ? 24 : 22,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               70.vSpace,
@@ -1373,7 +1379,7 @@ class _NationalPowerSuccessScreenState extends State<NationalPowerSuccessScreen>
                             ),
                             child: Text(
                               "Utility Payment Details",
-                              style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: 23),
+                              style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 25 : 23),
                             ),
                           ),
                         ],
@@ -1465,7 +1471,7 @@ class _NationalPowerSuccessScreenState extends State<NationalPowerSuccessScreen>
               label,
               style: GoogleFonts.poppins(
                 color: Color(0xffDADADA),
-                fontSize: 14,
+                fontSize: ScreenService.isTablet ? 16 : 14,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -1474,7 +1480,7 @@ class _NationalPowerSuccessScreenState extends State<NationalPowerSuccessScreen>
             value,
             style: GoogleFonts.poppins(
               color: Colors.white,
-              fontSize: 14,
+              fontSize: ScreenService.isTablet ? 16 : 14,
               fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
             ),
           ),
