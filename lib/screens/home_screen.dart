@@ -397,41 +397,74 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 10.vSpace,
-                SizedBox(
-                  height: 1.5,
-                  child: Row(
-                    children: [
-                      // Gradient part (1/3)
-                      Expanded(
-                        flex: 3, // 3 + 3 = 6 to match 3 sections total
-                        child: Container(
-                          color: Color(0xFF1B1B1F),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(0xFFDA6B1A),
-                                Color(0xFFAC2C24),
-                              ],
+                ScreenService.isTablet
+                    ? SizedBox(
+                        height: 1.5,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Container(
+                                color: Color(0xFF1B1B1F),
+                              ),
                             ),
-                          ),
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFFDA6B1A),
+                                      Color(0xFFAC2C24),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                color: Color(0xFF1B1B1F),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
+                      )
+                    : SizedBox(
+                        height: 1.5,
+                        child: Row(
+                          children: [
+                            // Gradient part (1/3)
+                            Expanded(
+                              flex: 3, // 3 + 3 = 6 to match 3 sections total
+                              child: Container(
+                                color: Color(0xFF1B1B1F),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFFDA6B1A),
+                                      Color(0xFFAC2C24),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
 
-                      // Solid dark gray part (2/3)
-                      Expanded(
-                        flex: 1, // 3 + 3 = 6 to match 3 sections total
-                        child: Container(
-                          color: Color(0xFF1B1B1F),
+                            // Solid dark gray part (2/3)
+                            Expanded(
+                              flex: 1, // 3 + 3 = 6 to match 3 sections total
+                              child: Container(
+                                color: Color(0xFF1B1B1F),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
                 15.vSpace,
                 Column(
                   children: [
@@ -819,7 +852,7 @@ class _HomePageState extends State<HomePage> {
           // Positioned image at bottom right middle
           Positioned(
             bottom: -40,
-            right: -60,
+            right: ScreenService.isTablet ? -140 : -60,
             child: SizedBox(
               height: 180.h,
               width: 180.w,
@@ -833,7 +866,7 @@ class _HomePageState extends State<HomePage> {
           // Main card container
           Container(
             height: 172.h,
-            width: 200.w,
+            width: ScreenService.isTablet ? 190.w : 200.w,
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.white, width: 1.0),
@@ -860,7 +893,7 @@ class _HomePageState extends State<HomePage> {
                         style: GoogleFonts.inter(
                           color: AppColors.white,
                           fontWeight: FontWeight.w500,
-                          fontSize: 18,
+                          fontSize: ScreenService.isTablet ? 22 : 18,
                         ),
                       )
                     ],
@@ -889,7 +922,7 @@ class _HomePageState extends State<HomePage> {
                         style: GoogleFonts.plusJakartaSans(
                           color: AppColors.textColor,
                           fontWeight: FontWeight.w600,
-                          fontSize: 18,
+                          fontSize: ScreenService.isTablet ? 22 : 18,
                         ),
                         gradient: i != true
                             ? const LinearGradient(
@@ -916,7 +949,7 @@ class _HomePageState extends State<HomePage> {
                             style: GoogleFonts.inter(
                               color: const Color(0xFF00C566),
                               fontWeight: FontWeight.w400,
-                              fontSize: 16,
+                              fontSize: ScreenService.isTablet ? 20 : 16,
                             ),
                           ),
                         ],

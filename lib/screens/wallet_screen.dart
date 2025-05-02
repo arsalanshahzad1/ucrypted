@@ -494,7 +494,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   decoration: BoxDecoration(color: Color(0xff2C2C30), borderRadius: BorderRadius.circular(8.r)),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: SvgPicture.asset("assets/svg/copy1.svg"),
+                                    child: SvgPicture.asset("assets/svg/copy1.svg",),
                                   ),
                                 )
                               ],
@@ -548,7 +548,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                   onTap: () {},
                                   child: SvgPicture.asset(
                                     "assets/svg/w1.svg",
-                                    fit: BoxFit.cover,
+                                    fit: BoxFit.fill,
                                   ),
                                 ),
                               ),
@@ -569,13 +569,19 @@ class _WalletScreenState extends State<WalletScreen> {
                     ),
                     20.vSpace,
                     ScreenService.isTablet
-                        ? SizedBox(
-                            height: 600.h,
-                            // width: double.infinity,
-                            child: FittedBox(
-                              // fit: BoxFit.contain, // or .scaleDown, .fitWidth etc.
-                              child: SvgPicture.asset("assets/svg/balance-flow.svg"),
-                            ),
+                        ? Column(
+                            children: [
+                              70.vSpace,
+                              SizedBox(
+                                height: 600.h,
+                                width: double.infinity,
+                                child: FittedBox(
+                                  fit: BoxFit.fitWidth, // or .scaleDown, .fitWidth etc.
+                                  child: SvgPicture.asset("assets/svg/balance-flow.svg"),
+                                ),
+                              ),
+                              70.vSpace,
+                            ],
                           )
                         : SizedBox(
                             height: 470.h,
@@ -703,41 +709,74 @@ class _WalletScreenState extends State<WalletScreen> {
                     ),
                   ),
                   10.vSpace,
-                  SizedBox(
-                    height: 1.5,
-                    child: Row(
-                      children: [
-                        // Gradient part (1/3)
-                        Expanded(
-                          flex: 3, // 3 + 3 = 6 to match 3 sections total
-                          child: Container(
-                            color: Color(0xFF1B1B1F),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0xFFDA6B1A),
-                                  Color(0xFFAC2C24),
-                                ],
+                  ScreenService.isTablet
+                      ? SizedBox(
+                          height: 1.5,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 4,
+                                child: Container(
+                                  color: Color(0xFF1B1B1F),
+                                ),
                               ),
-                            ),
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xFFDA6B1A),
+                                        Color(0xFFAC2C24),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  color: Color(0xFF1B1B1F),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
+                        )
+                      : SizedBox(
+                          height: 1.5,
+                          child: Row(
+                            children: [
+                              // Gradient part (1/3)
+                              Expanded(
+                                flex: 3, // 3 + 3 = 6 to match 3 sections total
+                                child: Container(
+                                  color: Color(0xFF1B1B1F),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xFFDA6B1A),
+                                        Color(0xFFAC2C24),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
 
-                        // Solid dark gray part (2/3)
-                        Expanded(
-                          flex: 1, // 3 + 3 = 6 to match 3 sections total
-                          child: Container(
-                            color: Color(0xFF1B1B1F),
+                              // Solid dark gray part (2/3)
+                              Expanded(
+                                flex: 1, // 3 + 3 = 6 to match 3 sections total
+                                child: Container(
+                                  color: Color(0xFF1B1B1F),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
                   15.vSpace,
                   Column(
                     children: [

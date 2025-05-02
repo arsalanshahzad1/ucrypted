@@ -10,6 +10,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class GiftingScreen extends StatefulWidget {
   const GiftingScreen({super.key});
@@ -789,7 +790,7 @@ class _GiftingSucessState extends State<GiftingSucess> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -848,15 +849,20 @@ class _GiftingSucessState extends State<GiftingSucess> {
               20.vSpace,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: Text(
-                  "Thank you for your purchase!",
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.w500,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Thank you for your purchase!",
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: ScreenService.isTablet ? 34 : 32,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               30.vSpace,
@@ -917,7 +923,7 @@ class _GiftingSucessState extends State<GiftingSucess> {
                               10.hSpace,
                               Text(
                                 "Download Redemption",
-                                style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 16),
+                                style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                               ),
                             ],
                           ),
@@ -941,7 +947,7 @@ class _GiftingSucessState extends State<GiftingSucess> {
                               10.hSpace,
                               Text(
                                 "Send to email",
-                                style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: 16),
+                                style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 16),
                               ),
                             ],
                           ),
@@ -967,14 +973,14 @@ class _GiftingSucessState extends State<GiftingSucess> {
           Expanded(
             child: Text(
               label,
-              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: 14, fontWeight: FontWeight.w500),
+              style: GoogleFonts.poppins(color: Color(0xffDADADA), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w500),
             ),
           ),
           Text(
             value,
             style: GoogleFonts.poppins(
               color: Colors.white,
-              fontSize: 12,
+              fontSize: ScreenService.isTablet ? 14 : 12,
               fontWeight: isBold ? FontWeight.bold : FontWeight.w500,
             ),
           ),

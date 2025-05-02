@@ -7,6 +7,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/custom_textfield.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class ProfileSettingScreen extends StatefulWidget {
   const ProfileSettingScreen({super.key});
@@ -95,7 +96,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
           FocusScope.of(context).unfocus();
         },
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 24),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +127,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           style: GoogleFonts.inter(
                             color: AppColors.white,
                             fontWeight: FontWeight.w500,
-                            fontSize: 16.sp,
+                            fontSize: ScreenService.isTablet ? 10.sp : 16.sp,
                           ),
                         ),
                       ),
@@ -145,7 +146,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                   padding: const EdgeInsets.only(left: 10),
                   child: Text(
                     "Profile Picture",
-                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 16),
+                    style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 18 : 16),
                   ),
                 ),
                 10.vSpace,
@@ -173,19 +174,18 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                             width: 138.w,
                             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(24),
+                              borderRadius: BorderRadius.circular(ScreenService.isTablet ? 28 : 24),
                               border: Border.all(color: AppColors.grey),
                             ),
                             child: Center(
                                 child: Text(
                               "Upload New Picture",
-                              style: GoogleFonts.inter(fontWeight: FontWeight.w600,
-                               color: AppColors.white, fontSize: 12),
+                              style: GoogleFonts.inter(fontWeight: FontWeight.w600, color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 12),
                             )),
                           ),
                           10.hSpace,
                           Container(
-                              height: 40,
+                              height: ScreenService.isTablet ? 70 : 40,
                               // padding:  EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                               // decoration: BoxDecoration(
                               //   shape: BoxShape.circle,
@@ -200,7 +200,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                 20.vSpace,
                 Text(
                   "Full Name",
-                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 16),
+                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: ScreenService.isTablet ? 18 : 16),
                 ),
                 10.vSpace,
                 Container(
@@ -211,7 +211,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.person_outline_sharp, color: Colors.grey.shade500),
                       hintText: "User name",
-                      hintStyle: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                      hintStyle: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                       border: InputBorder.none,
                     ),
                   ),
@@ -219,7 +219,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                 20.vSpace,
                 Text(
                   "Email Address",
-                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 16),
+                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: ScreenService.isTablet ? 18 : 16),
                 ),
                 10.vSpace,
                 Container(
@@ -234,7 +234,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "yourmail@gmail.com",
-                      hintStyle: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                      hintStyle: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                       border: InputBorder.none, // Removes default border
                     ),
                   ),
@@ -242,7 +242,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                 20.vSpace,
                 Text(
                   "Location",
-                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 16),
+                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: ScreenService.isTablet ? 18 : 16),
                 ),
                 10.vSpace,
                 SizedBox(
@@ -261,7 +261,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                         value: sLocaton,
                         hint: Text(
                           "Select Location",
-                          style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                          style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                         ),
                         icon: Row(
                           children: [
@@ -275,7 +275,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                         items: ["Gilgit,Pakistan", "Karachi", "Cuba"]
                             .map((method) => DropdownMenuItem(
                                   value: method,
-                                  child: Text(method, style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14)),
+                                  child: Text(method, style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14)),
                                 ))
                             .toList(),
                         onChanged: (value) {
@@ -290,7 +290,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                 20.vSpace,
                 Text(
                   "Password",
-                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 16),
+                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 18 : 16),
                 ),
                 10.vSpace,
                 Container(
@@ -301,10 +301,10 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 12),
                   child: TextField(
-                    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                    style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                     decoration: InputDecoration(
                       hintText: "********",
-                      hintStyle: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                      hintStyle: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                       border: InputBorder.none, // Removes default border
                       suffixIcon: GestureDetector(
                         onTap: () {
@@ -325,12 +325,12 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                 20.vSpace,
                 Text(
                   "Two-Factor Authentication",
-                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 16),
+                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 18 : 16),
                 ),
                 10.vSpace,
                 Text(
                   "Enable/disable 2FA to enhance account security.",
-                  style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w400, fontSize: 14),
+                  style: GoogleFonts.inter(color: Color(0xffACB5BB), fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
                 ),
                 20.vSpace,
                 GestureDetector(
@@ -338,16 +338,16 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                     // RoutingService.pushAndRemoveUntil( HomeScreen());
                   },
                   child: Container(
-                    height: 40,
+                    height: ScreenService.isTablet ? 50 : 40,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                      borderRadius: BorderRadius.circular(28),
+                      borderRadius: BorderRadius.circular(ScreenService.isTablet ? 34 : 28),
                     ),
                     child: Center(
                       child: Text(
                         "Set Authentication",
-                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 16),
+                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 18 : 16),
                       ),
                     ),
                   ),
@@ -366,7 +366,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                         "Delete Account",
                         style: GoogleFonts.inter(
                           color: AppColors.white,
-                          fontSize: 16,
+                          fontSize: ScreenService.isTablet ? 18 : 16,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -375,7 +375,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                         "Permanently delete your account and associated data.",
                         style: GoogleFonts.inter(
                           color: AppColors.white,
-                          fontSize: 14,
+                          fontSize: ScreenService.isTablet ? 16 : 14,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -396,7 +396,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                             style: GoogleFonts.inter(
                               color: AppColors.white,
                               fontWeight: FontWeight.w400,
-                              fontSize: 14,
+                              fontSize: ScreenService.isTablet ? 16 : 14,
                             ),
                           ),
                         ),

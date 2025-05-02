@@ -230,7 +230,31 @@ class _ESimScreenState extends State<ESimScreen> {
                         bool isUSA = index % 2 == 0;
                         return CountryCard(
                           onTap: () {
-                            Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
+                            !ScreenService.isTablet
+                                ? Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context))
+                                : showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    constraints: BoxConstraints(
+                                        // maxHeight: 1000,
+                                        ),
+                                    builder: (BuildContext context) {
+                                      return SafeArea(
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            color: Color(0xff1E1E20),
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20),
+                                            ),
+                                          ),
+                                          padding: const EdgeInsets.all(20),
+                                          child: buildBottomSheetContent(context), // replace this with your Column/Widgets
+                                        ),
+                                      );
+                                    },
+                                  );
                           },
                           countryName: isUSA ? "USA" : "Turkey",
                           rating: "4.6",
@@ -254,7 +278,31 @@ class _ESimScreenState extends State<ESimScreen> {
                         bool isUSA = index % 2 == 0;
                         return CountryCard2(
                           onTap: () {
-                            Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context));
+                            !ScreenService.isTablet
+                                ? Get.bottomSheet(isScrollControlled: true, bottomSheetContent(600, "\$21.00", "\$23.0120", () {}, context))
+                                : showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    constraints: BoxConstraints(
+                                        // maxHeight: 1000,
+                                        ),
+                                    builder: (BuildContext context) {
+                                      return SafeArea(
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            color: Color(0xff1E1E20),
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20),
+                                            ),
+                                          ),
+                                          padding: const EdgeInsets.all(20),
+                                          child: buildBottomSheetContent(context), // replace this with your Column/Widgets
+                                        ),
+                                      );
+                                    },
+                                  );
                           },
                           countryName: isUSA ? "USA" : "Turkey",
                           rating: "4.6",
@@ -773,6 +821,286 @@ Widget bottomSheetContent(double height, String title, String subtitle, VoidCall
   );
 }
 
+Widget buildBottomSheetContent(BuildContext context) {
+  int selectedIndex = 1; // Default selected: "Unlimited"
+
+  final List<String> labels = ["Recommended", "Unlimited", "Fixed"];
+
+  return SafeArea(
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      height: 470.h,
+      decoration: const BoxDecoration(
+        color: Color(0xff1E1E20),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "United States of America",
+            style: GoogleFonts.poppins(
+              color: Color(0xffFAFAFA),
+              fontSize: ScreenService.isTablet ? 22 : 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    "Rating 4.6 ",
+                    style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 15 : 13),
+                  ),
+                  Icon(
+                    Icons.star,
+                    color: Color(0xffFFAE00),
+                    size: ScreenService.isTablet ? 18 : 16,
+                  )
+                ],
+              ),
+              GestureDetector(
+                onTap: () {
+                  // Get.close(1);
+                  showFullWidthDialog(context);
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white54),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.mobile_friendly, color: Colors.white, size: 10),
+                      const SizedBox(width: 5),
+                      Text(
+                        "Check compatibility",
+                        style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 15),
+          Text(
+            "Number of Days",
+            style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
+          ),
+          const SizedBox(height: 5),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white54),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Select here", style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400)),
+                const Icon(Icons.arrow_drop_down, color: Colors.white),
+              ],
+            ),
+          ),
+          const SizedBox(height: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "More details on data plan",
+                style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
+              ),
+              const Icon(Icons.arrow_drop_down, color: Colors.white),
+            ],
+          ),
+          const SizedBox(height: 10),
+          StatefulBuilder(builder: (context, setModalState) {
+            return Row(
+              children: List.generate(labels.length, (index) {
+                bool isSelected = index == selectedIndex;
+                return Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setModalState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: index < labels.length - 1 ? 5 : 0),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      decoration: isSelected
+                          ? const BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                              ),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(8),
+                                topRight: Radius.circular(8),
+                              ),
+                            )
+                          : null,
+                      child: Center(
+                        child: Text(
+                          labels[index],
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: ScreenService.isTablet ? 14 : 12,
+                            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }),
+            );
+          }),
+          const SizedBox(height: 15),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              decoration: BoxDecoration(
+                border: const Border(
+                  top: BorderSide(color: AppColors.grey),
+                  left: BorderSide(color: AppColors.grey),
+                  right: BorderSide(color: AppColors.grey),
+                  bottom: BorderSide.none,
+                ),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(4),
+                  topRight: Radius.circular(4),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Choose a recommended data only plan",
+                      style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400)),
+                  const SizedBox(height: 15),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 75.h,
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white54),
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("15 Days 2GB", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: ScreenService.isTablet ? 8 : 6, fontWeight: FontWeight.w400)),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text("\$ 50.00", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w600)),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Container(
+                          height: 75.h,
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          decoration: BoxDecoration(
+                            border: GradientBoxBorder(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomRight,
+                                colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                              ),
+                            ),
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("15 Days 2GB", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: ScreenService.isTablet ? 8 : 6, fontWeight: FontWeight.w400)),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text("\$ 50.00", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w600)),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(border: Border.all(color: AppColors.grey)),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.remove, color: Colors.white),
+                            const SizedBox(width: 10),
+                            Text("1", style: GoogleFonts.poppins(fontWeight: FontWeight.w500, color: Color(0xffFAFAFA), fontSize: ScreenService.isTablet ? 10 : 8)),
+                            const SizedBox(width: 10),
+                            const Icon(Icons.add, color: Colors.white),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Total", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500)),
+                      Text("\$20.00", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600)),
+                    ],
+                  ),
+                  ScreenService.isTablet ? 50.vSpace : const SizedBox(height: 25),
+                  GestureDetector(
+                    onTap: () {
+                      RoutingService.push(const ESimBuyScreen());
+                    },
+                    child: Container(
+                      height: ScreenService.isTablet ? 45.h : 40.h,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Buy Now",
+                          style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 14 : 12),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 void showFullWidthDialog(BuildContext context) {
   Get.dialog(
     Dialog(
@@ -861,7 +1189,7 @@ void showDeviceDialog(BuildContext context) {
     Dialog(
       backgroundColor: Colors.transparent, // No default background
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.9, // Takes 90% of screen width
+        width: ScreenService.isTablet ? MediaQuery.of(context).size.width * 0.7 : MediaQuery.of(context).size.width * 0.9, // Takes 90% of screen width
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: const Color(0xFF1E1E1E),
@@ -875,13 +1203,13 @@ void showDeviceDialog(BuildContext context) {
             Text(
               "Before you checkout, let’s make sure that your device is eSIM compatible.",
               textAlign: TextAlign.center,
-              style: GoogleFonts.inter(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w600),
+              style: GoogleFonts.inter(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 20),
             Text(
               "Find your device below to see if it is eSIM compatible. If your device is not listed, you will not be able to install an eSIM. Not sure what your device model is? Click here to find out.",
               textAlign: TextAlign.center,
-              style: GoogleFonts.inter(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+              style: GoogleFonts.inter(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
             ),
             10.vSpace,
             Row(
@@ -892,12 +1220,12 @@ void showDeviceDialog(BuildContext context) {
                       Get.close(0);
                     },
                     child: Container(
-                      height: 30,
+                      height: ScreenService.isTablet ? 40 : 30,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(24), color: Colors.transparent, border: Border.all(color: AppColors.white)),
                       child: Center(
                         child: Text(
                           "Cancel",
-                          style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.normal),
+                          style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 16 : 14),
                         ),
                       ),
                     ),
@@ -910,7 +1238,7 @@ void showDeviceDialog(BuildContext context) {
                       RoutingService.push(const CompatibleDevicesScreen());
                     },
                     child: Container(
-                      height: 30,
+                      height: ScreenService.isTablet ? 40 : 30,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           colors: [Color(0xFFFCA509), Color(0xFF880306)],
@@ -920,7 +1248,7 @@ void showDeviceDialog(BuildContext context) {
                       child: Center(
                         child: Text(
                           "Device Types",
-                          style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.normal),
+                          style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 16 : 14),
                         ),
                       ),
                     ),
@@ -1541,7 +1869,7 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1599,12 +1927,12 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
               30.verticalSpace,
               Text(
                 "eSIM Compatible Devices",
-                style: GoogleFonts.inter(color: Colors.white, fontSize: 24, fontWeight: FontWeight.w500),
+                style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 26 : 24, fontWeight: FontWeight.w500),
               ),
               10.vSpace,
               Text(
                 "Explore our list of eSIM-compatible devices and enjoy seamless connectivity without the need for a physical SIM card.",
-                style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
               ),
               const SizedBox(height: 10),
               GestureDetector(
@@ -1620,7 +1948,7 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
                   ),
                   child: Text(
                     "Apple",
-                    style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+                    style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
@@ -1634,7 +1962,7 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
                 ),
                 child: Text(
                   "Google",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                 ),
               ),
               10.vSpace,
@@ -1647,7 +1975,7 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
                 ),
                 child: Text(
                   "Huawei",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                 ),
               ),
               10.vSpace,
@@ -1660,7 +1988,7 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
                 ),
                 child: Text(
                   "Laptop And Notebook",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                 ),
               ),
               10.vSpace,
@@ -1673,7 +2001,7 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
                 ),
                 child: Text(
                   "Oppo",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                 ),
               ),
               10.vSpace,
@@ -1686,7 +2014,7 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
                 ),
                 child: Text(
                   "Samsung",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                 ),
               ),
               10.vSpace,
@@ -1699,7 +2027,7 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
                 ),
                 child: Text(
                   "Samsung",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                 ),
               ),
               10.vSpace,
@@ -1712,7 +2040,7 @@ class _CompatibleDevicesScreenState extends State<CompatibleDevicesScreen> {
                 ),
                 child: Text(
                   "Other",
-                  style: GoogleFonts.inter(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                  style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                 ),
               ),
             ],
@@ -1806,7 +2134,7 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -1864,7 +2192,7 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
                 "eSIM Compatible Devices",
                 style: GoogleFonts.inter(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: ScreenService.isTablet ? 26 : 24,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -1873,7 +2201,7 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
                 "Explore our list of eSIM-compatible devices and enjoy seamless connectivity without the need for a physical SIM card.",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 12,
+                  fontSize: ScreenService.isTablet ? 14 : 12,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -1891,7 +2219,7 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
                   "Apple",
                   style: GoogleFonts.inter(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: ScreenService.isTablet ? 18 : 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -1901,7 +2229,7 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
                 "Apple",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 28,
+                  fontSize: ScreenService.isTablet ? 30 : 28,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -1910,7 +2238,7 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
                 "2 months ago, Updated",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 10,
+                  fontSize: ScreenService.isTablet ? 12 : 10,
                   fontWeight: FontWeight.w300,
                 ),
               ),
@@ -1930,7 +2258,7 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
                 "Important: your phone or device must also be Carrier-Unlocked to use eSIM.",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 14,
+                  fontSize: ScreenService.isTablet ? 16 : 14,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -1939,7 +2267,7 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
                 "List of Apple Devices Compatible With eSIMs:",
                 style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 16,
+                  fontSize: ScreenService.isTablet ? 18 : 16,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -1950,17 +2278,17 @@ class _CompatibleListScreenState extends State<CompatibleListScreen> {
                   children: [
                     Text(
                       "• iPhone XR\n• iPhone XS\n• iPhone XS Max\n• iPhone 11\n• iPhone 11 Pro\n• iPhone SE 2 (2020)\n• iPhone 12\n• iPhone 12 Mini\n• iPhone 12 Pro\n• iPhone 12 Pro Max\n• iPhone 13\n• iPhone 13 Mini\n• iPhone 13 Pro\n• iPhone 13 Pro Max\n• iPhone SE 3 (2022)\n• iPhone 14\n• iPhone 14 Plus\n• iPhone 14 Pro\n• iPhone 14 Pro Max\n• iPhone 15\n• iPhone 15 Plus\n• iPhone 15 Pro\n• iPhone 15 Pro Max",
-                      style: GoogleFonts.poppins(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                      style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
                     ),
                     10.vSpace,
                     Text(
                       "*On iPhone 13, 14, and 15 models, you can have two eSIMs activated at the same time.\n\n* iPhones from mainland China and iPhone devices from Hong Kong and Macao (except for iPhone 13 Mini, iPhone 12 Mini, iPhone SE 2020, and iPhone XS) don’t have eSIM capability.\n\n* iPhone 14, iPhone 14 Plus, iPhone 14 Pro, and iPhone 14 Pro Max are not compatible with physical SIM cards in the USA.",
-                      style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w300),
+                      style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w300),
                     ),
                     10.vSpace,
                     Text(
                       "iPads with eSIM (only iPads with 4G connectivity):\n\n• iPad Air 5th Gen (model A1822, from 2022)\n• iPad 10th Gen (model A2757, from 2022)\n• iPad 9th Gen (model A2604, from 2021)\n• iPad Mini 6th Gen (model A2568, from 2021)\n• iPad Pro 11” (model A2068, from 2020)\n• iPad Pro 12.9” (model A2069, from 2020)\n• iPad Air (model A2123, from 2019)\n• iPad (model A2198, from 2019)\n• iPad Mini (model A2124, from 2019)",
-                      style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                      style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                     ),
                     30.vSpace,
                   ],
@@ -2069,7 +2397,7 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -2125,20 +2453,20 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
                 ],
               ),
               30.vSpace,
-              Text("United States of America", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: 18, fontWeight: FontWeight.w600)),
+              Text("United States of America", style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontSize: ScreenService.isTablet ? 20 : 18, fontWeight: FontWeight.w600)),
               20.vSpace,
               Text(
                 "Amount",
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400),
               ),
               10.vSpace,
               TextField(
-                style: GoogleFonts.poppins(color: AppColors.white, fontSize: 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
                 decoration: InputDecoration(
                   fillColor: Colors.transparent,
                   filled: true,
                   hintText: '\$150',
-                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: 13, fontWeight: FontWeight.w400),
+                  hintStyle: GoogleFonts.poppins(color: Color(0xffCCCCCC), fontSize: ScreenService.isTablet ? 15 : 13, fontWeight: FontWeight.w400),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
@@ -2151,11 +2479,11 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
                     borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Color(0xffCCCCCC), width: 1),
                   ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: ScreenService.isTablet ? 12 : 10),
                 ),
               ),
               20.vSpace,
-              Text("Payment ", style: GoogleFonts.poppins(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w400)),
+              Text("Payment ", style: GoogleFonts.poppins(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w400)),
               10.vSpace,
               SizedBox(
                 width: double.infinity,
@@ -2173,7 +2501,7 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
                       value: selectedPaymentMethod,
                       hint: Text(
                         "Select Payment Method",
-                        style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),
+                        style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w300),
                       ),
                       icon: Row(
                         children: [
@@ -2187,7 +2515,7 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
                       items: ["Visa", "MasterCard", "PayPal"]
                           .map((method) => DropdownMenuItem(
                                 value: method,
-                                child: Text(method, style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 12)),
+                                child: Text(method, style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w300, fontSize: ScreenService.isTablet ? 14 : 12)),
                               ))
                           .toList(),
                       onChanged: (value) {
@@ -2252,7 +2580,7 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
                 children: [
                   Text(
                     "Available balance",
-                    style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),
+                    style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
@@ -2261,7 +2589,7 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
                 children: [
                   Text(
                     "\$400.00",
-                    style: GoogleFonts.poppins(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w300),
+                    style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w300),
                   ),
                 ],
               ),
@@ -2280,7 +2608,7 @@ class _ESimBuyScreenState extends State<ESimBuyScreen> {
                   child: Center(
                     child: Text(
                       "Next",
-                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 20 : 18),
                     ),
                   ),
                 ),
@@ -2376,7 +2704,7 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -2454,15 +2782,20 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
               20.vSpace,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Text(
-                  "Your Transactions has been Successfully Proceed!",
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Your Transactions has been Successfully Proceed!",
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: ScreenService.isTablet ? 20 : 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               30.vSpace,
@@ -2485,7 +2818,7 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
                             ),
                             child: Text(
                               "Esim Details",
-                              style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w600, fontSize: 18),
+                              style: GoogleFonts.poppins(color: Color(0xffFAFAFA), fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 20 : 18),
                             ),
                           ),
                         ],
@@ -2518,7 +2851,7 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
                                 10.hSpace,
                                 Text(
                                   "Download Plan Details",
-                                  style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.normal, fontSize: 16),
+                                  style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 18 : 16),
                                 ),
                               ],
                             ),
@@ -2546,7 +2879,7 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
                                 10.hSpace,
                                 Text(
                                   "Send to email",
-                                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.normal, fontSize: 16),
+                                  style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 18 : 16),
                                 ),
                               ],
                             ),
@@ -2561,7 +2894,7 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
               Text(
                 "For any discrepancies or complaints, please contact: support@ucrypted.com. The top-up should reflect in the recipient's account shortly. If you encounter any issues, feel free to contact our support team.",
                 textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w300, fontSize: 12),
+                style: GoogleFonts.poppins(color: Color(0xffDADADA), fontWeight: FontWeight.w300, fontSize: ScreenService.isTablet ? 14 : 12),
               ),
               10.vSpace,
             ],
@@ -2581,7 +2914,7 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
               label,
               style: GoogleFonts.poppins(
                 color: Color(0xffDADADA),
-                fontSize: 14,
+                fontSize: ScreenService.isTablet ? 16 : 14,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -2590,7 +2923,7 @@ class _ESimBuySuccessScreenState extends State<ESimBuySuccessScreen> {
             value,
             style: GoogleFonts.poppins(
               color: Color(0xffFAFAFA),
-              fontSize: 12,
+              fontSize: ScreenService.isTablet ? 14 : 12,
               fontWeight: FontWeight.w500,
             ),
           ),

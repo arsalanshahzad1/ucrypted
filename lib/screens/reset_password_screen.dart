@@ -10,6 +10,7 @@ import 'package:ucrypted_app/utilities/custom_textfield.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -24,7 +25,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/bg1.png",
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 20),
         child: Column(
           children: [
             Expanded(
@@ -60,7 +61,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       "Reset Password",
                       style: GoogleFonts.inter(
                         color: AppColors.white,
-                        fontSize: 32,
+                        fontSize: ScreenService.isTablet ? 36 : 32,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -70,23 +71,23 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       style: GoogleFonts.inter(
                         color: Color(0xff6C7278),
                         fontWeight: FontWeight.w500,
-                        fontSize: 14,
+                        fontSize: ScreenService.isTablet ? 18 : 14,
                       ),
                     ),
                     50.vSpace,
                     Text(
                       "Email",
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                     ),
                     10.vSpace,
                     TextField(
                       style: TextStyle(color: Colors.white), // Text color inside
                       decoration: InputDecoration(
                         hintText: 'yourname@gmail.com',
-                        hintStyle: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500), // Placeholder color
+                        hintStyle: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w500), // Placeholder color
                         filled: true,
                         fillColor: Color(0xFF2C2C30), // Inside background color of the field
-                        contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                        contentPadding: EdgeInsets.symmetric(vertical: ScreenService.isTablet ? 15.0 : 12.0, horizontal: 16.0),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12.0),
                           borderSide: BorderSide(
@@ -115,7 +116,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   RoutingService.push(const CreateNewPassScreen());
                 },
                 child: Container(
-                  height: 50,
+                  height: ScreenService.isTablet ? 55 : 50,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
@@ -131,7 +132,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       style: GoogleFonts.inter(
                         color: AppColors.white,
                         fontWeight: FontWeight.w400,
-                        fontSize: 18,
+                        fontSize: ScreenService.isTablet ? 20 : 18,
                       ),
                     ),
                   ),

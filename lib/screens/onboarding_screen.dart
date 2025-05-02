@@ -5,6 +5,7 @@ import 'package:ucrypted_app/screens/login_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -75,10 +76,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         if (page['textPosition'] == 'before')
                           Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Text(
-                              page['text'],
-                              style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 32),
-                              textAlign: TextAlign.start,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  page['text'],
+                                  style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 32),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
                             ),
                           ),
                         Image.asset(
@@ -89,10 +95,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         if (page['textPosition'] == 'below')
                           Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Text(
-                              page['text'],
-                              style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 32),
-                              textAlign: TextAlign.start,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  page['text'],
+                                  style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 32),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
                             ),
                           ),
                       ],
@@ -131,12 +142,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 width: 150.w,
                 decoration: BoxDecoration(
                   color: AppColors.disableBtnColor,
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(ScreenService.isTablet ? 36 : 24),
                 ),
                 child: Center(
                   child: Text(
                     "Skip",
-                    style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                    style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 14),
                   ),
                 ),
               ),
@@ -152,12 +163,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 width: 150.w,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(ScreenService.isTablet ? 36 : 24),
                 ),
                 child: Center(
                   child: Text(
                     _currentIndex == _pages.length - 1 ? "Finish" : "Next",
-                    style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 14),
+                    style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 18 : 14),
                   ),
                 ),
               ),

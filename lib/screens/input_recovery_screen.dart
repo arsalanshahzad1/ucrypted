@@ -8,6 +8,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class InputRecoveryscreen extends StatefulWidget {
   const InputRecoveryscreen({super.key});
@@ -114,10 +115,34 @@ class _InputRecoveryscreenState extends State<InputRecoveryscreen> {
             GestureDetector(
               onTap: () {
                 // RoutingService.push(const InputRecoveryscreen());
-                Get.bottomSheet(bottomSheetContent(330.h, "Confirm Your Secret Recovery Word ?",
-                    "This secret recovery word is crucial for accessing your account and cannot be recovered if lost. Are you sure you’ve entered it correctly ?", () {
-                  RoutingService.push(const InputRecoverySuccessScreen());
-                }));
+                !ScreenService.isTablet
+                    ? Get.bottomSheet(bottomSheetContent(330.h, "Confirm Your Secret Recovery Word ?",
+                        "This secret recovery word is crucial for accessing your account and cannot be recovered if lost. Are you sure you’ve entered it correctly ?", () {
+                        RoutingService.push(const InputRecoverySuccessScreen());
+                      }))
+                    : showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        constraints: BoxConstraints(
+                            // maxHeight: 1000,
+                            ),
+                        builder: (BuildContext context) {
+                          return SafeArea(
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Color(0xff1E1E20),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                              ),
+                              padding: const EdgeInsets.all(20),
+                              child: buildBottomSheetContent(context), // replace this with your Column/Widgets
+                            ),
+                          );
+                        },
+                      );
               },
               child: Container(
                 height: isTablet ? 50.h : 50,
@@ -148,93 +173,344 @@ Widget bottomSheetContent(
   String subtitle,
   VoidCallback onTap,
 ) {
-  return Container(
-    width: double.infinity,
-    height: height,
-    decoration: const BoxDecoration(
-      color: Color(0xff1E1E20),
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(20),
-        topRight: Radius.circular(20),
+  return LayoutBuilder(
+    builder: (context, constraints) {
+      return Container(
+        width: constraints.maxWidth, // ensures full width
+        height: height,
+        decoration: const BoxDecoration(
+          color: Color(0xff1E1E20),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 4,
+                    width: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Color(0xff44444A),
+                    ),
+                  )
+                ],
+              ),
+              10.vSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: Image.asset(
+                      "assets/images/siren.png",
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                ],
+              ),
+              10.vSpace,
+              Text(
+                title,
+                style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 24),
+              ),
+              10.vSpace,
+              Text(
+                subtitle,
+                style: GoogleFonts.inter(color: Color(0xff6C7278), fontWeight: FontWeight.w500, fontSize: 14),
+              ),
+              40.vSpace,
+              Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        height: 45.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24.0),
+                          color: Color.fromARGB(255, 34, 34, 37),
+                          border: Border.all(color: Color(0xff44444A)),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Cancel",
+                            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  20.hSpace,
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: onTap,
+                      child: Container(
+                        height: 45.h,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                          ),
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Confirm",
+                            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+Widget bottomSheetContentTab(
+  double height,
+  String title,
+  String subtitle,
+  VoidCallback onTap,
+) {
+  return SafeArea(
+    child: Container(
+      width: double.infinity, // Full width
+      constraints: BoxConstraints(
+        maxWidth: 600, // Optional: limit on very large tablets
       ),
-    ),
-    child: Padding(
+      decoration: const BoxDecoration(
+        color: Color(0xff1E1E20),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
       padding: const EdgeInsets.all(20),
       child: Column(
+        mainAxisSize: MainAxisSize.min, // Wraps content height
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 4,
-                width: 80,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Color(0xff44444A)),
-              )
-            ],
+          Center(
+            child: Container(
+              height: 4,
+              width: 80,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: const Color(0xff44444A),
+              ),
+            ),
           ),
-          10.vSpace,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 40,
-                width: 40,
-                child: Image.asset(
-                  "assets/images/siren.png",
-                  fit: BoxFit.cover,
-                ),
-              )
-            ],
+          const SizedBox(height: 10),
+          SizedBox(
+            height: 40,
+            width: 40,
+            child: Image.asset("assets/images/siren.png", fit: BoxFit.cover),
           ),
-          10.vSpace,
+          const SizedBox(height: 10),
           Text(
             title,
-            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 24),
+            style: GoogleFonts.inter(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 24,
+            ),
           ),
-          10.vSpace,
+          const SizedBox(height: 10),
           Text(
             subtitle,
-            style: GoogleFonts.inter(color: Color(0xff6C7278), fontWeight: FontWeight.w500, fontSize: 14),
+            style: GoogleFonts.inter(
+              color: const Color(0xff6C7278),
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+            ),
           ),
-          40.vSpace,
+          const SizedBox(height: 40),
           Row(
             children: [
               Expanded(
                 child: GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
+                  onTap: () => Navigator.pop(Get.context!),
                   child: Container(
                     height: 45.h,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24.0),
-                        color: Color.fromARGB(255, 34, 34, 37),
-                        border: Border.all(
-                          color: Color(0xff44444A),
-                        )),
-                    child: Center(
+                      borderRadius: BorderRadius.circular(24),
+                      color: const Color.fromARGB(255, 34, 34, 37),
+                      border: Border.all(color: const Color(0xff44444A)),
+                    ),
+                    child: const Center(
                       child: Text(
                         "Cancel",
-                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-              20.hSpace,
+              const SizedBox(width: 20),
               Expanded(
                 child: GestureDetector(
                   onTap: onTap,
                   child: Container(
                     height: 45.h,
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                      ),
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Confirm",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget buildBottomSheetContent(BuildContext context) {
+  return SafeArea(
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      height: 200.h,
+      decoration: const BoxDecoration(
+        color: Color(0xff1E1E20),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Center(
+            child: Container(
+              height: 4,
+              width: 80,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: const Color(0xff44444A),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: SizedBox(
+              height: 40,
+              width: 40,
+              child: Image.asset("assets/images/siren.png", fit: BoxFit.cover),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Confirm Your Secret Recovery Word?",
+                style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontSize: ScreenService.isTablet ? 26 : 24,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(
+            "This secret recovery word is crucial for accessing your account and cannot be recovered if lost. Are you sure you’ve entered it correctly?",
+            style: GoogleFonts.inter(
+              color: Color(0xff6C7278),
+              fontWeight: FontWeight.w500,
+              fontSize: ScreenService.isTablet ? 18 : 14,
+            ),
+          ),
+          const SizedBox(height: 40),
+          Row(
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    height: ScreenService.isTablet ? 50 : 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: const Color.fromARGB(255, 34, 34, 37),
+                      border: Border.all(color: const Color(0xff44444A)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Cancel",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: ScreenService.isTablet ? 16 : 14,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 20),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                    RoutingService.push(const InputRecoverySuccessScreen());
+                  },
+                  child: Container(
+                    height: ScreenService.isTablet ? 50 : 45,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                      ),
                       borderRadius: BorderRadius.circular(24),
                     ),
                     child: Center(
                       child: Text(
                         "Confirm",
-                        style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: 14),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: ScreenService.isTablet ? 18 : 14,
+                        ),
                       ),
                     ),
                   ),

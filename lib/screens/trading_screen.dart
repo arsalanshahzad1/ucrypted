@@ -141,7 +141,7 @@ class _TradingScreenState extends State<TradingScreen> {
                       children: [
                         Container(
                           // height: 470.h,
-                          width: 300.w,
+                          width: ScreenService.isTablet ? 280.w : 300.w,
                           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                           decoration: BoxDecoration(color: Color(0xff1E1E20), border: Border.all(color: Color(0xff2C2C30)), borderRadius: BorderRadius.circular(12)),
                           child: Column(
@@ -537,11 +537,11 @@ class _TradingScreenState extends State<TradingScreen> {
                             width: double.infinity,
                             child: SvgPicture.asset(
                               "assets/svg/bar1.svg",
-                              fit: ScreenService.isTablet ? BoxFit.contain : BoxFit.fitWidth,
+                              fit: ScreenService.isTablet ? BoxFit.fitWidth : BoxFit.fitWidth,
                             ),
                           ),
                         ),
-                        10.vSpace,
+                        ScreenService.isTablet ? 0.vSpace : 10.vSpace,
                         if (isTable == true) ...[
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -688,10 +688,10 @@ class _TradingScreenState extends State<TradingScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        20.hSpace,
+                        ScreenService.isTablet ? 0.vSpace : 20.hSpace,
                         Container(
                           height: 4.h,
-                          width: 45.w,
+                          width: ScreenService.isTablet ? 38.w : 45.w,
                           decoration: BoxDecoration(color: Color(0xff4598D3)),
                         ),
                       ],
@@ -720,7 +720,7 @@ class _TradingScreenState extends State<TradingScreen> {
                           left: 35.w,
                           child: Container(
                             height: 30.h,
-                            width: 120.w,
+                            width: ScreenService.isTablet ? 138.w : 120.w,
                             decoration: BoxDecoration(color: Color(0xFF38B781).withOpacity(0.2)),
                           ),
                         )
@@ -733,7 +733,7 @@ class _TradingScreenState extends State<TradingScreen> {
                           right: 70.w,
                           child: Container(
                             height: 28.h,
-                            width: 90.w,
+                            width: ScreenService.isTablet ? 103.w : 90.w,
                             decoration: BoxDecoration(color: Color(0xFFFF545E).withOpacity(0.2)),
                           ),
                         )
@@ -759,12 +759,12 @@ class _TradingScreenState extends State<TradingScreen> {
                               RoutingService.push(const BuySellDetailScreen());
                             },
                             child: Container(
-                              height: 45,
+                              height: ScreenService.isTablet ? 50 : 45,
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: const Color(0xFF38B781)),
                               child: Center(
                                 child: Text(
                                   "Buy",
-                                  style: GoogleFonts.nunito(fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.white),
+                                  style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w700, color: AppColors.white),
                                 ),
                               ),
                             ),
@@ -776,12 +776,12 @@ class _TradingScreenState extends State<TradingScreen> {
                               RoutingService.push(const BuySellDetailScreen());
                             },
                             child: Container(
-                              height: 45,
+                              height: ScreenService.isTablet ? 50 : 45,
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: const Color(0xFFFF545E)),
                               child: Center(
                                 child: Text(
                                   "Sell",
-                                  style: GoogleFonts.nunito(fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.white),
+                                  style: GoogleFonts.nunito(fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w700, color: AppColors.white),
                                 ),
                               ),
                             ),
@@ -826,40 +826,81 @@ class _TradingScreenState extends State<TradingScreen> {
                   ],
                 ),
                 8.vSpace,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: SizedBox(
-                    height: 1,
-                    // margin: const EdgeInsets.symmetric(vertical: 12),
-                    child: Row(
-                      children: [
-                        // Gradient part
-                        Expanded(
-                          flex: 4,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0xFFDA6B1A), // orange
-                                  Color(0xFFAC2C24), // deep red
-                                  // Color(0xFF111114), // fade to dark
-                                ],
+                ScreenService.isTablet
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: SizedBox(
+                          height: 1,
+                          // margin: const EdgeInsets.symmetric(vertical: 12),
+                          child: Row(
+                            children: [
+                              // Gradient part
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  color: Color(0xFF1B1B1F), // dark gray
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xFFDA6B1A), // orange
+                                        Color(0xFFAC2C24), // deep red
+                                        // Color(0xFF111114), // fade to dark
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
 
-                        // Solid dark gray part
-                        Expanded(
-                          flex: 4,
-                          child: Container(
-                            color: Color(0xFF1B1B1F), // dark gray
+                              // Solid dark gray part
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  color: Color(0xFF1B1B1F), // dark gray
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: SizedBox(
+                          height: 1,
+                          // margin: const EdgeInsets.symmetric(vertical: 12),
+                          child: Row(
+                            children: [
+                              // Gradient part
+                              Expanded(
+                                flex: 4,
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xFFDA6B1A), // orange
+                                        Color(0xFFAC2C24), // deep red
+                                        // Color(0xFF111114), // fade to dark
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              // Solid dark gray part
+                              Expanded(
+                                flex: 4,
+                                child: Container(
+                                  color: Color(0xFF1B1B1F), // dark gray
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                 10.vSpace,
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -978,7 +1019,7 @@ class _TradingScreenState extends State<TradingScreen> {
         children: [
           Expanded(
             child: Align(
-              alignment: Alignment.center,
+              alignment: ScreenService.isTablet ? Alignment.centerLeft : Alignment.center,
               child: Text(
                 first,
                 style: GoogleFonts.nunito(color: Color(0xffF7F7F7), fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 16 : 13),
@@ -987,29 +1028,30 @@ class _TradingScreenState extends State<TradingScreen> {
           ),
           Expanded(
             child: Align(
-              alignment: Alignment.center,
+              alignment: ScreenService.isTablet ? Alignment.centerRight : Alignment.center,
               child: Text(
                 second,
-                style: GoogleFonts.nunito(color: const Color(0xFF38B781), fontWeight: FontWeight.w700, fontSize: 13),
+                style: GoogleFonts.nunito(color: const Color(0xFF38B781), fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 16 : 13),
               ),
             ),
           ),
+          ScreenService.isTablet ? 20.hSpace : 0.hSpace,
           Expanded(
             child: Align(
-              alignment: Alignment.center,
+              alignment: ScreenService.isTablet ? Alignment.centerLeft : Alignment.center,
               child: Text(
                 third,
-                style: GoogleFonts.nunito(color: const Color(0xFFFF545E), fontWeight: FontWeight.w700, fontSize: 13),
+                style: GoogleFonts.nunito(color: const Color(0xFFFF545E), fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 16 : 13),
               ),
             ),
           ),
           Expanded(
             child: Align(
-              alignment: Alignment.center,
+              alignment: ScreenService.isTablet ? Alignment.centerRight : Alignment.center,
               // alignment: Alignment.bottomRight,
               child: Text(
                 fourth,
-                style: GoogleFonts.nunito(color: Color(0xffF7F7F7), fontWeight: FontWeight.w700, fontSize: 13),
+                style: GoogleFonts.nunito(color: Color(0xffF7F7F7), fontWeight: FontWeight.w700, fontSize: ScreenService.isTablet ? 16 : 13),
               ),
             ),
           ),

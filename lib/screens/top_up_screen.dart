@@ -342,9 +342,33 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
               padding: const EdgeInsets.only(bottom: 20),
               child: GestureDetector(
                 onTap: () {
-                  Get.bottomSheet(bottomSheetContent(500, _amountController.text, "\$00.00", "\$21.00", "\$23.0120", () {
-                    // RoutingService.push(const InputRecoverySuccessScreen());
-                  }));
+                  !ScreenService.isTablet
+                      ? Get.bottomSheet(bottomSheetContent(500, _amountController.text, "\$00.00", "\$21.00", "\$23.0120", () {
+                          // RoutingService.push(const InputRecoverySuccessScreen());
+                        }))
+                      : showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          constraints: BoxConstraints(
+                              // maxHeight: 1000,
+                              ),
+                          builder: (BuildContext context) {
+                            return SafeArea(
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  color: Color(0xff1E1E20),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20),
+                                    topRight: Radius.circular(20),
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(20),
+                                child: buildBottomSheetContent(context), // replace this with your Column/Widgets
+                              ),
+                            );
+                          },
+                        );
                 },
                 child: Container(
                   width: double.infinity,
@@ -610,6 +634,143 @@ class _EnterAmountScreenState extends State<EnterAmountScreen> {
       ),
     );
   }
+}
+
+Widget buildBottomSheetContent(BuildContext context) {
+  return SafeArea(
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      height: 400.h,
+      decoration: const BoxDecoration(
+        color: Color(0xff1E1E20),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Container(height: 4, width: 70, decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), color: Color(0xff44444A)))],
+          ),
+          20.vSpace,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Amount Top up",
+                style: GoogleFonts.inter(color: Color(0xff6C7278), fontWeight: FontWeight.w500, fontSize: ScreenService.isTablet ? 16 : 14),
+              ),
+            ],
+          ),
+          10.vSpace,
+          Text(
+            "\$227.00",
+            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 34 : 32),
+          ),
+          10.vSpace,
+          Container(
+            height: 50,
+            decoration: BoxDecoration(
+              color: const Color(0xFF1E1E20),
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Color(0xff2C2C30)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset("assets/svg/inof.svg"),
+                10.hSpace,
+                Text(
+                  "Topup with Stripe will not Cost any fee !",
+                  style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
+                )
+              ],
+            ),
+          ),
+          20.vSpace,
+          const Divider(
+            height: 0.5,
+            color: Color(0xFF2C2C30),
+          ),
+          20.vSpace,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Top Up Amount",
+                style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 16 : 14, color: Color(0xff6C7278), fontWeight: FontWeight.w500),
+              ),
+              Text(
+                "\$00.00",
+                style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 17 : 15, color: AppColors.white, fontWeight: FontWeight.w500),
+              )
+            ],
+          ),
+          20.vSpace,
+          const Divider(
+            height: 0.5,
+            color: Color(0xFF2C2C30),
+          ),
+          20.vSpace,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Platform Fees",
+                style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 16 : 14, color: Color(0xff6C7278), fontWeight: FontWeight.w500),
+              ),
+              Text(
+                "\$21.00",
+                style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 17 : 15, color: AppColors.white, fontWeight: FontWeight.w500),
+              )
+            ],
+          ),
+          20.vSpace,
+          const Divider(
+            height: 0.5,
+            color: Color(0xFF2C2C30),
+          ),
+          20.vSpace,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Total Payment",
+                style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 16 : 14, color: Color(0xff6C7278), fontWeight: FontWeight.w500),
+              ),
+              Text(
+                "\$23,0120",
+                style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 17 : 15, color: AppColors.white, fontWeight: FontWeight.w500),
+              )
+            ],
+          ),
+          20.vSpace,
+          GestureDetector(
+            onTap: () {
+              RoutingService.push(const TopUpSuccessScreen());
+            },
+            child: Container(
+              height: ScreenService.isTablet ? 50 : 45,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                borderRadius: BorderRadius.circular(28),
+              ),
+              child: Center(
+                child: Text(
+                  "Confirm",
+                  style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: ScreenService.isTablet ? 20 : 18),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
 class TopUpSuccessScreen extends StatefulWidget {

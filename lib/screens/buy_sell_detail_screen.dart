@@ -232,12 +232,13 @@ class _BuySellDetailScreenState extends State<BuySellDetailScreen> {
                   ),
                 ]),
               ),
-              // 10.vSpace,
+              10.vSpace,
               ScreenService.isTablet
                   ? Padding(
                       padding: const EdgeInsets.symmetric(vertical: 3),
                       child: SizedBox(
                         height: 700.h,
+                        width: 400.w,
                         child: FittedBox(
                           child: SvgPicture.asset("assets/svg/buysellgraph.svg"),
                         ),

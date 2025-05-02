@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class NotificationSettingScreen extends StatefulWidget {
   const NotificationSettingScreen({super.key});
@@ -97,7 +98,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +129,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
                         style: GoogleFonts.inter(
                           color: AppColors.white,
                           fontWeight: FontWeight.w500,
-                          fontSize: 16.sp,
+                          fontSize: ScreenService.isTablet ? 10.sp : 16.sp,
                         ),
                       ),
                     ),
@@ -198,12 +199,12 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
       children: [
         Text(
           title,
-          style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+          style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600, color: Colors.white),
         ),
         15.vSpace,
         Text(
           subtitle,
-          style: GoogleFonts.inter(fontSize: 14, color: Colors.grey[500]),
+          style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 16 : 14, color: Colors.grey[500]),
         ),
         15.vSpace,
         Row(
@@ -235,7 +236,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
             Text(
               value ? "On" : "Off",
               style: GoogleFonts.inter(
-                fontSize: 16,
+                fontSize: ScreenService.isTablet ? 18 : 16,
                 fontWeight: FontWeight.w600,
                 color: value ? Colors.orange : Colors.white,
               ),
@@ -258,7 +259,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
               padding: const EdgeInsets.only(right: 2),
               child: Container(
                 height: 17.h,
-                width: 17.w,
+                width: ScreenService.isTablet ? 14.w : 17.w,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.r), border: Border.all(color: Colors.white)),
               ),
             ),
@@ -322,7 +323,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: GoogleFonts.inter(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w600)),
+            Text(title, style: GoogleFonts.inter(color: AppColors.white, fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600)),
             SizedBox(
               height: 20.h,
               width: 20.w,
@@ -333,7 +334,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
         10.vSpace,
         Text(subtitle,
             style: GoogleFonts.inter(
-              fontSize: 14,
+              fontSize: ScreenService.isTablet ? 16 : 14,
               color: Color(0xffACB5BB),
             )),
         10.vSpace,
@@ -350,7 +351,7 @@ class _NotificationSettingScreenState extends State<NotificationSettingScreen> {
             isExpanded: true,
             iconSize: 0.0,
             underline: const SizedBox.shrink(),
-            style: GoogleFonts.inter(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
+            style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
             value: "Suggested",
             items: ["Suggested", "All", "None"].map((String item) {
               return DropdownMenuItem<String>(

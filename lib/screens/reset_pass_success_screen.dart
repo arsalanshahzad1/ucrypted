@@ -8,6 +8,7 @@ import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class ResetPassSuccessScreen extends StatefulWidget {
   const ResetPassSuccessScreen({super.key});
@@ -22,7 +23,7 @@ class _ResetPassSuccessScreenState extends State<ResetPassSuccessScreen> {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/bg1.png",
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 20),
         child: Column(
           children: [
             Expanded(
@@ -50,20 +51,30 @@ class _ResetPassSuccessScreenState extends State<ResetPassSuccessScreen> {
                       ],
                     ),
                     20.vSpace,
-                    Text(
-                      "Reset password succesful",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.inter(
-                        color: AppColors.white,
-                        fontSize: 32,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Reset password succesful",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.inter(
+                            color: AppColors.white,
+                            fontSize: ScreenService.isTablet ? 36 : 32,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
                     ),
                     20.vSpace,
-                    Text(
-                      "Successfully changed password. you can enter the main page",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: 14, fontWeight: FontWeight.w500),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Successfully changed password. you can enter the main page",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w500),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -93,7 +104,7 @@ class _ResetPassSuccessScreenState extends State<ResetPassSuccessScreen> {
                       style: GoogleFonts.inter(
                         color: AppColors.white,
                         fontWeight: FontWeight.normal,
-                        fontSize: 18,
+                        fontSize: ScreenService.isTablet ? 22 : 18,
                       ),
                     ),
                   ),

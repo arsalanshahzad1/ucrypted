@@ -7,6 +7,7 @@ import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class PortfolioSettingScreen extends StatefulWidget {
   const PortfolioSettingScreen({super.key});
@@ -111,7 +112,7 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +143,7 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
                         style: GoogleFonts.inter(
                           color: AppColors.white,
                           fontWeight: FontWeight.w500,
-                          fontSize: 16.sp,
+                          fontSize: ScreenService.isTablet ? 10.sp : 16.sp,
                         ),
                       ),
                     ),
@@ -166,16 +167,16 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
               30.vSpace,
               Text(
                 "Import/Export Portfolio",
-                style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               15.vSpace,
               Text(
                 "Import or export your portfolio data in various formats (CSV, JSON).",
-                style: GoogleFonts.inter(fontSize: 14, color: Colors.grey[500]),
+                style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 16 : 14, color: Colors.grey[500]),
               ),
               20.vSpace,
               Container(
-                height: 40,
+                height: ScreenService.isTablet ? 50 : 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   gradient: const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
@@ -194,7 +195,7 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
                       5.hSpace,
                       Text(
                         "Export",
-                        style: GoogleFonts.inter(color: AppColors.white),
+                        style: GoogleFonts.inter(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                       )
                     ],
                   ),
@@ -202,7 +203,7 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
               ),
               20.vSpace,
               Container(
-                height: 40,
+                height: ScreenService.isTablet ? 50 : 40,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.transparent, border: Border.all(color: AppColors.grey)),
                 child: Center(
                   child: Row(
@@ -215,7 +216,7 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
                       5.hSpace,
                       Text(
                         "Export",
-                        style: GoogleFonts.inter(color: AppColors.white),
+                        style: GoogleFonts.inter(color: AppColors.white, fontSize: ScreenService.isTablet ? 16 : 14),
                       )
                     ],
                   ),
@@ -224,12 +225,12 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
               20.vSpace,
               Text(
                 "Performance Metrics",
-                style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               15.vSpace,
               Text(
                 "Choose which performance metrics to display (e.g., ROI, profit/loss).",
-                style: GoogleFonts.inter(fontSize: 14, color: Colors.grey[500]),
+                style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 16 : 14, color: Colors.grey[500]),
               ),
               20.vSpace,
               //Create below this
@@ -261,7 +262,7 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
                         children: [
                           Text(
                             option,
-                            style: GoogleFonts.inter(color: Colors.white, fontSize: 16),
+                            style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 18 : 16),
                           ),
                           if (isSelected)
                             SizedBox(
@@ -272,7 +273,7 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
                           if (!isSelected)
                             Container(
                               height: 17.h,
-                              width: 17.w,
+                              width: ScreenService.isTablet ? 14.w : 17.w,
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.r), border: Border.all(color: Colors.white)),
                             ),
                         ],
@@ -296,7 +297,7 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
                   child: Center(
                     child: Text(
                       "Update",
-                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: 18),
+                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.normal, fontSize: ScreenService.isTablet ? 20 : 18),
                     ),
                   ),
                 ),
@@ -320,12 +321,12 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
       children: [
         Text(
           title,
-          style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+          style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 16, fontWeight: FontWeight.w600, color: Colors.white),
         ),
         15.vSpace,
         Text(
           subtitle,
-          style: GoogleFonts.inter(fontSize: 14, color: Colors.grey[500]),
+          style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 16 : 14, color: Colors.grey[500]),
         ),
         15.vSpace,
         Row(
@@ -357,7 +358,7 @@ class _PortfolioSettingScreenState extends State<PortfolioSettingScreen> {
             Text(
               value ? "On" : "Off",
               style: GoogleFonts.inter(
-                fontSize: 16,
+                fontSize: ScreenService.isTablet ? 18 : 16,
                 fontWeight: FontWeight.w600,
                 color: value ? Colors.orange : Colors.white,
               ),

@@ -9,6 +9,7 @@ import 'package:ucrypted_app/utilities/extensions.dart';
 import 'package:ucrypted_app/utilities/gradient_text.dart';
 import 'package:ucrypted_app/utilities/routing_service.dart';
 import 'package:ucrypted_app/utilities/scaffold_background.dart';
+import 'package:ucrypted_app/utilities/screen_service.dart';
 
 class CreateNewPassScreen extends StatefulWidget {
   const CreateNewPassScreen({super.key});
@@ -25,7 +26,7 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
     return ScaffoldWithBackground(
       backgroundImage: "assets/images/bg1.png",
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 20),
         child: Column(
           children: [
             Expanded(
@@ -61,19 +62,19 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
                       "Create New Password",
                       style: GoogleFonts.inter(
                         color: AppColors.white,
-                        fontSize: 28,
+                        fontSize: ScreenService.isTablet ? 32 : 28,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     5.vSpace,
                     Text(
                       "Let's create a new and more secure password",
-                      style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: 14, fontWeight: FontWeight.w500),
+                      style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w500),
                     ),
                     30.vSpace,
                     Text(
                       "Password",
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                     ),
                     10.vSpace,
                     TextField(
@@ -83,7 +84,7 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
                         filled: true,
                         fillColor: const Color(0xFF2C2C30),
                         hintStyle: GoogleFonts.inter(
-                          fontSize: 14,
+                          fontSize: ScreenService.isTablet ? 16 : 14,
                           fontWeight: FontWeight.w400,
                           color: Colors.white,
                         ),
@@ -113,7 +114,7 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
                     20.vSpace,
                     Text(
                       "Repeat Password",
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w500),
+                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                     ),
                     10.vSpace,
                     TextField(
@@ -123,7 +124,7 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
                         filled: true,
                         fillColor: const Color(0xFF2C2C30),
                         hintStyle: GoogleFonts.inter(
-                          fontSize: 14,
+                          fontSize: ScreenService.isTablet ? 16 : 14,
                           fontWeight: FontWeight.w400,
                           color: Colors.white,
                         ),
@@ -153,7 +154,7 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
                     30.vSpace,
                     Text(
                       "Min 8 Characters with a combination of letters and numbers",
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: 12, fontWeight: FontWeight.w400),
+                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w400),
                     ),
                     30.vSpace,
                     PasswordStrengthMeter(strength: 3),
@@ -185,7 +186,7 @@ class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
                       style: GoogleFonts.inter(
                         color: AppColors.white,
                         fontWeight: FontWeight.w400,
-                        fontSize: 18,
+                        fontSize: ScreenService.isTablet ? 22 : 18,
                       ),
                     ),
                   ),
@@ -218,7 +219,7 @@ class PasswordStrengthMeter extends StatelessWidget {
           Expanded(
             child: Container(
               height: 4.h,
-              margin: const EdgeInsets.symmetric(horizontal: 3),
+              margin: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 10 : 3),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 gradient: i < strength
@@ -236,7 +237,7 @@ class PasswordStrengthMeter extends StatelessWidget {
         // Strength Text
         const SizedBox(width: 20),
         GradientText(_getStrengthText(),
-            style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600),
+            style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 15 : 12, fontWeight: FontWeight.w600),
             gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)])),
       ],
     );

@@ -1663,9 +1663,33 @@ class _DetailPaymentWidgetState extends State<DetailPaymentWidget> {
                       100.vSpace,
                       GestureDetector(
                         onTap: () {
-                          Get.bottomSheet(bottomSheetContent(500, _amountController.text, "\$00.00", "\$21.00", "\$23.0120", () {
-                            // RoutingService.push(const InputRecoverySuccessScreen());
-                          }));
+                          !ScreenService.isTablet
+                              ? Get.bottomSheet(bottomSheetContent(500, _amountController.text, "\$00.00", "\$21.00", "\$23.0120", () {
+                                  // //   // RoutingService.push(const InputRecoverySuccessScreen());
+                                }))
+                              : showModalBottomSheet(
+                                  context: context,
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  constraints: BoxConstraints(
+                                      // maxHeight: 1000,
+                                      ),
+                                  builder: (BuildContext context) {
+                                    return SafeArea(
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xff1E1E20),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            topRight: Radius.circular(20),
+                                          ),
+                                        ),
+                                        padding: const EdgeInsets.all(20),
+                                        child: buildBottomSheetContent(context), // replace this with your Column/Widgets
+                                      ),
+                                    );
+                                  },
+                                );
                         },
                         child: Container(
                           height: 40.h,

@@ -556,6 +556,173 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
     );
   }
 
+  Widget buildBottomSheetContent1(BuildContext context) {
+    return SafeArea(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 300.h,
+        decoration: const BoxDecoration(
+          color: Color(0xff1E1E20),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 3.h,
+                  width: 120.w,
+                  decoration: BoxDecoration(color: Color(0xff44444A), borderRadius: BorderRadius.circular(12.r)),
+                ),
+              ],
+            ),
+            20.vSpace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "P2P",
+                  style: GoogleFonts.inter(
+                    color: Color(0xff6C7278),
+                    fontSize: ScreenService.isTablet ? 16 : 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                "Start small if this is your first P2P trade",
+                style: GoogleFonts.inter(
+                  color: Color(0xffFFFFFF),
+                  fontSize: ScreenService.isTablet ? 26 : 24,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            10.vSpace,
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Divider(
+                  height: 1.0,
+                  color: Color(0xff2C2C30),
+                )),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Text(
+                "We recommend starting with an order under 1,000 CNY for your first P2P trade.",
+                style: GoogleFonts.inter(
+                  color: Color(0xff6C7278),
+                  fontSize: ScreenService.isTablet ? 16 : 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            10.vSpace,
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Divider(
+                  height: 1.0,
+                  color: Color(0xff2C2C30),
+                )),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Text(
+                "Larger orders may require additional verification from sellers,potentially delaying your trade.",
+                style: GoogleFonts.inter(
+                  color: Color(0xff6C7278),
+                  fontSize: ScreenService.isTablet ? 16 : 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            // 20.vSpace,
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: GestureDetector(
+                onTap: () {
+                  // Get.back();
+                  RoutingService.push(const DiscoverP2PScreen(
+                    fromExpress: true,
+                  ));
+                },
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF1A1A1A),
+                    borderRadius: BorderRadius.circular(40),
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.08),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white.withOpacity(0.04),
+                        blurRadius: 12,
+                        spreadRadius: 1,
+                        offset: Offset(0, 0),
+                      ),
+                      BoxShadow(
+                        color: Colors.white.withOpacity(0.06),
+                        blurRadius: 2,
+                        spreadRadius: 2,
+                        offset: Offset(0, 0),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Start with 100 \$",
+                      style: GoogleFonts.inter(color: Color(0xffFFFFFF), fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            10.vSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: GestureDetector(
+                onTap: () {
+                  // Get.back();
+                  RoutingService.push(const DiscoverP2PScreen(
+                    fromExpress: true,
+                  ));
+                },
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [Color(0xFFFCA509), Color(0xFF880306)]),
+                    borderRadius: BorderRadius.circular(28),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Keep current amount",
+                      style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 16 : 14),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            10.vSpace,
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget convertAndLinkWidget() {
     return Column(
       children: [
@@ -887,12 +1054,35 @@ class _DiscoverExpressScreenState extends State<DiscoverExpressScreen> with Sing
         40.vSpace,
         GestureDetector(
           onTap: () {
-            // RoutingService.push(const P2PConfirmScreen());
-            Get.bottomSheet(
-              p2pBottomSheet(400.h, () {
-                // RoutingService.push(const InputRecoverySuccessScreen());
-              }, context),
-            );
+            !ScreenService.isTablet
+                ? Get.bottomSheet(
+                    p2pBottomSheet(400.h, () {
+                      // RoutingService.push(const InputRecoverySuccessScreen());
+                    }, context),
+                  )
+                : showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    constraints: BoxConstraints(
+                        // maxHeight: 1000,
+                        ),
+                    builder: (BuildContext context) {
+                      return SafeArea(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: Color(0xff1E1E20),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                          ),
+                          padding: const EdgeInsets.all(20),
+                          child: buildBottomSheetContent1(context), // replace this with your Column/Widgets
+                        ),
+                      );
+                    },
+                  );
           },
           child: Container(
             height: ScreenService.isTablet ? 60 : 50,
