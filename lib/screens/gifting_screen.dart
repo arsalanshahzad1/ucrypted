@@ -858,7 +858,7 @@ class _GiftingSucessState extends State<GiftingSucess> {
                       maxLines: 2,
                       style: GoogleFonts.poppins(
                         color: Colors.white,
-                        fontSize: ScreenService.isTablet ? 34 : 32,
+                        fontSize: ScreenService.isTablet ? 34 : 16,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -880,14 +880,14 @@ class _GiftingSucessState extends State<GiftingSucess> {
                           //   RoutingService.push(const RedeemStatus());
                           // },
                           child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 55.w, vertical: 30),
+                            padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 55.w : 25.w, vertical: 30),
                             decoration: BoxDecoration(
                               color: AppColors.grey.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
                               "Gift Card Details",
-                              style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: 24),
+                              style: GoogleFonts.poppins(color: AppColors.white, fontWeight: FontWeight.w500, fontSize: ScreenService.isTablet ? 24 : 18),
                             ),
                           ),
                         ),

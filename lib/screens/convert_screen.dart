@@ -107,7 +107,7 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                   ),
                 ],
               ),
-              10.vSpace,
+              25.vSpace,
               Container(
                 height: 45.h,
                 decoration: BoxDecoration(
@@ -159,21 +159,35 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
           children: [
             Text(
               title,
-              style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
+              style: GoogleFonts.inter(
+                  color: Color(0xff7E8088),
+                  fontSize: ScreenService.isTablet
+                      ? 16
+                      : MediaQuery.of(context).size.width < 400
+                          ? 12
+                          : 14,
+                  fontWeight: FontWeight.w400),
             ),
             4.hSpace,
-            !i ? const Icon(Icons.help_outline, color: Colors.grey, size: 14) : SizedBox.shrink(),
+            !i ? Icon(Icons.help_outline, color: Colors.grey, size: MediaQuery.of(context).size.width < 400 ? 12 : 14) : SizedBox.shrink(),
           ],
         ),
         Row(
           children: [
             Text(
               value,
-              style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
+              style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontSize: ScreenService.isTablet
+                      ? 16
+                      : MediaQuery.of(context).size.width < 400
+                          ? 12
+                          : 14,
+                  fontWeight: FontWeight.w400),
             ),
             if (trailingIcon != null) ...[
               6.hSpace,
-              Icon(trailingIcon, color: Colors.grey, size: 12),
+              Icon(trailingIcon, color: Colors.grey, size: MediaQuery.of(context).size.width < 400 ? 10 : 12),
             ],
           ],
         ),
@@ -215,7 +229,14 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                         children: [
                           Text(
                             "Pay",
-                            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
+                            style: GoogleFonts.inter(
+                                color: AppColors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: ScreenService.isTablet
+                                    ? 16
+                                    : MediaQuery.of(context).size.width < 400
+                                        ? 12
+                                        : 14),
                           ),
                           Row(
                             children: [
@@ -225,14 +246,28 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                                   5.hSpace,
                                   Text(
                                     "5,778",
-                                    style: GoogleFonts.poppins(color: AppColors.grey, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
+                                    style: GoogleFonts.poppins(
+                                        color: AppColors.grey,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: ScreenService.isTablet
+                                            ? 16
+                                            : MediaQuery.of(context).size.width < 400
+                                                ? 12
+                                                : 14),
                                   ),
                                 ],
                               ),
                               10.hSpace,
                               Text(
                                 "MAX",
-                                style: GoogleFonts.inter(color: Colors.green, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
+                                style: GoogleFonts.inter(
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: ScreenService.isTablet
+                                        ? 16
+                                        : MediaQuery.of(context).size.width < 400
+                                            ? 12
+                                            : 14),
                               )
                             ],
                           ),
@@ -256,7 +291,14 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                                     children: [
                                       Text(
                                         "ETH",
-                                        style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 24 : 22, color: Colors.white),
+                                        style: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: ScreenService.isTablet
+                                                ? 24
+                                                : MediaQuery.of(context).size.width < 400
+                                                    ? 20
+                                                    : 22,
+                                            color: Colors.white),
                                       ),
                                       // 10.hSpace,
                                       Icon(
@@ -267,7 +309,14 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                                   ),
                                   Text(
                                     "Ethereum",
-                                    style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 14 : 12, color: AppColors.grey),
+                                    style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: ScreenService.isTablet
+                                            ? 14
+                                            : MediaQuery.of(context).size.width < 400
+                                                ? 10
+                                                : 12,
+                                        color: AppColors.grey),
                                   )
                                 ],
                               )
@@ -278,11 +327,25 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                             children: [
                               Text(
                                 "1",
-                                style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 24 : 22, fontWeight: FontWeight.w600),
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontSize: ScreenService.isTablet
+                                        ? 24
+                                        : MediaQuery.of(context).size.width < 400
+                                            ? 20
+                                            : 22,
+                                    fontWeight: FontWeight.w600),
                               ),
                               Text(
                                 "\$1.876.24",
-                                style: GoogleFonts.inter(fontWeight: FontWeight.w400, color: Colors.white, fontSize: ScreenService.isTablet ? 14 : 12),
+                                style: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white,
+                                    fontSize: ScreenService.isTablet
+                                        ? 14
+                                        : MediaQuery.of(context).size.width < 400
+                                            ? 10
+                                            : 12),
                               )
                             ],
                           ),
@@ -315,7 +378,14 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                         children: [
                           Text(
                             "Receive",
-                            style: GoogleFonts.inter(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
+                            style: GoogleFonts.inter(
+                                color: AppColors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: ScreenService.isTablet
+                                    ? 16
+                                    : MediaQuery.of(context).size.width < 400
+                                        ? 12
+                                        : 14),
                           ),
                           Row(
                             children: [
@@ -325,7 +395,14 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                                   5.hSpace,
                                   Text(
                                     "0,031025",
-                                    style: GoogleFonts.poppins(color: AppColors.grey, fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 16 : 14),
+                                    style: GoogleFonts.poppins(
+                                        color: AppColors.grey,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: ScreenService.isTablet
+                                            ? 16
+                                            : MediaQuery.of(context).size.width < 400
+                                                ? 12
+                                                : 14),
                                   ),
                                 ],
                               ),
@@ -351,7 +428,14 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                                     children: [
                                       Text(
                                         "USDC",
-                                        style: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: ScreenService.isTablet ? 24 : 22, color: Colors.white),
+                                        style: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: ScreenService.isTablet
+                                                ? 24
+                                                : MediaQuery.of(context).size.width < 400
+                                                    ? 20
+                                                    : 22,
+                                            color: Colors.white),
                                       ),
                                       // 10.hSpace,
                                       Icon(
@@ -362,7 +446,14 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                                   ),
                                   Text(
                                     "Ethereum",
-                                    style: GoogleFonts.inter(fontWeight: FontWeight.w400, fontSize: ScreenService.isTablet ? 14 : 12, color: AppColors.grey),
+                                    style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: ScreenService.isTablet
+                                            ? 14
+                                            : MediaQuery.of(context).size.width < 400
+                                                ? 10
+                                                : 12,
+                                        color: AppColors.grey),
                                   )
                                 ],
                               )
@@ -373,17 +464,38 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                             children: [
                               Text(
                                 "1,038633",
-                                style: GoogleFonts.poppins(color: Colors.white, fontSize: ScreenService.isTablet ? 24 : 22, fontWeight: FontWeight.w600),
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontSize: ScreenService.isTablet
+                                        ? 24
+                                        : MediaQuery.of(context).size.width < 400
+                                            ? 20
+                                            : 22,
+                                    fontWeight: FontWeight.w600),
                               ),
                               Row(
                                 children: [
                                   Text(
                                     "\$1,03",
-                                    style: GoogleFonts.poppins(color: AppColors.grey, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
+                                    style: GoogleFonts.poppins(
+                                        color: AppColors.grey,
+                                        fontSize: ScreenService.isTablet
+                                            ? 14
+                                            : MediaQuery.of(context).size.width < 400
+                                                ? 10
+                                                : 12,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                   Text(
                                     " (+0,69)",
-                                    style: GoogleFonts.poppins(color: Colors.green, fontSize: ScreenService.isTablet ? 14 : 12, fontWeight: FontWeight.w400),
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.green,
+                                        fontSize: ScreenService.isTablet
+                                            ? 14
+                                            : MediaQuery.of(context).size.width < 400
+                                                ? 10
+                                                : 12,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                 ],
                               )
@@ -407,7 +519,7 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
             ),
           ],
         ),
-        20.vSpace,
+        MediaQuery.of(context).size.width < 400 ? 40.vSpace : 20.vSpace,
         GestureDetector(
           onTap: () {},
           child: Container(
@@ -442,10 +554,17 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                         children: [
                           Text(
                             "Reference",
-                            style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
+                            style: GoogleFonts.inter(
+                                color: Color(0xff7E8088),
+                                fontSize: ScreenService.isTablet
+                                    ? 16
+                                    : MediaQuery.of(context).size.width < 400
+                                        ? 12
+                                        : 14,
+                                fontWeight: FontWeight.w400),
                           ),
                           4.hSpace,
-                          const Icon(Icons.help_outline, color: Colors.grey, size: 14),
+                          Icon(Icons.help_outline, color: Colors.grey, size: MediaQuery.of(context).size.width < 400 ? 12 : 14),
                         ],
                       ),
                     ],
@@ -454,7 +573,14 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
                     children: [
                       Text(
                         "1 ETH = 1.876,515984 USDC",
-                        style: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
+                        style: GoogleFonts.inter(
+                            color: Colors.white,
+                            fontSize: ScreenService.isTablet
+                                ? 16
+                                : MediaQuery.of(context).size.width < 400
+                                    ? 12
+                                    : 14,
+                            fontWeight: FontWeight.w400),
                       ),
                       5.hSpace,
                       SvgPicture.asset(
@@ -862,19 +988,26 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
           children: [
             Text(
               "X Routing",
-              style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
+              style: GoogleFonts.inter(
+                  color: Color(0xff7E8088),
+                  fontSize: ScreenService.isTablet
+                      ? 16
+                      : MediaQuery.of(context).size.width < 400
+                          ? 12
+                          : 14,
+                  fontWeight: FontWeight.w400),
             ),
             4.hSpace,
-            const Icon(Icons.help_outline, color: Colors.grey, size: 14),
+            Icon(Icons.help_outline, color: Colors.grey, size: MediaQuery.of(context).size.width < 400 ? 12 : 14),
           ],
         ),
         Row(
           children: [
             _buildDot(true),
-            const Icon(Icons.arrow_right, color: Colors.grey, size: 22),
+            Icon(Icons.arrow_right, color: Colors.grey, size: MediaQuery.of(context).size.width < 400 ? 20 : 22),
             _buildDot(true),
             8.hSpace,
-            const Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 12),
+            Icon(Icons.arrow_forward_ios, color: Colors.grey, size: MediaQuery.of(context).size.width < 400 ? 10 : 12),
           ],
         ),
       ],
@@ -883,8 +1016,8 @@ class _ConvertScreenState extends State<ConvertScreen> with SingleTickerProvider
 
   Widget _buildDot(bool isActive) {
     return Container(
-      width: 12.w,
-      height: 12.h,
+      width: MediaQuery.of(context).size.width < 400 ? 10.w : 12.w,
+      height: MediaQuery.of(context).size.width < 400 ? 10.h : 12.h,
       decoration: BoxDecoration(
         color: isActive ? Color(0xff0082FE) : Colors.grey[600],
         shape: BoxShape.circle,

@@ -116,7 +116,7 @@ class _InputRecoveryscreenState extends State<InputRecoveryscreen> {
               onTap: () {
                 // RoutingService.push(const InputRecoveryscreen());
                 !ScreenService.isTablet
-                    ? Get.bottomSheet(bottomSheetContent(330.h, "Confirm Your Secret Recovery Word ?",
+                    ? Get.bottomSheet(bottomSheetContent(360.h, "Confirm Your Secret Recovery Word ?",
                         "This secret recovery word is crucial for accessing your account and cannot be recovered if lost. Are you sure you’ve entered it correctly ?", () {
                         RoutingService.push(const InputRecoverySuccessScreen());
                       }))
@@ -235,7 +235,7 @@ Widget bottomSheetContent(
                         Get.back();
                       },
                       child: Container(
-                        height: 45.h,
+                        height: 55.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(24.0),
                           color: Color.fromARGB(255, 34, 34, 37),
@@ -255,7 +255,7 @@ Widget bottomSheetContent(
                     child: GestureDetector(
                       onTap: onTap,
                       child: Container(
-                        height: 45.h,
+                        height: 55.h,
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
                             begin: Alignment.topLeft,

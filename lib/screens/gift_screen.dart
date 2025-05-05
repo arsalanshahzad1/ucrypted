@@ -333,6 +333,7 @@ class _GiftScreenState extends State<GiftScreen> {
   }
 
   Widget buildGiftTokens() {
+    appPrint("Printing the device width : ${MediaQuery.of(context).size.width}");
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       decoration: BoxDecoration(
@@ -353,7 +354,11 @@ class _GiftScreenState extends State<GiftScreen> {
                   style: GoogleFonts.inter(
                     color: AppColors.white,
                     fontWeight: FontWeight.w400,
-                    fontSize: ScreenService.isTablet ? 16 : 14,
+                    fontSize: ScreenService.isTablet
+                        ? 16
+                        : MediaQuery.of(context).size.width < 400
+                            ? 12
+                            : 14,
                   ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
@@ -370,7 +375,14 @@ class _GiftScreenState extends State<GiftScreen> {
             children: [
               Text(
                 "Progress",
-                style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.inter(
+                    color: Color(0xff7E8088),
+                    fontSize: ScreenService.isTablet
+                        ? 16
+                        : MediaQuery.of(context).size.width < 400
+                            ? 12
+                            : 14,
+                    fontWeight: FontWeight.w400),
               ),
               Row(
                 children: [
@@ -378,7 +390,11 @@ class _GiftScreenState extends State<GiftScreen> {
                     "0",
                     style: GoogleFonts.inter(
                       color: Colors.green,
-                      fontSize: ScreenService.isTablet ? 16 : 14,
+                      fontSize: ScreenService.isTablet
+                          ? 16
+                          : MediaQuery.of(context).size.width < 400
+                              ? 12
+                              : 14,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -386,7 +402,11 @@ class _GiftScreenState extends State<GiftScreen> {
                     "/10 USDT",
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: ScreenService.isTablet ? 16 : 14,
+                      fontSize: ScreenService.isTablet
+                          ? 16
+                          : MediaQuery.of(context).size.width < 400
+                              ? 12
+                              : 14,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -402,17 +422,28 @@ class _GiftScreenState extends State<GiftScreen> {
             children: [
               Text(
                 "Reward",
-                style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.inter(
+                    color: Color(0xff7E8088),
+                    fontSize: ScreenService.isTablet
+                        ? 16
+                        : MediaQuery.of(context).size.width < 400
+                            ? 12
+                            : 14,
+                    fontWeight: FontWeight.w400),
               ),
               Row(
                 children: [
                   SvgPicture.asset("assets/svg/card.svg"),
                   8.hSpace,
                   Text(
-                    "USDT Trading Fee Rebate Voucher",
+                    "30 USDT Trading Fee Rebate Voucher",
                     style: GoogleFonts.inter(
                       color: Colors.white,
-                      fontSize: ScreenService.isTablet ? 16 : 14,
+                      fontSize: ScreenService.isTablet
+                          ? 16
+                          : MediaQuery.of(context).size.width < 400
+                              ? 12
+                              : 14,
                       fontWeight: FontWeight.w400,
                     ),
                     textAlign: TextAlign.right,
@@ -429,13 +460,24 @@ class _GiftScreenState extends State<GiftScreen> {
             children: [
               Text(
                 "Time Left to complete Task",
-                style: GoogleFonts.inter(color: Color(0xff7E8088), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w400),
+                style: GoogleFonts.inter(
+                    color: Color(0xff7E8088),
+                    fontSize: ScreenService.isTablet
+                        ? 16
+                        : MediaQuery.of(context).size.width < 400
+                            ? 12
+                            : 14,
+                    fontWeight: FontWeight.w400),
               ),
               Text(
                 "02D:00H:30M",
                 style: GoogleFonts.inter(
                   color: Colors.white,
-                  fontSize: ScreenService.isTablet ? 16 : 14,
+                  fontSize: ScreenService.isTablet
+                      ? 16
+                      : MediaQuery.of(context).size.width < 400
+                          ? 12
+                          : 14,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -457,7 +499,11 @@ class _GiftScreenState extends State<GiftScreen> {
                   "Do Task",
                   style: GoogleFonts.inter(
                     color: Colors.white,
-                    fontSize: ScreenService.isTablet ? 16 : 14,
+                    fontSize: ScreenService.isTablet
+                        ? 16
+                        : MediaQuery.of(context).size.width < 400
+                            ? 12
+                            : 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

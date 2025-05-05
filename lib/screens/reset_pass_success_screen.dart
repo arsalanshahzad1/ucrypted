@@ -51,31 +51,47 @@ class _ResetPassSuccessScreenState extends State<ResetPassSuccessScreen> {
                       ],
                     ),
                     20.vSpace,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Reset password succesful",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.inter(
-                            color: AppColors.white,
-                            fontSize: ScreenService.isTablet ? 36 : 32,
-                            fontWeight: FontWeight.w600,
+                    ScreenService.isTablet
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Reset password successful",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.inter(
+                                  color: AppColors.white,
+                                  fontSize: ScreenService.isTablet ? 36 : 32,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          )
+                        : Text(
+                            "Reset password successful",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.inter(
+                              color: AppColors.white,
+                              fontSize: ScreenService.isTablet ? 36 : 32,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
                     20.vSpace,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Successfully changed password. you can enter the main page",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
+                    ScreenService.isTablet
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Successfully changed password. you can enter the main page",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          )
+                        : Text(
+                            "Successfully changed password. you can enter the main page",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w500),
+                          ),
                   ],
                 ),
               ),

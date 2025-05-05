@@ -871,7 +871,7 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.white, width: 1.0),
               // color: Color(0xff202226).withOpacity(0.55),
-              color: Color.fromARGB(255, 41, 44, 49).withOpacity(0.55),
+              color: Color.fromARGB(255, 53, 57, 64).withOpacity(0.25),
               borderRadius: BorderRadius.circular(18),
             ),
             child: Column(

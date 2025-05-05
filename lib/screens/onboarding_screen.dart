@@ -76,16 +76,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         if (page['textPosition'] == 'before')
                           Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  page['text'],
-                                  style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 32),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
+                            child: ScreenService.isTablet
+                                ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        page['text'],
+                                        style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 32),
+                                        textAlign: TextAlign.start,
+                                      ),
+                                    ],
+                                  )
+                                : Text(
+                                    page['text'],
+                                    style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 32),
+                                    textAlign: TextAlign.start,
+                                  ),
                           ),
                         Image.asset(
                           page['image'],
@@ -95,16 +101,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         if (page['textPosition'] == 'below')
                           Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  page['text'],
-                                  style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 32),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
-                            ),
+                            child: ScreenService.isTablet
+                                ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        page['text'],
+                                        style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 32),
+                                        textAlign: TextAlign.start,
+                                      ),
+                                    ],
+                                  )
+                                : Text(
+                                    page['text'],
+                                    style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 32),
+                                    textAlign: TextAlign.start,
+                                  ),
                           ),
                       ],
                     );
