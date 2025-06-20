@@ -191,7 +191,7 @@ class _SecuritySettingScreenState extends State<SecuritySettingScreen> {
         15.vSpace,
         Text(
           subtitle,
-          style: GoogleFonts.inter(fontSize:ScreenService.isTablet ? 18 :  14, color: Colors.grey[500]),
+          style: GoogleFonts.inter(fontSize: ScreenService.isTablet ? 18 : 14, color: Colors.grey[500]),
         ),
         15.vSpace,
         Row(
