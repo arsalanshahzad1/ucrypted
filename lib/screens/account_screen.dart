@@ -216,10 +216,7 @@ class _AccountScreenState extends State<AccountScreen> {
               }),
               5.vSpace,
               settingsItem("assets/svg/logout.svg", "Logout", () {
-                AppLoader.startLoading();
-                Future.delayed(const Duration(seconds: 3), () {
-                  authController.onLogout();
-                });
+                authController.onLogout(context);
               }),
             ],
           ),

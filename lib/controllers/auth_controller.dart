@@ -236,11 +236,57 @@ class AuthController extends GetxController {
   }
 
   ///
-  /// Logout Function
+  /// Logout Api Call
   ///
-  void onLogout() {
-    RoutingService.pushAndRemoveUntil(const LoginScreen());
-    clearLoginControllers();
-    localStorage.clear();
+  Future<void> onLogout(BuildContext context) async {
+    AppLoader.startLoading();
+
+    try {
+      final response = await Api().apiCall(
+        ApiEndpoints.logout,
+        null,
+        null,
+        RequestType.POST,
+      );
+
+      response?.maybeWhen(
+        success: (data) async {
+          if (!context.mounted) return;
+          AppLoader.stopLoading();
+          SnackBars().showSnackBar("Success", data['message'].toString(), AppColors.errorSnackColor);
+          clearLoginControllers();
+          await localStorage.clear();
+          RoutingService.pushAndRemoveUntil(const LoginScreen());
+        },
+        loading: (_) {},
+        error: (message) {
+          if (!context.mounted) return;
+          AppLoader.stopLoading();
+          SnackBars().showSnackBar("Error", message.toString(), AppColors.errorSnackColor);
+        },
+        orElse: () {
+          if (!context.mounted) return;
+          AppLoader.stopLoading();
+        },
+      );
+    } on NotFoundException {
+      if (context.mounted) {
+        AppLoader.stopLoading();
+        SnackBars().showSnackBar("Error", "User not found, please try again.", AppColors.errorSnackColor);
+      }
+    } on UnauthorizedException {
+      if (context.mounted) {
+        AppLoader.stopLoading();
+        SnackBars().showSnackBar("Error", "Unauthorized access. Please check your credentials.", AppColors.errorSnackColor);
+      }
+    } catch (_) {
+      if (context.mounted) {
+        AppLoader.stopLoading();
+        SnackBars().showSnackBar("Error", "An unexpected error occurred. Please try again.", AppColors.errorSnackColor);
+      }
+    }
+
+    // ❌ remove this — it double-stops after navigation and can hit a defunct context
+    // AppLoader.stopLoading();
   }
 }
