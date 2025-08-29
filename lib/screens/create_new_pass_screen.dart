@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ucrypted_app/controllers/auth_controller.dart';
 import 'package:ucrypted_app/screens/reset_pass_success_screen.dart';
 import 'package:ucrypted_app/utilities/app_colors.dart';
 import 'package:ucrypted_app/utilities/extensions.dart';
@@ -19,184 +20,199 @@ class CreateNewPassScreen extends StatefulWidget {
 }
 
 class _CreateNewPassScreenState extends State<CreateNewPassScreen> {
+  final AuthController controller = Get.put(AuthController());
   bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldWithBackground(
-      backgroundImage: "assets/images/bg1.png",
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 20),
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    50.vSpace,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back_ios,
-                            color: AppColors.white,
+    return Obx(() {
+      return ScaffoldWithBackground(
+        backgroundImage: "assets/images/bg1.png",
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: ScreenService.isTablet ? 30 : 20),
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      50.vSpace,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back_ios,
+                              color: AppColors.white,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 30,
-                          width: 100,
-                          child: SvgPicture.asset(
-                            "assets/svg/splash-logo.svg",
-                            fit: BoxFit.contain,
+                          SizedBox(
+                            height: 30,
+                            width: 100,
+                            child: SvgPicture.asset(
+                              "assets/svg/splash-logo.svg",
+                              fit: BoxFit.contain,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    30.vSpace,
-                    Text(
-                      "Create New Password",
-                      style: GoogleFonts.inter(
-                        color: AppColors.white,
-                        fontSize: ScreenService.isTablet ? 32 : 28,
-                        fontWeight: FontWeight.w500,
+                        ],
                       ),
-                    ),
-                    5.vSpace,
-                    Text(
-                      "Let's create a new and more secure password",
-                      style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w500),
-                    ),
-                    30.vSpace,
-                    Text(
-                      "Password",
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
-                    ),
-                    10.vSpace,
-                    TextField(
-                      obscureText: _obscureText,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: const Color(0xFF2C2C30),
-                        hintStyle: GoogleFonts.inter(
-                          fontSize: ScreenService.isTablet ? 16 : 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ),
-                        hintText: "********",
-                        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                        suffixIcon: IconButton(
-                          icon: SvgPicture.asset(
-                            'assets/svg/eyeclose.svg',
-                            colorFilter: const ColorFilter.mode(Colors.white54, BlendMode.srcIn),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(color: Color(0xff44444A)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Color(0xff44444A)),
+                      30.vSpace,
+                      Text(
+                        "Create New Password",
+                        style: GoogleFonts.inter(
+                          color: AppColors.white,
+                          fontSize: ScreenService.isTablet ? 32 : 28,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                    ),
-                    20.vSpace,
-                    Text(
-                      "Repeat Password",
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
-                    ),
-                    10.vSpace,
-                    TextField(
-                      obscureText: _obscureText,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: const Color(0xFF2C2C30),
-                        hintStyle: GoogleFonts.inter(
-                          fontSize: ScreenService.isTablet ? 16 : 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
-                        ),
-                        hintText: "********",
-                        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                        suffixIcon: IconButton(
-                          icon: SvgPicture.asset(
-                            'assets/svg/eyeclose.svg',
-                            colorFilter: const ColorFilter.mode(Colors.white54, BlendMode.srcIn),
+                      5.vSpace,
+                      Text(
+                        "Let's create a new and more secure password",
+                        style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: ScreenService.isTablet ? 18 : 14, fontWeight: FontWeight.w500),
+                      ),
+                      30.vSpace,
+                      Text(
+                        "Password",
+                        style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
+                      ),
+                      10.vSpace,
+                      TextField(
+                        obscureText: _obscureText,
+                        controller: controller.newPasswordController,
+                        style: const TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: const Color(0xFF2C2C30),
+                          hintStyle: GoogleFonts.inter(
+                            fontSize: ScreenService.isTablet ? 16 : 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
                           ),
-                          onPressed: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(color: Color(0xff44444A)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Color(0xff44444A)),
+                          hintText: "********",
+                          contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                          suffixIcon: IconButton(
+                            icon: SvgPicture.asset(
+                              'assets/svg/eyeclose.svg',
+                              colorFilter: const ColorFilter.mode(Colors.white54, BlendMode.srcIn),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(color: Color(0xff44444A)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(color: Color(0xff44444A)),
+                          ),
                         ),
                       ),
-                    ),
-                    30.vSpace,
-                    Text(
-                      "Min 8 Characters with a combination of letters and numbers",
-                      style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w400),
-                    ),
-                    30.vSpace,
-                    PasswordStrengthMeter(strength: 3),
-                  ],
-                ),
-              ),
-            ),
-            // Button at the bottom
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: GestureDetector(
-                onTap: () {
-                  RoutingService.push(const ResetPassSuccessScreen());
-                },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [Color(0xFFFCA509), Color(0xFF880306)],
-                    ),
-                    borderRadius: BorderRadius.circular(28),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Continue",
-                      style: GoogleFonts.inter(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w400,
-                        fontSize: ScreenService.isTablet ? 22 : 18,
+                      20.vSpace,
+                      Text(
+                        "Repeat Password",
+                        style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                       ),
-                    ),
+                      10.vSpace,
+                      TextField(
+                        obscureText: _obscureText,
+                        controller: controller.cnfmNewPassController,
+                        style: const TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: const Color(0xFF2C2C30),
+                          hintStyle: GoogleFonts.inter(
+                            fontSize: ScreenService.isTablet ? 16 : 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                          hintText: "********",
+                          contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                          suffixIcon: IconButton(
+                            icon: SvgPicture.asset(
+                              'assets/svg/eyeclose.svg',
+                              colorFilter: const ColorFilter.mode(Colors.white54, BlendMode.srcIn),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(color: Color(0xff44444A)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(color: Color(0xff44444A)),
+                          ),
+                        ),
+                      ),
+                      30.vSpace,
+                      Text(
+                        "Min 8 Characters with a combination of letters and numbers",
+                        style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w400),
+                      ),
+                      30.vSpace,
+                      PasswordStrengthMeter(strength: 3),
+                    ],
                   ),
                 ),
               ),
-            ),
-          ],
+              // Button at the bottom
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: GestureDetector(
+                  onTap: () {
+                    controller.createNewPassword();
+                  },
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFFFCA509), Color(0xFF880306)],
+                      ),
+                      borderRadius: BorderRadius.circular(28),
+                    ),
+                    child: controller.isNewPasswordLoading.value
+                        ? Center(
+                            child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        : Center(
+                            child: Text(
+                              "Continue",
+                              style: GoogleFonts.inter(
+                                color: AppColors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: ScreenService.isTablet ? 22 : 18,
+                              ),
+                            ),
+                          ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 

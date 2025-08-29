@@ -1,5 +1,6 @@
 // ignore: constant_identifier_names
 import 'package:dio/dio.dart';
+import 'package:ucrypted_app/models/login_response_model.dart';
 import 'package:ucrypted_app/services/local/local_storage.dart';
 import 'package:ucrypted_app/services/network/api_response.dart';
 import 'package:ucrypted_app/utilities/app_print.dart';
@@ -193,12 +194,10 @@ class Logging extends Interceptor {
 }
 
 Future<Map<String, String>> getAuthHeader() async {
-  LocalStorage localStorage = LocalStorage();
-  // LoginResponseModel? user = await localStorage.getUserModel();
-  // String? token = user?.token;
+  final token = await LocalStorage().getToken();
   return {
     'Content-type': 'application/json',
     'Accept': 'application/json',
-    // 'Authorization': token != null ? 'Bearer $token' : '',
+    'Authorization': token != null ? 'Bearer $token' : '',
   };
 }

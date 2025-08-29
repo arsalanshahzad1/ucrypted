@@ -1,29 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:pinput/pinput.dart';
 import 'package:ucrypted_app/controllers/auth_controller.dart';
+import 'package:ucrypted_app/screens/app_imports.dart';
 import 'package:ucrypted_app/screens/create_new_pass_screen.dart';
-import 'package:ucrypted_app/screens/otp_verifcation_screen.dart';
-import 'package:ucrypted_app/utilities/app_colors.dart';
-import 'package:ucrypted_app/utilities/app_print.dart';
-import 'package:ucrypted_app/utilities/custom_textfield.dart';
-import 'package:ucrypted_app/utilities/extensions.dart';
-import 'package:ucrypted_app/utilities/routing_service.dart';
-import 'package:ucrypted_app/utilities/scaffold_background.dart';
 import 'package:ucrypted_app/utilities/screen_service.dart';
 
-class ResetPasswordScreen extends StatefulWidget {
-  const ResetPasswordScreen({super.key});
+class OTPVerificationScreen extends StatefulWidget {
+  const OTPVerificationScreen({super.key});
 
   @override
-  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
+  State<OTPVerificationScreen> createState() => _OTPVerificationScreenState();
 }
 
-class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   final AuthController controller = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
@@ -64,7 +52,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       ),
                       30.vSpace,
                       Text(
-                        "Reset Password",
+                        "Verify One Time Password",
                         style: GoogleFonts.inter(
                           color: AppColors.white,
                           fontSize: ScreenService.isTablet ? 36 : 32,
@@ -73,7 +61,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       ),
                       5.vSpace,
                       Text(
-                        "Input your email address account to receive a reset link",
+                        "Input OTP sent to your account",
                         style: GoogleFonts.inter(
                           color: Color(0xff6C7278),
                           fontWeight: FontWeight.w500,
@@ -86,31 +74,57 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         style: GoogleFonts.inter(color: Color(0xffACB5BB), fontSize: ScreenService.isTablet ? 16 : 12, fontWeight: FontWeight.w500),
                       ),
                       10.vSpace,
-                      TextField(
-                        controller: controller.emailControllerVerify,
-                        style: TextStyle(color: Colors.white), // Text color inside
-                        decoration: InputDecoration(
-                          hintText: 'yourname@gmail.com',
-                          hintStyle: GoogleFonts.inter(color: Colors.white, fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w500), // Placeholder color
-                          filled: true,
-                          fillColor: Color(0xFF2C2C30), // Inside background color of the field
-                          contentPadding: EdgeInsets.symmetric(vertical: ScreenService.isTablet ? 15.0 : 12.0, horizontal: 16.0),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide: BorderSide(
-                              color: Color(0xff44444A), // Border color when not focused
-                              width: 1.0,
+                      Center(
+                        child: Pinput(
+                          length: 6,
+                          controller: controller.otpTextController,
+                          defaultPinTheme: PinTheme(
+                            width: 50,
+                            height: 55,
+                            textStyle: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF2C2C30),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: const Color(0xff44444A), width: 1),
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                            borderSide: BorderSide(
-                              color: Color(0xff44444A), // Border color when focused
-                              width: 1.0,
+                          focusedPinTheme: PinTheme(
+                            width: 50,
+                            height: 55,
+                            textStyle: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF2C2C30),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: const Color(0xffFCA509), width: 2),
                             ),
                           ),
+                          submittedPinTheme: PinTheme(
+                            width: 50,
+                            height: 55,
+                            textStyle: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF2C2C30),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: const Color(0xffFCA509), width: 1),
+                            ),
+                          ),
+                          onCompleted: (value) {
+                            controller.otpCode.value = value;
+                          },
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -120,7 +134,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 padding: const EdgeInsets.only(bottom: 20),
                 child: GestureDetector(
                   onTap: () {
-                    controller.verifyEmail();
+                    controller.validateOTP();
                   },
                   child: Container(
                     height: ScreenService.isTablet ? 55 : 50,
@@ -133,7 +147,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       ),
                       borderRadius: BorderRadius.circular(28),
                     ),
-                    child: controller.isVerifyEmailLoading.value
+                    child: controller.isOtpVerifying.value
                         ? Center(
                             child: SizedBox(
                               height: 20,

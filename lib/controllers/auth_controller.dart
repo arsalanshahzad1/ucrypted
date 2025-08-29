@@ -3,7 +3,11 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:ucrypted_app/models/login_response_model.dart';
 import 'package:ucrypted_app/models/signup_response_model.dart';
 import 'package:ucrypted_app/screens/app_imports.dart';
+import 'package:ucrypted_app/screens/create_new_pass_screen.dart';
 import 'package:ucrypted_app/screens/home_screen.dart';
+import 'package:ucrypted_app/screens/otp_verifcation_screen.dart';
+import 'package:ucrypted_app/screens/reset_pass_success_screen.dart';
+import 'package:ucrypted_app/screens/reset_password_screen.dart';
 import 'package:ucrypted_app/services/local/local_storage.dart';
 import 'package:ucrypted_app/services/network/api_endpoints.dart';
 import 'package:ucrypted_app/services/network/api_response.dart';
@@ -27,6 +31,17 @@ class AuthController extends GetxController {
   TextEditingController passConfirmControllerSignUp = TextEditingController(); // Sign Up Controller
   RxBool isTAndC = false.obs; // Sign Up Controller
 
+  TextEditingController emailControllerVerify = TextEditingController(); // Verify Email Controller
+  RxBool isVerifyEmailLoading = false.obs; // Verify Email Controller
+
+  TextEditingController otpTextController = TextEditingController(); // validate OPT Controller
+  RxString otpCode = "".obs; //validate OPT Controller
+  RxBool isOtpVerifying = false.obs; //validate OPT Controller
+
+  RxBool isNewPasswordLoading = false.obs; //Create new password loading
+  TextEditingController newPasswordController = TextEditingController(); //Create new password loading
+  TextEditingController cnfmNewPassController = TextEditingController(); //Create new password loading
+
   bool _validateLoginInputs() {
     final email = emailControllerLogin.text.trim();
     final password = passwordControllerLogin.text;
@@ -43,6 +58,40 @@ class AuthController extends GetxController {
 
     if (password.length < 5) {
       SnackBars().showSnackBar("Weak Password", "Password must be at least 5 characters long.", AppColors.errorSnackColor);
+      return false;
+    }
+
+    return true;
+  }
+
+  bool _validateCreateNewPassInputs() {
+    final pass = newPasswordController.text.trim();
+    final cnfmPass = cnfmNewPassController.text.trim();
+
+    if (pass.isEmpty || cnfmPass.isEmpty) {
+      SnackBars().showSnackBar(
+        "Missing Input",
+        "Please fill in all fields.",
+        AppColors.errorSnackColor,
+      );
+      return false;
+    }
+
+    if (pass.length < 6) {
+      SnackBars().showSnackBar(
+        "Weak Password",
+        "Password must be at least 6 characters long.",
+        AppColors.errorSnackColor,
+      );
+      return false;
+    }
+
+    if (pass != cnfmPass) {
+      SnackBars().showSnackBar(
+        "Password Mismatch",
+        "New password and confirm password do not match.",
+        AppColors.errorSnackColor,
+      );
       return false;
     }
 
@@ -236,6 +285,161 @@ class AuthController extends GetxController {
   }
 
   ///
+  /// Verify Email and request OTP
+  ///
+  Future<void> verifyEmail() async {
+    var body = {
+      "email": emailControllerVerify.value.text,
+    };
+
+    isVerifyEmailLoading.value = true;
+
+    try {
+      NetworkResponse? response = await Api().apiCall(
+        ApiEndpoints.verifyEmail,
+        null,
+        body,
+        RequestType.POST,
+      );
+
+      response?.maybeWhen(
+        success: (data) async {
+          SnackBars().showSnackBar("Success", data['message'].toString(), AppColors.successSnackColor);
+          isVerifyEmailLoading.value = false;
+          RoutingService.push(OTPVerificationScreen());
+        },
+        loading: (message) {
+          appPrint("Loading State -  $message");
+        },
+        error: (message) {
+          isVerifyEmailLoading.value = false;
+          SnackBars().showSnackBar("Error", message.toString(), AppColors.errorSnackColor);
+          appPrint("Error State -  $message");
+        },
+        orElse: () {
+          isVerifyEmailLoading.value = false;
+          appPrint("orElse State - on error");
+        },
+      );
+    } on NotFoundException {
+      isVerifyEmailLoading.value = false;
+      SnackBars().showSnackBar("Error", "User not found, please try again.", AppColors.errorSnackColor);
+    } on UnauthorizedException {
+      isVerifyEmailLoading.value = false;
+      SnackBars().showSnackBar("Error", "Unauthorized access. Please check your credentials.", AppColors.errorSnackColor);
+    } catch (e) {
+      isVerifyEmailLoading.value = false;
+      SnackBars().showSnackBar("Error", "An unexpected error occurred. Please try again.", AppColors.errorSnackColor);
+    }
+
+    isVerifyEmailLoading.value = false;
+  }
+
+  Future<void> validateOTP() async {
+    var body = {
+      "email": emailControllerVerify.value.text,
+      "code": otpTextController.text,
+    };
+
+    isOtpVerifying.value = true;
+
+    try {
+      NetworkResponse? response = await Api().apiCall(
+        ApiEndpoints.verifyOTP,
+        null,
+        body,
+        RequestType.POST,
+      );
+
+      response?.maybeWhen(
+        success: (data) async {
+          SnackBars().showSnackBar("Success", data['message'].toString(), AppColors.successSnackColor);
+          isOtpVerifying.value = false;
+          RoutingService.push(CreateNewPassScreen());
+        },
+        loading: (message) {
+          appPrint("Loading State -  $message");
+        },
+        error: (message) {
+          isOtpVerifying.value = false;
+          SnackBars().showSnackBar("Error", message.toString(), AppColors.errorSnackColor);
+          appPrint("Error State -  $message");
+        },
+        orElse: () {
+          isOtpVerifying.value = false;
+          appPrint("orElse State - on error");
+        },
+      );
+    } on NotFoundException {
+      isOtpVerifying.value = false;
+      SnackBars().showSnackBar("Error", "User not found, please try again.", AppColors.errorSnackColor);
+    } on UnauthorizedException {
+      isOtpVerifying.value = false;
+      SnackBars().showSnackBar("Error", "Unauthorized access. Please check your credentials.", AppColors.errorSnackColor);
+    } catch (e) {
+      isOtpVerifying.value = false;
+      SnackBars().showSnackBar("Error", "An unexpected error occurred. Please try again.", AppColors.errorSnackColor);
+    }
+  }
+
+  ///
+  /// Create New Password Api
+  ///
+  Future<void> createNewPassword() async {
+    if (!_validateCreateNewPassInputs()) {
+      return;
+    }
+    var body = {
+      "email": emailControllerVerify.value.text,
+      "code": otpTextController.text,
+      "password": newPasswordController.value.text,
+      "password_confirmation": cnfmNewPassController.value.text,
+    };
+
+    isNewPasswordLoading.value = true;
+
+    try {
+      NetworkResponse? response = await Api().apiCall(
+        ApiEndpoints.resetPassword,
+        null,
+        body,
+        RequestType.POST,
+      );
+
+      response?.maybeWhen(
+        success: (data) async {
+          SnackBars().showSnackBar("Success", data['message'].toString(), AppColors.successSnackColor);
+          isNewPasswordLoading.value = false;
+          RoutingService.push(ResetPassSuccessScreen());
+        },
+        loading: (message) {
+          appPrint("Loading State -  $message");
+        },
+        error: (message) {
+          isNewPasswordLoading.value = false;
+          SnackBars().showSnackBar("Error", message.toString(), AppColors.errorSnackColor);
+          appPrint("Error State -  $message");
+        },
+        orElse: () {
+          isNewPasswordLoading.value = false;
+          appPrint("orElse State - on error");
+        },
+      );
+    } on NotFoundException {
+      isNewPasswordLoading.value = false;
+      SnackBars().showSnackBar("Error", "User not found, please try again.", AppColors.errorSnackColor);
+    } on UnauthorizedException {
+      isNewPasswordLoading.value = false;
+      SnackBars().showSnackBar("Error", "Unauthorized access. Please check your credentials.", AppColors.errorSnackColor);
+    } catch (e) {
+      isNewPasswordLoading.value = false;
+      SnackBars().showSnackBar("Error", "An unexpected error occurred. Please try again.", AppColors.errorSnackColor);
+    }
+
+    isNewPasswordLoading.value = false;
+  }
+
+  ///
   /// Logout Api Call
   ///
   Future<void> onLogout(BuildContext context) async {
@@ -285,8 +489,5 @@ class AuthController extends GetxController {
         SnackBars().showSnackBar("Error", "An unexpected error occurred. Please try again.", AppColors.errorSnackColor);
       }
     }
-
-    // ❌ remove this — it double-stops after navigation and can hit a defunct context
-    // AppLoader.stopLoading();
   }
 }

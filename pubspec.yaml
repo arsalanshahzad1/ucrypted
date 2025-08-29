@@ -50,6 +50,7 @@ dependencies:
   gradient_borders: ^1.0.1
   path_provider_android: ^2.2.17
   device_preview: ^1.2.0 
+  pinput: ^5.0.1
 
 dev_dependencies:
   flutter_test:

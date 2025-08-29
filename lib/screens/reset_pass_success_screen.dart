@@ -81,14 +81,14 @@ class _ResetPassSuccessScreenState extends State<ResetPassSuccessScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Successfully changed password. you can enter the main page",
+                                "Successfully changed password. Please login again",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w500),
                               ),
                             ],
                           )
                         : Text(
-                            "Successfully changed password. you can enter the main page",
+                            "Successfully changed password. Please login again",
                             textAlign: TextAlign.center,
                             style: GoogleFonts.inter(color: Color(0xff6C7278), fontSize: ScreenService.isTablet ? 16 : 14, fontWeight: FontWeight.w500),
                           ),
@@ -101,7 +101,7 @@ class _ResetPassSuccessScreenState extends State<ResetPassSuccessScreen> {
               padding: const EdgeInsets.only(bottom: 20),
               child: GestureDetector(
                 onTap: () {
-                  RoutingService.pushAndRemoveUntil(const HomeScreen());
+                  RoutingService.pushAndRemoveUntil(const LoginScreen());
                 },
                 child: Container(
                   height: 50,
@@ -116,7 +116,7 @@ class _ResetPassSuccessScreenState extends State<ResetPassSuccessScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      "Go to Home",
+                      "Go to Login",
                       style: GoogleFonts.inter(
                         color: AppColors.white,
                         fontWeight: FontWeight.normal,
